@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- this html file basically announces which files are used in our game and makes sure we can
+    access them -->
+
+<head>
+    <!-- Mobile viewport settings, avoid scroll/scale -->
+    <!-- kinda not sure what these do so don't mess with them -->
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        @font-face {
+    font-family: Minecraft;
+    src:url("/fonts/Minecraft.ttf");
+}
+    </style>
+
+    <title>Pet game</title> <!-- need to come up with an original title -->
+    <link rel="preload" as="Minecraft" href="fonts/Minecraft.ttf" type="font/ttf" />
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="firebaseConfig.js"></script>
+    <script src="phaser.js"></script>
+    <script src="bootpet.js"></script>
+    <script src="BootScene.js"></script>
+    <script src="TitleScene.js"></script>
+    <script src="MainScene.js"></script>
+</head>
+
+<body>
+
+    <div id="game"></div>
+
+    <script src="game.js"></script>
+
+    <script>
+
+    </script>
+</body>

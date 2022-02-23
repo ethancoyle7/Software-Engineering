@@ -1,0 +1,121 @@
+class BootScene extends Phaser.Scene {
+    constructor(){
+        super("BootScene");
+        //defining the variables needed
+        this.loadBar = null;
+        this.loadTxt= null;
+        this.percent =0;
+        this.imageNum=0;
+        this.fileload="";
+        //this.kitten=[];
+        this.petImage=null;
+    }
+
+
+    preload() {
+        
+        //This is where images are loaded
+        //this.load.image('use a short name', './assets/name_of_image');
+        
+        
+        //loops through all image options of bootpet.js
+        for (let i = 0; i < BOOTPET.length; i++) {
+            this.load.image(BOOTPET[i].name, `./assets/${BOOTPET[i].image}`);
+            //this.load.image('bg', './assets/loading.png');
+        }
+
+        //This is the loading bar area - i reused some code
+        this.loadingBar = this.add.rectangle(235, 300, 420, 40, 0x22dd4b);
+        this.loadingTxt = this.add.text(235,250, "0%", {
+            fontSize: '24px',
+            color: 'white',
+            align: 'center'
+        });
+        this.loadingTxt.setOrigin(0.5);
+        // Load a bunch of assets 
+        this.load.image('square', './assets/square.png');
+        for (let i = 0; i < 600; i++) {
+            this.load.image(`square-${i}`, './assets/square.png');
+        }
+
+        // "MainScene" preload to the screeen the background and the music
+        this.load.image('bg', './assets/background.png');
+        this.load.audio('bgmusic', './assets/gamemusic.mp3');
+        // preload the pet and the health meters from assets file
+        // this.load.image("pet","assets/charater.png") //this is for an image
+        this.load.spritesheet('pet', './assets/charactersprite.png', { //this is for a spritesheet
+            frameWidth: 500,
+            frameHeight: 500
+        });
+        // this.load.image("health","assets/healthbar.png")
+            
+        // this.load.image("hungermeter","assets/hungrymeter.png")
+        
+
+        //set initial picture
+
+        // Loading events listeners
+        this.load.on('progress', (percent) => {
+            this.loadingBar.setScale(percent, 1);
+            this.percentage = Math.floor(percent * 100);
+            this.updateText();
+
+        });
+        this.load.on('fileprogress', (data) => {
+            // this.fileLoading = data.src;
+            this.fileLoading = data.key;
+            this.updateText();
+        }); 
+        //changing the scene
+        this.load.on('complete', () => {
+            this.scene.start('TitleScene');
+        }); 
+    
+    }
+    //create(){
+        //this.load.image(BOOTPET[1]);
+        //let index = Math.floor(Math.random() * BOOTPET.length); 
+        //this.setCat(BOOTPET[1]);
+    //}
+    
+    updateText(){
+ 
+        this.setCat(BOOTPET[1]);
+        this.tweens.add({
+            targets: [this.petImage],
+            //completeDelay: 1000,
+            //x:-5,
+            //right:20,
+            duration: 500,
+            alpha: 0,
+            scale:0.1,
+            
+            //yoyo: true,
+            ease: 'Bounce',
+            //repeat: -1
+            onComplete:
+            ()=>{
+                if(this.imageNum < BOOTPET.length){
+                //let index = Math.floor(Math.random() * BOOTPET.length);
+                let index = this.imageNum;
+                this.setCat(BOOTPET[index]);
+                //this.setCat(BOOTPET[]);
+                    this.imageNum++;
+                }else if (this.imageNum == BOOTPET.length){
+                    this.imageNum=Math.floor(this.imageNum - BOOTPET.length);
+                }
+                
+            }
+        });  
+
+       this.loadingTxt.setText(`${this.percentage}%\n${this.fileLoading}`);
+        
+    }
+    setCat(petConfig){
+        // Create a image of pet at position x:225,y:400
+        this.petImage = this.add.image(225, 400, petConfig.name);
+             // Set the size of the pet
+             this.petImage.setScale(5);
+    
+    }
+}
