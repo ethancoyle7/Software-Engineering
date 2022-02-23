@@ -13,9 +13,9 @@
 
 |   #    | File Link       | Assignment Description                          |
 |------- |-------------------|-------------------------------------------------|
-| [01](.forget_password.html) |  [Program File](./forget_password.html) | [ Main Driver For Program](./forget_password.html)|
-| [02](.index.html) |  [INPUT](./index.html) | [ Input File 1 For Project](./index.html)   |
-| [03](.login.html) |  [INPUT](./login.html) | [ Input File 2 for Project](./login.html)   |
+| [01](.forget_password.html) |  [forgot password](./forget_password.html) | [ forgot password](./forget_password.html)|
+| [02](.index.html) |  [Index](./index.html) | [ Index html file](./index.html)   |
+| [03](.login.html) |  [login](./login.html) | [ login html](./login.html)   |
 
 # Firebase Documents
 
