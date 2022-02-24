@@ -1,7 +1,7 @@
 # OUR PROJECT
 
 
-|   #    | File Link       | Assignment Description                          |
+|   #    | File Link       | Description                          |
 |------- |-------------------|-------------------------------------------------|
 | [01](.MainScene.js) |  [Program File](./MainScene.js) | [ Main Driver For Program](./MainScene.js)|
 | [02](.BootScene.js) |  [Program File](./BootScene.js) | [ Boot Scene](./BootScene.js)|
@@ -11,7 +11,7 @@
 
 # HTML DOCUMENTS
 
-|   #    | File Link       | Assignment Description                          |
+|   #    | File Link       | Description                          |
 |------- |-------------------|-------------------------------------------------|
 | [01](.forget_password.html) |  [forgot password](./forget_password.html) | [ forgot password](./forget_password.html)|
 | [02](.index.html) |  [Index](./index.html) | [ Index html file](./index.html)   |
