@@ -21,6 +21,11 @@ class MainScene extends Phaser.Scene
     // Runs when we first enter this scene
     create() 
     {
+        this.timeLeft = 3000;
+        
+        //this.timeLeft=this.initialTime(200);
+        
+        
       //create a backdound and a music for the load up 
         this.sound.play('bgmusic', { volume: 0.4});
         // load the background image and set x and y coords
@@ -28,32 +33,131 @@ class MainScene extends Phaser.Scene
         
         let background = this.add.image(225, 400, 'bg');
         background.setScale(.7);
-
+        this.pet =this.add.sprite(200,500,"pet")
+        this.pet.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('pet', {
+                start: 0,
+                end: 10
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+        
+        // style format for the health stuff
+        //var style = { font: "20px Arial", fill: "#fff"};
+        this.pet.anims.play('idle');
+        //creat death animation
+        this.pet.anims.create({
+            key: 'dead',
+            frames: this.anims.generateFrameNumbers('pet', {
+                start: 11,
+                end: 20
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+        
+        
+        //this.pet.anims.play('dead');
         var style = { font: "20px Arial", fill: "#fff"};
         //container to hold the health bar
         let container = this.add.sprite( 100,50,'container');
         // the energy bar. Another simple sprite
-        let energyBar = this.add.sprite(container.x, container.y, "energybar");
+        let healthbar = this.add.sprite(container.x, container.y, "healthbar");
         // a copy of the energy bar to be used as a mask
-        this.energyMask = this.add.sprite(energyBar.x, energyBar.y, "energybar");
+        this.energyMask1 = this.add.sprite(healthbar.x, healthbar.y, "healthbar");
         this.add.text(10,5,"HEALTH",style);//label it 
+        this.energyMask1.visible = false;
+        // and we assign it as energyBar's mask.
+        healthbar.mask = new Phaser.Display.Masks.BitmapMask(this, this.energyMask1)
+        this.gameTimer = this.time.addEvent({
+            delay: 0,
+            callback: function()
+            {
+                this.timeLeft --;
 
+                // dividing enery bar width by the number of seconds gives us the amount
+                // of pixels we need to move the energy bar each second
+                let stepWidth = this.energyMask1.displayWidth / 650;
+
+                // moving the mask
+                this.energyMask1.x -= stepWidth;
+                if(this.timeLeft == 0){
+                    this.pet.anims.stop('idle');
+                    this.scene.pet.anims.play('dead');
+                    this.scene.start("MainScene")
+                }
+            },
+            
+            callbackScope: this,
+            loop: true
+        });
         //happiness container and health bar
         let happiness = this.add.sprite( 100,120,'happiness');
         // happiness bar another sprite held within container
         let happinessbar = this.add.sprite(happiness.x, happiness.y, "happinessbar");
         // a copy of the energy bar to be used as a mask. Another simple sprite but...
-        this.energyMask = this.add.sprite(happinessbar.x, happinessbar.y, "happinessbar");
+        this.energyMask2 = this.add.sprite(happinessbar.x, happinessbar.y, "happinessbar");
         this.add.text(10,75,"HAPPINESS",style);
+        this.energyMask2.visible = false;
 
+        // and we assign it as energyBar's mask.
+        happinessbar.mask = new Phaser.Display.Masks.BitmapMask(this, this.energyMask2)
+        this.gameTimer = this.time.addEvent({
+            delay: 0,
+            callback: function()
+            {
+                this.timeLeft --;
+
+                // dividing enery bar width by the number of seconds gives us the amount
+                // of pixels we need to move the energy bar each second
+                let stepWidth = this.energyMask2.displayWidth / 650;
+
+                // moving the mask
+                this.energyMask2.x -= stepWidth;
+                if(this.timeLeft == 0){
+                    this.scene.start("MainScene")
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+        
         let hunger = this.add.sprite( 100,190,'hunger');
         // the energy bar. Another simple sprite
         let hungerBar = this.add.sprite(hunger.x, hunger.y, "hungerbar");
-        // for masking the spring inside of the container
-        this.energyMask = this.add.sprite(hungerBar.x, hungerBar.y, "hungerbar");
+        this.energyMask3 = this.add.sprite(hungerBar.x, hungerBar.y, "hungerbar");
         this.add.text(10,145,"HUNGER",style); // label it
+        // ...it's not visible...
+        this.energyMask3.visible = false;
+        // and we assign it as hungerBar's mask.
+        hungerBar.mask = new Phaser.Display.Masks.BitmapMask(this, this.energyMask3)
+        this.gameTimer = this.time.addEvent({
+            delay: 0,
+            callback: function()
+            {
+                this.timeLeft --;
 
-        this.pet =this.add.sprite(200,500,"pet")
+                // dividing enery bar width by the number of seconds gives us the amount
+                // of pixels we need to move the energy bar each second
+                let stepWidth = this.energyMask3.displayWidth / 650;
+
+                // moving the mask
+                this.energyMask3.x -= stepWidth;
+                if(this.timeLeft == 0)
+                {
+                    this.pet.anims.play('dead')
+                    this.scene.start("MainScene")//restarts the main scene
+                }
+            },
+            callbackScope: this,
+            loop: true
+        });
+        
+        
+        
+        
         
         //this.load.image("button","assets/button.png")
         this.toy=this.add.sprite(10,570,'toy')
@@ -100,44 +204,12 @@ class MainScene extends Phaser.Scene
 	        .on('pointerdown', () => button.setScale( 1.1 ))
 	        .on('pointerup', () => button.setScale( 1 ));
         //idle animation for sprite
-        this.pet.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNumbers('pet', {
-                start: 0,
-                end: 10
-            }),
-            frameRate: 12,
-            repeat: -1
-        });
+        
         // style format for the health stuff
         //var style = { font: "20px Arial", fill: "#fff"};
-        this.pet.anims.play('idle');
+        
         
     }
-    makeBar(x, y,color) 
-    {
-        //draw the bar
-        let bar = this.add.graphics();
-
-        //color the bar
-        bar.fillStyle(color, 1);
-
-        //fill the bar with a rectangle
-        bar.fillRect(0, 0, 200, 20);
-        
-        //position the bar
-        bar.x = x;
-        bar.y = y;
-
-        //return the bar
-        return bar;
-    }
-    setValue(bar,percentage) 
-    {
-        //scale the bar
-        bar.scaleX = percentage/100;
-    }
-    
     // Runs every frame
     update() 
     {
