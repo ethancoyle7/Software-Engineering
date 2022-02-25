@@ -28,29 +28,55 @@ class MainScene extends Phaser.Scene
         
         let background = this.add.image(225, 400, 'bg');
         background.setScale(.7);
-        this.pet =this.add.sprite(200,500,"pet")
-        //this.load.image("button","assets/button.png")
-        
 
-        //variable given to the asset( x, y coordingte and then 
-        // name of the assign asset)
-        // loading up the health meters from the boot stage
-        //make 3 bars
-        //this.healthBar=this.add.makeBar(160,20,0x2ecc71);
         var style = { font: "20px Arial", fill: "#fff"};
-        //add health bar
-        let healthBar=this.makeBar(10,25,0x2ecc71);
-        this.setValue(healthBar,100);
-        this.add.text(10,5,"HEALTH",style);
-        //add happiness bar
-        let happinessbar=this.makeBar(10,80,0xe74c3c);
-        this.setValue(happinessbar,100);
-        this.add.text(10,60,"HAPPINESS",style);
-        //add hungerbar
-        let hungerbar=this.makeBar(10,135,0x2980b9);
-        this.setValue(hungerbar,100);
-        this.add.text(10,115,"HUNGER",style);
+        //container to hold the health bar
+        let container = this.add.sprite( 100,50,'container');
+        // the energy bar. Another simple sprite
+        let energyBar = this.add.sprite(container.x, container.y, "energybar");
+        // a copy of the energy bar to be used as a mask
+        this.energyMask = this.add.sprite(energyBar.x, energyBar.y, "energybar");
+        this.add.text(10,5,"HEALTH",style);//label it 
+
+        //happiness container and health bar
+        let happiness = this.add.sprite( 100,120,'happiness');
+        // happiness bar another sprite held within container
+        let happinessbar = this.add.sprite(happiness.x, happiness.y, "happinessbar");
+        // a copy of the energy bar to be used as a mask. Another simple sprite but...
+        this.energyMask = this.add.sprite(happinessbar.x, happinessbar.y, "happinessbar");
+        this.add.text(10,75,"HAPPINESS",style);
+
+        let hunger = this.add.sprite( 100,190,'hunger');
+        // the energy bar. Another simple sprite
+        let hungerBar = this.add.sprite(hunger.x, hunger.y, "hungerbar");
+        // for masking the spring inside of the container
+        this.energyMask = this.add.sprite(hungerBar.x, hungerBar.y, "hungerbar");
+        this.add.text(10,145,"HUNGER",style); // label it
+
+        this.pet =this.add.sprite(200,500,"pet")
         
+        //this.load.image("button","assets/button.png")
+        this.toy=this.add.sprite(10,570,'toy')
+        //toy.setInteractive();
+        this.toy.setInteractive({ draggable: true });
+        this.pet.setInteractive({ draggable: true });
+
+        // to know the item is selected change the color of the item
+        this.input.on('dragstart', function (pointer, gameObject) {
+            gameObject.setTint(0xff0000);
+        });
+        // curing the drag, the user can pick the item and then drag it where they
+        //want it to go
+        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+            console.log('drag', dragX, dragY)
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+        });
+        // after the dragging is done clear the tint of the dragged item
+        this.input.on('dragend', function (pointer, gameObject) {
+            gameObject.clearTint();
+        });
+    
         //add a circle to game that fades in and out
         // add text to let know it is the level icon
         //to display the level
@@ -67,6 +93,7 @@ class MainScene extends Phaser.Scene
             ease: 'Sine.easeInOut'
     
         });
+
         //for the fight button hover over to press for fight
         const button = this.add.image( 30, 210, "button")
 	        .setInteractive()
@@ -110,6 +137,7 @@ class MainScene extends Phaser.Scene
         //scale the bar
         bar.scaleX = percentage/100;
     }
+    
     // Runs every frame
     update() 
     {
