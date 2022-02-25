@@ -6,6 +6,7 @@ class MainScene extends Phaser.Scene
     {
         super("MainScene");
         this.pet = null;
+        
 
     }
 
@@ -16,18 +17,20 @@ class MainScene extends Phaser.Scene
         //this.load.image('bg', './assets/background.png');
         //this.load.audio('bgmusic', './assets/gamemusic.mp3');
        // this.load.image("pet","assets/charater.png")
-    
+       
 
     // Runs when we first enter this scene
     create() 
     {
+        
         this.timeLeft = 3000;
+        this.timeLeft--;
         
         //this.timeLeft=this.initialTime(200);
         
         
       //create a backdound and a music for the load up 
-        this.sound.play('bgmusic', { volume: 0.4});
+        this.sound.play('bgmusic', { volume: 0.1});
         // load the background image and set x and y coords
         // then set the scale to .7
         
@@ -46,7 +49,7 @@ class MainScene extends Phaser.Scene
         
         // style format for the health stuff
         //var style = { font: "20px Arial", fill: "#fff"};
-        this.pet.anims.play('idle');
+        //this.pet.anims.play('idle');
         //creat death animation
         this.pet.anims.create({
             key: 'dead',
@@ -58,6 +61,7 @@ class MainScene extends Phaser.Scene
             repeat: -1
         });
         
+        //this.pet.anims.play('dead');
         
         //this.pet.anims.play('dead');
         var style = { font: "20px Arial", fill: "#fff"};
@@ -80,12 +84,11 @@ class MainScene extends Phaser.Scene
                 // dividing enery bar width by the number of seconds gives us the amount
                 // of pixels we need to move the energy bar each second
                 let stepWidth = this.energyMask1.displayWidth / 650;
-
+                
                 // moving the mask
                 this.energyMask1.x -= stepWidth;
-                if(this.timeLeft == 0){
-                    this.pet.anims.stop('idle');
-                    this.scene.pet.anims.play('dead');
+                if(this.timeLeft == 0)
+                {
                     this.scene.start("MainScene")
                 }
             },
@@ -213,8 +216,6 @@ class MainScene extends Phaser.Scene
     // Runs every frame
     update() 
     {
-        
-        
     }
 
 
