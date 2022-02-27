@@ -15,7 +15,7 @@ const config = {
         BootScene,
         TitleScene, //list of scenes in order they're going to appear in
         MainScene,
-        //FightScene
+        FightScene
 
     ],
     pixelArt: true //makes pixel art look better
