@@ -59,7 +59,7 @@ class BootScene extends Phaser.Scene {
         this.load.image('hunger', './assets/energy.png');
         this.load.image("hungerbar", "./assets/hunger.png");
         // this.load.image("health","assets/healthbar.png")
-            
+        this.load.image('button','./assets/button.png')
         // this.load.image("hungermeter","assets/hungrymeter.png")
         
 

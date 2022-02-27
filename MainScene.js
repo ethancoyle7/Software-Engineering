@@ -61,7 +61,7 @@ class MainScene extends Phaser.Scene
             repeat: -1
         });
         
-        //this.pet.anims.play('dead');
+        this.pet.anims.play('idle');
         
         //this.pet.anims.play('dead');
         var style = { font: "20px Arial", fill: "#fff"};
@@ -200,12 +200,14 @@ class MainScene extends Phaser.Scene
             ease: 'Sine.easeInOut'
     
         });
-
+        
         //for the fight button hover over to press for fight
-        const button = this.add.image( 30, 210, "button")
-	        .setInteractive()
-	        .on('pointerdown', () => button.setScale( 1.1 ))
-	        .on('pointerup', () => button.setScale( 1 ));
+
+        const button = this.add.image( 68, 250, 'button')
+	        button.setInteractive()
+	        button.on('pointerdown', () => button.setScale( 1.1 ))
+	        button.on('pointerup', () => button.setScale( 1 ));
+            button.on('pointerdown',() => this.scene.start('FightScene'))
         //idle animation for sprite
         
         // style format for the health stuff
