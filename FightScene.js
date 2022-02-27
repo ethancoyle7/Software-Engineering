@@ -23,7 +23,7 @@ class FightScene extends Phaser.Scene
     create() 
     {
         
-        this.timeLeft = 3000;
+        this.timeLeft = 2000;
         this.timeLeft--;
         
         //this.timeLeft=this.initialTime(200);
@@ -50,28 +50,8 @@ class FightScene extends Phaser.Scene
        this.pet.anims.play('idle');// play the pet animotion
     
         
-        //for the fight button hover over to press for fight
+       
         
-        //idle animation for sprite
-        
-        // style format for the health stuff
-        //var style = { font: "20px Arial", fill: "#fff"};
-        this.gameTimer = this.time.addEvent({
-            delay: 0,
-            callback: function()
-            {
-                this.timeLeft --;
-
-                // dividing enery bar width by the number of seconds gives us the amount
-                // of pixels we need to move the energy bar each second
-                // moving the mask
-                if(this.timeLeft == 0){
-                    this.scene.start("MainScene")
-                }
-            },
-            callbackScope: this,
-            loop: false
-        });   
         
     }
     // Runs every frame
