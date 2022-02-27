@@ -12,18 +12,18 @@ class MainScene extends Phaser.Scene
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
-   // preload() 
-    //{
+    preload() 
+    {
     // preload to the screeen the background and the music
         //this.load.image('bg', './assets/background.png');
         //this.load.audio('bgmusic', './assets/gamemusic.mp3');
        // this.load.image("pet","assets/charater.png")
-       
-
+       this.load.audio('bgmusic', './assets/gamemusic.mp3');    
+    }
     // Runs when we first enter this scene
     create() 
     {
-        
+        this.sound.play('bgmusic', { volume: 0.1});
         this.timeLeft = 3000;
         this.timeLeft--;
         
@@ -31,7 +31,7 @@ class MainScene extends Phaser.Scene
         
         
       //create a backdound and a music for the load up 
-        this.sound.play('bgmusic', { volume: 0.1});
+        
         // load the background image and set x and y coords
         // then set the scale to .7
         
@@ -168,7 +168,7 @@ class MainScene extends Phaser.Scene
         //toy.setInteractive();
         this.toy.setInteractive({ draggable: true });
         this.pet.setInteractive({ draggable: true });
-
+        
         // to know the item is selected change the color of the item
         this.input.on('dragstart', function (pointer, gameObject) {
             gameObject.setTint(0xff0000);
@@ -208,7 +208,9 @@ class MainScene extends Phaser.Scene
 	        button.setInteractive()
 	        button.on('pointerdown', () => button.setScale( 1.1 ))
 	        button.on('pointerup', () => button.setScale( 1 ));
+            button.on('pointerdown',() => this.sound.removeByKey('bgmusic'))
             button.on('pointerdown',() => this.scene.start('FightScene'))
+            
             
         //idle animation for sprite
 

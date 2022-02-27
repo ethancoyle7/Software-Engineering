@@ -1,6 +1,6 @@
 class FightScene extends Phaser.Scene 
 {
-
+    
     // This is where we define data members
     constructor() 
     {
@@ -10,22 +10,27 @@ class FightScene extends Phaser.Scene
 
 
     }
+    
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
-   // preload() 
-    //{
+    preload() 
+    {
+       
     // preload to the screeen the background and the music
         //this.load.image('bg', './assets/background.png');
         //this.load.audio('bgmusic', './assets/gamemusic.mp3');
        // this.load.image("pet","assets/charater.png")
-       
+       this.load.audio('Fight', './assets/BossFight.mp3');
+    }
 
     // Runs when we first enter this scene
     create() 
     {
         
-        this.timeLeft = 2000;
-        this.timeLeft--;
+        //start the boss fight music
+        this.sound.play('Fight', { volume: 0.1});
+        
+    
         
         //this.timeLeft=this.initialTime(200);
         
@@ -49,9 +54,10 @@ class FightScene extends Phaser.Scene
         });
         
        this.pet.anims.play('idle');// play the pet animotion
-        
+       
        const button = this.add.image( 50, 40, 'Return')
 	        button.setInteractive()
+            button.on('pointerdown',() => this.sound.removeByKey('Fight'))
 	        button.on('pointerdown', () => button.setScale( 1.1 ))
 	        button.on('pointerup', () => button.setScale( 1 ));
             button.on('pointerdown',() => this.scene.start('MainScene'))
@@ -71,6 +77,8 @@ class FightScene extends Phaser.Scene
     // Runs every frame
     update() 
     {
+       
+        
     }
 
 
