@@ -51,10 +51,7 @@ class FightScene extends Phaser.Scene
     
         
         //for the fight button hover over to press for fight
-        const button = this.add.image( 68, 250, 'button')
-	        button.setInteractive()
-	        button.on('pointerdown', () => button.setScale( 1.1 ))
-	        button.on('pointerup', () => button.setScale( 1 ));
+        
         //idle animation for sprite
         
         // style format for the health stuff
