@@ -7,6 +7,7 @@ class MainScene extends Phaser.Scene
         super("MainScene");
         this.pet = null;
         
+        
 
     }
 
@@ -208,7 +209,10 @@ class MainScene extends Phaser.Scene
 	        button.on('pointerdown', () => button.setScale( 1.1 ))
 	        button.on('pointerup', () => button.setScale( 1 ));
             button.on('pointerdown',() => this.scene.start('FightScene'))
+            
         //idle animation for sprite
+
+        
         
         // style format for the health stuff
         //var style = { font: "20px Arial", fill: "#fff"};

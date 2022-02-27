@@ -8,6 +8,7 @@ class FightScene extends Phaser.Scene
         this.pet = null;
         
 
+
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -30,11 +31,11 @@ class FightScene extends Phaser.Scene
         
         
       //create a backdound and a music for the load up 
-        this.sound.play('bgmusic', { volume: 0.1});
+        
         // load the background image and set x and y coords
         // then set the scale to .7
         
-        let background = this.add.image(225, 400, 'bg');
+        let background = this.add.image(225, 400, 'Fight');
         background.setScale(.7);
         this.pet =this.add.sprite(200,500,"pet")
         this.pet.anims.create({
@@ -48,9 +49,22 @@ class FightScene extends Phaser.Scene
         });
         
        this.pet.anims.play('idle');// play the pet animotion
-    
         
+       const button = this.add.image( 50, 40, 'Return')
+	        button.setInteractive()
+	        button.on('pointerdown', () => button.setScale( 1.1 ))
+	        button.on('pointerup', () => button.setScale( 1 ));
+            button.on('pointerdown',() => this.scene.start('MainScene'))
        
+        this.tweens.add({
+
+            targets: button,
+            alpha: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        
+        });
         
         
     }
