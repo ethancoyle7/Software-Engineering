@@ -18,13 +18,14 @@ class MainScene extends Phaser.Scene
         //this.load.image('bg', './assets/background.png');
         //this.load.audio('bgmusic', './assets/gamemusic.mp3');
        // this.load.image("pet","assets/charater.png")
-       this.load.audio('bgmusic', './assets/gamemusic.mp3');    
+      this.load.audio('bgmusic', './assets/gamemusic.mp3'); 
+        
     }
     // Runs when we first enter this scene
     create() 
     {
         this.sound.play('bgmusic', { volume: 0.1});
-        this.timeLeft = 3000;
+        this.timeLeft = 200000;
         this.timeLeft--;
         
         //this.timeLeft=this.initialTime(200);
@@ -35,7 +36,7 @@ class MainScene extends Phaser.Scene
         // load the background image and set x and y coords
         // then set the scale to .7
         
-        let background = this.add.image(225, 400, 'bg');
+        let background = this.add.image(200, 400, 'bg');
         background.setScale(.7);
         this.pet =this.add.sprite(200,500,"pet")
         this.pet.anims.create({
@@ -84,7 +85,7 @@ class MainScene extends Phaser.Scene
 
                 // dividing enery bar width by the number of seconds gives us the amount
                 // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask1.displayWidth / 650;
+                let stepWidth = this.energyMask1.displayWidth / 1000;
                 
                 // moving the mask
                 this.energyMask1.x -= stepWidth;
@@ -116,7 +117,7 @@ class MainScene extends Phaser.Scene
 
                 // dividing enery bar width by the number of seconds gives us the amount
                 // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask2.displayWidth / 650;
+                let stepWidth = this.energyMask2.displayWidth / 1000;
 
                 // moving the mask
                 this.energyMask2.x -= stepWidth;
@@ -145,7 +146,7 @@ class MainScene extends Phaser.Scene
 
                 // dividing enery bar width by the number of seconds gives us the amount
                 // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask3.displayWidth / 650;
+                let stepWidth = this.energyMask3.displayWidth / 1000;
 
                 // moving the mask
                 this.energyMask3.x -= stepWidth;
@@ -210,7 +211,24 @@ class MainScene extends Phaser.Scene
 	        button.on('pointerup', () => button.setScale( 1 ));
             button.on('pointerdown',() => this.sound.removeByKey('bgmusic'))
             button.on('pointerdown',() => this.scene.start('FightScene'))
-            
+
+        let Width = this.energyMask3.displayWidth *20;
+        // creating the containter for feeding bathing and playinh
+        const Food= this.add.image(68,750, 'Food')
+            Food.setInteractive()
+            Food.on('pointerdown',() =>this.energyMask1.x+=5)
+            Food.on('pointerdown',() => this.energyMask3.x+=20)
+        const Bathe= this.add.image(225,750, 'Bathe')
+            Bathe.setInteractive()
+            Bathe.on('pointerdown',() => this.energyMask2.x+=7)
+            Bathe.on('pointerdown',() => this.energyMask1.x+=1)
+            Bathe.on('pointerdown',() => this.energyMask3.x-=5)
+        const Play= this.add.image(382,750,'Play')
+            Play.setInteractive()
+            Play.on('pointerdown',() => this.energyMask2.x+=10)
+            Play.on('pointerdown',() => this.energyMask3.x-=5)
+
+           
             
         //idle animation for sprite
 
