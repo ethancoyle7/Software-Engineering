@@ -41,13 +41,9 @@ class BootScene extends Phaser.Scene {
         // "MainScene" preload to the screeen the background and the music
         this.load.image('bg', './assets/background.png');
         this.load.image('Fight', './assets/loading.png');
-        
-        
-        this.load.image('toy', './assets/rubber_duck.png');
+        this.loadprops();
         this.load.image('Return', './assets/ReturntoMainButton.png');
-        this.load.image('Food', './assets/FoodButton.png');
-        this.load.image('Bathe', './assets/BatheButton.png');
-        this.load.image('Play', './assets/PlayButton.png');
+
         // preload the pet and the health meters from assets file
         // this.load.image("pet","assets/charater.png") //this is for an image
         this.load.spritesheet('pet', './assets/petsprites.png', { //this is for a spritesheet
@@ -137,5 +133,13 @@ class BootScene extends Phaser.Scene {
              // Set the size of the pet
              this.petImage.setScale(5);
     
+    }
+
+    loadprops(){
+        this.load.image('t1', './assets/rubber_duck.png');
+        this.load.image('t1', './assets/rubber_duck.png');
+        // this.load.image('', './assets/FoodButton.png');
+        // this.load.image('Bathe', './assets/BatheButton.png');
+        // this.load.image('Play', './assets/PlayButton.png');
     }
 }
