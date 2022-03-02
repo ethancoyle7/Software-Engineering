@@ -136,22 +136,22 @@ class BootScene extends Phaser.Scene {
     }
 
     loadprops(){
-        this.load.image('b1', './assets/bathe/cleaning_brush.png');
-        this.load.image('b2', './assets/bathe/body_lotion.png');
-        this.load.image('b3', './assets/bathe/cleaning_gloves.png');
-        this.load.image('b4', './assets/bathe/detergent.png');
-        this.load.image('b5', './assets/bathe/hand_sanitiser.png');
-        this.load.image('b6', './assets/bathe/scrub_brush.png');
-        this.load.image('b7', './assets/bathe/scrub_sponge.png');
-        this.load.image('b8', './assets/bathe/shampoo.png');
-        this.load.image('b9', './assets/bathe/soap_box.png');
-        this.load.image('b10', './assets/bathe/soap.png');
-        this.load.image('b11', './assets/bathe/sun_cream_tube.png');
-        this.load.image('b12', './assets/bathe/toothbrush.png');
-        this.load.image('b13', './assets/bathe/toothpaste_box.png');
-        this.load.image('b14', './assets/bathe/toothpaste.png');
-        this.load.image('b15', './assets/bathe/wet_wipe.png');
-        
+        this.load.image('b0', './assets/bathe/cleaning_brush.png');
+        this.load.image('b1', './assets/bathe/body_lotion.png');
+        this.load.image('b2', './assets/bathe/cleaning_gloves.png');
+        this.load.image('b3', './assets/bathe/detergent.png');
+        this.load.image('b4', './assets/bathe/hand_sanitiser.png');
+        this.load.image('b5', './assets/bathe/scrub_brush.png');
+        this.load.image('b6', './assets/bathe/scrub_sponge.png');
+        this.load.image('b7', './assets/bathe/shampoo.png');
+        this.load.image('b8', './assets/bathe/soap_box.png');
+        this.load.image('b9', './assets/bathe/soap.png');
+        this.load.image('b10', './assets/bathe/sun_cream_tube.png');
+        this.load.image('b11', './assets/bathe/toothbrush.png');
+        this.load.image('b12', './assets/bathe/toothpaste_box.png');
+        this.load.image('b13', './assets/bathe/toothpaste.png');
+        this.load.image('b14', './assets/bathe/wet_wipe.png');
+
         // this.load.image('', './assets/FoodButton.png');
         // this.load.image('Bathe', './assets/BatheButton.png');
         // this.load.image('Play', './assets/PlayButton.png');

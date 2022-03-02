@@ -6,7 +6,7 @@ class MainScene extends Phaser.Scene
     {
         super("MainScene");
         this.pet = null;
-        
+        this.items = [];
         
 
     }
@@ -30,7 +30,7 @@ class MainScene extends Phaser.Scene
         
         //this.timeLeft=this.initialTime(200);
         
-        
+
       //create a backdound and a music for the load up 
         
         // load the background image and set x and y coords
@@ -128,6 +128,8 @@ class MainScene extends Phaser.Scene
             callbackScope: this,
             loop: true
         });
+
+
         
         let hunger = this.add.sprite( 100,190,'hunger');
         // the energy bar. Another simple sprite
@@ -232,12 +234,29 @@ class MainScene extends Phaser.Scene
             
         //idle animation for sprite
 
-        
+      this.createItems(); //creates the items the player interacts with the pet with
         
         // style format for the health stuff
         //var style = { font: "20px Arial", fill: "#fff"};
         
         
+    }
+
+    createItems(){
+        
+        let imgholder = [];
+        for (let j = 0; j < 10; j++){ //puts the images into an array
+            imgholder[j]= `b${j}`;
+            // console.log(imgholder[j]);
+        }
+        
+        this.items[0] = new Item(imgholder, "Bathe")
+        // console.log(this.items[0].itemImgs[this.items[0].imgIndex]);
+        let icon = this.add.image(200, 200, this.items[0].itemImgs[this.items[0].imgIndex]);
+        // icon = this.add.image(200, 200, 'b0');
+        icon.setScale(5);
+        icon.setDepth(1);
+            
     }
     // Runs every frame
     update() 
