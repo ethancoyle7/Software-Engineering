@@ -34,9 +34,9 @@ class BootScene extends Phaser.Scene {
         this.loadingTxt.setOrigin(0.5);
         // Load a bunch of assets 
         this.load.image('square', './assets/square.png');
-        for (let i = 0; i < 600; i++) {
-            this.load.image(`square-${i}`, './assets/square.png');
-        }
+        // for (let i = 0; i < 600; i++) {
+        //     this.load.image(`square-${i}`, './assets/square.png');
+        // }
 
         // "MainScene" preload to the screeen the background and the music
         this.load.image('bg', './assets/background.png');
@@ -172,8 +172,42 @@ class BootScene extends Phaser.Scene {
 
         //load food items
         this.load.image('f0', './assets/food/actualpancake.png');
-        this.load.image('f1', './assets/clothe/chicken.png');
-        this.load.image('c0', './assets/clothe/cupcake.png');
+        this.load.image('f1', './assets/food/chicken.png');
+        this.load.image('f2', './assets/food/cupcake.png');
+        this.load.image('f3', './assets/food/donut.png');
+        this.load.image('f4', './assets/food/drink.png');
+        this.load.image('f5', './assets/food/drink2.png');
+        this.load.image('f6', './assets/food/egg.png');
+        this.load.image('f7', './assets/food/grilledcheese.png');
+        this.load.image('f8', './assets/food/orange.png');
+        this.load.image('f9', './assets/food/orangejuice.png');
+        this.load.image('f10', './assets/food/pancake.png');
+        this.load.image('f11', './assets/food/sandwich.png');
+        this.load.image('f12', './assets/food/sandwich2.png');
+        this.load.image('f13', './assets/food/soup.png');
+        this.load.image('f14', './assets/food/stickybun.png');
+
+        //load play items
+        this.load.image('p0', './assets/play/chessbishop.png');
+        this.load.image('p1', './assets/play/chesscastle.png');
+        this.load.image('p2', './assets/play/chesshorse.png');
+        this.load.image('p3', './assets/play/chessking.png');
+        this.load.image('p4', './assets/play/chesspawn.png');
+        this.load.image('p5', './assets/play/chessqueen.png');
+        this.load.image('p6', './assets/play/dice.png');
+        this.load.image('p7', './assets/play/game_console1.png');
+        this.load.image('p8', './assets/play/game_console2.png');
+        this.load.image('p9', './assets/play/game_console3.png');
+        this.load.image('p10', './assets/play/game_console4.png');
+        this.load.image('p11', './assets/play/game_console5.png');
+        this.load.image('p12', './assets/play/game_console6.png');
+        this.load.image('p13', './assets/play/game_console7.png');
+        this.load.image('p14', './assets/play/game_console8.png');
+        this.load.image('p15', './assets/play/rubber_duck.png');
+        this.load.image('p16', './assets/play/rubber_ducktopus.png');
+        this.load.image('p17', './assets/play/toy.png');
+
+
 
         // this.load.image('', './assets/FoodButton.png');
         // this.load.image('Bathe', './assets/BatheButton.png');
