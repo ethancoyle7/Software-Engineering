@@ -152,6 +152,18 @@ class BootScene extends Phaser.Scene {
         this.load.image('b13', './assets/bathe/toothpaste.png');
         this.load.image('b14', './assets/bathe/wet_wipe.png');
 
+        this.load.image('c0', './assets/clothe/bikini.png');
+        this.load.image('c1', './assets/clothe/boots.png');
+        this.load.image('c2', './assets/clothe/boots2.png');
+        this.load.image('c0', './assets/clothe/bow.png');
+        this.load.image('c0', './assets/clothe/goggles.png');
+        this.load.image('c0', './assets/clothe/hat.png');
+        this.load.image('c0', './assets/clothe/jacket.png');
+        this.load.image('c0', './assets/clothe/outfit1.png');
+        this.load.image('c0', './assets/clothe/outfit2.png');
+        this.load.image('c0', './assets/clothe/outfit3.png');
+        this.load.image('c0', './assets/clothe/outfit4.png');
+
         // this.load.image('', './assets/FoodButton.png');
         // this.load.image('Bathe', './assets/BatheButton.png');
         // this.load.image('Play', './assets/PlayButton.png');

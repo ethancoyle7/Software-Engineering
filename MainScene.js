@@ -216,19 +216,19 @@ class MainScene extends Phaser.Scene
 
         let Width = this.energyMask3.displayWidth *20;
         // creating the containter for feeding bathing and playinh
-        const Food= this.add.image(68,750, 'Food')
-            Food.setInteractive()
-            Food.on('pointerdown',() =>this.energyMask1.x+=5)
-            Food.on('pointerdown',() => this.energyMask3.x+=20)
-        const Bathe= this.add.image(225,750, 'Bathe')
-            Bathe.setInteractive()
-            Bathe.on('pointerdown',() => this.energyMask2.x+=7)
-            Bathe.on('pointerdown',() => this.energyMask1.x+=1)
-            Bathe.on('pointerdown',() => this.energyMask3.x-=5)
-        const Play= this.add.image(382,750,'Play')
-            Play.setInteractive()
-            Play.on('pointerdown',() => this.energyMask2.x+=10)
-            Play.on('pointerdown',() => this.energyMask3.x-=5)
+        // const Food= this.add.image(68,750, 'Food')
+        //     Food.setInteractive()
+        //     Food.on('pointerdown',() =>this.energyMask1.x+=5)
+        //     Food.on('pointerdown',() => this.energyMask3.x+=20)
+        // const Bathe= this.add.image(225,750, 'Bathe')
+        //     Bathe.setInteractive()
+        //     Bathe.on('pointerdown',() => this.energyMask2.x+=7)
+        //     Bathe.on('pointerdown',() => this.energyMask1.x+=1)
+        //     Bathe.on('pointerdown',() => this.energyMask3.x-=5)
+        // const Play= this.add.image(382,750,'Play')
+        //     Play.setInteractive()
+        //     Play.on('pointerdown',() => this.energyMask2.x+=10)
+        //     Play.on('pointerdown',() => this.energyMask3.x-=5)
 
            
             
@@ -252,15 +252,18 @@ class MainScene extends Phaser.Scene
         
         this.items[0] = new Item(imgholder, "Bathe")
         // console.log(this.items[0].itemImgs[this.items[0].imgIndex]);
-        let icon = this.add.image(200, 200, this.items[0].itemImgs[this.items[0].imgIndex]);
+        let icon = this.add.image(225, 750, this.items[0].itemImgs[this.items[0].imgIndex]);
         // icon = this.add.image(200, 200, 'b0');
         icon.setScale(5);
-        icon.setDepth(1);
+        // icon.setInteractive()
+        icon.setInteractive({ draggable: true });
+        // icon.setDepth(1);
             
     }
     // Runs every frame
     update() 
     {
+
     }
 
 
