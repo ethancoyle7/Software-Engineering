@@ -5,7 +5,8 @@ const config = {
     width: 450, //sets screen height and width
     height: 800,
     scale: {
-        mode: Phaser.Scale.ScaleModes.FIT //some phaser stuff idk
+        mode: Phaser.Scale.ScaleModes.FIT, //some phaser stuff idk
+        autoCenter: Phaser.Scale.CENTER_BOTH
     },
     fps: {
         target: 30, //fps stuff. we're not gonna mess with this probably
