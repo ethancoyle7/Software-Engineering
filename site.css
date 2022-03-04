@@ -11,9 +11,8 @@ font-size:16px;
 background-image:url(night.png);
 width:450;
 height:800;
-padding:0px;
-margin:0px;
-}
+padding:auto;
+margin: auto;}
 
 .parent-container
 {
