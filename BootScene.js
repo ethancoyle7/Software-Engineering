@@ -136,6 +136,8 @@ class BootScene extends Phaser.Scene {
     }
 
     loadprops(){
+
+        //load bath items
         this.load.image('b0', './assets/bathe/cleaning_brush.png');
         this.load.image('b1', './assets/bathe/body_lotion.png');
         this.load.image('b2', './assets/bathe/cleaning_gloves.png');
@@ -152,17 +154,23 @@ class BootScene extends Phaser.Scene {
         this.load.image('b13', './assets/bathe/toothpaste.png');
         this.load.image('b14', './assets/bathe/wet_wipe.png');
 
+        //load clothing items
         this.load.image('c0', './assets/clothe/bikini.png');
         this.load.image('c1', './assets/clothe/boots.png');
         this.load.image('c2', './assets/clothe/boots2.png');
-        this.load.image('c0', './assets/clothe/bow.png');
-        this.load.image('c0', './assets/clothe/goggles.png');
-        this.load.image('c0', './assets/clothe/hat.png');
-        this.load.image('c0', './assets/clothe/jacket.png');
-        this.load.image('c0', './assets/clothe/outfit1.png');
-        this.load.image('c0', './assets/clothe/outfit2.png');
-        this.load.image('c0', './assets/clothe/outfit3.png');
-        this.load.image('c0', './assets/clothe/outfit4.png');
+        this.load.image('c3', './assets/clothe/bow.png');
+        this.load.image('c4', './assets/clothe/goggles.png');
+        this.load.image('c5', './assets/clothe/hat.png');
+        this.load.image('c6', './assets/clothe/jacket.png');
+        this.load.image('c7', './assets/clothe/outfit1.png');
+        this.load.image('c8', './assets/clothe/outfit2.png');
+        this.load.image('c9', './assets/clothe/outfit3.png');
+        this.load.image('c10', './assets/clothe/outfit4.png');
+        this.load.image('c11', './assets/clothe/shoes.png');
+        this.load.image('c12', './assets/clothe/shoes2.png');
+        this.load.image('c13', './assets/clothe/witch_hat.png');
+
+        //load
 
         // this.load.image('', './assets/FoodButton.png');
         // this.load.image('Bathe', './assets/BatheButton.png');
