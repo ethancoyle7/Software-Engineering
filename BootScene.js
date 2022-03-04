@@ -170,7 +170,10 @@ class BootScene extends Phaser.Scene {
         this.load.image('c12', './assets/clothe/shoes2.png');
         this.load.image('c13', './assets/clothe/witch_hat.png');
 
-        //load
+        //load food items
+        this.load.image('f0', './assets/food/actualpancake.png');
+        this.load.image('f1', './assets/clothe/chicken.png');
+        this.load.image('c0', './assets/clothe/cupcake.png');
 
         // this.load.image('', './assets/FoodButton.png');
         // this.load.image('Bathe', './assets/BatheButton.png');

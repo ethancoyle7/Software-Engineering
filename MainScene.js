@@ -38,7 +38,7 @@ class MainScene extends Phaser.Scene
         
         let background = this.add.image(200, 400, 'bg');
         background.setScale(.7);
-        this.pet =this.add.sprite(200,500,"pet")
+        this.pet = this.add.sprite(200,500,"pet")
         this.pet.anims.create({
             key: 'idle',
             frames: this.anims.generateFrameNumbers('pet', {
@@ -243,21 +243,15 @@ class MainScene extends Phaser.Scene
     }
 
     createItems(){
-        
         let imgholder = [];
-        for (let j = 0; j < 10; j++){ //puts the images into an array
+        for (let j = 0; j < 14; j++){ //puts the images into an array
             imgholder[j]= `b${j}`;
-            // console.log(imgholder[j]);
         }
-        
         this.items[0] = new Item(imgholder, "Bathe")
-        // console.log(this.items[0].itemImgs[this.items[0].imgIndex]);
-        let icon = this.add.image(225, 750, this.items[0].itemImgs[this.items[0].imgIndex]);
-        // icon = this.add.image(200, 200, 'b0');
-        icon.setScale(5);
-        // icon.setInteractive()
-        icon.setInteractive({ draggable: true });
-        // icon.setDepth(1);
+        let icon1 = this.add.image(225, 750, this.items[0].itemImgs[this.items[0].imgIndex]);
+        icon1.setScale(3);
+        icon1.setInteractive({ draggable: true });
+
             
     }
     // Runs every frame
