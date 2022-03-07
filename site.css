@@ -2,17 +2,20 @@
     font-family: Minecraft;
     src:url("/fonts/Minecraft.ttf");
 }
+
 body
 {
-color:#464646;
+/* color:#464646; */
+color:black;
 font-weight:bold;
 font-family:'Minecraft', sans-serif;
 font-size:16px;
-background-image:url(night.png);
-width:450;
-height:800;
+/* background-image:url(night.png); */
+/* width:auto;
+height:auto;
 padding:auto;
-margin: auto;}
+margin: auto; */
+}
 
 .parent-container
 {
