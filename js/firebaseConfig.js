@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
 // we need to update the firestore settings to avoid error in console
 db.settings({timestampInSnapshots: true});

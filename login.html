@@ -15,7 +15,7 @@
             <table width="100%" height="100%">
                 <tr>
                     <td align="center" valign="middle">
-                        <form id="accessForm" class="loginholder">
+                        <form id="loginForm" class="loginholder">
                             <table class="table-condensed">
                                 <tr>
                                     <td align="center">
@@ -35,7 +35,7 @@
 
                                 <tr>
                                     <td>
-                                        <input id="email" type="text" class="inputbox" />
+                                        <input id="email" placeholder="Enter Email" type="text" class="inputbox" required>
                                     </td>
                                 </tr>
 
@@ -47,20 +47,18 @@
 
                                 <tr>
                                     <td>
-                                        <input id="password" type="password" class="inputbox" />
+                                        <input id="password" placeholder="Enter Password" type="password" class="inputbox" required>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="center">
-                                        <br />
-                                        <a class="btn-normal" href="login.html">LOGIN</a>
+                                    <td align="center"><br>
+                                        <button type="submit" class="btn-normal">LOGIN</button>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="left">
-                                        <p></p>
+                                    <td align="left"><br>
                                         <a class="forgotpassword">Forget Password?</a>
                                     </td>
                                 </tr>
@@ -70,25 +68,77 @@
                                         <hr style="background-color:#fff;height:1px;margin:0px" />
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td align="center">
                                         <br />
                                         <a class="btn-normal" onclick="signInAnonymously()">PLAY AS GUEST</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td align="center">
-                                        <br />
-                                        <button id="signUp" type="submit" class="btn-normal">CREATE AN ACCOUNT</button>
-                                    </td>
-                                </tr>
                             </table>
                         </form>
+                        <tr>
+                            <td align="center">
+                                <br />
+                                <button id="signUp" onclick="openForm()" class="btn-large">CREATE AN ACCOUNT</button>
+                            </td>
+                        </tr>
                     </td>
                 </tr>
             </table>
         </div>
+<div class="form-popup" id="popForm">
+    <table width="100%">
+    <form id="signup-form" class="form-container">
+      <tr>
+        <td align="center">
+            <h1>Create an account</h1>
+            <hr style="background-color:#fff;height:1px;margin:0px" />
+    </td>
+    </tr>
+    <tr>
+        <td align="left">
+            <label class="labelc"><b><br>Email</b></label>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="text" placeholder="Enter Email" class="inputbox" id="email" required>
+        </td>
+    </tr>
+    <tr>
+        <td align="left"><br>
+            <label class="labelc"><b>Password</b></label>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="password" class="inputbox" placeholder="Enter Password" id="password" required>
+        </td>
+    </tr>
+    <!-- <tr>
+        <td align="left"><br>
+            <label class="labelc"><b>Repeat Password</b></label>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="password" placeholder="Repeat Password" class="inputbox" name="psw-repeat" required>
+        </td>
+    </tr> -->
+    <tr>
+        <td align="center"><br>
+            <button type="submit" class="btn-normal">Sign Up</button><br><br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <button type="button" class="white-btn-normal" onclick="closeForm()">Close</button>
+        </td>
+    </tr>
+    </form>
+    </table>
+  </div>
+  
     </div>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
@@ -97,6 +147,15 @@
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
     <script src="js/firebaseConfig.js"></script>
     <script src="js/auth.js"></script>
+    <script>
+        function openForm() {
+          document.getElementById("popForm").style.display = "block";
+        }
+        
+        function closeForm() {
+          document.getElementById("popForm").style.display = "none";
+        }
+    </script>
 </body>
 
 </html>
