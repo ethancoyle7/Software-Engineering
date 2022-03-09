@@ -50,7 +50,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 500,
             frameHeight: 500
         });
-        this.load.spritesheet('pet2', './assets/PetPlayer.png', { //this is for a spritesheet
+        this.load.spritesheet('pet09', './assets/PetPlayer.png', { //this is for a spritesheet
+            frameWidth: 500,
+            frameHeight: 500
+        });
+        this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
             frameHeight: 500
         });
