@@ -34,7 +34,7 @@ class FightScene extends Phaser.Scene
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
         this.timeLeft = 3000;
-        
+
         // load the background image and set x and y coords
         // then set the scale to .7
         let background = this.add.image(225, 400, 'Fight');
@@ -102,6 +102,22 @@ class FightScene extends Phaser.Scene
         //healthBar.setValue-=.10
         this.add.text(50,730, "HEALTH", style);//label it
 
+
+        //add enemy sprite
+        //allign it above the enemy health bar and then make it play idle animation
+        this.enemy = this.add.sprite(375, 185, "pet2")
+        this.enemy.setScale(.4,.4);//set the scale of the enemy for fight to fit the scene width and height
+        //this.enemy.anims.play('idle2');// play the pet animotion
+        this.enemy.anims.create({
+            key: 'idle2',
+            frames: this.anims.generateFrameNumbers('pet2', {
+                start: 0,
+                end: 10
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+        this.enemy.anims.play('idle2');// play the pet animotion
     }
     //call to make the health bars
     makeBar(x, y,color) 
