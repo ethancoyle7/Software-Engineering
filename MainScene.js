@@ -80,7 +80,7 @@ class MainScene extends Phaser.Scene {
 
                 // dividing enery bar width by the number of seconds gives us the amount
                 // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask1.displayWidth / 1000;
+                let stepWidth = this.energyMask1.width / 1000;
 
                 // moving the mask
                 this.energyMask1.x -= stepWidth;
