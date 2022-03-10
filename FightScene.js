@@ -24,13 +24,18 @@ class FightScene extends Phaser.Scene
        this.load.audio('Fight', './assets/BossFight.mp3');
        //this.load.images('Health',)
        this.load.image('Health', "./assets/health.png");
+       this.load.image('toothpaste', "./assets/bathe/toothpaste.png");
     }
     
 
     // Runs when we first enter this scene
     create() 
     {
-        
+        this.SHOT_DELAY = 300; // milliseconds (10 bullets/3 seconds)
+        this.BULLET_SPEED = 800; // pixels/second
+        this.NUMBER_OF_BULLETS = 1;
+        this.GRAVITY = 980; // pixels/second/second
+        //this.gun = this.add.sprite(55,667, 'toothpaste');
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
         this.timeLeft = 3000;
@@ -118,6 +123,11 @@ class FightScene extends Phaser.Scene
             repeat: -1
         });
         this.enemy.anims.play('idle2');// play the pet animotion
+        this.attack = this.add.sprite(55,667, 'toothpaste');
+        
+        
+      
+        
     }
     //call to make the health bars
     makeBar(x, y,color) 
