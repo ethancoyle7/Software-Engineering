@@ -70,28 +70,25 @@ class MainScene extends Phaser.Scene {
         // health, hunger, happiness creation
 
          //creating health rectangle and nice container to hold it
-         var healthcontainer = this.add.rectangle(105, 40, 205, 35, 0x1e0a08);
          var health = this.add.rectangle(105, 40, 200, 30, 0xe74c3c);
+         health.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 30, "HEALTH", style);//label it 
- 
          //create container and rectangle for the happiness
-         var happinesscontainer = this.add.rectangle(105, 80, 205, 35, 0x1e0a08);
          var happiness = this.add.rectangle(105, 80, 200, 30, 0x4ce73c);
+         happiness.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 70, "HAPPINESS", style);//label it 
- 
          //create rectangle for hunger stats and nice container to hold it
-         var hungercontainer = this.add.rectangle(105,120, 205, 35, 0x1e0a08);
          var hunger = this.add.rectangle(105, 120, 200, 30, 0x3c82e7);
+         hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 108, "HUNGER", style);//label it 
-
           //create rectangle for xp points
-          var experiencecontainer = this.add.rectangle(55,160, 105, 35, 0x1e0a08);
           var experience = this.add.rectangle(55, 160, 100, 30, 0xe7a23c);
+          experience.setStrokeStyle(4, 0x1e0a08);
           this.add.text(10, 148, "XP", style);//label it 
         
         //for the fight button hover over to press for fight
         // this button leads to click sequence when pressed
-        const button = this.add.image(68, 215, 'button')
+        const button = this.add.image(68, 210, 'button')
         button.setInteractive() // set it interactive
         button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
         button.on('pointerup', () => button.setScale(1));// on ppinter up
