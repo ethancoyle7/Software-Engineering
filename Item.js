@@ -11,7 +11,7 @@ class Item{
 
     
     changeItem(scene){
-        console.log("penis");
+        
         this.imgIndex = Math.floor(Math.random() * this.arrayMax);
         
     }

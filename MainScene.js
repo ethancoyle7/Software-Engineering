@@ -238,6 +238,7 @@ class MainScene extends Phaser.Scene {
         for(let i = 0; i < 4; i++){
             this.itemsIcons[i].on('pointerup', () => this.items[i].changeItem());
 
+                
             if (i == 0) {
                 this.itemsIcons[i] = this.add.image(50, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
             }else if (i == 1) {
