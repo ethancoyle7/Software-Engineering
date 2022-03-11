@@ -46,13 +46,10 @@ class BootScene extends Phaser.Scene {
 
         // preload the pet and the health meters from assets file
         // this.load.image("pet","assets/charater.png") //this is for an image
-        this.load.spritesheet('pet', './assets/petsprites.png', { //this is for a spritesheet
-            frameWidth: 500,
-            frameHeight: 500
-        });
-        this.load.spritesheet('pet09', './assets/PetPlayer.png', { //this is for a spritesheet
-            frameWidth: 500,
-            frameHeight: 500
+        
+        this.load.spritesheet('pet', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Run_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
         });
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,

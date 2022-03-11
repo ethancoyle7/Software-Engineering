@@ -12,7 +12,7 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
     preload(){  // this is the preload function, it loads all the assets for the scene
         this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
         this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
-        
+        this.load.image('button','./assets/button.png')
     }
 
     create(){ //this is the create function
@@ -28,9 +28,12 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
             fontSize: '36px', //there's a lot of text properties that can be edited here
             fontFamily: 'Minecraft'
         });
+        
+        
         text.setOrigin(0.5, 0.5); //sets like the alignment of the text
         text.setInteractive(); //sets whether or not the text can be clicked or not
         this.input.on('pointerdown', ()=>{ // when mouse event, start main scene
+            this.sound.removeByKey('bgmusic');
             this.scene.start('MainScene');
         });
         this.tweens.add({ // a tween is kinda like animation lite
@@ -40,5 +43,6 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
             yoyo: true, //yoyo effect
             repeat: -1 //-1 means yes repeat
         });
+        
     }
 }
