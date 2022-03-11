@@ -121,7 +121,7 @@ class FightScene extends Phaser.Scene
         });
         this.enemy.anims.play('idle2');// play the pet animotion
         this.attack = this.add.sprite(55,667, 'toothpaste');
-        var r1 = this.add.rectangle(325, 275, 200, 30, 0x6666ff);
+        var r1 = this.add.rectangle(340, 275, 200, 30, 0x6666ff);
             
         const button2 = this.add.image(68, 250, 'button')
             button2.setInteractive()
