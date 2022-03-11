@@ -41,7 +41,6 @@ class BootScene extends Phaser.Scene {
         // "MainScene" preload to the screeen the background and the music
         this.load.image('bg', './assets/background.png');
         this.load.image('Fight', './assets/loading.png');
-        this.loadprops();
         this.load.image('Return', './assets/ReturntoMainButton.png');
 
         // preload the pet and the health meters from assets file
@@ -59,6 +58,22 @@ class BootScene extends Phaser.Scene {
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
             frameHeight: 500
+        });
+        this.load.spritesheet('bathimg', './assets/bathe/bathsprite.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('clotheimg', './assets/clothe/clothessprites.png', { //this is for a spritesheet
+            frameWidth: 34,
+            frameHeight: 35
+        });
+        this.load.spritesheet('foodimg', './assets/food/foodsprites.png', { //this is for a spritesheet
+            frameWidth: 30,
+            frameHeight: 40
+        });
+        this.load.spritesheet('toyimg', './assets/play/toysprites.png', { //this is for a spritesheet
+            frameWidth: 30,
+            frameHeight: 35
         });
         // for health
         this.load.image('container', './assets/energy.png');
@@ -141,82 +156,5 @@ class BootScene extends Phaser.Scene {
     
     }
 
-    loadprops(){
-
-        //load bath items
-        this.load.image('b0', './assets/bathe/cleaning_brush.png');
-        this.load.image('b1', './assets/bathe/body_lotion.png');
-        this.load.image('b2', './assets/bathe/cleaning_gloves.png');
-        this.load.image('b3', './assets/bathe/detergent.png');
-        this.load.image('b4', './assets/bathe/hand_sanitiser.png');
-        this.load.image('b5', './assets/bathe/scrub_brush.png');
-        this.load.image('b6', './assets/bathe/scrub_sponge.png');
-        this.load.image('b7', './assets/bathe/shampoo.png');
-        this.load.image('b8', './assets/bathe/soap_box.png');
-        this.load.image('b9', './assets/bathe/soap.png');
-        this.load.image('b10', './assets/bathe/sun_cream_tube.png');
-        this.load.image('b11', './assets/bathe/toothbrush.png');
-        this.load.image('b12', './assets/bathe/toothpaste_box.png');
-        this.load.image('b13', './assets/bathe/toothpaste.png');
-        this.load.image('b14', './assets/bathe/wet_wipe.png');
-
-        //load clothing items
-        this.load.image('c0', './assets/clothe/bikini.png');
-        this.load.image('c1', './assets/clothe/boots.png');
-        this.load.image('c2', './assets/clothe/boots2.png');
-        this.load.image('c3', './assets/clothe/bow.png');
-        this.load.image('c4', './assets/clothe/goggles.png');
-        this.load.image('c5', './assets/clothe/hat.png');
-        this.load.image('c6', './assets/clothe/jacket.png');
-        this.load.image('c7', './assets/clothe/outfit1.png');
-        this.load.image('c8', './assets/clothe/outfit2.png');
-        this.load.image('c9', './assets/clothe/outfit3.png');
-        this.load.image('c10', './assets/clothe/outfit4.png');
-        this.load.image('c11', './assets/clothe/shoes.png');
-        this.load.image('c12', './assets/clothe/shoes2.png');
-        this.load.image('c13', './assets/clothe/witch_hat.png');
-
-        //load food items
-        this.load.image('f0', './assets/food/actualpancake.png');
-        this.load.image('f1', './assets/food/chicken.png');
-        this.load.image('f2', './assets/food/cupcake.png');
-        this.load.image('f3', './assets/food/donut.png');
-        this.load.image('f4', './assets/food/drink.png');
-        this.load.image('f5', './assets/food/drink2.png');
-        this.load.image('f6', './assets/food/egg.png');
-        this.load.image('f7', './assets/food/grilledcheese.png');
-        this.load.image('f8', './assets/food/orange.png');
-        this.load.image('f9', './assets/food/orangejuice.png');
-        this.load.image('f10', './assets/food/pancake.png');
-        this.load.image('f11', './assets/food/sandwich.png');
-        this.load.image('f12', './assets/food/sandwich2.png');
-        this.load.image('f13', './assets/food/soup.png');
-        this.load.image('f14', './assets/food/stickybun.png');
-
-        //load play items
-        this.load.image('p0', './assets/play/chessbishop.png');
-        this.load.image('p1', './assets/play/chesscastle.png');
-        this.load.image('p2', './assets/play/chesshorse.png');
-        this.load.image('p3', './assets/play/chessking.png');
-        this.load.image('p4', './assets/play/chesspawn.png');
-        this.load.image('p5', './assets/play/chessqueen.png');
-        this.load.image('p6', './assets/play/dice.png');
-        this.load.image('p7', './assets/play/game_console1.png');
-        this.load.image('p8', './assets/play/game_console2.png');
-        this.load.image('p9', './assets/play/game_console3.png');
-        this.load.image('p10', './assets/play/game_console4.png');
-        this.load.image('p11', './assets/play/game_console5.png');
-        this.load.image('p12', './assets/play/game_console6.png');
-        this.load.image('p13', './assets/play/game_console7.png');
-        this.load.image('p14', './assets/play/game_console8.png');
-        this.load.image('p15', './assets/play/rubber_duck.png');
-        this.load.image('p16', './assets/play/rubber_ducktopus.png');
-        this.load.image('p17', './assets/play/toy.png');
-
-
-
-        // this.load.image('', './assets/FoodButton.png');
-        // this.load.image('Bathe', './assets/BatheButton.png');
-        // this.load.image('Play', './assets/PlayButton.png');
-    }
+    
 }
