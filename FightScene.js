@@ -94,13 +94,16 @@ class FightScene extends Phaser.Scene
         this.add.text(340,265, "HEALTH", style);//label it
 
         //make player healthbar
+        
         let playerBar=this.makeBar(140,100,0xe74c3c);
         this.setValue(playerBar,100);//value of health bar is 100
         playerBar.fillRect(-543,625,765,30)
         
+        
+        playerBar.fillRect(-543,625,765,30)
         //healthBar.setValue-=.10
         this.add.text(50,730, "HEALTH", style);//label it
-
+        
 
         //add enemy sprite
         //allign it above the enemy health bar and then make it play idle animation
@@ -118,13 +121,15 @@ class FightScene extends Phaser.Scene
         });
         this.enemy.anims.play('idle2');// play the pet animotion
         this.attack = this.add.sprite(55,667, 'toothpaste');
-        
+        var r1 = this.add.rectangle(325, 275, 200, 30, 0x6666ff);
+            
         const button2 = this.add.image(68, 250, 'button')
             button2.setInteractive()
 
-            //button2.on('pointerdown',() =>this.setNewValue(healthBar,100))
+            button2.on('pointerdown',() =>r1.width-=20);
             button2.on('pointerup', () => button.setScale( 1 ));
-      
+            
+
         
     }
     //call to make the health bars
@@ -137,7 +142,6 @@ class FightScene extends Phaser.Scene
         //position the bar
         bar.x = x;
         bar.y = y;
-        
         //return the bar
         return bar;
         }
@@ -145,7 +149,7 @@ class FightScene extends Phaser.Scene
     setValue(bar,percentage) 
         {
         //scale the bar
-        bar.scaleX = percentage/500;
+        bar.scaleX = percentage/400;
         }
 
         //maybe
