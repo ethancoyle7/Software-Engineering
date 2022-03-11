@@ -98,7 +98,7 @@ class FightScene extends Phaser.Scene
         const button2 = this.add.image(68, 250, 'button')
             button2.setInteractive()
 
-            button2.on('pointerdown',() =>enemyhealth.width-=1);
+            button2.on('pointerdown',() =>enemyhealth.width-=5);
             button2.on('pointerup', () => button.setScale( 1 ));
         
         // create a button to return back to main scene and if the button press
