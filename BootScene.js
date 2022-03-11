@@ -51,6 +51,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        this.load.spritesheet('petidle', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Idle_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
             frameHeight: 500

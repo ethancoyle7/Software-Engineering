@@ -34,6 +34,8 @@ class FightScene extends Phaser.Scene
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
         this.timeLeft = 3000;
+        // set the text font information to be used in styles
+        var style = { font: "20px Arial", fill: "#ffffff" };
 
         // load the background image and set x and y coords
         // then set the scale to .7
@@ -41,14 +43,15 @@ class FightScene extends Phaser.Scene
         background.setScale(.9);
         
         //add the pet to the screen and add idle animation
-        this.pet =this.add.sprite(50,660,"pet")
-        this.pet.setScale(.4,.4);//set the scale of the pet for fight to fit the scene width and height
-        this.pet.setInteractive({ draggable: true });
+        this.pet =this.add.sprite(70,635,"pet")
+        this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
+        this.pet.setInteractive();
+        //create idle animation for the pet whenever pet is not doing anything
         this.pet.anims.create({
             key: 'idle',
-            frames: this.anims.generateFrameNumbers('pet', {
+            frames: this.anims.generateFrameNumbers('petidle', {
                 start: 0,
-                end: 10
+                end: 3
             }),
             frameRate: 12,
             repeat: -1
@@ -58,51 +61,17 @@ class FightScene extends Phaser.Scene
        this.pet.on('pointerdown',() => this.sound.play('press'))
        
         
-       const button = this.add.image( 50, 40, 'Return')
-	        button.setInteractive()
-            button.on('pointerdown',() => this.sound.removeByKey('Fight'))
-	        button.on('pointerdown', () => button.setScale( 1.1 ))
-	        button.on('pointerup', () => button.setScale( 1 ));
-            button.on('pointerdown',() => this.scene.start('MainScene'))
-       
-        this.tweens.add({
+      
+        
+        
 
-            targets: button,
-            alpha: 0.5,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
-        
-        });
-        
-       
-        
-    
-        //set health bar inside of another bar
-        this.add.image(100, 740, 'container');
-        this.add.image(340, 275, 'container');
-       
-        
-        // display the health text to identitfy the health bar
-        var style = { font: "20px Arial", fill: "#ffffff" };
-
-        //make enemy health bar
-        let healthBar=this.makeBar(140,100,0xe74c3c);
-        this.setValue(healthBar,100);//set value of the health bar to 100
-        healthBar.fillRect(420,160,765,30)
-        //healthBar.setValue-=.10
-        this.add.text(340,265, "HEALTH", style);//label it
-
-        //make player healthbar
-        
-        let playerBar=this.makeBar(140,100,0xe74c3c);
-        this.setValue(playerBar,100);//value of health bar is 100
-        playerBar.fillRect(-543,625,765,30)
-        
-        
-        playerBar.fillRect(-543,625,765,30)
-        //healthBar.setValue-=.10
+        // making health and container for the pet
+        var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x6666ff);
+        var pethealth = this.add.rectangle(105, 740, 200, 30, 0xe74c3c);
         this.add.text(50,730, "HEALTH", style);//label it
+
+        
+        
         
 
         //add enemy sprite
@@ -120,39 +89,41 @@ class FightScene extends Phaser.Scene
             repeat: -1
         });
         this.enemy.anims.play('idle2');// play the pet animotion
-        this.attack = this.add.sprite(55,667, 'toothpaste');
-        var r1 = this.add.rectangle(340, 275, 200, 30, 0x6666ff);
-            
+        //making health and container for the enemy
+        var enemyhealthcontainer = this.add.rectangle(340, 275, 205, 35, 0x6666ff);
+        var enemyhealth = this.add.rectangle(340, 275, 200, 30, 0xe74c3c);
+        this.add.text(340,265, "HEALTH", style);//label it
+        
+        // creating out interactive buttons
         const button2 = this.add.image(68, 250, 'button')
             button2.setInteractive()
 
-            button2.on('pointerdown',() =>r1.width-=1);
+            button2.on('pointerdown',() =>enemyhealth.width-=1);
             button2.on('pointerup', () => button.setScale( 1 ));
-            
+        
+        // create a button to return back to main scene and if the button press
+        //perform some actions
+        const button = this.add.image( 50, 40, 'Return')
+	        button.setInteractive()
+            button.on('pointerdown',() => this.sound.removeByKey('Fight'))
+	        button.on('pointerdown', () => button.setScale( 1.1 ))
+	        button.on('pointerup', () => button.setScale( 1 ));
+            button.on('pointerdown',() => this.scene.start('MainScene'))
+       
+        this.tweens.add({
 
+            targets: button,
+            alpha: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        
+        });
         
     }
-    //call to make the health bars
-    makeBar(x, y,color) 
-       {
-        //draw the bar
-        let bar = this.add.graphics();
-        //color the bar
-        bar.fillStyle(color, 1);
-        //position the bar
-        bar.x = x;
-        bar.y = y;
-        //return the bar
-        return bar;
-        }
-    //calls to set the value
-    setValue(bar,percentage) 
-        {
-        //scale the bar
-        bar.scaleX = percentage/400;
-        }
+    
 
-        //maybe
+        
     
     // Runs every frame
     update() 
