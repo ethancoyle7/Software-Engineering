@@ -32,9 +32,12 @@ class MainScene extends Phaser.Scene {
         // then set the scale to .7
         let background = this.add.image(200, 400, 'bg');
         background.setScale(.7);
+        var style = { font: "20px Arial", fill: "#fff" };//set style used in text
+
         //adding the sprite and then setting the scale on the screen
         this.pet = this.add.sprite(200, 500, "pet")
         this.pet.setScale(6);
+        //creating pet animation
         this.pet.anims.create({
             key: 'run',
             frames: this.anims.generateFrameNumbers('pet', {
@@ -70,98 +73,10 @@ class MainScene extends Phaser.Scene {
 
         this.pet.anims.play('run');
 
-        //this.pet.anims.play('dead');
-        var style = { font: "20px Arial", fill: "#fff" };
-        //container to hold the health bar
-        let container = this.add.sprite(100, 50, 'container');
-        // the energy bar. Another simple sprite
-        let healthbar = this.add.sprite(container.x, container.y, "healthbar");
-        // a copy of the energy bar to be used as a mask
-        this.energyMask1 = this.add.sprite(healthbar.x, healthbar.y, "healthbar");
-        this.add.text(10, 5, "HEALTH", style);//label it 
-        this.energyMask1.visible = false;
-        // and we assign it as energyBar's mask.
-        healthbar.mask = new Phaser.Display.Masks.BitmapMask(this, this.energyMask1)
-        this.gameTimer = this.time.addEvent({
-            delay: 0,
-            callback: function () {
-                this.timeLeft--;
-
-                // dividing enery bar width by the number of seconds gives us the amount
-                // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask1.width / 1000;
-
-                // moving the mask
-                this.energyMask1.x -= stepWidth;
-                if (this.timeLeft == 0) {
-                    this.scene.start("MainScene")
-                }
-            },
-
-            callbackScope: this,
-            loop: true
-        });
-        //happiness container and health bar
-        let happiness = this.add.sprite(100, 120, 'happiness');
-        // happiness bar another sprite held within container
-        let happinessbar = this.add.sprite(happiness.x, happiness.y, "happinessbar");
-        // a copy of the energy bar to be used as a mask. Another simple sprite but...
-        this.energyMask2 = this.add.sprite(happinessbar.x, happinessbar.y, "happinessbar");
-        this.add.text(10, 75, "HAPPINESS", style);
-        this.energyMask2.visible = false;
-
-        // and we assign it as energyBar's mask.
-        happinessbar.mask = new Phaser.Display.Masks.BitmapMask(this, this.energyMask2)
-        this.gameTimer = this.time.addEvent({
-            delay: 0,
-            callback: function () {
-                this.timeLeft--;
-
-                // dividing enery bar width by the number of seconds gives us the amount
-                // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask2.displayWidth / 1000;
-
-                // moving the mask
-                this.energyMask2.x -= stepWidth;
-                if (this.timeLeft == 0) {
-                    this.scene.start("MainScene")
-                }
-            },
-            callbackScope: this,
-            loop: true
-        });
-
-        let hunger = this.add.sprite(100, 190, 'hunger');
-        // the energy bar. Another simple sprite
-        let hungerBar = this.add.sprite(hunger.x, hunger.y, "hungerbar");
-        this.energyMask3 = this.add.sprite(hungerBar.x, hungerBar.y, "hungerbar");
-        this.add.text(10, 145, "HUNGER", style); // label it
-        // ...it's not visible...
-        this.energyMask3.visible = false;
-        // and we assign it as hungerBar's mask.
-        hungerBar.mask = new Phaser.Display.Masks.BitmapMask(this, this.energyMask3)
-        this.gameTimer = this.time.addEvent({
-            delay: 0,
-            callback: function () {
-                this.timeLeft--;
-
-                // dividing enery bar width by the number of seconds gives us the amount
-                // of pixels we need to move the energy bar each second
-                let stepWidth = this.energyMask3.displayWidth / 1000;
-
-                // moving the mask
-                this.energyMask3.x -= stepWidth;
-                if (this.timeLeft == 0) {
-                    this.pet.anims.play('dead')
-                    this.scene.start("MainScene")//restarts the main scene
-                }
-            },
-            callbackScope: this,
-            loop: true
-        });
-
+        
+        
+        //make the pet interactive and movable
         this.pet.setInteractive({ draggable: true });
-
         // to know the item is selected change the color of the item
         this.input.on('dragstart', function (pointer, gameObject) {
             gameObject.setTint(0xff0000);
@@ -178,6 +93,37 @@ class MainScene extends Phaser.Scene {
             gameObject.clearTint();
         });
 
+        // health, hunger, happiness creation
+
+         //creating health rectangle and nice container to hold it
+         var healthcontainer = this.add.rectangle(105, 40, 205, 35, 0x1e0a08);
+         var health = this.add.rectangle(105, 40, 200, 30, 0xe74c3c);
+         this.add.text(10, 30, "HEALTH", style);//label it 
+ 
+         //create container and rectangle for the happiness
+         var happinesscontainer = this.add.rectangle(105, 80, 205, 35, 0x1e0a08);
+         var happiness = this.add.rectangle(105, 80, 200, 30, 0x4ce73c);
+         this.add.text(10, 70, "HAPPINESS", style);//label it 
+ 
+         //create rectangle for hunger stats and nice container to hold it
+         var hungercontainer = this.add.rectangle(105,120, 205, 35, 0x1e0a08);
+         var hunger = this.add.rectangle(105, 120, 200, 30, 0x3c82e7);
+         this.add.text(10, 108, "HUNGER", style);//label it 
+
+          //create rectangle for xp points
+          var experiencecontainer = this.add.rectangle(55,160, 105, 35, 0x1e0a08);
+          var experience = this.add.rectangle(55, 160, 100, 30, 0xe7a23c);
+          this.add.text(10, 148, "XP", style);//label it 
+        
+        //for the fight button hover over to press for fight
+        // this button leads to click sequence when pressed
+        const button = this.add.image(68, 215, 'button')
+        button.setInteractive() // set it interactive
+        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
+        button.on('pointerup', () => button.setScale(1));// on ppinter up
+        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
+        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
+        
         //add a circle to game that fades in and out
         // add text to let know it is the level icon
         //to display the level
@@ -195,14 +141,8 @@ class MainScene extends Phaser.Scene {
 
         });
 
-        //for the fight button hover over to press for fight
-        // this button leads to click sequence when pressed
-        const button = this.add.image(68, 250, 'button')
-        button.setInteractive() // set it interactive
-        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
-        button.on('pointerup', () => button.setScale(1));// on ppinter up
-        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
-        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
+        
+
 
 
         this.createItems(); //creates the items the player interacts with the pet with
