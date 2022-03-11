@@ -4,50 +4,44 @@ class MainScene extends Phaser.Scene {
     constructor() {
         super("MainScene");
         this.pet = null;
-        this.items = [];
+        this.items = [];// this items belongs to collection of objects
         this.itemsIcons = [];
+        this.percent=0;
+        this.background=null;
+
 
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() {
         // preload to the screeen the background and the music
-        //this.load.image('bg', './assets/background.png');
-        //this.load.audio('bgmusic', './assets/gamemusic.mp3');
-        // this.load.image("pet","assets/charater.png")
         this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
     }
     // Runs when we first enter this scene
     create() {
-        this.sound.play('bgmusic', { volume: 0.1 });
+        //this.sound.play('bgmusic', { volume: 0.1 });
         this.timeLeft = 200000;
         this.timeLeft--;
-
-        //this.timeLeft=this.initialTime(200);
-
-
         //create a backdound and a music for the load up 
-
         // load the background image and set x and y coords
         // then set the scale to .7
-
         let background = this.add.image(200, 400, 'bg');
         background.setScale(.7);
+        //adding the sprite and then setting the scale on the screen
         this.pet = this.add.sprite(200, 500, "pet")
+        this.pet.setScale(6);
         this.pet.anims.create({
-            key: 'idle',
+            key: 'run',
             frames: this.anims.generateFrameNumbers('pet', {
                 start: 0,
-                end: 10
+                end: 5
             }),
             frameRate: 12,
             repeat: -1
         });
 
-        // style format for the health stuff
-        //var style = { font: "20px Arial", fill: "#fff"};
-        //this.pet.anims.play('idle');
+        
         //creat death animation
         this.pet.anims.create({
             key: 'dead',
@@ -59,7 +53,7 @@ class MainScene extends Phaser.Scene {
             repeat: -1
         });
 
-        this.pet.anims.play('idle');
+        this.pet.anims.play('run');
 
         //this.pet.anims.play('dead');
         var style = { font: "20px Arial", fill: "#fff" };
@@ -122,8 +116,6 @@ class MainScene extends Phaser.Scene {
             loop: true
         });
 
-
-
         let hunger = this.add.sprite(100, 190, 'hunger');
         // the energy bar. Another simple sprite
         let hungerBar = this.add.sprite(hunger.x, hunger.y, "hungerbar");
@@ -153,14 +145,6 @@ class MainScene extends Phaser.Scene {
             loop: true
         });
 
-
-
-
-
-        //this.load.image("button","assets/button.png")
-        this.toy = this.add.sprite(10, 570, 'toy')
-        //toy.setInteractive();
-        this.toy.setInteractive({ draggable: true });
         this.pet.setInteractive({ draggable: true });
 
         // to know the item is selected change the color of the item
@@ -197,44 +181,21 @@ class MainScene extends Phaser.Scene {
         });
 
         //for the fight button hover over to press for fight
-
+        // this button leads to click sequence when pressed
         const button = this.add.image(68, 250, 'button')
-        button.setInteractive()
-        button.on('pointerdown', () => button.setScale(1.1))
-        button.on('pointerup', () => button.setScale(1));
-        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))
-        button.on('pointerdown', () => this.scene.start('FightScene'))
+        button.setInteractive() // set it interactive
+        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
+        button.on('pointerup', () => button.setScale(1));// on ppinter up
+        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
+        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
 
-        let Width = this.energyMask3.displayWidth * 20;
-        // creating the containter for feeding bathing and playinh
-        // const Food= this.add.image(68,750, 'Food')
-        //     Food.setInteractive()
-        //     Food.on('pointerdown',() =>this.energyMask1.x+=5)
-        //     Food.on('pointerdown',() => this.energyMask3.x+=20)
-        // const Bathe= this.add.image(225,750, 'Bathe')
-        //     Bathe.setInteractive()
-        //     Bathe.on('pointerdown',() => this.energyMask2.x+=7)
-        //     Bathe.on('pointerdown',() => this.energyMask1.x+=1)
-        //     Bathe.on('pointerdown',() => this.energyMask3.x-=5)
-        // const Play= this.add.image(382,750,'Play')
-        //     Play.setInteractive()
-        //     Play.on('pointerdown',() => this.energyMask2.x+=10)
-        //     Play.on('pointerdown',() => this.energyMask3.x-=5)
-
-
-
-        //idle animation for sprite
-
+       
         this.createItems(); //creates the items the player interacts with the pet with
-
-        // style format for the health stuff
-        //var style = { font: "20px Arial", fill: "#fff"};
 
 
 
 
     }
-
     createItems() {
 
         for (let i = 0; i < 4; i++) {

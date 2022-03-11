@@ -6,7 +6,7 @@ class FightScene extends Phaser.Scene
     {
         super('FightScene');
         this.pet = null;
-        this.health=0; // healh for pet
+        this.enemy=null;
         
 
 
@@ -17,25 +17,20 @@ class FightScene extends Phaser.Scene
     preload() 
     {
         this.load.audio('press', './assets/honeywood.mp3'); 
-    // preload to the screeen the background and the music
-        //this.load.image('bg', './assets/background.png');
-        //this.load.audio('bgmusic', './assets/gamemusic.mp3');
-       // this.load.image("pet","assets/charater.png")
+    
        this.load.audio('Fight', './assets/BossFight.mp3');
-       //this.load.images('Health',)
+       
        this.load.image('Health', "./assets/health.png");
        this.load.image('toothpaste', "./assets/bathe/toothpaste.png");
+       this.load.image('Health', "./assets/button.png");
     }
     
 
     // Runs when we first enter this scene
     create() 
     {
-        this.SHOT_DELAY = 300; // milliseconds (10 bullets/3 seconds)
-        this.BULLET_SPEED = 800; // pixels/second
-        this.NUMBER_OF_BULLETS = 1;
-        this.GRAVITY = 980; // pixels/second/second
-        //this.gun = this.add.sprite(55,667, 'toothpaste');
+       
+        
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
         this.timeLeft = 3000;
@@ -61,9 +56,7 @@ class FightScene extends Phaser.Scene
         //play the pet animation and play sound whenever pressed down
        this.pet.anims.play('idle');// play the pet animotion
        this.pet.on('pointerdown',() => this.sound.play('press'))
-       //set value for the pets health and max health
-       //this.pet.health = 100;
-       //this.pet.maxHealth = 100;
+       
         
        const button = this.add.image( 50, 40, 'Return')
 	        button.setInteractive()
@@ -104,6 +97,7 @@ class FightScene extends Phaser.Scene
         let playerBar=this.makeBar(140,100,0xe74c3c);
         this.setValue(playerBar,100);//value of health bar is 100
         playerBar.fillRect(-543,625,765,30)
+        
         //healthBar.setValue-=.10
         this.add.text(50,730, "HEALTH", style);//label it
 
@@ -125,7 +119,11 @@ class FightScene extends Phaser.Scene
         this.enemy.anims.play('idle2');// play the pet animotion
         this.attack = this.add.sprite(55,667, 'toothpaste');
         
-        
+        const button2 = this.add.image(68, 250, 'button')
+            button2.setInteractive()
+
+            //button2.on('pointerdown',() =>this.setNewValue(healthBar,100))
+            button2.on('pointerup', () => button.setScale( 1 ));
       
         
     }
@@ -139,6 +137,7 @@ class FightScene extends Phaser.Scene
         //position the bar
         bar.x = x;
         bar.y = y;
+        
         //return the bar
         return bar;
         }
@@ -146,8 +145,10 @@ class FightScene extends Phaser.Scene
     setValue(bar,percentage) 
         {
         //scale the bar
-        bar.scaleX = percentage/400;
+        bar.scaleX = percentage/500;
         }
+
+        //maybe
     
     // Runs every frame
     update() 
