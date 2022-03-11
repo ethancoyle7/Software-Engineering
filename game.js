@@ -20,6 +20,12 @@ const config = {
         GameOver
 
     ],
+    physics: {
+        default: 'arcade',
+        arcade: {
+           debug: true
+        }
+    },
     pixelArt: true //makes pixel art look better
 }
 new Phaser.Game(config);

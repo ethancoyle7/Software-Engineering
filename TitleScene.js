@@ -7,6 +7,7 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
                                         //methods and variables owned by it. This is where i make a lot of mistakes lol
     constructor(){
         super("TitleScene");
+        this.bgmusic;
     }
 
     preload(){  // this is the preload function, it loads all the assets for the scene
@@ -19,7 +20,7 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
         let bg = this.add.image(225,400, "bgname");
         bg.setScale(.7); //changes the scale of the background image
-        let music = this.sound.play("bgmusic", { //creates variable called music that plays the music
+        this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
             volume: 0.5,
             loop: true
         });
@@ -31,6 +32,7 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
         text.setOrigin(0.5, 0.5); //sets like the alignment of the text
         text.setInteractive(); //sets whether or not the text can be clicked or not
         this.input.on('pointerdown', ()=>{ // when mouse event, start main scene
+            this.sound.stopAll();
             this.scene.start('MainScene');
         });
         this.tweens.add({ // a tween is kinda like animation lite
