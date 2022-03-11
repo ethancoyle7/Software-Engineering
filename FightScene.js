@@ -126,7 +126,7 @@ class FightScene extends Phaser.Scene
         const button2 = this.add.image(68, 250, 'button')
             button2.setInteractive()
 
-            button2.on('pointerdown',() =>r1.width-=20);
+            button2.on('pointerdown',() =>r1.width-=1);
             button2.on('pointerup', () => button.setScale( 1 ));
             
 
