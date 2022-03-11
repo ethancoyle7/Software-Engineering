@@ -3,12 +3,16 @@ class MainScene extends Phaser.Scene {
     // This is where we define data members
     constructor() {
         super("MainScene");
+        this.BATHCOORDS = [50, 750];
+        this.CLOTHECOORDS = [150, 750];
+        this.FOODCOORDS = [275, 750];
+        this.TOYCOORDS = [375, 750];
         this.pet = null;
-        this.items = [];// this items belongs to collection of objects
-        this.itemsIcons = [];
-        this.percent=0;
-        this.background=null;
-
+        this.items = [];// this is a collection of items
+        // this.itemsIcons = [];
+        this.percent = 0;
+        this.background = null;
+        // this.item = null;
 
     }
 
@@ -41,7 +45,18 @@ class MainScene extends Phaser.Scene {
             repeat: -1
         });
 
-        
+
+
+        // this.item = this.add.Item(50, 750, 'bathimg')
+        // this.item = new Item({scene:this,x:50,y:750});
+        // this.item.setScale(3);
+        // this.item.setInteractive({ draggable: true });
+        // this.createAnimations();
+        // this.item.anims.play('bath');
+        // this.item.on('pointerup', () => this.item.anims.nextFrame());
+
+
+
         //creat death animation
         this.pet.anims.create({
             key: 'dead',
@@ -189,73 +204,96 @@ class MainScene extends Phaser.Scene {
         button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
         button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
 
-       
+
         this.createItems(); //creates the items the player interacts with the pet with
 
-
+        // this.createAnimations();
 
 
     }
     createItems() {
 
         for (let i = 0; i < 4; i++) {
-            let imgholder = [];
-
             if (i == 0) {
-                for (let j = 0; j < 14; j++) { //puts the images into an array
-                    imgholder[j] = `b${j}`;
-                }
-                this.items[i] = new Item(imgholder, "Bathe", 15);
-                this.itemsIcons[i] = this.add.image(50, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
+                this.items[i] = new Item({ scene: this, x: this.BATHCOORDS[0], y: this.BATHCOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+                this.items[0].anims.create({
+                    key: 'bath',
+                    frames: this.anims.generateFrameNumbers('bathimg', {
+                        start: 0,
+                        end: 14
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('bath');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
             } else if (i == 1) {
-                for (let j = 0; j < 13; j++) { //puts the images into an array
-                    imgholder[j] = `c${j}`;
-                }
-                this.items[i] = new Item(imgholder, "Clothe",14);
-                this.itemsIcons[i] = this.add.image(150, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
-            }else if(i == 2){
-                for (let j = 0; j < 14; j++) { //puts the images into an array
-                    imgholder[j] = `f${j}`;
-                }
-                this.items[i] = new Item(imgholder, "Food", 15);
-                this.itemsIcons[i] = this.add.image(275, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
-            }else if(i== 3){
-                for (let j = 0; j < 17; j++) { //puts the images into an array
-                    imgholder[j] = `p${j}`;
-                }
-                this.items[i] = new Item(imgholder, "Play", 18);
-                this.itemsIcons[i] = this.add.image(375, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
+                this.items[i] = new Item({ scene: this, x: this.CLOTHECOORDS[0], y: this.CLOTHECOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+
+                this.items[1].anims.create({
+                    key: 'clothe',
+                    frames: this.anims.generateFrameNumbers('clotheimg', {
+                        start: 0,
+                        end: 14
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('clothe');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+            } else if (i == 2) {
+                this.items[i] = new Item({ scene: this, x: this.FOODCOORDS[0], y: this.FOODCOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+                this.items[2].anims.create({
+                    key: 'food',
+                    frames: this.anims.generateFrameNumbers('foodimg', {
+                        start: 0,
+                        end: 14
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('food');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+            } else if (i == 3) {
+                this.items[i] = new Item({ scene: this, x: this.TOYCOORDS[0], y: this.TOYCOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+                this.items[3].anims.create({
+                    key: 'play',
+                    frames: this.anims.generateFrameNumbers('toyimg', {
+                        start: 0,
+                        end: 17
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('play');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
             }
 
-            this.itemsIcons[i].setScale(3);
-            this.itemsIcons[i].setInteractive({ draggable: true });
         }
+
 
     }
     // Runs every frame
     update() {
 
-        for(let i = 0; i < 4; i++){
-            this.itemsIcons[i].on('pointerup', () => this.items[i].changeItem());
-
-                
-            if (i == 0) {
-                this.itemsIcons[i] = this.add.image(50, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
-            }else if (i == 1) {
-                this.itemsIcons[i] = this.add.image(150, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
-            }else if(i == 2){
-                this.itemsIcons[i] = this.add.image(275, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
-            }else if(i== 3){
-                this.itemsIcons[i] = this.add.image(375, 750, this.items[i].itemImgs[this.items[i].imgIndex]);
-            }
-
-            this.itemsIcons[i].setScale(3);
-            this.itemsIcons[i].setInteractive({ draggable: true });
-            // this.itemsIcon[i].destroy();
-            //need a way to get rid of the extra ones, probably will need to use sprites instead of images
-        }
+      
     }
 
+
+
+    createAnimations() {
+        //insert pet animations here????
+
+  
+    }
 
 
 }
