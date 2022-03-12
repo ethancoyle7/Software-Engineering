@@ -40,7 +40,7 @@ class BootScene extends Phaser.Scene {
 
         // "MainScene" preload to the screeen the background and the music
         this.load.image('bg', './assets/background.png');
-        this.load.image('Fight', './assets/loading.png');
+        this.load.image('Fighting', './assets/loading.png');
         this.load.image('Return', './assets/ReturntoMainButton.png');
 
         // preload the pet and the health meters from assets file
