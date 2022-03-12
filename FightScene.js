@@ -1,5 +1,3 @@
-//const { TimerEvent } = require("phaser/src/time");
-
 class FightScene extends Phaser.Scene 
 {
     
@@ -19,15 +17,7 @@ class FightScene extends Phaser.Scene
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() 
     {
-    //load the files to be used in the scene
-    
-    // //load the files to be used in the scene
-    // this.load.audio('press', './assets/honeywood.mp3'); 
-    // this.load.audio('Fight', './assets/BossFight.mp3');
-    // this.load.audio('KO', './assets/fatality.mp3');
-    // this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
-       //load the images of both 
-       
+    //load the files to be used in the scene  
     }
     
 
@@ -212,7 +202,7 @@ class FightScene extends Phaser.Scene
        
     
 
-        pethealth.width-=Math.floor(Math.random() * 10);
+        //pethealth.width-=Math.floor(Math.random() * 10);
         
     
 
