@@ -7,6 +7,10 @@ class FightScene extends Phaser.Scene
         super('FightScene');
         this.pet = null;
         this.enemy=null;
+        
+        
+
+
     }
     
     
@@ -201,6 +205,7 @@ class FightScene extends Phaser.Scene
         //pethealth.width-=Math.floor(Math.random() * 10);
         
     
+       //pethealth.width-=Math.floor(Math.random() * 10);
 
    
     
