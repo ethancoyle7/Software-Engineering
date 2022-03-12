@@ -20,8 +20,8 @@ class MainScene extends Phaser.Scene {
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() {
-        // preload to the screeen the background and the music
-        this.load.audio('bgmusic', './assets/gamemusic.mp3');
+        // // preload to the screeen the background and the music
+        // this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
     }
     // Runs when we first enter this scene
