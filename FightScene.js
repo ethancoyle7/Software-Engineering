@@ -1,4 +1,4 @@
-const { TimerEvent } = require("phaser/src/time");
+//const { TimerEvent } = require("phaser/src/time");
 
 class FightScene extends Phaser.Scene 
 {
@@ -222,11 +222,11 @@ class FightScene extends Phaser.Scene
         
     
     // Runs every frame
-    update() 
-    {
+   // update() 
+    //{
         
         
-    }
+    //}
 
 
 
