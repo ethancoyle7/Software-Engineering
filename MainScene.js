@@ -25,6 +25,7 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() {
         //this.sound.play('bgmusic', { volume: 0.1 });
+        this.data.set('LEVEL', 0);
         this.timeLeft = 200000;
         this.timeLeft--;
         //create a backdound and a music for the load up 
@@ -94,54 +95,56 @@ class MainScene extends Phaser.Scene {
         });
 
         // health, hunger, happiness creation
-
+        
          //creating health rectangle and nice container to hold it
-         var health = this.add.rectangle(105, 40, 200, 30, 0xe74c3c);
+         var health = this.add.rectangle(105, 20, 200, 30, 0xe74c3c);
          health.setStrokeStyle(4, 0x1e0a08);
-         this.add.text(10, 30, "HEALTH", style);//label it 
+         this.add.text(10, 10, "HEALTH", style);//label it 
+
          //create container and rectangle for the happiness
-         var happiness = this.add.rectangle(105, 80, 200, 30, 0x4ce73c);
+         var happiness = this.add.rectangle(105, 60, 200, 30, 0x4ce73c);
          happiness.setStrokeStyle(4, 0x1e0a08);
-         this.add.text(10, 70, "HAPPINESS", style);//label it 
+         this.add.text(10, 50, "HAPPINESS", style);//label it 
+
          //create rectangle for hunger stats and nice container to hold it
-         var hunger = this.add.rectangle(105, 120, 200, 30, 0x3c82e7);
+         var hunger = this.add.rectangle(105, 100, 200, 30, 0x3c82e7);
          hunger.setStrokeStyle(4, 0x1e0a08);
-         this.add.text(10, 108, "HUNGER", style);//label it 
+         this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
-          var experience = this.add.rectangle(55, 160, 100, 30, 0xe7a23c);
-          experience.setStrokeStyle(4, 0x1e0a08);
-          this.add.text(10, 148, "XP", style);//label it 
-        
-        //for the fight button hover over to press for fight
-        // this button leads to click sequence when pressed
-        const button = this.add.image(68, 210, 'button')
-        button.setInteractive() // set it interactive
-        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
-        button.on('pointerup', () => button.setScale(1));// on ppinter up
-        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
-        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
-        
-        //add a circle to game that fades in and out
-        // add text to let know it is the level icon
-        //to display the level
-        var circle = this.add.circle(350, 95, 60, 0x9966ff);
-        circle.setStrokeStyle(4, 0xefc53f);
-        this.add.text(320, 60, "LEVEL", style);
-        //add tweens to make the circle fade in and out
+
+        //create rectangle for the level display
+        var levelrect = this.add.rectangle(105, 140, 200, 30, 0x9966ff);
+        levelrect.setStrokeStyle(4, 0xefc53f);
+        //oscillating display of rectangle targetting this rectangle
         this.tweens.add({
 
-            targets: circle,
+            targets: levelrect,//who it targetting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,
             ease: 'Sine.easeInOut'
 
         });
-
+        //txt to be inside of the level to let the user know what level they are on
+        var text = this.add.text(50, 130, '', { font: '20px Courier', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+        text.setText([
+            'LEVEL: ' + this.data.get('LEVEL'),
+            
+        ]);
+        //create experience bar to be used with the levelling of the character
+        var experience = this.add.rectangle(55, 180, 100, 30, 0xe7a23c);
+        experience.setStrokeStyle(4, 0x1e0a08);
+        this.add.text(10, 170, "XP", style);//label it 
         
-
-
-
+        //for the fight button hover over to press for fight
+        // this button leads to click sequence when pressed
+        const button = this.add.image(330, 75, 'button')
+        button.setInteractive() // set it interactive
+        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
+        button.on('pointerup', () => button.setScale(1));// on ppinter up
+        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
+        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
         this.createItems(); //creates the items the player interacts with the pet with
 
         // this.createAnimations();

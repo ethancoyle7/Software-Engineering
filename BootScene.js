@@ -54,7 +54,23 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        //loading sprite sheet for fight animations for punching
+        this.load.spritesheet('petpunch', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Push_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //loading sprite sheet for fight animations for light attack
+        this.load.spritesheet('lightattack', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Attack1_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //loading sprite sheet for fight animations for heavy  attack
+        this.load.spritesheet('heavyattack', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Attack2_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
         
+        //stuff for the enemy
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
             frameHeight: 500
