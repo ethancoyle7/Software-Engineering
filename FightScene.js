@@ -16,11 +16,11 @@ class FightScene extends Phaser.Scene
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() 
     {
-    //load the files to be used in the scene
-    this.load.audio('press', './assets/honeywood.mp3'); 
-    this.load.audio('Fight', './assets/BossFight.mp3');
-    this.load.audio('KO', './assets/fatality.mp3');
-    this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
+    // //load the files to be used in the scene
+    // this.load.audio('press', './assets/honeywood.mp3'); 
+    // this.load.audio('Fight', './assets/BossFight.mp3');
+    // this.load.audio('KO', './assets/fatality.mp3');
+    // this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
        //load the images of both 
        
     }
