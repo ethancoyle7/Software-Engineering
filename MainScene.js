@@ -28,8 +28,7 @@ class MainScene extends Phaser.Scene {
     create() {
         //this.sound.play('bgmusic', { volume: 0.1 });
         this.data.set('LEVEL', 0);
-        this.timeLeft = 200000;
-        this.timeLeft--;
+        
         //create a backdound and a music for the load up 
         // load the background image and set x and y coords
         // then set the scale to .7
