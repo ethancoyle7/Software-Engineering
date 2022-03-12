@@ -28,8 +28,7 @@ class MainScene extends Phaser.Scene {
     create() {
         //this.sound.play('bgmusic', { volume: 0.1 });
         this.data.set('LEVEL', 0);
-        this.timeLeft = 200000;
-        this.timeLeft--;
+        
         //create a backdound and a music for the load up 
         // load the background image and set x and y coords
         // then set the scale to .7
@@ -147,8 +146,9 @@ class MainScene extends Phaser.Scene {
         button.on('pointerup', () => button.setScale(1));// on ppinter up
         button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
         button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
-        this.createItems(); //creates the items the player interacts with the pet with
+        
         this.items[3].on('pointerup',()=>hunger.width-=20);
+        this.createItems(); //creates the items the player interacts with the pet with
         // this.createAnimations();
 
 

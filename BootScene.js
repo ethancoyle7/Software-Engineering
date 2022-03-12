@@ -105,7 +105,7 @@ class BootScene extends Phaser.Scene {
         // this.load.image("hungermeter","assets/hungrymeter.png")
         
         //load the files to be used in the Fight scene
-        this.load.audio('press', './assets/honeywood.mp3'); 
+        this.load.audio('press', './assets/getout.mp3'); 
         this.load.audio('Fight', './assets/BossFight.mp3');
         this.load.audio('KO', './assets/fatality.mp3');
         this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
