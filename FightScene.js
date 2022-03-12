@@ -20,10 +20,12 @@ class FightScene extends Phaser.Scene
     preload() 
     {
     //load the files to be used in the scene
-    this.load.audio('press', './assets/getout.mp3'); 
-    this.load.audio('Fight', './assets/BossFight.mp3');
-    this.load.audio('KO', './assets/fatality.mp3');
-    this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
+    
+    // //load the files to be used in the scene
+    // this.load.audio('press', './assets/honeywood.mp3'); 
+    // this.load.audio('Fight', './assets/BossFight.mp3');
+    // this.load.audio('KO', './assets/fatality.mp3');
+    // this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
        //load the images of both 
        
     }
@@ -228,4 +230,4 @@ class FightScene extends Phaser.Scene
 
 
 
-}
+}}
