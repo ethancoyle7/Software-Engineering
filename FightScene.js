@@ -16,13 +16,13 @@ class FightScene extends Phaser.Scene
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() 
     {
-        this.load.audio('press', './assets/honeywood.mp3'); 
-    
-       this.load.audio('Fight', './assets/BossFight.mp3');
+    //load the files to be used in the scene
+    this.load.audio('press', './assets/honeywood.mp3'); 
+    this.load.audio('Fight', './assets/BossFight.mp3');
+    this.load.audio('KO', './assets/fatality.mp3');
+    this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
+       //load the images of both 
        
-       this.load.image('Health', "./assets/health.png");
-       this.load.image('toothpaste', "./assets/bathe/toothpaste.png");
-       this.load.image('Health', "./assets/button.png");
     }
     
 
@@ -33,7 +33,6 @@ class FightScene extends Phaser.Scene
         
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
-        this.timeLeft = 3000;
         // set the text font information to be used in styles
         var style = { font: "20px Arial", fill: "#ffffff" };
 
@@ -56,25 +55,46 @@ class FightScene extends Phaser.Scene
             frameRate: 12,
             repeat: -1
         });
+        //creating animation for the double punch
+        this.pet.anims.create({
+            key: 'punch',
+            frames: this.anims.generateFrameNumbers('petpunch', {
+                start: 0,
+                end: 5
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+        //for the light attack create animation sequence
+        this.pet.anims.create({
+            key: 'light',
+            frames: this.anims.generateFrameNumbers('lightattack', {
+                start: 0,
+                end: 3
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+        //create animation for the heavy attacking character
+        this.pet.anims.create({
+            key: 'heavy',
+            frames: this.anims.generateFrameNumbers('heavyattack', {
+                start: 0,
+                end: 5
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+
         //play the pet animation and play sound whenever pressed down
        this.pet.anims.play('idle');// play the pet animotion
        this.pet.on('pointerdown',() => this.sound.play('press'))
-       
-        
-      
-        
-        
-
         // making health and container for the pet
-        var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x6666ff);
+        var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x1e0a08);
         var pethealth = this.add.rectangle(105, 740, 200, 30, 0xe74c3c);
         this.add.text(50,730, "HEALTH", style);//label it
-
         
-        
-        
-
-        //add enemy sprite
+         //add enemy sprite
         //allign it above the enemy health bar and then make it play idle animation
         this.enemy = this.add.sprite(375, 185, "pet2")
         this.enemy.setScale(.4,.4);//set the scale of the enemy for fight to fit the scene width and height
@@ -90,17 +110,70 @@ class FightScene extends Phaser.Scene
         });
         this.enemy.anims.play('idle2');// play the pet animotion
         //making health and container for the enemy
-        var enemyhealthcontainer = this.add.rectangle(340, 275, 205, 35, 0x6666ff);
+        var enemyhealthcontainer = this.add.rectangle(340, 275, 205, 35, 0x1e0a08);
         var enemyhealth = this.add.rectangle(340, 275, 200, 30, 0xe74c3c);
         this.add.text(340,265, "HEALTH", style);//label it
-        
-        // creating out interactive buttons
-        const button2 = this.add.image(68, 250, 'button')
-            button2.setInteractive()
 
-            button2.on('pointerdown',() =>enemyhealth.width-=5);
-            button2.on('pointerup', () => button.setScale( 1 ));
-        
+        //WE WANT A RECTANGLE TO HOLD THE ATTACK BUTTONS INSIDE SO MAKE IT BEFORE
+        //ATTACK BUTTONS SO AS TO NOT COVER UP BARS
+        var AttackContainer = this.add.rectangle(340,680, 175, 170, 0xa9a9a9);
+        AttackContainer.setStrokeStyle(4, 0x1e0a08);
+        this.add.text(290, 600, "ATTACKS", style);//label it 
+
+        // creating attack buttons to attack the enemy 
+        //ie Light, Heavy, Punch etc 
+        //give them rectangle and make interactive and when clicked, they adjust the pet health
+        var Light = this.add.rectangle(340,660, 150, 30, 0xb8860b);
+        Light.setStrokeStyle(4, 0x1e0a08);
+        this.add.text(290, 650, "Light Attack", style);//label it 
+        Light.setInteractive() // SET IT INTERACTIVE
+        Light.on('pointerdown',() =>enemyhealth.width-=2);//ENEMY HEALTH -=2
+        Light.on('pointerdown',() =>console.log(enemyhealth.width)); //logging the width of the enemy bar
+        Light.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        Light.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
+        Light.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
+        Light.on('pointerdown',() =>this.pet.anims.play('light'));// play the punching animation
+        //on relase of the button click
+        Light.on('pointerup', () => this.enemy.clearTint());// on the pointer up clear the tint
+        Light.on('pointerup', () => button.setScale( 1 )); //BUTTON ANIMATION
+        Light.on('pointerup', () => this.pet.anims.stop('light'));// stop the previous animation
+        Light.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+
+        //this.pet.anims.play('idle');// play the pet animotion
+        //create container and rectangle for the heavy attack
+        var Heavy = this.add.rectangle(340, 700, 150, 30, 0xb8860b);
+        Heavy.setStrokeStyle(4, 0x1e0a08); // BORDER AROUND THE RECTANGLE
+        this.add.text(280, 690, "Heavy Attack", style);//label it 
+        Heavy.setInteractive() // set it interactive
+        Heavy.on('pointerdown',() =>enemyhealth.width-=5);//adjust the enemy health accordingly -5
+        Heavy.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of enemy bar
+        Heavy.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        Heavy.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
+        Heavy.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
+        Heavy.on('pointerdown',() =>this.pet.anims.play('heavy'));// play the punching animation
+        //on the release of the button
+        Heavy.on('pointerup', () => this.enemy.clearTint());// on the pointer up clear the tint
+        Heavy.on('pointerup', () => button.setScale( 1 ));
+        Heavy.on('pointerup', () => this.pet.anims.stop('heavy'));// stop the previous animation
+        Heavy.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+        //create rectangle for punching and nice container to hold it
+        var Punch = this.add.rectangle(340, 740, 150, 30, 0xb8860b);
+        Punch.setStrokeStyle(4, 0x1e0a08);
+        this.add.text(280, 730, "Double Punch", style);//label it 
+        Punch.setInteractive() // make it interactive
+        Punch.on('pointerdown',() =>enemyhealth.width-=10);// enemy health -10
+        Punch.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of the enemy bar
+        Punch.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        Punch.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1}));// create a tint to know got attacked
+        Punch.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
+        Punch.on('pointerdown',() =>this.pet.anims.play('punch'));// play the punching animation
+        //when released
+        Punch.on('pointerup', () => this.enemy.clearTint());// on the pointer up clear the tint
+        Punch.on('pointerup', () => button.setScale( 1 ));
+        Punch.on('pointerup', () => this.pet.anims.stop('punch'));// stop the previous animation
+        Punch.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+       
+       
         // create a button to return back to main scene and if the button press
         //perform some actions
         const button = this.add.image( 50, 40, 'Return')
@@ -119,7 +192,13 @@ class FightScene extends Phaser.Scene
             ease: 'Sine.easeInOut'
         
         });
-        
+       //whats the enemys stats for the width which represents remaining health
+       //console.log(enemyhealth.width)
+       if(enemyhealth.width==0)
+       {
+        this.sound.play('KO')
+       }
+       console.log(enemyhealth.width)
     }
     
 
@@ -128,7 +207,7 @@ class FightScene extends Phaser.Scene
     // Runs every frame
     update() 
     {
-    
+        
         
     }
 
