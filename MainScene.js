@@ -8,6 +8,8 @@ class MainScene extends Phaser.Scene {
         this.FOODCOORDS = [275, 750];
         this.TOYCOORDS = [375, 750];
         this.pet = null;
+        this.peter =null;
+        this.hunger=null;
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         this.percent = 0;
@@ -18,16 +20,15 @@ class MainScene extends Phaser.Scene {
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() {
-        // preload to the screeen the background and the music
-        this.load.audio('bgmusic', './assets/gamemusic.mp3');
+        // // preload to the screeen the background and the music
+        // this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
     }
     // Runs when we first enter this scene
     create() {
         //this.sound.play('bgmusic', { volume: 0.1 });
         this.data.set('LEVEL', 0);
-        this.timeLeft = 200000;
-        this.timeLeft--;
+        
         //create a backdound and a music for the load up 
         // load the background image and set x and y coords
         // then set the scale to .7
@@ -145,8 +146,9 @@ class MainScene extends Phaser.Scene {
         button.on('pointerup', () => button.setScale(1));// on ppinter up
         button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
         button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
+        
+        this.items[3].on('pointerup',()=>hunger.width-=20);
         this.createItems(); //creates the items the player interacts with the pet with
-
         // this.createAnimations();
 
 
@@ -215,6 +217,9 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('play');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+                this.peter= new Pet(this);
+                this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
+               
             }
 
         }

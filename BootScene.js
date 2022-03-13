@@ -40,7 +40,7 @@ class BootScene extends Phaser.Scene {
 
         // "MainScene" preload to the screeen the background and the music
         this.load.image('bg', './assets/background.png');
-        this.load.image('Fight', './assets/loading.png');
+        
         this.load.image('Return', './assets/ReturntoMainButton.png');
 
         // preload the pet and the health meters from assets file
@@ -92,20 +92,13 @@ class BootScene extends Phaser.Scene {
             frameHeight: 35
         });
         // for health
-        this.load.image('container', './assets/energy.png');
-        this.load.image("healthbar", "./assets/health.png");
-        //for happiness
-        this.load.image('happiness', './assets/energy.png');
-        this.load.image("happinessbar", "./assets/try4.png");
-        //for hunger
-        this.load.image('hunger', './assets/energy.png');
-        this.load.image("hungerbar", "./assets/hunger.png");
-        // this.load.image("health","assets/healthbar.png")
         this.load.image('button','./assets/button.png')
         // this.load.image("hungermeter","assets/hungrymeter.png")
         
-
+        
         //set initial picture
+        // preload to the screeen the background and the music in Main Scene
+        this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
         // Loading events listeners
         this.load.on('progress', (percent) => {

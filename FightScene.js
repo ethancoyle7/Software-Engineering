@@ -8,28 +8,30 @@ class FightScene extends Phaser.Scene
         this.pet = null;
         this.enemy=null;
         
+        
 
 
     }
     
-
+    
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() 
     {
-    //load the files to be used in the scene
-    this.load.audio('press', './assets/honeywood.mp3'); 
+    this.load.image('Fighting', './assets/loading.png');
+    //load the files to be used in the Fight scene
+    this.load.audio('press', './assets/getout.mp3'); 
     this.load.audio('Fight', './assets/BossFight.mp3');
     this.load.audio('KO', './assets/fatality.mp3');
-    this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
-       //load the images of both 
-       
+    this.load.audio('EnemyHit','./assets/EnemyHit.mp3') 
     }
     
 
     // Runs when we first enter this scene
     create() 
     {
-       
+        //for timed event
+        this.timeLeft = 200000;
+        this.timeLeft--;
         
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
@@ -38,8 +40,8 @@ class FightScene extends Phaser.Scene
 
         // load the background image and set x and y coords
         // then set the scale to .7
-        let background = this.add.image(225, 400, 'Fight');
-        background.setScale(.9);
+        let background2 = this.add.image(225, 400, 'Fighting');
+        background2.setScale(.9);
         
         //add the pet to the screen and add idle animation
         this.pet =this.add.sprite(70,635,"pet")
@@ -130,6 +132,7 @@ class FightScene extends Phaser.Scene
         Light.on('pointerdown',() =>enemyhealth.width-=2);//ENEMY HEALTH -=2
         Light.on('pointerdown',() =>console.log(enemyhealth.width)); //logging the width of the enemy bar
         Light.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        Light.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Light.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
         Light.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
         Light.on('pointerdown',() =>this.pet.anims.play('light'));// play the punching animation
@@ -148,6 +151,7 @@ class FightScene extends Phaser.Scene
         Heavy.on('pointerdown',() =>enemyhealth.width-=5);//adjust the enemy health accordingly -5
         Heavy.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of enemy bar
         Heavy.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        Heavy.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Heavy.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
         Heavy.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
         Heavy.on('pointerdown',() =>this.pet.anims.play('heavy'));// play the punching animation
@@ -164,6 +168,7 @@ class FightScene extends Phaser.Scene
         Punch.on('pointerdown',() =>enemyhealth.width-=10);// enemy health -10
         Punch.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of the enemy bar
         Punch.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        Punch.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Punch.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1}));// create a tint to know got attacked
         Punch.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
         Punch.on('pointerdown',() =>this.pet.anims.play('punch'));// play the punching animation
@@ -174,6 +179,7 @@ class FightScene extends Phaser.Scene
         Punch.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
        
        
+
         // create a button to return back to main scene and if the button press
         //perform some actions
         const button = this.add.image( 50, 40, 'Return')
@@ -194,23 +200,30 @@ class FightScene extends Phaser.Scene
         });
        //whats the enemys stats for the width which represents remaining health
        //console.log(enemyhealth.width)
-       if(enemyhealth.width==0)
-       {
-        this.sound.play('KO')
-       }
-       console.log(enemyhealth.width)
-    }
+    
+       //pethealth.width-=Math.floor(Math.random() * 10);
+
+    
+       
     
 
+        //pethealth.width-=Math.floor(Math.random() * 10);
+        
+    
+       //pethealth.width-=Math.floor(Math.random() * 10);
+
+   
+    
+    
         
     
     // Runs every frame
-    update() 
-    {
+   // update() 
+    //{
         
         
-    }
+    //}
 
 
 
-}
+}}
