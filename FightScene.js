@@ -155,6 +155,7 @@ class FightScene extends Phaser.Scene
         Heavy.on('pointerup', () => button.setScale( 1 ));
         Heavy.on('pointerup', () => this.pet.anims.stop('heavy'));// stop the previous animation
         Heavy.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+
         //create rectangle for punching and nice container to hold it
         var Punch = this.add.rectangle(340, 740, 150, 30, 0xb8860b);
         Punch.setStrokeStyle(4, 0x1e0a08);
@@ -195,7 +196,7 @@ class FightScene extends Phaser.Scene
         });
        //whats the enemys stats for the width which represents remaining health
        //console.log(enemyhealth.width)
-    
+    }
        //pethealth.width-=Math.floor(Math.random() * 10);
 
     
@@ -213,12 +214,9 @@ class FightScene extends Phaser.Scene
         
     
     // Runs every frame
-   // update() 
-    //{
+    update() 
+    {
         
         
-    //}
-
-
-
-}}
+    }
+}

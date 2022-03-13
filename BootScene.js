@@ -12,7 +12,8 @@ class BootScene extends Phaser.Scene {
     }
 
 
-    preload() {
+    preload() 
+    {
         
         //This is where images are loaded
         //this.load.image('use a short name', './assets/name_of_image');

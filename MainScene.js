@@ -25,7 +25,8 @@ class MainScene extends Phaser.Scene {
 
     }
     // Runs when we first enter this scene
-    create() {
+    create() 
+    {
         //this.sound.play('bgmusic', { volume: 0.1 });
         this.data.set('LEVEL', 0);
         
@@ -49,18 +50,6 @@ class MainScene extends Phaser.Scene {
             frameRate: 12,
             repeat: -1
         });
-
-
-
-        // this.item = this.add.Item(50, 750, 'bathimg')
-        // this.item = new Item({scene:this,x:50,y:750});
-        // this.item.setScale(3);
-        // this.item.setInteractive({ draggable: true });
-        // this.createAnimations();
-        // this.item.anims.play('bath');
-        // this.item.on('pointerup', () => this.item.anims.nextFrame());
-
-
 
         //creat death animation
         this.pet.anims.create({
