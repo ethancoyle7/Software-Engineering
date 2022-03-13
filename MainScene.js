@@ -136,7 +136,7 @@ class MainScene extends Phaser.Scene {
         button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
         button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
         
-        this.items[3].on('pointerup',()=>hunger.width-=20);
+        //this.items[3].on('pointerup',()=>hunger.width-=20);
         this.createItems(); //creates the items the player interacts with the pet with
         // this.createAnimations();
 
