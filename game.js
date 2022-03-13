@@ -17,7 +17,9 @@ const config = {
         TitleScene, //list of scenes in order they're going to appear in
         MainScene,
         FightScene,
-        GameOver
+        GameOver,
+        WinScene
+        
 
     ],
     physics: {

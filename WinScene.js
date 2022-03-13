@@ -1,13 +1,13 @@
-class GameOver extends Phaser.Scene 
+class WinScene extends Phaser.Scene 
 {
     constructor() 
     {
-        super('GameOver');
+        super('WinScene');
         
     }
     preload() 
     {
-        this.load.image('Over', './assets/GameOverPicture.png');
+        this.load.image('win', './assets/winner.png');
         this.load.image('Exit', './assets/exitbutton.png'); 
         this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
         this.load.image('RetryFight', './assets/fightretry.png'); 
@@ -17,8 +17,8 @@ class GameOver extends Phaser.Scene
     {
 
         //this.sound.stop('Fight');
-        this.sound.play('KO');
-        var gameover =this.add.image(230,100,"Over")
+        this.sound.play('YOUWIN');
+        var gameover =this.add.image(230,100,"win")
         this.tweens.add({
 
             targets: gameover,//who it targetting

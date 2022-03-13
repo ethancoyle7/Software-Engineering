@@ -230,7 +230,7 @@ class FightScene extends Phaser.Scene
                     {
                         //this.sound.removeByKey('Fight')
                         //this.sound.play("fatality");
-                        this.scene.start("GameOver")
+                        this.scene.start("WinScene")
                         //this.add.image(200,200,"Over")
                         
                     } 

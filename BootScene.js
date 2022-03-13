@@ -104,6 +104,7 @@ class BootScene extends Phaser.Scene {
         this.load.audio('press', './assets/getout.mp3'); 
         this.load.audio('Fight', './assets/BossFight.mp3');
         this.load.audio('KO', './assets/fatality.mp3');
+        this.load.audio('YOUWIN', './assets/winsound.mp3');
         this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
         //set initial picture
         // preload to the screeen the background and the music in Main Scene
