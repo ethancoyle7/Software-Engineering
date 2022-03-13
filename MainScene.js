@@ -97,8 +97,8 @@ class MainScene extends Phaser.Scene {
          this.add.text(10, 50, "HAPPINESS", style);//label it 
 
          //create rectangle for hunger stats and nice container to hold it
-         var hunger = this.add.rectangle(105, 100, 200, 30, 0x3c82e7);
-         hunger.setStrokeStyle(4, 0x1e0a08);
+         this.hunger = this.add.rectangle(105, 100, 200, 30, 0x3c82e7);
+         this.hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
 
@@ -208,7 +208,7 @@ class MainScene extends Phaser.Scene {
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
                 this.peter= new Pet(this);
                 this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
-               
+                this.items[3].on('pointerup',()=>this.hunger.width-=20);
             }
 
         }
