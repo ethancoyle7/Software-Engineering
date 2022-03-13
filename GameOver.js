@@ -7,93 +7,71 @@ class GameOver extends Phaser.Scene
     }
     preload() 
     {
-        
+        this.load.image('Over', './assets/GameOverPicture.png');
+        this.load.image('Exit', './assets/exitbutton.png'); 
+        this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
+        this.load.image('RetryFight', './assets/fightretry.png'); 
     }
 
     create() 
     {
-        
-        
-        // Add a Game Over text
-        let GO = this.add.text(450 / 2, (800 / 2) - 100, 'GAME OVER', 
-        {
-            fontFamily: 'Trebuchet MS',
-            fill: '#6FEE3F',
-            stroke: "blue",
-            fontSize: '64px',
-            strokeThickness: 6
 
-            // fontFamily: 'Georgia',
-            // color: 'white'
-        }).setOrigin(0.5);
+        //this.sound.stop('Fight');
+        this.sound.play('KO');
+        var gameover =this.add.image(230,100,"Over")
+        this.tweens.add({
 
-        // Pose a question
-        let again = this.add.text(450 / 2, (800 / 2) + 25, 'RETRY ?', 
-        {
-            fontFamily: 'Georgia',
-            fontSize: '32px',
-            color: 'white'
-        }).setOrigin(0.5);
-
-        // Add retry text
-        let btnY = this.add.rectangle((450 / 2) - 100, (800 / 2) + 800 / 4, 450 / 6, 800 / 8, 0x00ff00, 0.4);
-        btnY.setOrigin(0.5);
-
-        // Add retry button
-        let btnYText = this.add.text((450 / 2) - 100, (800 / 2) + 800 / 4, 'Yes', 
-        {
-            fontFamily: 'Georgia',
-            fontSize: '32px',
-            color: 'white'
-        }).setOrigin(0.5);
-        btnY.setInteractive();
-        btnY.on('pointerdown', () => 
-        {
-            this.Audio.stop();
-            //this.sound.play('Backsound', 
-            //{
-              //   volume: 0.1
-            //});
-
-            this.scene.stop();
-            this.scene.start('Fight');
-        });
-
-        // Add quit text
-        let btnN = this.add.rectangle((450 / 2) + 100, (800 / 2) + 800 / 4,
-            450 / 6, 800 / 8, 0xff0000, 0.4);
-        btnN.setOrigin(0.5);
-      
-        // Add quit button
-        let btnNText = this.add.text((150,50, 'No', 
-        {
-            fontFamily: 'Georgia',
-            fontSize: '32px',
-            color: 'white'
-        }).setOrigin(0.5));
-        btnN.setInteractive();
-        btnN.on('pointerdown', () => 
-        {
-            this.Audio.stop();
-            this.sound.play('Backsound', 
-            {
-                 volume: 0.1
-            });
-
-            this.scene.stop();
-            this.scene.start('TitleScene');
-        });
-
-        // Add tweens to the buttons and text
-        this.tweens.add(
-        {
-            targets: [btnY, btnN, btnYText, btnNText],
-            duration: 500,
-            alpha: 0,
+            targets: gameover,//who it targetting
+            alpha: 0.5,
             yoyo: true,
-            repeat: -1
-        });
+            repeat: -1,
+            ease: 'Sine.easeInOut'
 
+        });
+        //add exit button
+        var exit=this.add.image(230,350,'Exit')
+        exit.setInteractive();
+        //when pressed down go to boot scene
+        exit.on('pointerdown',() =>this.scene.start("BootScene"));
+        this.tweens.add({
+
+            targets: exit,//who it targetting
+            alpha: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
+        //add exit button
+        var BackToMain=this.add.image(230,500,'MainSceneReturn')
+        BackToMain.setInteractive();
+        //once clicked start the main scene
+        BackToMain.on('pointerdown',() =>this.scene.start("MainScene"));
+        this.tweens.add({
+
+            targets: BackToMain,//who it targetting
+            alpha: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
+        //add exit button
+        var Retry=this.add.image(230,650,'RetryFight')
+        Retry.setInteractive();
+        Retry.on('pointerdown',() =>this.scene.start("FightScene"));
+        this.tweens.add({
+
+            targets: Retry,//who it targetting
+            alpha: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
+        
+
+        
     }
     update() { }
 }

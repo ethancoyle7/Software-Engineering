@@ -70,7 +70,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
-        
+        //assets/final spritesheets/1 Pink_Monster/Pink_Monster_Death_8.png
+        this.load.spritesheet('deadpet', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Death_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
         //stuff for the enemy
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
