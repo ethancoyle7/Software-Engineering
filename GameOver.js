@@ -1,3 +1,5 @@
+const { Video } = require("phaser/src/gameobjects");
+
 class GameOver extends Phaser.Scene 
 {
     constructor() 
@@ -16,6 +18,9 @@ class GameOver extends Phaser.Scene
     create() 
     {
 
+       
+        
+        
         //this.sound.stop('Fight');
         this.sound.play('KO');
         var gameover =this.add.image(230,100,"Over")
@@ -28,8 +33,21 @@ class GameOver extends Phaser.Scene
             ease: 'Sine.easeInOut'
 
         });
+
+        this.pet =this.add.sprite(230,350,"pet")
+        this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
+        this.pet.anims.create({
+            key: 'dead',
+            frames: this.anims.generateFrameNumbers('deadpet', {
+                start: 0,
+                end: 7
+            }),
+            frameRate: 5,
+            repeat: -1
+        });
+        this.pet.anims.play("dead")
         //add exit button
-        var exit=this.add.image(230,350,'Exit')
+        var exit=this.add.image(230,500,'Exit')
         exit.setInteractive();
         //when pressed down go to boot scene
         exit.on('pointerdown',() =>this.scene.start("BootScene"));
@@ -43,7 +61,7 @@ class GameOver extends Phaser.Scene
 
         });
         //add exit button
-        var BackToMain=this.add.image(230,500,'MainSceneReturn')
+        var BackToMain=this.add.image(230,600,'MainSceneReturn')
         BackToMain.setInteractive();
         //once clicked start the main scene
         BackToMain.on('pointerdown',() =>this.scene.start("MainScene"));
@@ -57,7 +75,7 @@ class GameOver extends Phaser.Scene
 
         });
         //add exit button
-        var Retry=this.add.image(230,650,'RetryFight')
+        var Retry=this.add.image(230,700,'RetryFight')
         Retry.setInteractive();
         Retry.on('pointerdown',() =>this.scene.start("FightScene"));
         this.tweens.add({
