@@ -47,6 +47,7 @@ class WinScene extends Phaser.Scene
         //when pressed down go to boot scene
         //exit.on('pointerover',() =>;
         exit.on('pointerdown',() =>this.scene.start("BootScene"));
+        exit.on('pointerover',() => this.sound.play('Exit')); // hoverover
         this.tweens.add({
 
             targets: exit,//who it targetting
@@ -61,6 +62,7 @@ class WinScene extends Phaser.Scene
         BackToMain.setInteractive();
         //once clicked start the main scene
         BackToMain.on('pointerdown',() =>this.scene.start("MainScene"));
+        BackToMain.on('pointerover',() => this.sound.play('MainReturn'));
         this.tweens.add({
 
             targets: BackToMain,//who it targetting
@@ -74,6 +76,7 @@ class WinScene extends Phaser.Scene
         var Retry=this.add.image(230,700,'RetryFight')
         Retry.setInteractive();
         Retry.on('pointerdown',() =>this.scene.start("FightScene"));
+        Retry.on('pointerover',() => this.sound.play('Rematch'));
         this.tweens.add({
 
             targets: Retry,//who it targetting

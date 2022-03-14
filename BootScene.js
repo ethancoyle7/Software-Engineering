@@ -106,10 +106,12 @@ class BootScene extends Phaser.Scene {
         this.load.audio('KO', './assets/fatality.mp3');
         this.load.audio('YOUWIN', './assets/winsound.mp3');
         this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
+        this.load.audio('Exit','./assets/exit.mp3') // for hover over exit
         //set initial picture
         // preload to the screeen the background and the music in Main Scene
         this.load.audio('bgmusic', './assets/gamemusic.mp3');
-
+        this.load.audio('MainReturn', './assets/BackMain.mp3');
+        this.load.audio('Rematch', './assets/RetryMatch.mp3');
         // Loading events listeners
         this.load.on('progress', (percent) => {
             this.loadingBar.setScale(percent, 1);
