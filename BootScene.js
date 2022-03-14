@@ -75,6 +75,12 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        //for victory winscene spritesheet
+        this.load.spritesheet('winningpet', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Jump_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        
         //stuff for the enemy
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
@@ -112,6 +118,7 @@ class BootScene extends Phaser.Scene {
         this.load.audio('bgmusic', './assets/gamemusic.mp3');
         this.load.audio('MainReturn', './assets/BackMain.mp3');
         this.load.audio('Rematch', './assets/RetryMatch.mp3');
+        this.load.audio('FightAnnounce', './assets/FinishHim.mp3');
         // Loading events listeners
         this.load.on('progress', (percent) => {
             this.loadingBar.setScale(percent, 1);

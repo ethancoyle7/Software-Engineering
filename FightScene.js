@@ -7,10 +7,6 @@ class FightScene extends Phaser.Scene
         super('FightScene');
         this.pet = null;
         this.enemy=null;
-        
-        
-
-
     }
     
     
@@ -31,6 +27,7 @@ class FightScene extends Phaser.Scene
         
         //start the boss fight music
         this.sound.play('Fight', { volume: 0.1});
+        this.sound.play('FightAnnounce');
         // set the text font information to be used in styles
         var style = { font: "20px Arial", fill: "#ffffff" };
 
@@ -216,9 +213,24 @@ class FightScene extends Phaser.Scene
                    {
                     this.timeLeft --;//decrement the time left
 
-                    pethealth.width-=Math.floor(Math.random() * 10); //decrement the health randomly w/in 0-10
+                    var val=Math.floor(Math.random() * 10) // using rand number between 0 and 10
+                                                           // for ai fight
+                    pethealth.width-=val; //decrement the health randomly w/ val
                     console.log(pethealth.width)//lets see what the width is 
-                    if(pethealth.width<0)// if the pets health is less than 0, load the game over scene
+
+                    //set it where the pet when is attack changes to a different color
+                    if(val>0)
+                    {
+                        this.pet.setTint(0xff0000);
+                    }
+                    //set the tint clear so user knows that the pet hasnt been hurt
+                    if(val==0)
+                    {
+                        this.pet.clearTint(); 
+                    }
+                    
+                    //this.pet.clearTint();
+                    if(pethealth.width<1)// if the pets health is less than 0, load the game over scene
                     {
                         //this.sound.removeByKey('Fight')
                         //this.sound.play("fatality");
@@ -226,7 +238,7 @@ class FightScene extends Phaser.Scene
                         //this.add.image(200,200,"Over")
                         
                     }
-                    if(enemyhealth.width< 0)// check for the enemy health to be less than 0
+                    if(enemyhealth.width< 1)// check for the enemy health to be less than 0
                     {
                         //this.sound.removeByKey('Fight')
                         //this.sound.play("fatality");
@@ -241,24 +253,8 @@ class FightScene extends Phaser.Scene
                });
                
 
-               //this.add.image(200,200,"Over")
+               
     }
-       //pethealth.width-=Math.floor(Math.random() * 10);
-
-    
-       
-    
-
-        //
-        
-    
-       //pethealth.width-=Math.floor(Math.random() * 10);
-
-   
-    
-    
-        
-    
     // Runs every frame
     update() 
     {

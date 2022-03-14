@@ -32,15 +32,15 @@ class WinScene extends Phaser.Scene
         this.pet =this.add.sprite(230,350,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
         this.pet.anims.create({
-            key: 'dead',
-            frames: this.anims.generateFrameNumbers('deadpet', {
+            key: 'win',
+            frames: this.anims.generateFrameNumbers('winningpet', {
                 start: 0,
                 end: 7
             }),
             frameRate: 5,
             repeat: -1
         });
-        this.pet.anims.play("dead")
+        this.pet.anims.play("win")
         //add exit button
         var exit=this.add.image(230,500,'Exit')
         exit.setInteractive();
