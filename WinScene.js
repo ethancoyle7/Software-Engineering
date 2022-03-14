@@ -17,6 +17,7 @@ class WinScene extends Phaser.Scene
     {
 
         //this.sound.stop('Fight');
+        this.sound.stopAll();
         this.sound.play('YOUWIN');
         var gameover =this.add.image(230,100,"win")
         this.tweens.add({

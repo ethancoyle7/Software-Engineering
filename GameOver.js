@@ -17,6 +17,7 @@ class GameOver extends Phaser.Scene
     {
 
         //this.sound.stop('Fight');
+        this.sound.stopAll();
         this.sound.play('KO');
         var gameover =this.add.image(230,100,"Over")
         this.tweens.add({
