@@ -27,8 +27,9 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() 
     {
+        var value=0;
         //this.sound.play('bgmusic', { volume: 0.1 });
-        this.data.set('LEVEL', 0);
+        //this.data.set('LEVEL', value);
         
         //create a backdound and a music for the load up 
         // load the background image and set x and y coords
@@ -87,24 +88,31 @@ class MainScene extends Phaser.Scene {
         // health, hunger, happiness creation
         
          //creating health rectangle and nice container to hold it
-         var health = this.add.rectangle(105, 20, 200, 30, 0xe74c3c);
+         var health = this.add.rectangle(180, 20, 350, 30, 0xe74c3c);
          health.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 10, "HEALTH", style);//label it 
 
          //create container and rectangle for the happiness
-         var happiness = this.add.rectangle(105, 60, 200, 30, 0x4ce73c);
+         var happiness = this.add.rectangle(180, 60, 350, 30, 0x4ce73c);
          happiness.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 50, "HAPPINESS", style);//label it 
 
+          //create rectangle for the level display
+        var levelrect = this.add.rectangle(400, 60, 70, 110, 0x9966ff);
+        levelrect.setStrokeStyle(4, 0xefc53f);
+
          //create rectangle for hunger stats and nice container to hold it
-         this.hunger = this.add.rectangle(105, 100, 200, 30, 0x3c82e7);
-         this.hunger.setStrokeStyle(4, 0x1e0a08);
+         var hunger = this.add.rectangle(180, 100, 350, 30, 0x3c82e7);
+         hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
 
-        //create rectangle for the level display
-        var levelrect = this.add.rectangle(105, 140, 200, 30, 0x9966ff);
-        levelrect.setStrokeStyle(4, 0xefc53f);
+        var experience = this.add.rectangle(180, 140, 350, 30, 0xe7a23c);
+        experience.setStrokeStyle(4, 0x1e0a08);
+        this.add.text(50, 130, "XP", style);//label it 
+
+
+       
         //oscillating display of rectangle targetting this rectangle
         this.tweens.add({
 
@@ -116,36 +124,83 @@ class MainScene extends Phaser.Scene {
 
         });
         //txt to be inside of the level to let the user know what level they are on
-        var text = this.add.text(50, 130, '', { font: '20px Courier', fill: '#00ff00' });
+        var text = this.add.text(378, 30, '', { font: '20px Courier', fill: '#00ff00' });
         //set the text indicator for the level icon text value
         text.setText([
-            'LEVEL: ' + this.data.get('LEVEL'),
+            'LVL \n\n ' + value,
             
         ]);
-        //create experience bar to be used with the levelling of the character
-        var experience = this.add.rectangle(55, 180, 100, 30, 0xe7a23c);
-        experience.setStrokeStyle(4, 0x1e0a08);
-        this.add.text(10, 170, "XP", style);//label it 
         
-        //for the fight button hover over to press for fight
-        // this button leads to click sequence when pressed
-        const button = this.add.image(330, 75, 'button')
-        button.setInteractive() // set it interactive
-        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
-        button.on('pointerup', () => button.setScale(1));// on ppinter up
-        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
-        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
+        
+        
         
         //this.items[3].on('pointerup',()=>hunger.width-=20);
         this.createItems(); //creates the items the player interacts with the pet with
         // this.createAnimations();
 
+        this.timeLeft = 50000;		
+        this.gameTimer = this.time.addEvent({
+                    delay:500,
+                    callback: function()
+                    {
+                     this.timeLeft --;//decrement the time left
+                    experience.width-=350
+                     //for the health of the pet
+                     var val1=Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                     health.width-=val1; //decrement the health randomly w/ val
+
+                     var val2=Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                     hunger.width-=val2; //decrement the health randomly w/ val
+                     console.log(hunger.width)//lets see what the width is 
+
+                     //timing for the happiness to go down incrementally
+                     var val3=Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                     happiness.width-=val3; //decrement the health randomly w/ val
+                     console.log(happiness.width)//lets see what the width is 
+ 
+                     //if one or more of the conditions are true and the pet dies, then the scene changes to game over
+                     if(health.width<1||hunger.width<1)
+                     {
+                         this.scene.start("GameOver")   
+                     }
+                     if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
+                     {
+                        // increment the value of the level
+                        value++;
+                        //set the new value to hold the level
+                        text.setText([
+                            'LVL\n\n' + value,
+                            
+                        ]);
+                    if(value>=10)//if the value hits a certain level, then the battle icon pops up
+                    {
+
+                        //for the fight button hover over to press for fight
+                        // this button leads to click sequence when pressed
+                        const button = this.add.image(70, 200, 'button')
+                        button.setInteractive() // set it interactive
+                        button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
+                        button.on('pointerup', () => button.setScale(1));// on ppinter up
+                        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
+                        button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
+                    }
+                        
+                    }
+                    
+                    },
+                    
+                    callbackScope: this,
+                    loop: true
+                });
+                
 
     }
     createItems() {
 
-        for (let i = 0; i < 4; i++) {
-            if (i == 0) {
+        for (let i = 0; i < 4; i++) 
+        {
+            if (i == 0) 
+            {
                 this.items[i] = new Item({ scene: this, x: this.BATHCOORDS[0], y: this.BATHCOORDS[1] });
                 this.items[i].setScale(3);
                 this.items[i].setInteractive({ draggable: true });
@@ -160,7 +215,11 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('bath');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-            } else if (i == 1) {
+                this.items[i].on('pointerup',()=>happiness.width+=5);
+                this.items[i].on('pointerup',()=>health.width+=10);
+            } 
+            else if (i == 1) 
+            {
                 this.items[i] = new Item({ scene: this, x: this.CLOTHECOORDS[0], y: this.CLOTHECOORDS[1] });
                 this.items[i].setScale(3);
                 this.items[i].setInteractive({ draggable: true });
@@ -176,7 +235,13 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('clothe');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-            } else if (i == 2) {
+                this.items[i].on('pointerup',()=>happiness.width+=5);
+                this.items[i].on('pointerup',()=>health.width+=5);
+                //var sprite1 = this.add.sprite(100, 200, 'player', 0);
+                //var sprite1Copy = game.add.sprite(sprite1.x, sprite1.y, sprite1.key, sprite1.frame);
+            } 
+            else if (i == 2) 
+            {
                 this.items[i] = new Item({ scene: this, x: this.FOODCOORDS[0], y: this.FOODCOORDS[1] });
                 this.items[i].setScale(3);
                 this.items[i].setInteractive({ draggable: true });
@@ -191,7 +256,11 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('food');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-            } else if (i == 3) {
+                this.items[i].on('pointerup',()=>hunger.width+=5);
+                this.items[i].on('pointerup',()=>health.width+=5);
+            } 
+            else if (i == 3) 
+            {
                 this.items[i] = new Item({ scene: this, x: this.TOYCOORDS[0], y: this.TOYCOORDS[1] });
                 this.items[i].setScale(3);
                 this.items[i].setInteractive({ draggable: true });
@@ -208,7 +277,7 @@ class MainScene extends Phaser.Scene {
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
                 this.peter= new Pet(this);
                 this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
-                this.items[3].on('pointerup',()=>this.hunger.width-=20);
+                this.items[3].on('pointerdown',()=>happiness.width-=100);
             }
 
         }
