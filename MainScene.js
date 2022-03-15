@@ -156,13 +156,13 @@ class MainScene extends Phaser.Scene {
         // health, hunger, happiness creation
         
          //creating health rectangle and nice container to hold it
-         this.health = this.add.rectangle(178, 20, 350, 30, 0xe74c3c);
-         this.health.setStrokeStyle(4, 0x1e0a08);
+         var health = this.add.rectangle(178, 20, 350, 30, 0xe74c3c);
+         health.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 10, "HEALTH", style);//label it 
 
          //create container and rectangle for the happiness
-         this.happiness = this.add.rectangle(178, 60, 350, 30, 0x4ce73c);
-         this.happiness.setStrokeStyle(4, 0x1e0a08);
+         var happiness = this.add.rectangle(178, 60, 350, 30, 0x4ce73c);
+         happiness.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 50, "HAPPINESS", style);//label it 
 
           //create rectangle for the level display
@@ -170,8 +170,8 @@ class MainScene extends Phaser.Scene {
         levelrect.setStrokeStyle(4, 0xefc53f);
 
          //create rectangle for hunger stats and nice container to hold it
-         this.hunger = this.add.rectangle(178, 100, 350, 30, 0x3c82e7);
-         this.hunger.setStrokeStyle(4, 0x1e0a08);
+         var hunger = this.add.rectangle(178, 100, 350, 30, 0x3c82e7);
+         hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
 
@@ -213,25 +213,26 @@ class MainScene extends Phaser.Scene {
                     {
                      this.timeLeft --;//decrement the time left
                     experience.width-=350
+                    
                      //for the health of the pet
                      var val1=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     this.health.width-=val1; //decrement the health randomly w/ val
+                     health.width-=val1; //decrement the health randomly w/ val
 
                      var val2=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     this.hunger.width-=val2; //decrement the health randomly w/ val
-                     console.log(this.hunger.width)//lets see what the width is 
+                     hunger.width-=val2; //decrement the health randomly w/ val
+                     console.log(hunger.width)//lets see what the width is 
 
                      //timing for the happiness to go down incrementally
                      var val3=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     this.happiness.width-=val3; //decrement the health randomly w/ val
-                     console.log(this.happiness.width)//lets see what the width is 
+                     happiness.width-=val3; //decrement the health randomly w/ val
+                     console.log(happiness.width)//lets see what the width is 
  
                      //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                     if(this.health.width<1||this.hunger.width<1)
+                     if(health.width<1||hunger.width<1)
                      {
                          this.scene.start("GameOver")   
                      }
-                     if(this.health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
+                     if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
                      {
                         // increment the value of the level
                         value++;
@@ -259,8 +260,10 @@ class MainScene extends Phaser.Scene {
                     clothing.on('dragend', function (pointer, gameObject) // after it is dragged, destroy it and effect stats
                     {
                         clothing.destroy()
-                        health.width-=20
+                        happiness.width-=30
+                        
                     });
+            
 
                     //iterate through the bathing by string name
                     const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
