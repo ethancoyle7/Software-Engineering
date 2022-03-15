@@ -151,23 +151,23 @@ class MainScene extends Phaser.Scene {
                     experience.width-=350
                      //for the health of the pet
                      var val1=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     health.width-=val1; //decrement the health randomly w/ val
+                     this.health.width-=val1; //decrement the health randomly w/ val
 
                      var val2=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     hunger.width-=val2; //decrement the health randomly w/ val
-                     console.log(hunger.width)//lets see what the width is 
+                     this.hunger.width-=val2; //decrement the health randomly w/ val
+                     console.log(this.hunger.width)//lets see what the width is 
 
                      //timing for the happiness to go down incrementally
                      var val3=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     happiness.width-=val3; //decrement the health randomly w/ val
-                     console.log(happiness.width)//lets see what the width is 
+                     this.happiness.width-=val3; //decrement the health randomly w/ val
+                     console.log(this.happiness.width)//lets see what the width is 
  
                      //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                     if(health.width<1||hunger.width<1)
+                     if(this.health.width<1||this.hunger.width<1)
                      {
                          this.scene.start("GameOver")   
                      }
-                     if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
+                     if(this.health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
                      {
                         // increment the value of the level
                         value++;
@@ -219,8 +219,8 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('bath');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.items[i].on('pointerup',()=>happiness.width+=5);
-                this.items[i].on('pointerup',()=>health.width+=10);
+                this.items[i].on('pointerup',()=>this.happiness.width+=5);
+                this.items[i].on('pointerup',()=>this.health.width+=10);
             } 
             else if (i == 1) 
             {
@@ -239,8 +239,8 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('clothe');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.items[i].on('pointerup',()=>happiness.width+=5);
-                this.items[i].on('pointerup',()=>health.width+=5);
+                this.items[i].on('pointerup',()=>this.happiness.width+=5);
+                this.items[i].on('pointerup',()=>this.health.width+=5);
                 //var sprite1 = this.add.sprite(100, 200, 'player', 0);
                 //var sprite1Copy = game.add.sprite(sprite1.x, sprite1.y, sprite1.key, sprite1.frame);
             } 
@@ -260,8 +260,8 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('food');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.items[i].on('pointerup',()=>hunger.width+=5);
-                this.items[i].on('pointerup',()=>health.width+=5);
+                this.items[i].on('pointerup',()=>this.hunger.width+=5);
+                this.items[i].on('pointerup',()=>this.health.width+=5);
             } 
             else if (i == 3) 
             {
@@ -279,7 +279,7 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('play');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.petBar();
+                //this.petBar();
             }
 
         }
