@@ -12,7 +12,16 @@ signUp.addEventListener('submit', (e) => {
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         console.log(cred.user);
     });
-});
+}).then(() => {
+    // close the signup modal & reset form
+    const modal = document.querySelector('#modal-signup');
+    M.Modal.getInstance(modal).close();
+    signupForm.reset();
+    signupForm.querySelector('.error').innerHTML = ''
+  }).catch(err => {
+    signupForm.querySelector('.error').innerHTML = err.message;
+  });
+
 // logout
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
