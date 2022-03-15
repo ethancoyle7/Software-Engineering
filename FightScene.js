@@ -222,6 +222,7 @@ class FightScene extends Phaser.Scene
                     if(val>0)
                     {
                         this.pet.setTint(0xff0000);
+                        //this.sound.play('EnemyHit')
                     }
                     //set the tint clear so user knows that the pet hasnt been hurt
                     if(val==0)
