@@ -3,6 +3,7 @@ class WinScene extends Phaser.Scene
     constructor() 
     {
         super('WinScene');
+        this.sprites = [];
         
     }
     preload() 
@@ -11,6 +12,7 @@ class WinScene extends Phaser.Scene
         this.load.image('Exit', './assets/exitbutton.png'); 
         this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
         this.load.image('RetryFight', './assets/fightretry.png'); 
+        this.load.image('particle', './assets/yellow.png');
     }
 
     create() 
@@ -19,6 +21,18 @@ class WinScene extends Phaser.Scene
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('YOUWIN');
+
+        //for the background show the yellow image at random intervals
+        for (let i = 0; i < 300; i++)
+        {
+            const x = Phaser.Math.Between(-64, 800);
+            const y = Phaser.Math.Between(-64, 600);
+            //add the image yellow.png particales to create many
+            const image = this.add.image(x, y, 'particle');
+            image.setBlendMode(Phaser.BlendModes.ADD);// blend them all together
+            this.sprites.push({ s: image, r: 2 + Math.random() * 6 });
+        }
+        
         var gameover =this.add.image(230,100,"win")
         this.tweens.add({
 
@@ -91,5 +105,18 @@ class WinScene extends Phaser.Scene
 
         
     }
-    update() { }
+    update() { 
+        //adding animations for the background 
+        for (let i = 0; i < this.sprites.length; i++)
+        {
+            const sprite = this.sprites[i].s;
+
+            sprite.y -= this.sprites[i].r;
+
+            if (sprite.y < -256)
+            {
+                sprite.y = 700;
+            }
+        }
+    }
 }

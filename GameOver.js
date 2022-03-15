@@ -3,6 +3,7 @@ class GameOver extends Phaser.Scene
     constructor() 
     {
         super('GameOver');
+        this.sprites = [];
         
     }
     preload() 
@@ -11,6 +12,8 @@ class GameOver extends Phaser.Scene
         this.load.image('Exit', './assets/exitbutton.png'); 
         this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
         this.load.image('RetryFight', './assets/fightretry.png'); 
+        this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
+        this.load.image('wipey', './assets/bathe/wet_wipe.png')
     }
 
     create() 
@@ -19,6 +22,16 @@ class GameOver extends Phaser.Scene
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('KO');
+
+        for (let i = 0; i < 300; i++)
+        {
+            const x = Phaser.Math.Between(-64, 800);
+            const y = Phaser.Math.Between(-64, 600);
+            //add the image yellow.png particales to create many
+            const image = this.add.image(x, y, 'wipey');
+            image.setBlendMode(Phaser.BlendModes.ADD);// blend them all together
+            this.sprites.push({ s: image, r: 2 + Math.random() * 6 });
+        }
         var gameover =this.add.image(230,100,"Over")
         this.tweens.add({
 
@@ -94,5 +107,18 @@ class GameOver extends Phaser.Scene
     
         
     }
-    update() { }
+    update() { 
+        //adding animations for the background 
+        for (let i = 0; i < this.sprites.length; i++)
+        {
+            const sprite = this.sprites[i].s;
+
+            sprite.y -= this.sprites[i].r;
+
+            if (sprite.y < -256)
+            {
+                sprite.y = 700;
+            }
+        }
+    }
 }
