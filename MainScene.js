@@ -42,7 +42,7 @@ class MainScene extends Phaser.Scene {
         this.load.image('sandwich1', './assets/food/sandwich.png')
         this.load.image('sandwich2', './assets/food/sandwich2.png')
         this.load.image('soup', './assets/food/soup.png')
-        this.load.image('bun', './assets/food/stickbun.png')
+        this.load.image('bun', './assets/food/stickybun.png')
 
         //const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
         //load the images for clothing
@@ -70,7 +70,7 @@ class MainScene extends Phaser.Scene {
         this.load.image('console2', './assets/play/game_console2.png')
         this.load.image('console3', './assets/play/game_console3.png')
         this.load.image('duckie', './assets/play/rubber_duck.png')
-        this.load.image('octopus', './assets/play/rubber_ductopus.png')
+        this.load.image('octopus', './assets/play/rubber_ducktopus.png')
         this.load.image('toy2', './assets/play/toy.png')
         //const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy"];
         //load the images for bathing
@@ -86,7 +86,7 @@ class MainScene extends Phaser.Scene {
         this.load.image('sunscreen', './assets/bathe/sun_cream_tube.png')
         this.load.image('toothbrush', './assets/bathe/toothbrush.png')
         this.load.image('toothpaste', './assets/bathe/toothpaste.png')
-        this.load.image('wipey', './assets/bathe/wetwipe.png')
+        this.load.image('wipey', './assets/bathe/wet_wipe.png')
         this.load.image('box', './assets/bathe/toothpaste_box.png')
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
 
