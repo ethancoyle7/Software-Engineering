@@ -10,6 +10,10 @@ class MainScene extends Phaser.Scene {
         this.pet = null;
         this.peter =null;
         this.hunger=null;
+        this.happiness=null;
+        this.health=null;
+        this.width1=200;
+        this.hungerw=200;
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         this.percent = 0;
@@ -87,17 +91,17 @@ class MainScene extends Phaser.Scene {
         // health, hunger, happiness creation
         
          //creating health rectangle and nice container to hold it
-         var health = this.add.rectangle(105, 20, 200, 30, 0xe74c3c);
-         health.setStrokeStyle(4, 0x1e0a08);
+         this.health = this.add.rectangle(105, 20, this.width1, 30, 0xe74c3c);
+         this.health.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 10, "HEALTH", style);//label it 
 
          //create container and rectangle for the happiness
-         var happiness = this.add.rectangle(105, 60, 200, 30, 0x4ce73c);
-         happiness.setStrokeStyle(4, 0x1e0a08);
+         this.happiness = this.add.rectangle(105, 60, this.width1, 30, 0x4ce73c);
+         this.happiness.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 50, "HAPPINESS", style);//label it 
 
          //create rectangle for hunger stats and nice container to hold it
-         this.hunger = this.add.rectangle(105, 100, 200, 30, 0x3c82e7);
+         this.hunger = this.add.rectangle(105, 100, this.width1, 30, 0x3c82e7);
          this.hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
@@ -206,19 +210,39 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('play');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.peter= new Pet(this);
-                this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
-                this.items[3].on('pointerup',()=>this.hunger.width-=20);
+                this.petBar();
             }
 
         }
 
 
     }
+    petBar(){
+        this.peter= new Pet(this);
+        //this.hungerw=200;
+        //this increases or decreases the values of the bars
+        //have to put a limiting condition here
+        //if(this.hungerw<200){
+        if(this.hungerw <200){
+        this.items[0].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        this.items[0].on('pointerup',()=>this.health.width +=20);
+        this.items[2].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        this.items[2].on('pointerup',()=>this.hunger.width +=20);
+        }
+       // }
+        //if(this.hunger.width>0){
+        
+        this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        this.items[3].on('pointerup',()=>this.hunger.width-=20);
+        this.items[3].on('pointerup',()=>this.happiness.width+=20);
+        this.items[3].on('pointerup',()=>this.hungerw-=20);
+        this.update();
+        //}
+    }
     // Runs every frame
     update() {
-
-      
+    //console.log(this.hungerw);
+    
     }
 
 
