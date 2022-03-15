@@ -156,12 +156,12 @@ class MainScene extends Phaser.Scene {
         // health, hunger, happiness creation
         
          //creating health rectangle and nice container to hold it
-         this.health = this.add.rectangle(105, 20, this.width1, 30, 0xe74c3c);
+         this.health = this.add.rectangle(178, 20, 350, 30, 0xe74c3c);
          this.health.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 10, "HEALTH", style);//label it 
 
          //create container and rectangle for the happiness
-         this.happiness = this.add.rectangle(105, 60, this.width1, 30, 0x4ce73c);
+         this.happiness = this.add.rectangle(178, 60, 350, 30, 0x4ce73c);
          this.happiness.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 50, "HAPPINESS", style);//label it 
 
@@ -170,7 +170,7 @@ class MainScene extends Phaser.Scene {
         levelrect.setStrokeStyle(4, 0xefc53f);
 
          //create rectangle for hunger stats and nice container to hold it
-         this.hunger = this.add.rectangle(105, 100, this.width1, 30, 0x3c82e7);
+         this.hunger = this.add.rectangle(178, 100, 350, 30, 0x3c82e7);
          this.hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
