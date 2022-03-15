@@ -135,7 +135,7 @@ class BootScene extends Phaser.Scene {
         this.load.on('complete', () => {
             this.scene.start('TitleScene');
         }); 
-    
+    this.setCat(BOOTPET[1]);
     }
     //create(){
         //this.load.image(BOOTPET[1]);
@@ -145,13 +145,13 @@ class BootScene extends Phaser.Scene {
     
     updateText(){
  
-        this.setCat(BOOTPET[1]);
+        
         this.tweens.add({
             targets: [this.petImage],
             //completeDelay: 1000,
             //x:-5,
             //right:20,
-            duration: 500,
+            duration: 50,
             alpha: 0,
             scale:0.1,
             

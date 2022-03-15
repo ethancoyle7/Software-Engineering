@@ -36,7 +36,7 @@ class Pet{
 
 
 eggAnimation(){
-    let petdance = this.add.sprite(100, 200,"pet");
+    let petdance = this.add.sprite(200, 250,"pet");
     petdance.setScale(5);
         // Create the idle animation
         petdance.anims.create({
@@ -48,25 +48,6 @@ eggAnimation(){
             repeat: 2
         });
         petdance.anims.play('idle');
-
-        // // Create left/right animations
-        // this.player.anims.create({
-        //     key: 'left',
-        //     frames: this.anims.generateFrameNumbers('player', {
-        //         frames: [0, 5]
-        //     }),
-        //     frameRate: 12,
-        //     repeat: -1
-        // });
-        // this.player.anims.create({
-        //     key: 'right',
-        //     frames: this.anims.generateFrameNumbers('player', {
-        //         frames: [4, 9]
-        //     }),
-        //     frameRate: 12,
-        //     repeat: -1
-        // });
-        
 }
 //juvinileAnimation(){
 

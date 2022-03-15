@@ -10,6 +10,10 @@ class MainScene extends Phaser.Scene {
         this.pet = null;
         this.peter =null;
         this.hunger=null;
+        this.happiness=null;
+        this.health=null;
+        this.width1=200;
+        this.hungerw=200;
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         this.percent = 0;
@@ -152,13 +156,13 @@ class MainScene extends Phaser.Scene {
         // health, hunger, happiness creation
         
          //creating health rectangle and nice container to hold it
-         var health = this.add.rectangle(180, 20, 350, 30, 0xe74c3c);
-         health.setStrokeStyle(4, 0x1e0a08);
+         this.health = this.add.rectangle(105, 20, this.width1, 30, 0xe74c3c);
+         this.health.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 10, "HEALTH", style);//label it 
 
          //create container and rectangle for the happiness
-         var happiness = this.add.rectangle(180, 60, 350, 30, 0x4ce73c);
-         happiness.setStrokeStyle(4, 0x1e0a08);
+         this.happiness = this.add.rectangle(105, 60, this.width1, 30, 0x4ce73c);
+         this.happiness.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 50, "HAPPINESS", style);//label it 
 
           //create rectangle for the level display
@@ -166,8 +170,8 @@ class MainScene extends Phaser.Scene {
         levelrect.setStrokeStyle(4, 0xefc53f);
 
          //create rectangle for hunger stats and nice container to hold it
-         var hunger = this.add.rectangle(180, 100, 350, 30, 0x3c82e7);
-         hunger.setStrokeStyle(4, 0x1e0a08);
+         this.hunger = this.add.rectangle(105, 100, this.width1, 30, 0x3c82e7);
+         this.hunger.setStrokeStyle(4, 0x1e0a08);
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
 
@@ -211,23 +215,23 @@ class MainScene extends Phaser.Scene {
                     experience.width-=350
                      //for the health of the pet
                      var val1=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     health.width-=val1; //decrement the health randomly w/ val
+                     this.health.width-=val1; //decrement the health randomly w/ val
 
                      var val2=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     hunger.width-=val2; //decrement the health randomly w/ val
-                     console.log(hunger.width)//lets see what the width is 
+                     this.hunger.width-=val2; //decrement the health randomly w/ val
+                     console.log(this.hunger.width)//lets see what the width is 
 
                      //timing for the happiness to go down incrementally
                      var val3=Math.floor(Math.random() * 2) // using rand number between 0 and 10
-                     happiness.width-=val3; //decrement the health randomly w/ val
-                     console.log(happiness.width)//lets see what the width is 
+                     this.happiness.width-=val3; //decrement the health randomly w/ val
+                     console.log(this.happiness.width)//lets see what the width is 
  
                      //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                     if(health.width<1||hunger.width<1)
+                     if(this.health.width<1||this.hunger.width<1)
                      {
                          this.scene.start("GameOver")   
                      }
-                     if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
+                     if(this.health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
                      {
                         // increment the value of the level
                         value++;
@@ -318,11 +322,126 @@ class MainScene extends Phaser.Scene {
                     loop: true
                 });           
     }
-    
-    
+    createItems() {
 
+        for (let i = 0; i < 4; i++) 
+        {
+            if (i == 0) 
+            {
+                this.items[i] = new Item({ scene: this, x: this.BATHCOORDS[0], y: this.BATHCOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+                this.items[0].anims.create({
+                    key: 'bath',
+                    frames: this.anims.generateFrameNumbers('bathimg', {
+                        start: 0,
+                        end: 14
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('bath');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+                this.items[i].on('pointerup',()=>this.happiness.width+=5);
+                this.items[i].on('pointerup',()=>this.health.width+=10);
+            } 
+            else if (i == 1) 
+            {
+                this.items[i] = new Item({ scene: this, x: this.CLOTHECOORDS[0], y: this.CLOTHECOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+
+                this.items[1].anims.create({
+                    key: 'clothe',
+                    frames: this.anims.generateFrameNumbers('clotheimg', {
+                        start: 0,
+                        end: 14
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('clothe');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+                this.items[i].on('pointerup',()=>this.happiness.width+=5);
+                this.items[i].on('pointerup',()=>this.health.width+=5);
+                //var sprite1 = this.add.sprite(100, 200, 'player', 0);
+                //var sprite1Copy = game.add.sprite(sprite1.x, sprite1.y, sprite1.key, sprite1.frame);
+            } 
+            else if (i == 2) 
+            {
+                this.items[i] = new Item({ scene: this, x: this.FOODCOORDS[0], y: this.FOODCOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+                this.items[2].anims.create({
+                    key: 'food',
+                    frames: this.anims.generateFrameNumbers('foodimg', {
+                        start: 0,
+                        end: 14
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('food');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+                this.items[i].on('pointerup',()=>this.hunger.width+=5);
+                this.items[i].on('pointerup',()=>this.health.width+=5);
+            } 
+            else if (i == 3) 
+            {
+                this.items[i] = new Item({ scene: this, x: this.TOYCOORDS[0], y: this.TOYCOORDS[1] });
+                this.items[i].setScale(3);
+                this.items[i].setInteractive({ draggable: true });
+                this.items[3].anims.create({
+                    key: 'play',
+                    frames: this.anims.generateFrameNumbers('toyimg', {
+                        start: 0,
+                        end: 17
+                    }),
+                    frameRate: 0,
+                    repeat: -1
+                });
+                this.items[i].anims.play('play');
+                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
+                //this.petBar();
+            }
+
+        }
+
+
+    }
+    petBar(){
+        this.peter= new Pet(this);
+        //this.hungerw=200;
+        //this increases or decreases the values of the bars
+        //have to put a limiting condition here
+        //if(this.hungerw<200){
+        if(this.hungerw <200){
+        this.items[0].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        this.items[0].on('pointerup',()=>this.health.width +=20);
+        this.items[2].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        this.items[2].on('pointerup',()=>this.hunger.width +=20);
+        }
+       // }
+        //if(this.hunger.width>0){
+        
+        this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        this.items[3].on('pointerup',()=>this.hunger.width-=20);
+        this.items[3].on('pointerup',()=>this.happiness.width+=20);
+        this.items[3].on('pointerup',()=>this.hungerw-=20);
+        this.update();
+        //}
+    }
     // Runs every frame
-    update() 
-    {
+    update() {
+    //console.log(this.hungerw);
+    
+    }
+
+
+
+    createAnimations() {
+        //insert pet animations here????
+
+  
     }
 }
