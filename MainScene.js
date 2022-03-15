@@ -23,6 +23,69 @@ class MainScene extends Phaser.Scene {
         // // preload to the screeen the background and the music
         // this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
+        //load the images for the food
+        this.load.image('pancake', './assets/food/actualpancake.png')
+        this.load.image('chicken', './assets/food/chicken.png')
+        this.load.image('cupcake', './assets/food/cupcake.png')
+        this.load.image('donut', './assets/food/donut.png')
+        this.load.image('drink', './assets/food/drink.png')
+        this.load.image('drink2', './assets/food/drink2.png')
+        this.load.image('eggs', './assets/food/egg.png')
+        this.load.image('grilledcheese', './assets/food/grilledhceese.png')
+        this.load.image('orange', './assets/food/orange.png')
+        this.load.image('OJ', './assets/food/orangejuice.png')
+        this.load.image('pancake2', './assets/food/pancake.png')
+        this.load.image('sandwich1', './assets/food/sandwich.png')
+        this.load.image('sandwich2', './assets/food/sandwich2.png')
+        this.load.image('soup', './assets/food/soup.png')
+        this.load.image('bun', './assets/food/stickbun.png')
+
+        //const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
+        //load the images for clothing
+        this.load.image('bikini', './assets/clothe/bikini.png')
+        this.load.image('boots', './assets/clothe/boots.png')
+        this.load.image('boots2', './assets/clothe/boots2.png')
+        this.load.image('bowtie', './assets/clothe/bow.png')
+        this.load.image('hat', './assets/clothe/hat.png')
+        this.load.image('jacket', './assets/clothe/jacket.png')
+        this.load.image('outfit1', './assets/clothe/outfit1.png')
+        this.load.image('outfit2', './assets/clothe/outfit2.png')
+        this.load.image('outfit3', './assets/clothe/outfit3.png')
+        this.load.image('shoes', './assets/clothe/shoes.png')
+        this.load.image('shoes2', './assets/clothe/shoes2.png')
+        this.load.image('witchhat', './assets/clothe/witch_hat.png')
+        
+        //load the images for playing
+        this.load.image('bishop', './assets/play/chessbishop.png')
+        this.load.image('castle', './assets/play/chesscastle.png')
+        this.load.image('horse', './assets/play/chesshorse.png')
+        this.load.image('king', './assets/play/chessking.png')
+        this.load.image('pawn', './assets/play/chesspawn.png')
+        this.load.image('queen', './assets/play/chessqueen.png')
+        this.load.image('console1', './assets/play/game_console1.png')
+        this.load.image('console2', './assets/play/game_console2.png')
+        this.load.image('console3', './assets/play/game_console3.png')
+        this.load.image('duckie', './assets/play/rubber_duck.png')
+        this.load.image('octopus', './assets/play/rubber_ductopus.png')
+        this.load.image('toy2', './assets/play/toy.png')
+        //const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy"];
+        //load the images for bathing
+        this.load.image('lotion', './assets/bathe/body_lotion.png')
+        this.load.image('brush', './assets/bathe/cleaning_brush.png')
+        this.load.image('gloves', './assets/bathe/cleaning_gloves.png')
+        this.load.image('detergent', './assets/bathe/detergent.png')
+        this.load.image('sanitizer', './assets/bathe/hand_sanitiser.png')
+        this.load.image('brush2', './assets/bathe/scrub_brush.png')
+        this.load.image('shampoo', './assets/bathe/shampoo.png')
+        this.load.image('soapbox', './assets/bathe/soap_box.png')
+        this.load.image('soap', './assets/bathe/soap.png')
+        this.load.image('sunscreen', './assets/bathe/sun_cream_tube.png')
+        this.load.image('toothbrush', './assets/bathe/toothbrush.png')
+        this.load.image('toothpaste', './assets/bathe/toothpaste.png')
+        this.load.image('wipey', './assets/bathe/wetwipe.png')
+        this.load.image('box', './assets/bathe/toothpaste_box.png')
+        //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
+
     }
     // Runs when we first enter this scene
     create() 
@@ -38,6 +101,7 @@ class MainScene extends Phaser.Scene {
         background.setScale(.7);
         var style = { font: "20px Arial", fill: "#fff" };//set style used in text
 
+        
         //adding the sprite and then setting the scale on the screen
         this.pet = this.add.sprite(200, 500, "pet")
         this.pet.setScale(6);
@@ -135,7 +199,7 @@ class MainScene extends Phaser.Scene {
         
         
         //this.items[3].on('pointerup',()=>hunger.width-=20);
-        this.createItems(); //creates the items the player interacts with the pet with
+        //this.createItems(); //creates the items the player interacts with the pet with
         // this.createAnimations();
 
         this.timeLeft = 50000;		
@@ -172,6 +236,67 @@ class MainScene extends Phaser.Scene {
                             'LVL\n\n' + value,
                             
                         ]);
+                    
+                    //add box to cover up items from overlapping
+                    var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
+                    //add identifiers for the various components 
+                    this.add.text(10, 650, "CLOTHE", style);//label it 
+                    this.add.text(135, 650, "BATHE", style);//label it 
+                    this.add.text(260, 650, "PLAY", style);//label it 
+                    this.add.text(370, 650, "FEED", style);//label it 
+
+                    //create list to iterate through with key string names of clothes
+                    const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1","outfit2","outfit3","shoes","shoes2","witchhat"];
+                    const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
+                    var box = this.add.rectangle(60, 740, 100, 100, 0xe7a23c);//becasue it loops it needs box before to cover up the old image
+                    var clothing= this.add.image(60,740,clothes[random])//add the key randomly chose value string name
+                    clothing.setScale(3);// set the size
+                    clothing.setInteractive({ draggable: true });// it is draggable
+                    clothing.on('dragend', function (pointer, gameObject) // after it is dragged, destroy it and effect stats
+                    {
+                        clothing.destroy()
+                        health.width-=20
+                    });
+
+                    //iterate through the bathing by string name
+                    const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
+                    const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
+                    var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
+                    var bath= this.add.image(170,740,bathing[random2])//insert image with randomly chosen key
+                    bath.setScale(3);//size the image
+                    bath.setInteractive({ draggable: true });//it can be dragged
+                    bath.on('dragend', function (pointer, gameObject) //after dragging is done destroy copy and effect stats
+                    {
+                        bath.destroy()
+                        health.width-=20
+                    });
+
+                    //iterate through the toys
+                    const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy2"];
+                    const random3 = Math.floor(Math.random() * toys.length);//random chose string name
+                    var box3 = this.add.rectangle(280, 740, 100, 100, 0xe7a23c);//create box
+                    var playing= this.add.image(280,740,toys[random3])//add key to the new image
+                    playing.setScale(3);//set the size
+                    playing.setInteractive({ draggable: true });//draggable yes
+                    playing.on('dragend', function (pointer, gameObject) //destroy object after dragging and then affect stats of pet
+                    {
+                        playing.destroy()
+                        health.width-=20
+                    });
+
+                    //lastly iterat through the food
+                    const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
+                    const random4 = Math.floor(Math.random() * food.length);//choose random value for the image icon from list
+                    var box4 = this.add.rectangle(390, 740, 100, 100, 0xe7a23c);//add box
+                    var feeding= this.add.image(390,740,food[random4])//input the key string name
+                    feeding.setScale(3);// set the size
+                    feeding.setInteractive({ draggable: true });//it can be dragged
+                    feeding.on('dragend', function (pointer, gameObject) // once done dragging: destroy and affect the stats of the pet
+                    {
+                        feeding.destroy()
+                        health.width-=20
+                    });
+                    
                     if(value>=10)//if the value hits a certain level, then the battle icon pops up
                     {
 
@@ -191,112 +316,13 @@ class MainScene extends Phaser.Scene {
                     
                     callbackScope: this,
                     loop: true
-                });
-                
-
+                });           
     }
-    createItems() {
+    
+    
 
-        for (let i = 0; i < 4; i++) 
-        {
-            if (i == 0) 
-            {
-                this.items[i] = new Item({ scene: this, x: this.BATHCOORDS[0], y: this.BATHCOORDS[1] });
-                this.items[i].setScale(3);
-                this.items[i].setInteractive({ draggable: true });
-                this.items[0].anims.create({
-                    key: 'bath',
-                    frames: this.anims.generateFrameNumbers('bathimg', {
-                        start: 0,
-                        end: 14
-                    }),
-                    frameRate: 0,
-                    repeat: -1
-                });
-                this.items[i].anims.play('bath');
-                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.items[i].on('pointerup',()=>happiness.width+=5);
-                this.items[i].on('pointerup',()=>health.width+=10);
-            } 
-            else if (i == 1) 
-            {
-                this.items[i] = new Item({ scene: this, x: this.CLOTHECOORDS[0], y: this.CLOTHECOORDS[1] });
-                this.items[i].setScale(3);
-                this.items[i].setInteractive({ draggable: true });
-
-                this.items[1].anims.create({
-                    key: 'clothe',
-                    frames: this.anims.generateFrameNumbers('clotheimg', {
-                        start: 0,
-                        end: 14
-                    }),
-                    frameRate: 0,
-                    repeat: -1
-                });
-                this.items[i].anims.play('clothe');
-                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.items[i].on('pointerup',()=>happiness.width+=5);
-                this.items[i].on('pointerup',()=>health.width+=5);
-                //var sprite1 = this.add.sprite(100, 200, 'player', 0);
-                //var sprite1Copy = game.add.sprite(sprite1.x, sprite1.y, sprite1.key, sprite1.frame);
-            } 
-            else if (i == 2) 
-            {
-                this.items[i] = new Item({ scene: this, x: this.FOODCOORDS[0], y: this.FOODCOORDS[1] });
-                this.items[i].setScale(3);
-                this.items[i].setInteractive({ draggable: true });
-                this.items[2].anims.create({
-                    key: 'food',
-                    frames: this.anims.generateFrameNumbers('foodimg', {
-                        start: 0,
-                        end: 14
-                    }),
-                    frameRate: 0,
-                    repeat: -1
-                });
-                this.items[i].anims.play('food');
-                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.items[i].on('pointerup',()=>hunger.width+=5);
-                this.items[i].on('pointerup',()=>health.width+=5);
-            } 
-            else if (i == 3) 
-            {
-                this.items[i] = new Item({ scene: this, x: this.TOYCOORDS[0], y: this.TOYCOORDS[1] });
-                this.items[i].setScale(3);
-                this.items[i].setInteractive({ draggable: true });
-                this.items[3].anims.create({
-                    key: 'play',
-                    frames: this.anims.generateFrameNumbers('toyimg', {
-                        start: 0,
-                        end: 17
-                    }),
-                    frameRate: 0,
-                    repeat: -1
-                });
-                this.items[i].anims.play('play');
-                this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                this.peter= new Pet(this);
-                this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
-                this.items[3].on('pointerdown',()=>happiness.width-=100);
-            }
-
-        }
-
-
-    }
     // Runs every frame
-    update() {
-
-      
+    update() 
+    {
     }
-
-
-
-    createAnimations() {
-        //insert pet animations here????
-
-  
-    }
-
-
 }
