@@ -52,6 +52,7 @@ loginForm.addEventListener('submit', (e) => {
   // log the user in
   auth.signInWithEmailAndPassword(email, password).then((cred) => {
     alert("Login Successfully.");
+    window.location.replace('/index.html');
     // close the signup modal & reset form
     const modal = document.querySelector('#modal-login');
     M.Modal.getInstance(modal).close();
