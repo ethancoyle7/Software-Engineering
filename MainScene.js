@@ -324,6 +324,8 @@ class MainScene extends Phaser.Scene {
                     callbackScope: this,
                     loop: true
                 });           
+                //calling the function Pet bar
+                    this.petBar();
     }
     createItems() {
 
@@ -405,7 +407,7 @@ class MainScene extends Phaser.Scene {
                 });
                 this.items[i].anims.play('play');
                 this.items[i].on('pointerup', () => this.items[i].anims.nextFrame());
-                //this.petBar();
+                
             }
 
         }
@@ -414,24 +416,26 @@ class MainScene extends Phaser.Scene {
     }
     petBar(){
         this.peter= new Pet(this);
+        this.peter.eggAnimation.call(this,'idle1');
+        
         //this.hungerw=200;
         //this increases or decreases the values of the bars
         //have to put a limiting condition here
         //if(this.hungerw<200){
-        if(this.hungerw <200){
-        this.items[0].on('pointerup',()=>this.peter.eggAnimation.call(this));
-        this.items[0].on('pointerup',()=>this.health.width +=20);
-        this.items[2].on('pointerup',()=>this.peter.eggAnimation.call(this));
-        this.items[2].on('pointerup',()=>this.hunger.width +=20);
-        }
+        // if(this.hungerw <200){
+        // this.items[0].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        // this.items[0].on('pointerup',()=>this.health.width +=20);
+        // this.items[2].on('pointerup',()=>this.peter.eggAnimation.call(this,feed));
+        // this.items[2].on('pointerup',()=>this.hunger.width +=20);
+        // }
        // }
         //if(this.hunger.width>0){
         
-        this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
-        this.items[3].on('pointerup',()=>this.hunger.width-=20);
-        this.items[3].on('pointerup',()=>this.happiness.width+=20);
-        this.items[3].on('pointerup',()=>this.hungerw-=20);
-        this.update();
+        // this.items[3].on('pointerup',()=>this.peter.eggAnimation.call(this));
+        // this.items[3].on('pointerup',()=>this.hunger.width-=20);
+        // this.items[3].on('pointerup',()=>this.happiness.width+=20);
+        // this.items[3].on('pointerup',()=>this.hungerw-=20);
+        
         //}
     }
     // Runs every frame
