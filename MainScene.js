@@ -208,22 +208,22 @@ class MainScene extends Phaser.Scene {
 
         this.timeLeft = 50000;		
         this.gameTimer = this.time.addEvent({
-                    delay:500,
+                    delay:2000,
                     callback: function()
                     {
                      this.timeLeft --;//decrement the time left
                     experience.width-=350
                     
                      //for the health of the pet
-                     var val1=Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                     var val1=Math.floor(Math.random() * 10) // using rand number between 0 and 10
                      health.width-=val1; //decrement the health randomly w/ val
 
-                     var val2=Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                     var val2=Math.floor(Math.random() * 10) // using rand number between 0 and 10
                      hunger.width-=val2; //decrement the health randomly w/ val
                      console.log(hunger.width)//lets see what the width is 
 
                      //timing for the happiness to go down incrementally
-                     var val3=Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                     var val3=Math.floor(Math.random() * 10) // using rand number between 0 and 10
                      happiness.width-=val3; //decrement the health randomly w/ val
                      console.log(happiness.width)//lets see what the width is 
  
