@@ -20,4 +20,4 @@ const db = firebase.firestore();
 // const analytics = getAnalytics(app);
 
 // we need to update the firestore settings to avoid error in console
-db.settings({timestampInSnapshots: true});
+// db.settings({timestampInSnapshots: true});
