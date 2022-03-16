@@ -102,6 +102,88 @@ class BootScene extends Phaser.Scene {
             frameWidth: 30,
             frameHeight: 35
         });
+        //for main spritesheet
+        this.load.spritesheet('petclimb', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Climb_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });        
+        //for main spritesheet
+        this.load.spritesheet('pet2winningpet', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Jump_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+                //for main spritesheet
+        this.load.spritesheet('pet2idle', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Idle_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet2punch', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Push_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet2lightattack', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Attack1_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet2heavyattack', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Attack2_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet2deadpet', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Death_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
+        //for main spritesheet
+        this.load.spritesheet('pet2climb', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Climb_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //--------------------------------------------------------------
+        //for main spritesheet
+        this.load.spritesheet('pet3', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Run_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3idle', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Idle_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3punch', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Push_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3lightattack', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Attack1_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3heavyattack', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Attack2_6.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3deadpet', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Death_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3winningpet', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Jump_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //for main spritesheet
+        this.load.spritesheet('pet3climb', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Climb_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });        
         // for health
         this.load.image('button','./assets/button.png')
         // this.load.image("hungermeter","assets/hungrymeter.png")
