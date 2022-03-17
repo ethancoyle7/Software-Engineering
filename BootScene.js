@@ -80,7 +80,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
-        
+          //for bathe      
+        this.load.spritesheet('petthrow', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Throw_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
         //stuff for the enemy
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
@@ -143,6 +147,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+          //for bathe      
+        this.load.spritesheet('pet2throw', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Throw_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });        
         //--------------------------------------------------------------
         //for main spritesheet
         this.load.spritesheet('pet3', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Run_6.png', { //this is for a spritesheet
@@ -184,6 +193,10 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });        
+        this.load.spritesheet('pet3throw', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Throw_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });   
         // for health
         this.load.image('button','./assets/button.png')
         // this.load.image("hungermeter","assets/hungrymeter.png")
