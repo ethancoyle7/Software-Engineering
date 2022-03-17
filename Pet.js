@@ -2,38 +2,14 @@ class Pet{
     /**
      * 
      * @param {Phaser.Scene} scene 
-     * @param {number} x
-     * @param {number} y
      */
     constructor(scene){
         this.petdance=null;
         this.scene =scene;
         this.choice = '';
-        //this.x=x;
-        //this.y=y;
+        
     }
-// preload(){
-//  //this.preload.spritesheet('egg','./assets/death.png',{
-//    //  frameWidth: 32,
-//      //frameHight: 32,
-//  //});
-// }
-// create(){
-
-// }
-// update(){
-
-// }
-// Feed(){
-//     //hp goes up by some value
-// }
-// play(){
-
-// }
-//bathe(){
-
-//}
-
+// some pet animations for actions
 eggAnimation(choice){
     let petdance = this.add.sprite(200, 250,"pet");
         petdance.setScale(5);
@@ -94,7 +70,7 @@ Pet2Animation(choice){
         frameRate: 8,
         repeat: -1
     });
-    petdance.anims.create({
+    pet2dance.anims.create({
         key: 'bathe+',
         frames: this.anims.generateFrameNumbers('pet2throw', {
             frames: [0, 1]
@@ -102,7 +78,7 @@ Pet2Animation(choice){
         frameRate: 3,
         repeat: -1
     });
-    petdance.anims.create({
+    pet2dance.anims.create({
         key: 'health+',
         frames: this.anims.generateFrameNumbers('pet2winningpet', {
             start:0,
@@ -124,7 +100,7 @@ Pet3Animation(choice){
         frameRate: 8,
         repeat: 2
     });
-    petdance.anims.create({
+    pet3dance.anims.create({
         key: 'feed',
         frames: this.anims.generateFrameNumbers('pet3climb', {
             frames: [0, 3]
@@ -132,7 +108,7 @@ Pet3Animation(choice){
         frameRate: 8,
         repeat: -1
     });
-    petdance.anims.create({
+    pet3dance.anims.create({
         key: 'bathe+',
         frames: this.anims.generateFrameNumbers('pet3throw', {
             frames: [0, 1]
@@ -140,7 +116,7 @@ Pet3Animation(choice){
         frameRate: 3,
         repeat: -1
     });
-    petdance.anims.create({
+    pet3dance.anims.create({
         key: 'health+',
         frames: this.anims.generateFrameNumbers('pet3winningpet', {
             start:0,
@@ -151,13 +127,6 @@ Pet3Animation(choice){
     });  
     pet3dance.anims.play(choice);
 }
-//juvinileAnimation(){
-
-//}
-//adultAnimation(){
-
-//}
-
 
 
 }
