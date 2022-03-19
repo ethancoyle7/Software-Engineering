@@ -19,30 +19,30 @@ const BOOTPET = [
     //     image: "catD.png",
 
     // },
-    {
+    // {
 
-        name: "Frame5",
-        image: "pet1A.png",
+    //     name: "Frame5",
+    //     image: "pet1A.png",
 
-    },
-    {
+    // },
+    // {
 
-        name: "Frame6",
-        image: "pet1B.png",
+    //     name: "Frame6",
+    //     image: "pet1B.png",
 
-    },
-    {
+    // },
+    // {
 
-        name: "Frame7",
-        image: "pet1C.png",
+    //     name: "Frame7",
+    //     image: "pet1C.png",
 
-    },
-    {
+    // },
+    // {
 
-        name: "Frame8",
-        image: "pet1D.png",
+    //     name: "Frame8",
+    //     image: "pet1D.png",
 
-    },
+    // },
     // {
 
     //     name: "Frame9",
@@ -67,36 +67,36 @@ const BOOTPET = [
     //     image: "jump4.png",
 
     // },
-    // {
+     {
 
-    //     name: "Frame13",
-    //     image: "jump5.png",
+        name: "Frame13",
+        image: "jump5.png",
 
-    // },
-    // {
+    },
+    {
 
-    //     name: "Frame14",
-    //     image: "jump6.png",
+        name: "Frame14",
+        image: "jump6.png",
 
-    // },
-    // {
+    },
+    {
 
-    //     name: "Frame15",
-    //     image: "jump7.png",
+        name: "Frame15",
+        image: "jump7.png",
 
-    // },
-    // {
+    },
+    {
 
-    //     name: "Frame16",
-    //     image: "jump8.png",
+        name: "Frame16",
+        image: "jump8.png",
 
-    // },
-    // {
+    },
+    {
 
-    //     name: "Frame17",
-    //     image: "jump9.png",
+        name: "Frame17",
+        image: "jump9.png",
 
-    // },
+    },
    
 
 ];
