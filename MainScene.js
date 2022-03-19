@@ -36,7 +36,7 @@ class MainScene extends Phaser.Scene {
         this.load.image('drink', './assets/food/drink.png')
         this.load.image('drink2', './assets/food/drink2.png')
         this.load.image('eggs', './assets/food/egg.png')
-        this.load.image('grilledcheese', './assets/food/grilledhcheese.png')
+        this.load.image('grilledcheese', './assets/food/grilledcheese.png')
         this.load.image('orange', './assets/food/orange.png')
         this.load.image('OJ', './assets/food/orangejuice.png')
         this.load.image('pancake2', './assets/food/pancake.png')
