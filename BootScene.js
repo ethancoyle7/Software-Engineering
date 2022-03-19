@@ -86,6 +86,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        this.load.spritesheet('petclimb', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Climb_4.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });  
+        
         //stuff for the enemy
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
@@ -107,89 +112,72 @@ class BootScene extends Phaser.Scene {
             frameWidth: 30,
             frameHeight: 35
         });
-        //for main spritesheet
-        this.load.spritesheet('petclimb', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Climb_4.png', { //this is for a spritesheet
+        //for pet2------------------------------------------------------
+        this.load.spritesheet('pet2run', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Run_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
-        });        
-        //for main spritesheet
+        });
         this.load.spritesheet('pet2winningpet', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Jump_8.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-                //for main spritesheet
         this.load.spritesheet('pet2idle', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Idle_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet2punch', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Push_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet2lightattack', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Attack1_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet2heavyattack', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Attack2_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet2deadpet', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Death_8.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-
-        //for main spritesheet
         this.load.spritesheet('pet2climb', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Climb_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
-        });
-          //for bathe      
+        });    
         this.load.spritesheet('pet2throw', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Throw_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });        
-        //--------------------------------------------------------------
-        //for main spritesheet
+        //Pet3--------------------------------------------------------------
         this.load.spritesheet('pet3', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Run_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3idle', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Idle_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3punch', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Push_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3lightattack', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Attack1_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3heavyattack', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Attack2_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3deadpet', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Death_8.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3winningpet', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Jump_8.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
         });
-        //for main spritesheet
         this.load.spritesheet('pet3climb', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Climb_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
@@ -215,7 +203,8 @@ class BootScene extends Phaser.Scene {
         this.load.audio('MainReturn', './assets/BackMain.mp3');
         this.load.audio('Rematch', './assets/RetryMatch.mp3');
         this.load.audio('FightAnnounce', './assets/FinishHim.mp3');
-        this.load.audio('petcall','./assets/SUCCESS CHEERS Win Cute Vocal Chime 03.wav')
+        this.load.audio('petcall','./assets/SUCCESS CHEERS Win Cute Vocal Chime 03.wav');
+
         // Loading events listeners
         this.load.on('progress', (percent) => {
             this.loadingBar.setScale(percent, 1);
