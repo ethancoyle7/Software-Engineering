@@ -61,7 +61,7 @@ class WinScene extends Phaser.Scene
         exit.setInteractive();
         //when pressed down go to boot scene
         //exit.on('pointerover',() =>;
-        exit.on('pointerdown',() =>this.scene.start("BootScene"));
+        exit.on('pointerdown',() =>this.scene.start("TitleScene"));
         exit.on('pointerover',() => this.sound.play('Exit')); // hoverover
         this.tweens.add({
 

@@ -28,6 +28,7 @@ class MainScene extends Phaser.Scene {
         // this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
         //load the images for the food
+        // const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
         this.load.image('pancake', './assets/food/actualpancake.png')
         this.load.image('chicken', './assets/food/chicken.png')
         this.load.image('cupcake', './assets/food/cupcake.png')
@@ -35,7 +36,7 @@ class MainScene extends Phaser.Scene {
         this.load.image('drink', './assets/food/drink.png')
         this.load.image('drink2', './assets/food/drink2.png')
         this.load.image('eggs', './assets/food/egg.png')
-        this.load.image('grilledcheese', './assets/food/grilledhceese.png')
+        this.load.image('grilledcheese', './assets/food/grilledhcheese.png')
         this.load.image('orange', './assets/food/orange.png')
         this.load.image('OJ', './assets/food/orangejuice.png')
         this.load.image('pancake2', './assets/food/pancake.png')
@@ -244,6 +245,7 @@ class MainScene extends Phaser.Scene {
                     
                     //add box to cover up items from overlapping
                     var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
+                    InteractionIcons.setStrokeStyle(5, 0x1e0a08);
                     //add identifiers for the various components 
                     this.add.text(10, 650, "CLOTHE", style);//label it 
                     this.add.text(135, 650, "BATHE", style);//label it 
