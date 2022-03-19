@@ -8,7 +8,7 @@ class MainScene extends Phaser.Scene {
         this.FOODCOORDS = [275, 750];
         this.TOYCOORDS = [375, 750];
         this.pet = null;
-        this.peter =null;
+        this.petClass =null;
         this.hunger=null;
         this.happiness=null;
         this.health=null;
@@ -327,7 +327,7 @@ class MainScene extends Phaser.Scene {
                     loop: true
                 });           
                 //calling the function Pet bar
-                    this.petBar();
+                    this.petAnimations();
     }
     createItems() {
 
@@ -414,12 +414,13 @@ class MainScene extends Phaser.Scene {
 
         }
 
-
-    }
-    petBar(){
-        this.peter= new Pet(this);
-        this.peter.eggAnimation.call(this,'idle1');
         
+    }
+    petAnimations(){
+        //calling petclass
+        this.petClass= new Pet(this);
+        this.petClass.Pet3Animation.call(this,'idle1');
+       
         //this.hungerw=200;
         //this increases or decreases the values of the bars
         //have to put a limiting condition here
