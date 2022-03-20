@@ -186,6 +186,18 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });   
+        this.load.spritesheet('redegg', './assets/redegg.png', { //this is for a spritesheet
+            frameWidth: 65,
+            frameHeight: 65
+        }); 
+        this.load.spritesheet('blueegg', './assets/blueegg.png', { //this is for a spritesheet
+            frameWidth: 65,
+            frameHeight: 65
+        }); 
+        this.load.spritesheet('whiteegg', './assets/whiteegg.png', { //this is for a spritesheet
+            frameWidth: 65,
+            frameHeight: 65
+        }); 
         // for health
         this.load.image('button','./assets/button.png')
         // this.load.image("hungermeter","assets/hungrymeter.png")

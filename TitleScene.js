@@ -35,6 +35,47 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
             this.sound.stopAll();
             this.scene.start('MainScene');
         });
+        let redegg = this.add.sprite(100, 600, "redegg")
+        //creating pet1 egg animation
+        redegg.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('redegg', {
+                start: 0,
+                end: 3
+            }),
+            frameRate: 5,
+            repeat: -1
+        });
+        redegg.anims.play('idle');
+
+        let whiteegg = this.add.sprite(300, 600, "whiteegg")
+        //creating pet2 egganimation
+        whiteegg.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('whiteegg', {
+                start: 0,
+                end: 3
+            }),
+            frameRate: 5,
+            repeat: -1
+        });
+        whiteegg.anims.play('idle');
+        
+        let blueegg = this.add.sprite(200, 600, "blueegg")
+        //creating pet3 egg animation
+        blueegg.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('blueegg', {
+                start: 0,
+                end: 3
+            }),
+            frameRate: 5,
+            repeat: -1
+        });
+        blueegg.anims.play('idle');
+        
+       
+        
         this.tweens.add({ // a tween is kinda like animation lite
             targets: [text], //this one affects text
             duration: 900,
