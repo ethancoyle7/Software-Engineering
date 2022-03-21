@@ -95,7 +95,13 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() 
     {
+
         var value=0;
+        const backgroundmusic=['1','2','3','4','5','6','7','8','9','10','11']
+        //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
+        const musicloop = Math.floor(Math.random() * backgroundmusic.length);//choose random string name
+                    //var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
+        this.sound.play(backgroundmusic[musicloop], { volume: 0.1 })//insert image with randomly chosen key
         //this.sound.play('bgmusic', { volume: 0.1 });
         //this.data.set('LEVEL', value);
         
@@ -231,6 +237,7 @@ class MainScene extends Phaser.Scene {
                      //if one or more of the conditions are true and the pet dies, then the scene changes to game over
                      if(health.width<1||hunger.width<1)
                      {
+                         this.sound.stopAll();
                          this.scene.start("GameOver")   
                      }
                      if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
@@ -315,7 +322,7 @@ class MainScene extends Phaser.Scene {
                         button.setInteractive() // set it interactive
                         button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
                         button.on('pointerup', () => button.setScale(1));// on ppinter up
-                        button.on('pointerdown', () => this.sound.removeByKey('bgmusic'))// remove the bg music
+                        button.on('pointerdown', () => this.sound.stopAll());// remove the bg music
                         button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
                     }
                         

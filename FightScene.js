@@ -14,6 +14,8 @@ class FightScene extends Phaser.Scene
     preload() 
     {
         this.load.image('Over', './assets/GameOverPicture.png');
+        
+        this.load.audio('FightSound2','./assets/FightSound2.mp3')
     //load the files to be used in the scene  
     }
     
@@ -26,7 +28,7 @@ class FightScene extends Phaser.Scene
        
         
         //start the boss fight music
-        this.sound.play('Fight', { volume: 0.1});
+        this.sound.play('FightSound2', { volume: 0.1});
         this.sound.play('FightAnnounce');
         // set the text font information to be used in styles
         var style = { font: "20px Arial", fill: "#ffffff" };
@@ -92,7 +94,7 @@ class FightScene extends Phaser.Scene
 
         //play the pet animation and play sound whenever pressed down
        this.pet.anims.play('idle');// play the pet animotion
-       this.pet.on('pointerdown',() => this.sound.play('press'))
+       
         // making health and container for the pet
         var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x1e0a08);
         var pethealth = this.add.rectangle(105, 740, 200, 30, 0xe74c3c);

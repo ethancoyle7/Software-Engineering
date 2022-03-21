@@ -203,7 +203,7 @@ class BootScene extends Phaser.Scene {
         // this.load.image("hungermeter","assets/hungrymeter.png")
         
         //load the files to be used in the Fight scene
-        this.load.audio('press', './assets/getout.mp3'); 
+        
         this.load.audio('Fight', './assets/BossFight.mp3');
         this.load.audio('KO', './assets/fatality.mp3');
         this.load.audio('YOUWIN', './assets/winsound.mp3');
@@ -216,6 +216,19 @@ class BootScene extends Phaser.Scene {
         this.load.audio('Rematch', './assets/RetryMatch.mp3');
         this.load.audio('FightAnnounce', './assets/FinishHim.mp3');
         this.load.audio('petcall','./assets/SUCCESS CHEERS Win Cute Vocal Chime 03.wav');
+
+          //load up the audio to loop through the different background sounds
+          this.load.audio('1', './assets/mainsounds/Apprentice.mp3'); 
+          this.load.audio('2', './assets/mainsounds/DMinor.mp3');
+          this.load.audio('3', './assets/mainsounds/Forest.mp3');
+          this.load.audio('4', './assets/mainsounds/FridayAfternoon.mp3');
+          this.load.audio('5','./assets/mainsounds/Stroll.mp3')
+          this.load.audio('6','./assets/mainsounds/GameLoop.mp3') 
+          this.load.audio('7', './assets/mainsounds/Morning.mp3');
+          this.load.audio('8', './assets/mainsounds/NewRoad.mp3');
+          this.load.audio('9','./assets/mainsounds/RainbowLollipop.mp3')
+          this.load.audio('10','./assets/mainsounds/Sunshine.mp3') 
+          this.load.audio('11','./assets/mainsounds/Platform.mp3') 
 
         // Loading events listeners
         this.load.on('progress', (percent) => {
