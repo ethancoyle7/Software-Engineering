@@ -99,7 +99,7 @@ class MainScene extends Phaser.Scene {
         var value=0;
         
         //create container to randomize music everytime load up the main scene
-        const backgroundmusic=['1','2','3','4','5','6','7','8','9']
+        const backgroundmusic=['1','2','3','4','5','6','7','8']
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         const musicloop = Math.floor(Math.random() * backgroundmusic.length);//choose random string name
                     //var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
