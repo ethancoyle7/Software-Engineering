@@ -97,11 +97,16 @@ class MainScene extends Phaser.Scene {
     {
 
         var value=0;
-        const backgroundmusic=['1','2','3','4','5','6','7','8','9','10','11']
+        
+        //create container to randomize music everytime load up the main scene
+        const backgroundmusic=['1','2','3','4','5','6','7','8','9']
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         const musicloop = Math.floor(Math.random() * backgroundmusic.length);//choose random string name
                     //var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
         this.sound.play(backgroundmusic[musicloop], { volume: 0.1 })//insert image with randomly chosen key
+    
+        console.log(backgroundmusic[musicloop])//see what sound playing
+    
         //this.sound.play('bgmusic', { volume: 0.1 });
         //this.data.set('LEVEL', value);
         
@@ -238,7 +243,7 @@ class MainScene extends Phaser.Scene {
                      if(health.width<1||hunger.width<1)
                      {
                          this.sound.stopAll();
-                         this.scene.start("GameOver")   
+                         this.scene.start("MainDead")   
                      }
                      if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
                      {
