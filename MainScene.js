@@ -187,9 +187,7 @@ class MainScene extends Phaser.Scene {
          this.add.text(10, 88, "HUNGER", style);//label it 
           //create rectangle for xp points
 
-        var experience = this.add.rectangle(180, 140, 350, 30, 0xe7a23c);
-        experience.setStrokeStyle(4, 0x1e0a08);
-        this.add.text(50, 130, "XP", style);//label it 
+        
 
 
        
@@ -203,6 +201,7 @@ class MainScene extends Phaser.Scene {
             ease: 'Sine.easeInOut'
 
         });
+
         //txt to be inside of the level to let the user know what level they are on
         var text = this.add.text(378, 30, '', { font: '20px Courier', fill: '#00ff00' });
         //set the text indicator for the level icon text value
@@ -210,21 +209,22 @@ class MainScene extends Phaser.Scene {
             'LVL \n\n ' + value,
             
         ]);
+        //creating experience bar and value
+        var experience=0;
+        var EXP = this.add.text(10, 130, '', { font: '20px Arial', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+        EXP.setText([
+            'EXPERIENCE : ' + experience,
+            
+        ]);
         
-        
-        
-        
-        //this.items[3].on('pointerup',()=>hunger.width-=20);
-        //this.createItems(); //creates the items the player interacts with the pet with
-        // this.createAnimations();
-
         this.timeLeft = 50000;		
         this.gameTimer = this.time.addEvent({
                     delay:2000,
                     callback: function()
                     {
                      this.timeLeft --;//decrement the time left
-                    experience.width-=350
+                    //experience.width-=350
                     
                      //for the health of the pet
                      var val1=Math.floor(Math.random() * 10) // using rand number between 0 and 10
@@ -250,10 +250,28 @@ class MainScene extends Phaser.Scene {
                         // increment the value of the level
                         value++;
                         //set the new value to hold the level
-                        text.setText([
-                            'LVL\n\n' + value,
-                            
-                        ]);
+                        text.setText(['LVL\n\n' + value,]);
+                        //health.width==350;//trying to reset width
+                        
+                     }
+                     if(health.width>350)// if the health gets above 360 increment the experience by 1
+                     {
+                         health.width=300//reset the wdith
+                         experience++;
+                         EXP.setText(['EXPERIENCE : ' + experience]);
+                     }
+                     if(hunger.width>350)// if the hunger gets above 360 increment the experience by 1
+                     {
+                         hunger.width=300//reset the width
+                         experience++;
+                         EXP.setText(['EXPERIENCE : ' + experience]);
+                     }
+                     if(happiness.width>350)// if the happiness gets above 360 increment the experience by 1
+                     {
+                         happiness.width=350//reset the width
+                         experience++;
+                         EXP.setText(['EXPERIENCE : ' + experience]);
+                     }
                     
                     //add box to cover up items from overlapping
                     var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
@@ -270,11 +288,17 @@ class MainScene extends Phaser.Scene {
                     var box = this.add.rectangle(60, 740, 100, 100, 0xe7a23c);//becasue it loops it needs box before to cover up the old image
                     var clothing= this.add.image(60,740,clothes[random])//add the key randomly chose value string name
                     clothing.setScale(3);// set the size
+                    
                     clothing.setInteractive({ draggable: true });// it is draggable
+                    clothing.on('pointerdown',() =>this.pet.anims.stop('run'));
+                    clothing.on('pointerdown',() =>this.pet.anims.play('feed'));
+                    clothing.on('pointerup',() =>this.pet.anims.stop('feed'));
+                    clothing.on('pointerup',() =>this.pet.anims.play('run'));
                     clothing.on('dragend', function (pointer, gameObject) // after it is dragged, destroy it and effect stats
                     {
                         clothing.destroy()
-                        happiness.width-=30
+                        happiness.width+=50
+                        hunger.width-=10
                         
                     });
             
@@ -286,10 +310,15 @@ class MainScene extends Phaser.Scene {
                     var bath= this.add.image(170,740,bathing[random2])//insert image with randomly chosen key
                     bath.setScale(3);//size the image
                     bath.setInteractive({ draggable: true });//it can be dragged
+                    bath.on('pointerdown',() =>this.pet.anims.stop('run'));
+                    bath.on('pointerdown',() =>this.pet.anims.play('bath+'));
+                    bath.on('pointerup',() =>this.pet.anims.stop('bathe+'));
+                    bath.on('pointerup',() =>this.pet.anims.play('run'));
                     bath.on('dragend', function (pointer, gameObject) //after dragging is done destroy copy and effect stats
                     {
                         bath.destroy()
-                        health.width-=20
+                        health.width+=5
+                        happiness.width+=10
                     });
 
                     //iterate through the toys
@@ -299,10 +328,14 @@ class MainScene extends Phaser.Scene {
                     var playing= this.add.image(280,740,toys[random3])//add key to the new image
                     playing.setScale(3);//set the size
                     playing.setInteractive({ draggable: true });//draggable yes
+                    playing.on('pointerdown',() =>this.pet.anims.stop('run'));
+                    playing.on('pointerdown',() =>this.pet.anims.play('health+'));
+                    playing.on('pointerup',() =>this.pet.anims.stop('health+'));
+                    playing.on('pointerup',() =>this.pet.anims.play('run'));
                     playing.on('dragend', function (pointer, gameObject) //destroy object after dragging and then affect stats of pet
                     {
                         playing.destroy()
-                        health.width-=20
+                        happiness.width+=10
                     });
 
                     //lastly iterat through the food
@@ -312,12 +345,19 @@ class MainScene extends Phaser.Scene {
                     var feeding= this.add.image(390,740,food[random4])//input the key string name
                     feeding.setScale(3);// set the size
                     feeding.setInteractive({ draggable: true });//it can be dragged
+                    
+                    feeding.on('pointerdown',() =>this.pet.anims.stop('run'));
+                    feeding.on('pointerdown',() =>this.pet.anims.play('feed'));
+                    feeding.on('pointerup',() =>this.pet.anims.stop('feed'));
+                    feeding.on('pointerup',() =>this.pet.anims.play('run'));
                     feeding.on('dragend', function (pointer, gameObject) // once done dragging: destroy and affect the stats of the pet
                     {
                         feeding.destroy()
-                        health.width-=20
+                        health.width+=10
+                        happiness.width+=10
+                        hunger.width+=10
                     });
-                    
+                   
                     if(value>=10)//if the value hits a certain level, then the battle icon pops up
                     {
 
@@ -330,8 +370,9 @@ class MainScene extends Phaser.Scene {
                         button.on('pointerdown', () => this.sound.stopAll());// remove the bg music
                         button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
                     }
+                    
                         
-                    }
+                    
                     
                     },
                     
