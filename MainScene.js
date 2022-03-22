@@ -217,7 +217,9 @@ class MainScene extends Phaser.Scene {
             'EXPERIENCE : ' + experience,
             
         ]);
-        
+        //creating a petclass object
+        this.petClass= new Pet(this);
+        // this.petClass.Pet3Animation.call(this,'idle1');
         this.timeLeft = 50000;		
         this.gameTimer = this.time.addEvent({
                     delay:2000,
@@ -328,14 +330,16 @@ class MainScene extends Phaser.Scene {
                     var playing= this.add.image(280,740,toys[random3])//add key to the new image
                     playing.setScale(3);//set the size
                     playing.setInteractive({ draggable: true });//draggable yes
+                    //this generates an animation from petclass
+                    playing.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'health+'));
                     playing.on('pointerdown',() =>this.pet.anims.stop('run'));
                     playing.on('pointerdown',() =>this.pet.anims.play('health+'));
                     playing.on('pointerup',() =>this.pet.anims.stop('health+'));
                     playing.on('pointerup',() =>this.pet.anims.play('run'));
                     playing.on('dragend', function (pointer, gameObject) //destroy object after dragging and then affect stats of pet
                     {
-                        playing.destroy()
-                        happiness.width+=10
+                        playing.destroy();
+                        happiness.width+=10;
                     });
 
                     //lastly iterat through the food
@@ -345,17 +349,23 @@ class MainScene extends Phaser.Scene {
                     var feeding= this.add.image(390,740,food[random4])//input the key string name
                     feeding.setScale(3);// set the size
                     feeding.setInteractive({ draggable: true });//it can be dragged
-                    
-                    feeding.on('pointerdown',() =>this.pet.anims.stop('run'));
+                    //feeding.on('pointerdown',() =>this.signal=1);
+                    //this generates an animation from petclass
+                    feeding.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'feed'));
+                    feeding.on('pointerdown',() =>this.pet.anims.stop('petrun'));
                     feeding.on('pointerdown',() =>this.pet.anims.play('feed'));
+                    //feeding.on('pointerup',() =>this.signal=0);
                     feeding.on('pointerup',() =>this.pet.anims.stop('feed'));
-                    feeding.on('pointerup',() =>this.pet.anims.play('run'));
+                    feeding.on('pointerup',() =>this.pet.anims.play('petrun'));
+                    //im trying to either stop the animation or destroy the previous one
+                    feeding.on('pointerup',() =>this.petClass.destroy());
                     feeding.on('dragend', function (pointer, gameObject) // once done dragging: destroy and affect the stats of the pet
                     {
                         feeding.destroy()
                         health.width+=10
                         happiness.width+=10
                         hunger.width+=10
+                        
                     });
                    
                     if(value>=10)//if the value hits a certain level, then the battle icon pops up
@@ -471,8 +481,8 @@ class MainScene extends Phaser.Scene {
     }
     petAnimations(){
         //calling petclass
-        this.petClass= new Pet(this);
-        this.petClass.Pet3Animation.call(this,'idle1');
+        //this.petClass= new Pet(this);
+        //this.petClass.Pet3Animation.call(this,'idle1');
        
         //this.hungerw=200;
         //this increases or decreases the values of the bars
