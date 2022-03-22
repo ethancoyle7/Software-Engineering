@@ -28,7 +28,7 @@ class FightScene extends Phaser.Scene
        
         
         //start the boss fight music
-        this.sound.play('FightSound2', { volume: 0.1});
+        this.sound.play('FightSound2', { volume: 0.5});
         this.sound.play('FightAnnounce');
         // set the text font information to be used in styles
         var style = { font: "20px Arial", fill: "#ffffff" };
@@ -189,7 +189,7 @@ class FightScene extends Phaser.Scene
         //perform some actions
         const button = this.add.image( 50, 40, 'Return')
 	        button.setInteractive()
-            button.on('pointerdown',() => this.sound.removeByKey('Fight'))
+            button.on('pointerdown',() => this.sound.stopAll())
 	        button.on('pointerdown', () => button.setScale( 1.1 ))
 	        button.on('pointerup', () => button.setScale( 1 ));
             button.on('pointerdown',() => this.scene.start('MainScene'))

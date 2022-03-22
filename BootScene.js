@@ -226,10 +226,7 @@ class BootScene extends Phaser.Scene {
           this.load.audio('6','./assets/mainsounds/GameLoop.mp3') 
           this.load.audio('7', './assets/mainsounds/Morning.mp3');
           this.load.audio('8', './assets/mainsounds/NewRoad.mp3');
-          this.load.audio('9','./assets/mainsounds/RainbowLollipop.mp3')
-          this.load.audio('10','./assets/mainsounds/Sunshine.mp3') 
-          this.load.audio('11','./assets/mainsounds/Platform.mp3') 
-
+          
         // Loading events listeners
         this.load.on('progress', (percent) => {
             this.loadingBar.setScale(percent, 1);

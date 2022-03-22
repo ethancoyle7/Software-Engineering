@@ -18,7 +18,8 @@ const config = {
         MainScene,
         FightScene,
         GameOver,
-        WinScene
+        WinScene,
+        MainDead
         
 
     ],
