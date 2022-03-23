@@ -7,20 +7,32 @@ class Pet{
         this.pet1=null;
         this.scene =scene;
         this.choice = '';
+        this.lvl=0;
+        
         
     }
+    Status(){
+        //lvl
+        //experience
+        //ID=generated
+        //name= the thing that the player entered 
+        //type= 1 / 2/ 3
+        //Maturity= size so..... setScale(Maturity)
+    }
+
+
     // some pet animations for actions
     Pet1Animation(choice){
-        let pet1 = this.add.sprite(200, 250,"pet");
-            pet1.setScale(5);
+         this.pet1 = this.add.sprite(200, 250,"pet");
+            this.pet1.setScale(5);
             //make the pet interactive and movable
-            pet1.setInteractive({ draggable: true });
+            this.pet1.setInteractive({ draggable: true });
             // to know the item is selected change the color of the item
             this.input.on('dragstart', function (pointer, gameObject) {
                 gameObject.setTint(0xff0000);
             });
             // Create the idle animation
-            pet1.anims.create({
+            this.pet1.anims.create({
                 key: 'idle1',
                 frames: this.anims.generateFrameNumbers('pet', {
                     start:0,
@@ -29,7 +41,7 @@ class Pet{
                 frameRate: 12,
                 repeat: -1
             });
-            pet1.anims.create({
+            this.pet1.anims.create({
                 key: 'feed',
                 frames: this.anims.generateFrameNumbers('petclimb', {
                     frames: [0, 3]
@@ -37,7 +49,7 @@ class Pet{
                 frameRate: 8,
                 repeat: -1
             });
-            pet1.anims.create({
+            this.pet1.anims.create({
                 key: 'bathe+',
                 frames: this.anims.generateFrameNumbers('petthrow', {
                     frames: [0, 1]
@@ -45,7 +57,7 @@ class Pet{
                 frameRate: 3,
                 repeat: -1
             });
-            pet1.anims.create({
+            this.pet1.anims.create({
                 key: 'health+',
                 frames: this.anims.generateFrameNumbers('winningpet', {
                     start:0,
@@ -55,7 +67,12 @@ class Pet{
                 repeat: -1
             });        
             
-            pet1.anims.play(choice);
+            this.pet1.anims.play(choice);
+            
+    }
+    Pet1Stop(choice){
+        this.pet1.anims.stop(choice);
+        this.pet1.destroy();
     }
     Pet2Animation(choice){
         let pet2 = this.add.sprite(200,250,"pet2run");
