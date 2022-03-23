@@ -14,6 +14,7 @@ class GameOver extends Phaser.Scene
         this.load.image('RetryFight', './assets/fightretry.png'); 
         this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
         this.load.image('wipey', './assets/bathe/wet_wipe.png')
+        //this.load.audio('WINNER', './assets/WinMusic.mp3');
     }
 
     create() 
@@ -22,6 +23,7 @@ class GameOver extends Phaser.Scene
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('KO');
+        this.sound.play("MUSIC")
 
         for (let i = 0; i < 300; i++)
         {

@@ -38,6 +38,7 @@ class MainScene extends Phaser.Scene {
     create() 
     {
 
+        this.sound.stopAll()
         var value=0;
         
         //create container to randomize music everytime load up the main scene
