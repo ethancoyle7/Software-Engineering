@@ -35,8 +35,8 @@ class FightScene extends Phaser.Scene
 
         // load the background image and set x and y coords
         // then set the scale to .7
-        let background2 = this.add.image(225, 400, 'Fighting');
-        background2.setScale(.9);
+        let background2 = this.add.image(225, 400, 'circus');
+        background2.setScale(3);
         
         //add the pet to the screen and add idle animation
         this.pet =this.add.sprite(70,635,"pet")
@@ -102,7 +102,7 @@ class FightScene extends Phaser.Scene
         
          //add enemy sprite
         //allign it above the enemy health bar and then make it play idle animation
-        this.enemy = this.add.sprite(375, 185, "pet2")
+        this.enemy = this.add.sprite(375, 105, "pet2")
         this.enemy.setScale(.4,.4);//set the scale of the enemy for fight to fit the scene width and height
         //this.enemy.anims.play('idle2');// play the pet animotion
         this.enemy.anims.create({
@@ -116,9 +116,9 @@ class FightScene extends Phaser.Scene
         });
         this.enemy.anims.play('idle2');// play the pet animotion
         //making health and container for the enemy
-        var enemyhealthcontainer = this.add.rectangle(340, 275, 205, 35, 0x1e0a08);
-        var enemyhealth = this.add.rectangle(340, 275, 200, 30, 0xe74c3c);
-        this.add.text(340,265, "HEALTH", style);//label it
+        var enemyhealthcontainer = this.add.rectangle(340, 200, 205, 35, 0x1e0a08);
+        var enemyhealth = this.add.rectangle(340, 200, 200, 30, 0xe74c3c);
+        this.add.text(320,190, "HEALTH", style);//label it
 
         //WE WANT A RECTANGLE TO HOLD THE ATTACK BUTTONS INSIDE SO MAKE IT BEFORE
         //ATTACK BUTTONS SO AS TO NOT COVER UP BARS
