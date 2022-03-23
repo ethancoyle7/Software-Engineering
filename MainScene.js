@@ -25,7 +25,11 @@ class MainScene extends Phaser.Scene {
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() {
         // // preload to the screeen the background and the music
-        // this.load.audio('bgmusic', './assets/gamemusic.mp3');
+        // loading up the audio for the pet interation sounds
+        this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
+        this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
+        this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
+        this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
 
       
 
@@ -283,7 +287,7 @@ class MainScene extends Phaser.Scene {
                     clothing.on('pointerup',()=> happiness.width+=15)
                     clothing.on('pointerup',()=> hunger.width-=10)
                     clothing.on('pointerup',()=>PetClothed.setText(['Pet Clothed']))
-                    
+                    clothing.on('pointerup',()=>this.sound.play('clothesound')) // play interaction sound
 
                     //iterate through the bathing by string name
                     const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
@@ -300,6 +304,7 @@ class MainScene extends Phaser.Scene {
                     bath.on('pointerup',()=> health.width+=10)
                     bath.on('pointerup',()=> happiness.width+=10)
                     bath.on('pointerup',()=>PetClothed.setText(['Pet Bathed']))
+                    bath.on('pointerup',()=>this.sound.play('bathsound')) // play interaction sound
 
                     //iterate through the toys
                     const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy2"];
@@ -317,6 +322,7 @@ class MainScene extends Phaser.Scene {
                     playing.on('pointerup',()=> playing.destroy())
                     playing.on('pointerup',()=> happiness.width+=10)
                     playing.on('pointerup',()=>PetClothed.setText(['Pet Playing']))
+                    playing.on('pointerup',()=>this.sound.play('happysound')) // play interaction sound
 
                     //lastly iterat through the food
                     const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
@@ -339,7 +345,8 @@ class MainScene extends Phaser.Scene {
                     feeding.on('pointerup',()=> hunger.width+=10)
                     feeding.on('pointerup',()=>PetClothed.setText(['Pet Fed']))
                     //im trying to either stop the animation or destroy the previous one
-                    feeding.on('pointerup',() =>this.petClass.destroy());
+                    //feeding.on('pointerup',() =>this.petClass.destroy());
+                    feeding.on('pointerup',()=>this.sound.play('eatingsound')) // play interaction sound
                    
                     if(value>=10)//if the value hits a certain level, then the battle icon pops up
                     {
