@@ -202,12 +202,11 @@ class MainScene extends Phaser.Scene {
         //creating a petclass object
         this.petClass= new Pet(this);
         //add box to cover up items from overlapping
-        var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
-        InteractionIcons.setStrokeStyle(5, 0x1e0a08);
+       
         // this.petClass.Pet3Animation.call(this,'idle1');
         this.timeLeft = 50000;		
         this.gameTimer = this.time.addEvent({
-                    delay:2000,
+                    delay:700,
                     callback: function()
                     {
                      this.timeLeft --;//decrement the time left
@@ -217,25 +216,35 @@ class MainScene extends Phaser.Scene {
                     PetBathed.setText(['']);
                     PetFed.setText(['']);
                     PetPlay.setText(['']);
+                    var InteractionIcons = this.add.rectangle(225, 720, 440, 150, 0xe7a23c);
+                    InteractionIcons.setStrokeStyle(5, 0x1e0a08);
                      //for the health of the pet
-                     var val1=Math.floor(Math.random() * 10) // using rand number between 0 and 10
+                     var val1=Math.floor(Math.random() * 5) // using rand number between 0 and 10
                      health.width-=val1; //decrement the health randomly w/ val
 
-                     var val2=Math.floor(Math.random() * 10) // using rand number between 0 and 10
+                     var val2=Math.floor(Math.random() * 5) // using rand number between 0 and 10
                      hunger.width-=val2; //decrement the health randomly w/ val
                      console.log(hunger.width)//lets see what the width is 
 
                      //timing for the happiness to go down incrementally
-                     var val3=Math.floor(Math.random() * 10) // using rand number between 0 and 10
+                     var val3=Math.floor(Math.random() * 5) // using rand number between 0 and 10
                      happiness.width-=val3; //decrement the health randomly w/ val
                      console.log(happiness.width)//lets see what the width is 
  
                      //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                     if(health.width<1||hunger.width<1)
+                     if(health.width<1)
                      {
                          this.sound.stopAll();
                          this.scene.start("MainDead")   
                      }
+                     //if the pets hunger is less than 1 and the time left is 0, load the runawaypet scene
+                     if(hunger.width<1 && this.timeLeft<=49990)
+                     {
+                        this.scene.start("Runawaypet")
+                     }
+                     //if the health width is less than 1
+                     
+                     
                      if(health.width<360)//placeholder for the value once if the players health,hunger happiness go above 350
                      {
                         // increment the value of the level

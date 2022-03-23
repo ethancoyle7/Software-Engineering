@@ -19,7 +19,9 @@ const config = {
         FightScene,
         GameOver,
         WinScene,
-        MainDead
+        MainDead,
+        Runawaypet
+        
         
 
     ],
