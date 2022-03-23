@@ -197,6 +197,9 @@ class MainScene extends Phaser.Scene {
         
         //creating a petclass object
         this.petClass= new Pet(this);
+        //add box to cover up items from overlapping
+        var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
+        InteractionIcons.setStrokeStyle(5, 0x1e0a08);
         // this.petClass.Pet3Animation.call(this,'idle1');
         this.timeLeft = 50000;		
         this.gameTimer = this.time.addEvent({
@@ -257,9 +260,7 @@ class MainScene extends Phaser.Scene {
                          EXP.setText(['EXPERIENCE : ' + experience]);
                      }
                     
-                    //add box to cover up items from overlapping
-                    var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
-                    InteractionIcons.setStrokeStyle(5, 0x1e0a08);
+                    
                     //add identifiers for the various components 
                     this.add.text(10, 650, "CLOTHE", style);//label it 
                     this.add.text(135, 650, "BATHE", style);//label it 
