@@ -23,7 +23,7 @@ class GameOver extends Phaser.Scene
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('KO');
-        this.sound.play("MUSIC")
+        this.sound.play("MUSIC",{ volume: 0.1})
 
         for (let i = 0; i < 300; i++)
         {

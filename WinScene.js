@@ -19,7 +19,7 @@ class WinScene extends Phaser.Scene {
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('YOUWIN');
-        this.sound.play('WINNER');
+        this.sound.play('WINNER',{ volume: 0.1});
 
         //for the background show the yellow image at random intervals
         for (let i = 0; i < 300; i++) {
