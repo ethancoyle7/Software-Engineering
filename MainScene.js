@@ -27,69 +27,7 @@ class MainScene extends Phaser.Scene {
         // // preload to the screeen the background and the music
         // this.load.audio('bgmusic', './assets/gamemusic.mp3');
 
-        //load the images for the food
-        // const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
-        this.load.image('pancake', './assets/food/actualpancake.png')
-        this.load.image('chicken', './assets/food/chicken.png')
-        this.load.image('cupcake', './assets/food/cupcake.png')
-        this.load.image('donut', './assets/food/donut.png')
-        this.load.image('drink', './assets/food/drink.png')
-        this.load.image('drink2', './assets/food/drink2.png')
-        this.load.image('eggs', './assets/food/egg.png')
-        this.load.image('grilledcheese', './assets/food/grilledcheese.png')
-        this.load.image('orange', './assets/food/orange.png')
-        this.load.image('OJ', './assets/food/orangejuice.png')
-        this.load.image('pancake2', './assets/food/pancake.png')
-        this.load.image('sandwich1', './assets/food/sandwich.png')
-        this.load.image('sandwich2', './assets/food/sandwich2.png')
-        this.load.image('soup', './assets/food/soup.png')
-        this.load.image('bun', './assets/food/stickybun.png')
-
-        //const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
-        //load the images for clothing
-        this.load.image('bikini', './assets/clothe/bikini.png')
-        this.load.image('boots', './assets/clothe/boots.png')
-        this.load.image('boots2', './assets/clothe/boots2.png')
-        this.load.image('bowtie', './assets/clothe/bow.png')
-        this.load.image('hat', './assets/clothe/hat.png')
-        this.load.image('jacket', './assets/clothe/jacket.png')
-        this.load.image('outfit1', './assets/clothe/outfit1.png')
-        this.load.image('outfit2', './assets/clothe/outfit2.png')
-        this.load.image('outfit3', './assets/clothe/outfit3.png')
-        this.load.image('shoes', './assets/clothe/shoes.png')
-        this.load.image('shoes2', './assets/clothe/shoes2.png')
-        this.load.image('witchhat', './assets/clothe/witch_hat.png')
-        
-        //load the images for playing
-        this.load.image('bishop', './assets/play/chessbishop.png')
-        this.load.image('castle', './assets/play/chesscastle.png')
-        this.load.image('horse', './assets/play/chesshorse.png')
-        this.load.image('king', './assets/play/chessking.png')
-        this.load.image('pawn', './assets/play/chesspawn.png')
-        this.load.image('queen', './assets/play/chessqueen.png')
-        this.load.image('console1', './assets/play/game_console1.png')
-        this.load.image('console2', './assets/play/game_console2.png')
-        this.load.image('console3', './assets/play/game_console3.png')
-        this.load.image('duckie', './assets/play/rubber_duck.png')
-        this.load.image('octopus', './assets/play/rubber_ducktopus.png')
-        this.load.image('toy2', './assets/play/toy.png')
-        //const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy"];
-        //load the images for bathing
-        this.load.image('lotion', './assets/bathe/body_lotion.png')
-        this.load.image('brush', './assets/bathe/cleaning_brush.png')
-        this.load.image('gloves', './assets/bathe/cleaning_gloves.png')
-        this.load.image('detergent', './assets/bathe/detergent.png')
-        this.load.image('sanitizer', './assets/bathe/hand_sanitiser.png')
-        this.load.image('brush2', './assets/bathe/scrub_brush.png')
-        this.load.image('shampoo', './assets/bathe/shampoo.png')
-        this.load.image('soapbox', './assets/bathe/soap_box.png')
-        this.load.image('soap', './assets/bathe/soap.png')
-        this.load.image('sunscreen', './assets/bathe/sun_cream_tube.png')
-        this.load.image('toothbrush', './assets/bathe/toothbrush.png')
-        this.load.image('toothpaste', './assets/bathe/toothpaste.png')
-        this.load.image('wipey', './assets/bathe/wet_wipe.png')
-        this.load.image('box', './assets/bathe/toothpaste_box.png')
-        //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
+      
 
     }
     // Runs when we first enter this scene
@@ -142,6 +80,32 @@ class MainScene extends Phaser.Scene {
             frameRate: 12,
             repeat: -1
         });
+
+        this.pet.anims.create({
+            key: 'feed',
+            frames: this.anims.generateFrameNumbers('petclimb', {
+                frames: [0, 3]
+            }),
+            frameRate: 8,
+            repeat: -1
+        });
+        this.pet.anims.create({
+            key: 'health+',
+            frames: this.anims.generateFrameNumbers('winningpet', {
+                start:0,
+                end: 7
+            }),
+            frameRate: 8,
+            repeat: -1
+        });
+        this.pet.anims.create({
+            key: 'bathe+',
+            frames: this.anims.generateFrameNumbers('petthrow', {
+                frames: [0, 1]
+            }),
+            frameRate: 3,
+            repeat: -1
+        });   
 
         this.pet.anims.play('run');
 
@@ -217,6 +181,20 @@ class MainScene extends Phaser.Scene {
             'EXPERIENCE : ' + experience,
             
         ]);
+        
+        // setting notifications for the pet being fed, bathed, clothed, and played with
+        var PetFed = this.add.text(320, 140, '', { font: '20px Arial', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+       
+        var PetClothed = this.add.text(320,160, '', { font: '20px Arial', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+       
+        var PetBathed = this.add.text(320, 180, '', { font: '20px Arial', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+        
+        var PetPlay = this.add.text(320, 200, '', { font: '20px Arial', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+        
         //creating a petclass object
         this.petClass= new Pet(this);
         // this.petClass.Pet3Animation.call(this,'idle1');
@@ -227,7 +205,11 @@ class MainScene extends Phaser.Scene {
                     {
                      this.timeLeft --;//decrement the time left
                     //experience.width-=350
-                    
+                    //resetting the values of the notifcations
+                    PetClothed.setText([''])
+                    PetBathed.setText(['']);
+                    PetFed.setText(['']);
+                    PetPlay.setText(['']);
                      //for the health of the pet
                      var val1=Math.floor(Math.random() * 10) // using rand number between 0 and 10
                      health.width-=val1; //decrement the health randomly w/ val
@@ -284,26 +266,23 @@ class MainScene extends Phaser.Scene {
                     this.add.text(260, 650, "PLAY", style);//label it 
                     this.add.text(370, 650, "FEED", style);//label it 
 
+
                     //create list to iterate through with key string names of clothes
                     const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1","outfit2","outfit3","shoes","shoes2","witchhat"];
                     const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
                     var box = this.add.rectangle(60, 740, 100, 100, 0xe7a23c);//becasue it loops it needs box before to cover up the old image
                     var clothing= this.add.image(60,740,clothes[random])//add the key randomly chose value string name
                     clothing.setScale(3);// set the size
-                    
                     clothing.setInteractive({ draggable: true });// it is draggable
                     clothing.on('pointerdown',() =>this.pet.anims.stop('run'));
                     clothing.on('pointerdown',() =>this.pet.anims.play('feed'));
                     clothing.on('pointerup',() =>this.pet.anims.stop('feed'));
                     clothing.on('pointerup',() =>this.pet.anims.play('run'));
-                    clothing.on('dragend', function (pointer, gameObject) // after it is dragged, destroy it and effect stats
-                    {
-                        clothing.destroy()
-                        happiness.width+=50
-                        hunger.width-=10
-                        
-                    });
-            
+                    clothing.on('pointerup',()=> clothing.destroy())
+                    clothing.on('pointerup',()=> happiness.width+=15)
+                    clothing.on('pointerup',()=> hunger.width-=10)
+                    clothing.on('pointerup',()=>PetClothed.setText(['Pet Clothed']))
+                    
 
                     //iterate through the bathing by string name
                     const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
@@ -313,15 +292,13 @@ class MainScene extends Phaser.Scene {
                     bath.setScale(3);//size the image
                     bath.setInteractive({ draggable: true });//it can be dragged
                     bath.on('pointerdown',() =>this.pet.anims.stop('run'));
-                    bath.on('pointerdown',() =>this.pet.anims.play('bath+'));
+                    bath.on('pointerdown',() =>this.pet.anims.play('bathe+'));
                     bath.on('pointerup',() =>this.pet.anims.stop('bathe+'));
                     bath.on('pointerup',() =>this.pet.anims.play('run'));
-                    bath.on('dragend', function (pointer, gameObject) //after dragging is done destroy copy and effect stats
-                    {
-                        bath.destroy()
-                        health.width+=5
-                        happiness.width+=10
-                    });
+                    bath.on('pointerup',()=> bath.destroy())
+                    bath.on('pointerup',()=> health.width+=10)
+                    bath.on('pointerup',()=> happiness.width+=10)
+                    bath.on('pointerup',()=>PetClothed.setText(['Pet Bathed']))
 
                     //iterate through the toys
                     const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy2"];
@@ -331,16 +308,14 @@ class MainScene extends Phaser.Scene {
                     playing.setScale(3);//set the size
                     playing.setInteractive({ draggable: true });//draggable yes
                     //this generates an animation from petclass
-                    playing.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'health+'));
+                    //playing.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'health+'));
                     playing.on('pointerdown',() =>this.pet.anims.stop('run'));
                     playing.on('pointerdown',() =>this.pet.anims.play('health+'));
                     playing.on('pointerup',() =>this.pet.anims.stop('health+'));
                     playing.on('pointerup',() =>this.pet.anims.play('run'));
-                    playing.on('dragend', function (pointer, gameObject) //destroy object after dragging and then affect stats of pet
-                    {
-                        playing.destroy();
-                        happiness.width+=10;
-                    });
+                    playing.on('pointerup',()=> playing.destroy())
+                    playing.on('pointerup',()=> happiness.width+=10)
+                    playing.on('pointerup',()=>PetClothed.setText(['Pet Playing']))
 
                     //lastly iterat through the food
                     const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
@@ -351,22 +326,19 @@ class MainScene extends Phaser.Scene {
                     feeding.setInteractive({ draggable: true });//it can be dragged
                     //feeding.on('pointerdown',() =>this.signal=1);
                     //this generates an animation from petclass
-                    feeding.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'feed'));
-                    feeding.on('pointerdown',() =>this.pet.anims.stop('petrun'));
+                    //feeding.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'feed'));
+                    feeding.on('pointerdown',() =>this.pet.anims.stop('run'));
                     feeding.on('pointerdown',() =>this.pet.anims.play('feed'));
                     //feeding.on('pointerup',() =>this.signal=0);
                     feeding.on('pointerup',() =>this.pet.anims.stop('feed'));
-                    feeding.on('pointerup',() =>this.pet.anims.play('petrun'));
+                    feeding.on('pointerup',() =>this.pet.anims.play('run'));
+                    feeding.on('pointerup',()=> feeding.destroy())
+                    feeding.on('pointerup',()=> health.width+=10)
+                    feeding.on('pointerup',()=> happiness.width+=10)
+                    feeding.on('pointerup',()=> hunger.width+=10)
+                    feeding.on('pointerup',()=>PetClothed.setText(['Pet Fed']))
                     //im trying to either stop the animation or destroy the previous one
                     feeding.on('pointerup',() =>this.petClass.destroy());
-                    feeding.on('dragend', function (pointer, gameObject) // once done dragging: destroy and affect the stats of the pet
-                    {
-                        feeding.destroy()
-                        health.width+=10
-                        happiness.width+=10
-                        hunger.width+=10
-                        
-                    });
                    
                     if(value>=10)//if the value hits a certain level, then the battle icon pops up
                     {

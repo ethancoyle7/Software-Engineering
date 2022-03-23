@@ -202,8 +202,73 @@ class BootScene extends Phaser.Scene {
         this.load.image('button','./assets/button.png')
         // this.load.image("hungermeter","assets/hungrymeter.png")
         
-        //load the files to be used in the Fight scene
+          //load the images for the food
+        // const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
+        this.load.image('pancake', './assets/food/actualpancake.png')
+        this.load.image('chicken', './assets/food/chicken.png')
+        this.load.image('cupcake', './assets/food/cupcake.png')
+        this.load.image('donut', './assets/food/donut.png')
+        this.load.image('drink', './assets/food/drink.png')
+        this.load.image('drink2', './assets/food/drink2.png')
+        this.load.image('eggs', './assets/food/egg.png')
+        this.load.image('grilledcheese', './assets/food/grilledcheese.png')
+        this.load.image('orange', './assets/food/orange.png')
+        this.load.image('OJ', './assets/food/orangejuice.png')
+        this.load.image('pancake2', './assets/food/pancake.png')
+        this.load.image('sandwich1', './assets/food/sandwich.png')
+        this.load.image('sandwich2', './assets/food/sandwich2.png')
+        this.load.image('soup', './assets/food/soup.png')
+        this.load.image('bun', './assets/food/stickybun.png')
+
+        //const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange","grilledcheese","eggs","drink2","drink","donut","cupcake","chicken", "pancake"];
+        //load the images for clothing
+        this.load.image('bikini', './assets/clothe/bikini.png')
+        this.load.image('boots', './assets/clothe/boots.png')
+        this.load.image('boots2', './assets/clothe/boots2.png')
+        this.load.image('bowtie', './assets/clothe/bow.png')
+        this.load.image('hat', './assets/clothe/hat.png')
+        this.load.image('jacket', './assets/clothe/jacket.png')
+        this.load.image('outfit1', './assets/clothe/outfit1.png')
+        this.load.image('outfit2', './assets/clothe/outfit2.png')
+        this.load.image('outfit3', './assets/clothe/outfit3.png')
+        this.load.image('shoes', './assets/clothe/shoes.png')
+        this.load.image('shoes2', './assets/clothe/shoes2.png')
+        this.load.image('witchhat', './assets/clothe/witch_hat.png')
         
+        //load the images for playing
+        this.load.image('bishop', './assets/play/chessbishop.png')
+        this.load.image('castle', './assets/play/chesscastle.png')
+        this.load.image('horse', './assets/play/chesshorse.png')
+        this.load.image('king', './assets/play/chessking.png')
+        this.load.image('pawn', './assets/play/chesspawn.png')
+        this.load.image('queen', './assets/play/chessqueen.png')
+        this.load.image('console1', './assets/play/game_console1.png')
+        this.load.image('console2', './assets/play/game_console2.png')
+        this.load.image('console3', './assets/play/game_console3.png')
+        this.load.image('duckie', './assets/play/rubber_duck.png')
+        this.load.image('octopus', './assets/play/rubber_ducktopus.png')
+        this.load.image('toy2', './assets/play/toy.png')
+        //const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1","console2","console3","duckie","octopus","toy"];
+        //load the images for bathing
+        this.load.image('lotion', './assets/bathe/body_lotion.png')
+        this.load.image('brush', './assets/bathe/cleaning_brush.png')
+        this.load.image('gloves', './assets/bathe/cleaning_gloves.png')
+        this.load.image('detergent', './assets/bathe/detergent.png')
+        this.load.image('sanitizer', './assets/bathe/hand_sanitiser.png')
+        this.load.image('brush2', './assets/bathe/scrub_brush.png')
+        this.load.image('shampoo', './assets/bathe/shampoo.png')
+        this.load.image('soapbox', './assets/bathe/soap_box.png')
+        this.load.image('soap', './assets/bathe/soap.png')
+        this.load.image('sunscreen', './assets/bathe/sun_cream_tube.png')
+        this.load.image('toothbrush', './assets/bathe/toothbrush.png')
+        this.load.image('toothpaste', './assets/bathe/toothpaste.png')
+        this.load.image('wipey', './assets/bathe/wet_wipe.png')
+        this.load.image('box', './assets/bathe/toothpaste_box.png')
+        //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
+        
+
+        
+        //load the files to be used in the Fight scene
         this.load.audio('Fight', './assets/BossFight.mp3');
         this.load.audio('KO', './assets/fatality.mp3');
         this.load.audio('YOUWIN', './assets/winsound.mp3');
