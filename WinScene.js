@@ -1,10 +1,10 @@
 class WinScene extends Phaser.Scene 
 {
-    constructor() 
-    {
-        super('WinScene');
-        this.sprites = [];
-        
+    constructor() //WE SHOULD ADD SOME SORT OF BUFFER OR SOMETHING TO DISABLE THE BUTTONS
+    {             //FOR A FEW SECONDS UNTIL THE USER HAS REGISTERED THAT THE FIGHT IS OVER
+        super('WinScene'); //MAYBE WAIT TO CREATE THE BUTTONS FOR A FEW SECONDS?
+        this.sprites = []; //I JUST ACCIDENTALLY RESTARTED THE FIGHT BC I WAS SPAMMING THE DB PUNCH BUTTON
+                            //AND DIDN'T NOTICE IT WAS ON THIS SCENE YET
     }
     preload() 
     {
