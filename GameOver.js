@@ -6,6 +6,8 @@ class GameOver extends Phaser.Scene
         this.sprites = [];
         
     }
+
+    
     preload() 
     {
         this.load.image('Over', './assets/GameOverPicture.png');
@@ -19,7 +21,6 @@ class GameOver extends Phaser.Scene
 
     create() 
     {
-
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('KO');
