@@ -1,7 +1,7 @@
 import phaser from 'phaser/src/phaser.js';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import firebaseConfig from './firebaseConfig.js';
+import firebaseConfig from '../firebaseConfig.js';
 
 class Demo extends Phaser.Scene {
     constructor() {
