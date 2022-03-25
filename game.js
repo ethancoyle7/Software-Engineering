@@ -13,6 +13,7 @@ const config = {
         min: 5
     },
     scene: [
+        NewScene,
         BootScene,
         TitleScene, //list of scenes in order they're going to appear in
         MainScene,
@@ -21,9 +22,6 @@ const config = {
         WinScene,
         MainDead,
         Runawaypet
-        
-        
-
     ],
     physics: {
         default: 'arcade',
