@@ -1,3 +1,4 @@
+// import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 /** @type {Phaser.Types.Core.GameConfig} */
 //this file initializes game preferences and settings
 const config = {
@@ -31,7 +32,16 @@ const config = {
            debug: true
         }
     },
-    pixelArt: true //makes pixel art look better
+    pixelArt: true, //makes pixel art look better
+    // plugins: {
+    //     scene: [{
+    //         key: 'rexUI',
+    //         plugin: UIPlugin,
+    //         mapping: 'rexUI'
+    //     },
+    //     // ...
+    //     ]
+    // }
 }
 new Phaser.Game(config);
 
