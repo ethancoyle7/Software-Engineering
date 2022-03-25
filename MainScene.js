@@ -46,7 +46,7 @@ class MainScene extends Phaser.Scene {
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         const musicloop = Math.floor(Math.random() * backgroundmusic.length);//choose random string name
                     //var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
-        this.sound.play(backgroundmusic[musicloop], { volume: 0.1 })//insert image with randomly chosen key
+        this.sound.play(backgroundmusic[musicloop], { volume: 3 })//insert image with randomly chosen key
     
         console.log(backgroundmusic[musicloop])//see what sound playing
     
