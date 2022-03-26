@@ -396,7 +396,7 @@ class MainScene extends Phaser.Scene {
             loop: true
         });
         //calling the function Pet bar
-        this.petAnimations();
+        //this.petAnimations();
     }
     createItems() {
 
