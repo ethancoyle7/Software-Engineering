@@ -17,7 +17,7 @@ preload()
 {  // this is the preload function, it loads all the assets for the scene
     this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
     this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
-
+    
 }
 
 create()
@@ -42,6 +42,7 @@ create()
 //     this.sound.stopAll();
 //     this.scene.start('MainScene',{type:this.eggNum});
 //});
+   
     let redegg = this.add.sprite(75, 600, "redegg");
     redegg.setScale(2);
     redegg.setInteractive();
