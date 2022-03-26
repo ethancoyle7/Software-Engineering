@@ -23,6 +23,7 @@ preload()
 create()
 { 
 
+    this.sound.stopAll();// stop all previous sounds
 //this is the create function
 //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
     let bg = this.add.image(225,400, "bgname");
