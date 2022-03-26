@@ -26,7 +26,7 @@ class FightScene extends Phaser.Scene
         //for timed event
         
        
-        
+        this.sound.stopAll();// stop all previous sounds
         //start the boss fight music
         this.sound.play('FightSound2', { volume: 1});
         this.sound.play('FightAnnounce');

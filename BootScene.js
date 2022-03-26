@@ -270,6 +270,7 @@ class BootScene extends Phaser.Scene {
 
         //load the files to be used in the Fight scene
         this.load.audio('Fight', './assets/BossFight.mp3');
+        this.load.audio('MUSIC', './assets/PetRunAwayMusic.mp3');
         this.load.audio('KO', './assets/fatality.mp3');
         this.load.audio('YOUWIN', './assets/winsound.mp3');
         this.load.audio('EnemyHit','./assets/EnemyHit.mp3')

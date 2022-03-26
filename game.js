@@ -1,4 +1,4 @@
-/** @type {Phaser.Types.Core.GameConfig} */
+// /** @type {Phaser.Types.Core.GameConfig} */
 //this file initializes game preferences and settings
 const config = {
     parent: 'game',
@@ -13,15 +13,15 @@ const config = {
         min: 5
     },
     scene: [
+        NewScene,
         BootScene,
         TitleScene, //list of scenes in order they're going to appear in
         MainScene,
         FightScene,
         GameOver,
         WinScene,
-        MainDead
-        
-
+        MainDead,
+        Runawaypet
     ],
     physics: {
         default: 'arcade',
@@ -29,7 +29,7 @@ const config = {
            debug: true
         }
     },
-    pixelArt: true //makes pixel art look better
+    pixelArt: true, //makes pixel art look better
 }
 new Phaser.Game(config);
 

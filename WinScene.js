@@ -11,6 +11,7 @@ class WinScene extends Phaser.Scene {
         this.load.image('MainSceneReturn', './assets/mainreturn.png');
         this.load.image('RetryFight', './assets/fightretry.png');
         this.load.image('particle', './assets/yellow.png');
+        this.load.audio('WINNER', './assets/WinMusic.mp3');
     }
 
     create() {
@@ -18,6 +19,7 @@ class WinScene extends Phaser.Scene {
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('YOUWIN');
+        this.sound.play('WINNER',{ volume: 0.1});
 
         //for the background show the yellow image at random intervals
         for (let i = 0; i < 300; i++) {
