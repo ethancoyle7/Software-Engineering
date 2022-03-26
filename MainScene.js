@@ -14,12 +14,20 @@ class MainScene extends Phaser.Scene {
         this.health=null;
         this.width1=200;
         this.hungerw=200;
+        this.type='';
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         this.percent = 0;
         this.background = null;
         // this.item = null;
 
+    }
+    init(data){
+        this.type=data.type;
+        if (this.type == "") {
+            // No username was provided
+            this.type = "0";
+        }
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -37,9 +45,7 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() 
     {
-
         var value=0;
-        
         //create container to randomize music everytime load up the main scene
         const backgroundmusic=['1','2','3','4','5','6']
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
@@ -63,10 +69,14 @@ class MainScene extends Phaser.Scene {
         //adding the sprite and then setting the scale on the screen
         this.pet = this.add.sprite(200, 500, "pet")
         this.pet.setScale(6);
+        let choose=['pet','pet2run','pet3'];
+        let choose2=['petclimb','pet2climb','pet3climb'];
+        let choose3=['winningpet','pet2winningpet','pet3winningpet'];
+        let choose4=['petthrow','pet2throw','pet3throw'];
         //creating pet animation
         this.pet.anims.create({
             key: 'run',
-            frames: this.anims.generateFrameNumbers('pet', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
                 end: 5
             }),
@@ -77,7 +87,7 @@ class MainScene extends Phaser.Scene {
         //creat death animation
         this.pet.anims.create({
             key: 'dead',
-            frames: this.anims.generateFrameNumbers('pet', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 11,
                 end: 20
             }),
@@ -87,7 +97,7 @@ class MainScene extends Phaser.Scene {
 
         this.pet.anims.create({
             key: 'feed',
-            frames: this.anims.generateFrameNumbers('petclimb', {
+            frames: this.anims.generateFrameNumbers(choose2[this.type], {
                 frames: [0, 3]
             }),
             frameRate: 8,
@@ -95,7 +105,7 @@ class MainScene extends Phaser.Scene {
         });
         this.pet.anims.create({
             key: 'health+',
-            frames: this.anims.generateFrameNumbers('winningpet', {
+            frames: this.anims.generateFrameNumbers(choose3[this.type], {
                 start:0,
                 end: 7
             }),
@@ -104,7 +114,7 @@ class MainScene extends Phaser.Scene {
         });
         this.pet.anims.create({
             key: 'bathe+',
-            frames: this.anims.generateFrameNumbers('petthrow', {
+            frames: this.anims.generateFrameNumbers(choose4[this.type], {
                 frames: [0, 1]
             }),
             frameRate: 3,
@@ -200,7 +210,8 @@ class MainScene extends Phaser.Scene {
         //set the text indicator for the level icon text value
         
         //creating a petclass object
-        this.petClass= new Pet(this);
+       // this.petClass= new Pet(this);
+        //this.petClass.Pet1Animation(this,'idle1');
         //add box to cover up items from overlapping
         var InteractionIcons = this.add.rectangle(180, 720, 550, 160, 0xe7a23c);
         InteractionIcons.setStrokeStyle(5, 0x1e0a08);
@@ -282,6 +293,8 @@ class MainScene extends Phaser.Scene {
                     clothing.on('pointerdown',() =>this.pet.anims.stop('run'));
                     clothing.on('pointerdown',() =>this.pet.anims.play('feed'));
                     clothing.on('pointerup',() =>this.pet.anims.stop('feed'));
+                    //clothing.on('pointerdown',() =>this.petClass.Pet1Animation.call('feed'));
+                    //clothing.on('pointerdown',() =>this.Pet1Animation('feed'));
                     clothing.on('pointerup',() =>this.pet.anims.play('run'));
                     clothing.on('pointerup',()=> clothing.destroy())
                     clothing.on('pointerup',()=> happiness.width+=15)
@@ -319,7 +332,7 @@ class MainScene extends Phaser.Scene {
                     playing.on('pointerdown',() =>this.pet.anims.play('health+'));
                     playing.on('pointerup',() =>this.pet.anims.stop('health+'));
                     playing.on('pointerup',() =>this.pet.anims.play('run'));
-                    playing.on('pointerup',()=> playing.destroy())
+                    playing.on('pointerup',()=> playing.destroy());
                     playing.on('pointerup',()=> happiness.width+=10)
                     playing.on('pointerup',()=>PetClothed.setText(['Pet Playing']))
                     playing.on('pointerup',()=>this.sound.play('happysound')) // play interaction sound
@@ -370,7 +383,7 @@ class MainScene extends Phaser.Scene {
                     loop: true
                 });           
                 //calling the function Pet bar
-                    this.petAnimations();
+                   // this.petAnimations();
     }
     createItems() {
 
@@ -459,7 +472,8 @@ class MainScene extends Phaser.Scene {
 
         
     }
-    petAnimations(){
+    //petAnimations(){
+       
         //calling petclass
         //this.petClass= new Pet(this);
         //this.petClass.Pet3Animation.call(this,'idle1');
@@ -483,7 +497,7 @@ class MainScene extends Phaser.Scene {
         // this.items[3].on('pointerup',()=>this.hungerw-=20);
         
         //}
-    }
+    
     // Runs every frame
     update() {
     //console.log(this.hungerw);

@@ -8,6 +8,7 @@ class Pet{
         this.scene =scene;
         this.choice = '';
         this.lvl=0;
+        this.pett=null;
         
         
     }
@@ -19,7 +20,28 @@ class Pet{
         //type= 1 / 2/ 3
         //Maturity= size so..... setScale(Maturity)
     }
-
+    petCollider(){
+        this.pett = this.add.sprite(200,250,"pet2run");
+        
+        this.pett.setScale(5);
+        //make the pet interactive and movable
+        this.pett.setInteractive({ draggable: true });
+        // to know the item is selected change the color of the item
+        this.input.on('dragstart', function (pointer, gameObject) {
+            gameObject.setTint(0xff0000);
+        });
+        // Create the idle animation
+        this.pett.anims.create({
+            key: 'idle1',
+            frames: this.anims.generateFrameNumbers('pet', {
+                start:0,
+                end:5
+            }),
+            frameRate: 12,
+            repeat: 1
+        });
+        this.pett.anims.play('idle1');
+    }
 
     // some pet animations for actions
     Pet1Animation(choice){
@@ -39,7 +61,7 @@ class Pet{
                     end:5
                 }),
                 frameRate: 12,
-                repeat: -1
+                repeat: 1
             });
             this.pet1.anims.create({
                 key: 'feed',
@@ -47,7 +69,7 @@ class Pet{
                     frames: [0, 3]
                 }),
                 frameRate: 8,
-                repeat: -1
+                repeat: 1
             });
             this.pet1.anims.create({
                 key: 'bathe+',
@@ -66,13 +88,30 @@ class Pet{
                 frameRate: 8,
                 repeat: -1
             });        
-            
-            this.pet1.anims.play(choice);
+        //this.pet1.on('animationstart-feed',()=>{
+          //  this.pet1.anims.stop('idle1');
+          this.pet1.anims.play(choice);  
+        //});
+        // At the end of action
+        this.pet1.on('animationcomplete', () => {
+            console.log("Hello ra");
+            this.pet1.anims.play('idle1');
+            //this.pet1.destroy();
+            });
+        this.pet1.on('animationstart',()=>{
+            this.pet1.destroy();
+        })
+            //this.Pet1Stop();
+        // Play idle by default
+        
+        
             
     }
-    Pet1Stop(choice){
-        this.pet1.anims.stop(choice);
-        this.pet1.destroy();
+
+    Pet1Stop(){
+        //this.pet1.anims.play(choice);
+
+        
     }
     Pet2Animation(choice){
         let pet2 = this.add.sprite(200,250,"pet2run");
