@@ -8,6 +8,8 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
     constructor(){
         super("TitleScene");
         this.bgmusic;
+        this.type='';
+        //this.eggNum='';
     }
 
     preload(){  // this is the preload function, it loads all the assets for the scene
@@ -16,8 +18,9 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
         
     }
 
-    create()
-    { //this is the create function
+    create(){ 
+
+        //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
         let bg = this.add.image(225,400, "bgname");
         bg.setScale(.7); //changes the scale of the background image
@@ -26,22 +29,29 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
             loop: true
         });
 
-        let text = this.add.text(225, 400, "CHOOSE AN EGG!!", { //puts text on screen at that location
+        let text = this.add.text(225, 400, "Choose an egg", { //puts text on screen at that location
             fontSize: '36px', //there's a lot of text properties that can be edited here
             fontFamily: 'Minecraft'
         });
-        text.setOrigin(0.5, 0.5); //sets like the alignment of the text
-        //text.setInteractive(); //sets whether or not the text can be clicked or not
-       
-        //load up the red egg for the user to start with  
-        this.redegg = this.add.sprite(100, 600, "redegg")
-          //for the redegg
-          this.redegg.setInteractive(); 
-          this.redegg.on('pointerdown', ()=>{ // when mouse event, start main scene
-              this.sound.stopAll();
-              this.scene.start('MainScene');
-          });
-          //for the white egg
+         text.setOrigin(0.5, 0.5); //sets like the alignment of the text
+        // text.setInteractive(); //sets whether or not the text can be clicked or not
+        // this.input.on('pointerdown', ()=>{ // when mouse event, start main scene
+        //     this.sound.stopAll();
+        //     this.scene.start('MainScene',{type:this.eggNum});
+        //});
+        let redegg = this.add.sprite(100, 600, "redegg");
+        redegg.setScale(2);
+        redegg.setInteractive();
+        redegg.on('pointerdown',()=>  {      
+        this.type="0";
+        });
+        redegg.on('pointerup',()=>{
+        this.sound.stopAll();
+        this.scene.start('MainScene',{
+            type: this.type
+        })}
+
+        );
         //creating pet1 egg animation
         this.redegg.anims.create({
             key: 'idle',
@@ -54,15 +64,19 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
         });
         this.redegg.anims.play('idle');
 
-        //loading up the white egg icon for the user to choose which egg they would liek to start with
-        this.whiteegg = this.add.sprite(300, 600, "whiteegg")
-         
-        this.whiteegg.setInteractive(); 
-        this.whiteegg.on('pointerdown', ()=>{ // when mouse event, start main scene
-               this.sound.stopAll();
-               this.scene.start('MainScene3');
-           });
-         
+        let whiteegg = this.add.sprite(300, 600, "whiteegg");
+        whiteegg.setScale(2);
+        whiteegg.setInteractive();
+        whiteegg.on('pointerdown',()=>  {      
+            this.type="1";
+            });
+        whiteegg.on('pointerup',()=>{
+            this.sound.stopAll();
+            this.scene.start('MainScene3',{
+                type: this.type
+            })}
+    
+            );
         //creating pet2 egganimation
        
         this.whiteegg.anims.create({
@@ -76,14 +90,20 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
         });
         this.whiteegg.anims.play('idle');
         
-        this.blueegg = this.add.sprite(200, 600, "blueegg")
-          //for the blue egg
-        this.blueegg.setInteractive(); 
-        this.blueegg.on('pointerdown', ()=>{ // when mouse event, start main scene
-              this.sound.stopAll();
-              this.scene.start('MainScene2');
-          });
-       
+        let blueegg = this.add.sprite(200, 600, "blueegg");
+        blueegg.setScale(2);
+        blueegg.setInteractive();
+        blueegg.on('pointerdown',()=>  {      
+            this.type="2";
+            });
+        blueegg.on('pointerup',()=>{
+            this.sound.stopAll();
+            this.scene.start('MainScene2',{
+                type: this.type
+            })}
+    
+            );        
+        //blueegg.on('pointerdown',()=>this.eggNum=='2');
         //creating pet3 egg animation
         this.blueegg.anims.create({
             key: 'idle',
@@ -108,4 +128,9 @@ class TitleScene extends Phaser.Scene{ //the scene is a class, so we will be usi
 
      
     }
+    // update(){
+    //     redegg.on('pointerdown',()=>  {      
+    //         this.type="0";
+    //         });
+    // }
 }

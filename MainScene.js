@@ -9,12 +9,13 @@ class MainScene extends Phaser.Scene {
         this.FOODCOORDS = [275, 750];
         this.TOYCOORDS = [375, 750];
         this.pet = null;
-        this.petClass = null;
-        this.hunger = null;
-        this.happiness = null;
-        this.health = null;
-        this.width1 = 200;
-        this.hungerw = 200;
+        this.petClass =null;
+        this.hunger=null;
+        this.happiness=null;
+        this.health=null;
+        this.width1=200;
+        this.hungerw=200;
+        this.type='';
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         this.percent = 0;
@@ -26,6 +27,13 @@ class MainScene extends Phaser.Scene {
         this.database = firebase.database();
         // this.scoreTable = this.database.collection('Scores')
         
+    }
+    init(data){
+        this.type=data.type;
+        if (this.type == "") {
+            // No username was provided
+            this.type = "0";
+        }
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -69,10 +77,14 @@ class MainScene extends Phaser.Scene {
         //adding the sprite and then setting the scale on the screen
         this.pet = this.add.sprite(200, 500, "pet")
         this.pet.setScale(6);
+        let choose=['pet','pet2run','pet3'];
+        let choose2=['petclimb','pet2climb','pet3climb'];
+        let choose3=['winningpet','pet2winningpet','pet3winningpet'];
+        let choose4=['petthrow','pet2throw','pet3throw'];
         //creating pet animation
         this.pet.anims.create({
             key: 'run',
-            frames: this.anims.generateFrameNumbers('pet', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
                 end: 5
             }),
@@ -83,7 +95,7 @@ class MainScene extends Phaser.Scene {
         //creat death animation
         this.pet.anims.create({
             key: 'dead',
-            frames: this.anims.generateFrameNumbers('pet', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 11,
                 end: 20
             }),
@@ -93,7 +105,7 @@ class MainScene extends Phaser.Scene {
 
         this.pet.anims.create({
             key: 'feed',
-            frames: this.anims.generateFrameNumbers('petclimb', {
+            frames: this.anims.generateFrameNumbers(choose2[this.type], {
                 frames: [0, 3]
             }),
             frameRate: 8,
@@ -101,8 +113,8 @@ class MainScene extends Phaser.Scene {
         });
         this.pet.anims.create({
             key: 'health+',
-            frames: this.anims.generateFrameNumbers('winningpet', {
-                start: 0,
+            frames: this.anims.generateFrameNumbers(choose3[this.type], {
+                start:0,
                 end: 7
             }),
             frameRate: 8,
@@ -110,7 +122,7 @@ class MainScene extends Phaser.Scene {
         });
         this.pet.anims.create({
             key: 'bathe+',
-            frames: this.anims.generateFrameNumbers('petthrow', {
+            frames: this.anims.generateFrameNumbers(choose4[this.type], {
                 frames: [0, 1]
             }),
             frameRate: 3,
@@ -207,7 +219,8 @@ class MainScene extends Phaser.Scene {
         //set the text indicator for the level icon text value
 
         //creating a petclass object
-        this.petClass = new Pet(this);
+       // this.petClass= new Pet(this);
+        //this.petClass.Pet1Animation(this,'idle1');
         //add box to cover up items from overlapping
 
         // this.petClass.Pet3Animation.call(this,'idle1');
@@ -467,7 +480,8 @@ class MainScene extends Phaser.Scene {
 
 
     }
-    petAnimations() {
+    //petAnimations(){
+       
         //calling petclass
         //this.petClass= new Pet(this);
         //this.petClass.Pet3Animation.call(this,'idle1');
@@ -491,7 +505,7 @@ class MainScene extends Phaser.Scene {
         // this.items[3].on('pointerup',()=>this.hungerw-=20);
 
         //}
-    }
+    
     // Runs every frame
     update() {
         //console.log(this.hungerw);
