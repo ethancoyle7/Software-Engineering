@@ -10,11 +10,6 @@ class BootScene extends Phaser.Scene {
         this.petImage=null;
         this.imageNum=0;
         this.name='';
-        // this.firebaseApp = firebase.initializeApp(firebaseConfig);
-        // firebase.analytics();
-        // // this.auth = firebase.auth();
-        // this.database = firebase.database();
-
     }
 
 
