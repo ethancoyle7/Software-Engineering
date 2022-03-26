@@ -5,6 +5,15 @@ class WinScene extends Phaser.Scene {
         this.sprites = []; 
 
     }
+    init(data)
+    {
+        this.type=data.type;
+        if (this.type == "") 
+        {
+            // No username was provided
+            this.type = "0";
+        }
+    }
     preload() {
         this.load.image('win', './assets/winner.png');
         this.load.image('Exit', './assets/exitbutton.png');
@@ -44,16 +53,17 @@ class WinScene extends Phaser.Scene {
 
         this.pet = this.add.sprite(230, 350, "pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
+        let choose3=['winningpet','pet2winningpet','pet3winningpet'];
         this.pet.anims.create({
-            key: 'win',
-            frames: this.anims.generateFrameNumbers('winningpet', {
-                start: 0,
+            key: 'winner',
+            frames: this.anims.generateFrameNumbers(choose3[this.type], {
+                start:0,
                 end: 7
             }),
-            frameRate: 5,
+            frameRate: 8,
             repeat: -1
         });
-        this.pet.anims.play("win")
+        this.pet.anims.play("winner")
         //add exit button
         this.gameTimer = this.time.addEvent({
             delay: 750,
@@ -77,7 +87,7 @@ class WinScene extends Phaser.Scene {
                 var BackToMain = this.add.image(230, 600, 'MainSceneReturn')
                 BackToMain.setInteractive();
                 //once clicked start the main scene
-                BackToMain.on('pointerdown', () => this.scene.start("MainScene"));
+                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type }));
                 BackToMain.on('pointerover', () => this.sound.play('MainReturn'));
                 this.tweens.add({
 
@@ -91,7 +101,7 @@ class WinScene extends Phaser.Scene {
                 //add exit button
                 var Retry = this.add.image(230, 700, 'RetryFight')
                 Retry.setInteractive();
-                Retry.on('pointerdown', () => this.scene.start("FightScene"));
+                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type }));
                 Retry.on('pointerover', () => this.sound.play('Rematch'));
                 this.tweens.add({
 

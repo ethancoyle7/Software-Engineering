@@ -90,7 +90,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });  
-        
+        //spritesheet for the dead pet 1
+        this.load.spritesheet('pet1dead', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Death_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        }); 
         //stuff for the enemy
         this.load.spritesheet('pet2', './assets/enemysprite.png', { //this is for a spritesheet
             frameWidth: 500,
@@ -148,7 +152,13 @@ class BootScene extends Phaser.Scene {
         this.load.spritesheet('pet2throw', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Throw_4.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32
-        });        
+        }); 
+        //sprite sheet for the dead pet
+        this.load.spritesheet('pet2dead', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Death_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        //assets\final spritesheets\2 Owlet_Monster\Owlet_Monster_Death_8.png        
         //Pet3--------------------------------------------------------------
         this.load.spritesheet('pet3', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Run_6.png', { //this is for a spritesheet
             frameWidth: 32,
@@ -186,6 +196,11 @@ class BootScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });   
+        //sprite sheet for the pet 3 dead pet
+        this.load.spritesheet('pet3dead', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Death_8.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
         this.load.spritesheet('redegg', './assets/redegg.png', { //this is for a spritesheet
             frameWidth: 65,
             frameHeight: 65

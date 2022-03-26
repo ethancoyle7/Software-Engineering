@@ -6,7 +6,15 @@ class GameOver extends Phaser.Scene
         this.sprites = [];
         
     }
-
+    init(data)
+    {
+        this.type=data.type;
+        if (this.type == "") 
+        {
+            // No username was provided
+            this.type = "0";
+        }
+    }
     
     preload() 
     {
@@ -48,10 +56,11 @@ class GameOver extends Phaser.Scene
 
         this.pet =this.add.sprite(230,350,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
+        let choose5=['pet1dead','pet2dead','pet3dead'];
         this.pet.anims.create({
             key: 'dead',
-            frames: this.anims.generateFrameNumbers('deadpet', {
-                start: 0,
+            frames: this.anims.generateFrameNumbers(choose5[this.type], {
+                start:0,
                 end: 7
             }),
             frameRate: 5,

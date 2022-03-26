@@ -53,19 +53,27 @@ class MainDead extends Phaser.Scene
 
         this.pet =this.add.sprite(230,350,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
-        let choose=['pet','pet2run','pet3'];
-        let choose2=['petclimb','pet2climb','pet3climb'];
-        let choose3=['winningpet','pet2winningpet','pet3winningpet'];
-        let choose4=['petthrow','pet2throw','pet3throw'];
+        let choose5=['pet1dead','pet2dead','pet3dead'];
+
+        //create the callable dead pet scene
         this.pet.anims.create({
             key: 'dead',
-            frames: this.anims.generateFrameNumbers('deadpet', {
-                start: 0,
+            frames: this.anims.generateFrameNumbers(choose5[this.type], {
+                start:0,
                 end: 7
             }),
             frameRate: 5,
             repeat: -1
         });
+        // this.pet.anims.create({
+        //     key: 'dead',
+        //     frames: this.anims.generateFrameNumbers('deadpet', {
+        //         start: 0,
+        //         end: 7
+        //     }),
+        //     frameRate: 5,
+        //     repeat: -1
+        // });
         this.pet.anims.play("dead")
         //add exit button
         var exit=this.add.image(230,500,'Exit')

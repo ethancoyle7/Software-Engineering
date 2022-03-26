@@ -81,6 +81,7 @@ class MainScene extends Phaser.Scene {
         let choose2=['petclimb','pet2climb','pet3climb'];
         let choose3=['winningpet','pet2winningpet','pet3winningpet'];
         let choose4=['petthrow','pet2throw','pet3throw'];
+
         //creating pet animation
         this.pet.anims.create({
             key: 'run',
@@ -229,7 +230,7 @@ class MainScene extends Phaser.Scene {
                 var InteractionIcons = this.add.rectangle(225, 720, 440, 150, 0xe7a23c);
                 InteractionIcons.setStrokeStyle(5, 0x1e0a08);
                 //for the health of the pet
-                var val1 = Math.floor(Math.random() * 5) // using rand number between 0 and 10
+                var val1 = Math.floor(Math.random() * 20) // using rand number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
 
                 var val2 = Math.floor(Math.random() * 5) // using rand number between 0 and 10

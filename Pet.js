@@ -87,7 +87,8 @@ class Pet{
                 }),
                 frameRate: 8,
                 repeat: -1
-            });        
+            });
+                   
         //this.pet1.on('animationstart-feed',()=>{
           //  this.pet1.anims.stop('idle1');
           this.pet1.anims.play(choice);  
