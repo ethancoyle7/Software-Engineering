@@ -6,6 +6,15 @@ class MainDead extends Phaser.Scene
         this.sprites = [];
         
     }
+    init(data)
+    {
+        this.type=data.type;
+        if (this.type == "") 
+        {
+            // No username was provided
+            this.type = "0";
+        }
+    }
     preload() 
     {
         this.load.image('Over', './assets/GameOverPicture.png');
@@ -44,6 +53,10 @@ class MainDead extends Phaser.Scene
 
         this.pet =this.add.sprite(230,350,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
+        let choose=['pet','pet2run','pet3'];
+        let choose2=['petclimb','pet2climb','pet3climb'];
+        let choose3=['winningpet','pet2winningpet','pet3winningpet'];
+        let choose4=['petthrow','pet2throw','pet3throw'];
         this.pet.anims.create({
             key: 'dead',
             frames: this.anims.generateFrameNumbers('deadpet', {

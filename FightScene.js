@@ -51,16 +51,16 @@ class FightScene extends Phaser.Scene
         this.pet =this.add.sprite(70,635,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
         this.pet.setInteractive();
-        // let choose=['pet','pet2run','pet3'];
-        // let choose2=['petclimb','pet2climb','pet3climb'];
-        // let choose3=['winningpet','pet2winningpet','pet3winningpet'];
-        // let choose4=['petthrow','pet2throw','pet3throw'];
+        let choose=['pet','pet2run','pet3'];
+        let choose2=['petclimb','pet2climb','pet3climb'];
+        let choose3=['winningpet','pet2winningpet','pet3winningpet'];
+        let choose4=['petthrow','pet2throw','pet3throw'];
         //create idle animation for the pet whenever pet is not doing anything
         this.pet.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNumbers('petidle', {
+            key: 'run',
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
-                end: 3
+                end: 5
             }),
             frameRate: 12,
             repeat: -1
@@ -68,7 +68,7 @@ class FightScene extends Phaser.Scene
         //creating animation for the double punch
         this.pet.anims.create({
             key: 'punch',
-            frames: this.anims.generateFrameNumbers('petpunch', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
                 end: 5
             }),
@@ -78,7 +78,7 @@ class FightScene extends Phaser.Scene
         //for the light attack create animation sequence
         this.pet.anims.create({
             key: 'light',
-            frames: this.anims.generateFrameNumbers('lightattack', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
                 end: 3
             }),
@@ -88,25 +88,17 @@ class FightScene extends Phaser.Scene
         //create animation for the heavy attacking character
         this.pet.anims.create({
             key: 'heavy',
-            frames: this.anims.generateFrameNumbers('heavyattack', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
                 end: 5
             }),
             frameRate: 12,
             repeat: -1
         });
-        this.pet.anims.create({
-            key: 'dead',
-            frames: this.anims.generateFrameNumbers('deadpet', {
-                start: 0,
-                end: 7
-            }),
-            frameRate: 12,
-            repeat: -1
-        });
+      
 
         //play the pet animation and play sound whenever pressed down
-       this.pet.anims.play('idle');// play the pet animotion
+       this.pet.anims.play('run');// play the pet animotion
        
         // making health and container for the pet
         var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x1e0a08);

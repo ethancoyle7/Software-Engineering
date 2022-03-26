@@ -92,16 +92,7 @@ class MainScene extends Phaser.Scene {
             repeat: -1
         });
 
-        //creat death animation
-        this.pet.anims.create({
-            key: 'dead',
-            frames: this.anims.generateFrameNumbers(choose[this.type], {
-                start: 11,
-                end: 20
-            }),
-            frameRate: 12,
-            repeat: -1
-        });
+        
 
         this.pet.anims.create({
             key: 'feed',
@@ -253,7 +244,9 @@ class MainScene extends Phaser.Scene {
                 //if one or more of the conditions are true and the pet dies, then the scene changes to game over
                 if (health.width < 1) {
                     this.sound.stopAll();
-                    this.scene.start("MainDead")
+                    this.scene.start("MainDead",{
+                        type: this.type
+                        })
                 }
                 //if the pets hunger is less than 1 and the time left is 0, load the runawaypet scene
                 if (hunger.width < 1 && this.timeLeft <= 49990) {
@@ -386,7 +379,9 @@ class MainScene extends Phaser.Scene {
                     button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
                     button.on('pointerup', () => button.setScale(1));// on ppinter up
                     button.on('pointerdown', () => this.sound.stopAll());// remove the bg music
-                    button.on('pointerdown', () => this.scene.start('FightScene'))// lead to fight scene
+                    button.on('pointerdown', () => this.scene.start('FightScene',{
+                        type: this.type
+                        }))// lead to fight scene
                 }
 
 
