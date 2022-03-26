@@ -13,10 +13,12 @@ const config = {
         min: 5
     },
     scene: [
-        NewScene,
+        // NewScene,
         BootScene,
         TitleScene, //list of scenes in order they're going to appear in
         MainScene,
+        MainScene2,
+        MainScene3,
         FightScene,
         GameOver,
         WinScene,
