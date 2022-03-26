@@ -42,7 +42,7 @@ create()
 //     this.sound.stopAll();
 //     this.scene.start('MainScene',{type:this.eggNum});
 //});
-    let redegg = this.add.sprite(100, 600, "redegg");
+    let redegg = this.add.sprite(75, 600, "redegg");
     redegg.setScale(2);
     redegg.setInteractive();
     redegg.on('pointerdown',()=>  {this.type="0";});    
@@ -65,7 +65,7 @@ create()
     });
     redegg.anims.play('idle');
 
-    let whiteegg = this.add.sprite(300, 600, "whiteegg");
+    let whiteegg = this.add.sprite(375, 600, "whiteegg");
     whiteegg.setScale(2);
     whiteegg.setInteractive();
     whiteegg.on('pointerdown',()=>  {      
@@ -90,7 +90,7 @@ create()
     });
     whiteegg.anims.play('idle');
 
-    let blueegg = this.add.sprite(200, 600, "blueegg");
+    let blueegg = this.add.sprite(225, 600, "blueegg");
     blueegg.setScale(2);
     blueegg.setInteractive();
     blueegg.on('pointerdown',()=>  {      
