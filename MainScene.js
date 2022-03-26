@@ -2,7 +2,6 @@ class MainScene extends Phaser.Scene {
 
     // This is where we define data members
     constructor() {
-
         super("MainScene");
         this.BATHCOORDS = [50, 750];
         this.CLOTHECOORDS = [150, 750];
@@ -21,10 +20,6 @@ class MainScene extends Phaser.Scene {
         this.percent = 0;
         this.background = null;
         // this.item = null;
-        this.app = firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-        // this.auth = firebase.auth();
-        this.database = firebase.database();
         // this.scoreTable = this.database.collection('Scores')
         
     }
@@ -187,7 +182,7 @@ class MainScene extends Phaser.Scene {
             'LVL \n\n ' + value,
 
         ]);
-        
+
         //creating experience bar and value
         var experience = 0;
         var EXP = this.add.text(10, 130, '', { font: '20px Arial', fill: '#00ff00' });

@@ -1,5 +1,5 @@
+<!DOCTYPE html>
 <html>
-
 <head>
     <title>
         Smart Pet Login
@@ -53,7 +53,8 @@
 
                                 <tr>
                                     <td align="center"><br>
-                                        <button type="submit" class="btn-normal">LOGIN</button>
+                                        <!-- <button type="submit" class="btn-normal">LOGIN</button> -->
+                                        <button class="btn-normal" type="button" onclick="signIn();">LOGIN</button>
                                         <p class="error pink-text center-align"></p>
                                     </td>
                                 </tr>
@@ -80,7 +81,7 @@
                         <tr>
                             <td align="center">
                                 <br />
-                                <button id="signUp" onclick="openForm()" class="btn-large">CREATE AN ACCOUNT</button>
+                                <button type="button" id="signUp" onclick="openForm()" class="btn-large">CREATE AN ACCOUNT</button>
                             </td>
                         </tr>
                     </td>
@@ -128,7 +129,7 @@
     </tr> -->
     <tr>
         <td align="center"><br>
-            <button type="submit" class="btn-normal">Sign Up</button><br><br>
+            <button type="button" class="btn-normal" onclick="signUp()">Sign Up</button><br><br>
             <p class="error pink-text center-align"></p>
         </td>
     </tr>
@@ -147,9 +148,8 @@
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
     <script src="firebaseConfig.js"></script>
-    <script src="auth.js"></script>
+    <script src="js/firebase.js"></script>
     <script>
         function openForm() {
           document.getElementById("popForm").style.display = "block";
