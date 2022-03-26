@@ -257,7 +257,9 @@ class MainScene extends Phaser.Scene {
                 }
                 //if the pets hunger is less than 1 and the time left is 0, load the runawaypet scene
                 if (hunger.width < 1 && this.timeLeft <= 49990) {
-                    this.scene.start("Runawaypet")
+                    this.scene.start("Runawaypet",{
+                        type: this.type
+                        })
                 }
                 //if the health width is less than 1
 

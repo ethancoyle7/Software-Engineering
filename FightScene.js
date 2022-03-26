@@ -7,8 +7,17 @@ class FightScene extends Phaser.Scene
         super('FightScene');
         this.pet = null;
         this.enemy=null;
+        this.type='';
     }
-    
+    init(data)
+    {
+        this.type=data.type;
+        if (this.type == "") 
+        {
+            // No username was provided
+            this.type = "0";
+        }
+    }
     
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() 
@@ -42,6 +51,10 @@ class FightScene extends Phaser.Scene
         this.pet =this.add.sprite(70,635,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
         this.pet.setInteractive();
+        // let choose=['pet','pet2run','pet3'];
+        // let choose2=['petclimb','pet2climb','pet3climb'];
+        // let choose3=['winningpet','pet2winningpet','pet3winningpet'];
+        // let choose4=['petthrow','pet2throw','pet3throw'];
         //create idle animation for the pet whenever pet is not doing anything
         this.pet.anims.create({
             key: 'idle',

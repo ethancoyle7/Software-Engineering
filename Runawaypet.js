@@ -4,7 +4,17 @@ class Runawaypet extends Phaser.Scene
     {
         super('Runawaypet');
         this.sprites = [];
-        
+        this.type='';
+        this.pet=null;
+    }
+    init(data)
+    {
+        this.type=data.type;
+        if (this.type == "") 
+        {
+            // No username was provided
+            this.type = "0";
+        }
     }
     preload() 
     {
@@ -45,10 +55,11 @@ class Runawaypet extends Phaser.Scene
 
         this.pet =this.add.sprite(230,350,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
+        let choose=['pet','pet2run','pet3'];
         //create running animation pet will move off the screen
         this.pet.anims.create({
             key: 'run',
-            frames: this.anims.generateFrameNumbers('pet', {
+            frames: this.anims.generateFrameNumbers(choose[this.type], {
                 start: 0,
                 end: 5
             }),
