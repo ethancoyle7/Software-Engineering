@@ -73,7 +73,7 @@ class FightScene extends Phaser.Scene
                 end: 5
             }),
             frameRate: 12,
-            repeat: -1
+            repeat: 2
         });
         //for the light attack create animation sequence
         this.pet.anims.create({
@@ -83,7 +83,7 @@ class FightScene extends Phaser.Scene
                 end: 3
             }),
             frameRate: 12,
-            repeat: -1
+            repeat: 2
         });
         //create animation for the heavy attacking character
         this.pet.anims.create({
@@ -93,7 +93,7 @@ class FightScene extends Phaser.Scene
                 end: 5
             }),
             frameRate: 12,
-            repeat: -1
+            repeat: 2
         });
       
 
@@ -143,13 +143,13 @@ class FightScene extends Phaser.Scene
         Light.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
         Light.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Light.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
-        Light.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
+        Light.on('pointerdown',() =>this.pet.anims.stop('run'));// stop the idle animation to create new animation effect
         Light.on('pointerdown',() =>this.pet.anims.play('light'));// play the punching animation
         //on relase of the button click
         Light.on('pointerup', () => this.enemy.clearTint());// on the pointer up clear the tint
         Light.on('pointerup', () => button.setScale( 1 )); //BUTTON ANIMATION
         Light.on('pointerup', () => this.pet.anims.stop('light'));// stop the previous animation
-        Light.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+        Light.on('pointerup',() =>this.pet.anims.play('run'));// got back to the idle animation
 
         //this.pet.anims.play('idle');// play the pet animotion
         //create container and rectangle for the heavy attack
@@ -162,13 +162,13 @@ class FightScene extends Phaser.Scene
         Heavy.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
         Heavy.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Heavy.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
-        Heavy.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
+        Heavy.on('pointerdown',() =>this.pet.anims.stop('run'));// stop the idle animation to create new animation effect
         Heavy.on('pointerdown',() =>this.pet.anims.play('heavy'));// play the punching animation
         //on the release of the button
         Heavy.on('pointerup', () => this.enemy.clearTint());// on the pointer up clear the tint
         Heavy.on('pointerup', () => button.setScale( 1 ));
         Heavy.on('pointerup', () => this.pet.anims.stop('heavy'));// stop the previous animation
-        Heavy.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+        Heavy.on('pointerup',() =>this.pet.anims.play('run'));// got back to the idle animation
 
         //create rectangle for punching and nice container to hold it
         var Punch = this.add.rectangle(340, 740, 150, 30, 0xb8860b);
@@ -180,13 +180,13 @@ class FightScene extends Phaser.Scene
         Punch.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
         Punch.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Punch.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1}));// create a tint to know got attacked
-        Punch.on('pointerdown',() =>this.pet.anims.stop('idle'));// stop the idle animation to create new animation effect
+        Punch.on('pointerdown',() =>this.pet.anims.stop('run'));// stop the idle animation to create new animation effect
         Punch.on('pointerdown',() =>this.pet.anims.play('punch'));// play the punching animation
         //when released
         Punch.on('pointerup', () => this.enemy.clearTint());// on the pointer up clear the tint
         Punch.on('pointerup', () => button.setScale( 1 ));
         Punch.on('pointerup', () => this.pet.anims.stop('punch'));// stop the previous animation
-        Punch.on('pointerup',() =>this.pet.anims.play('idle'));// got back to the idle animation
+        Punch.on('pointerup',() =>this.pet.anims.play('run'));// got back to the idle animation
        
        
 
