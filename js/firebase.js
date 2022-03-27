@@ -54,18 +54,18 @@ function signOut() {
 }
 
 // Get the info from Firebase
-function getInfo() {
-  // Calling Firebase Initialization method to make sure that we initialized firebase
-  firebaseApp = checkFireBase();
-  firebaseApp.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      // var displayName = user.displayName;
-      var email = user.email;
-      // var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      console.log('id: ' + uid + ', email: ' + email);                // ...
-    } else {
-      alert('User is signed out.');
-    }
-  });
-}
+// function getInfo() {
+//   // Calling Firebase Initialization method to make sure that we initialized firebase
+//   firebaseApp = checkFireBase();
+//   firebaseApp.auth().onAuthStateChanged(function (user) {
+//     if (user) {
+//       // var displayName = user.displayName;
+//       var email = user.email;
+//       // var isAnonymous = user.isAnonymous;
+//       var uid = user.uid;
+//       console.log('id: ' + uid + ', email: ' + email);                // ...
+//     } else {
+//       alert('User is signed out.');
+//     }
+//   });
+// }

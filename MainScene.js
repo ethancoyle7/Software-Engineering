@@ -1,3 +1,4 @@
+
 class MainScene extends Phaser.Scene {
 
     // This is where we define data members
@@ -45,7 +46,7 @@ class MainScene extends Phaser.Scene {
     }
     // Runs when we first enter this scene
     create() {
-
+        getInfo();
         this.sound.stopAll()
         var value = 0;
 
@@ -513,3 +514,19 @@ class MainScene extends Phaser.Scene {
 
     }
 }
+
+function getInfo() {
+    // Calling Firebase Initialization method to make sure that we initialized firebase
+    firebaseApp = checkFireBase();
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // var displayName = user.displayName;
+        var email = user.email;
+        // var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        console.log('id: ' + uid + ', email: ' + email);                // ...
+      } else {
+        alert('User is signed out.');
+      }
+    });
+  }
