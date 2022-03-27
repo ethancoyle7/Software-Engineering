@@ -301,7 +301,7 @@ class BootScene extends Phaser.Scene {
         this.load.audio('Rematch', './assets/RetryMatch.mp3');
         this.load.audio('FightAnnounce', './assets/FinishHim.mp3');
         this.load.audio('petcall','./assets/SUCCESS CHEERS Win Cute Vocal Chime 03.wav');
-
+        this.load.audio('press','./assets/EnemyHit.mp3');
           //load up the audio to loop through the different background sounds
           this.load.audio('1', './assets/mainsounds/Apprentice.mp3'); 
           this.load.audio('2', './assets/mainsounds/DMinor.mp3');
