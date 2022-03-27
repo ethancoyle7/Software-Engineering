@@ -94,11 +94,11 @@
       <tr>
         <td align="center">
             <h1>Create an account</h1>
-            <hr style="background-color:#fff;height:1px;margin:0px" />
-    </td>
+            <hr style="background-color:#fff;height:1px;width: 40%;margin:0px" />
+        </td>
     </tr>
     <tr>
-        <td align="left">
+        <td align="center">
             <label class="labelc"><b><br>Email</b></label>
         </td>
     </tr>
@@ -108,7 +108,7 @@
         </td>
     </tr>
     <tr>
-        <td align="left"><br>
+        <td align="center"><br>
             <label class="labelc"><b>Password</b></label>
         </td>
     </tr>
@@ -117,16 +117,17 @@
             <input type="password" class="inputbox" placeholder="Enter Password" id="password" required>
         </td>
     </tr>
-    <!-- <tr>
-        <td align="left"><br>
-            <label class="labelc"><b>Repeat Password</b></label>
+    <tr>
+        <td align="center"><br>
+            <label class="labelc"><b>Nickname</b></label>
         </td>
     </tr>
     <tr>
         <td align="center">
-            <input type="password" placeholder="Repeat Password" class="inputbox" name="psw-repeat" required>
+            <input type="text" placeholder="Please enter your nickname" class="inputbox" id="nickname" required>
         </td>
-    </tr> -->
+        
+    </tr> 
     <tr>
         <td align="center"><br>
             <button type="button" class="btn-normal" onclick="signUp()">Sign Up</button><br><br>
@@ -147,6 +148,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
     <script src="firebaseConfig.js"></script>
     <script src="js/firebase.js"></script>

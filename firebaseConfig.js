@@ -6,6 +6,7 @@
 const firebaseConfig = { 
   apiKey: "AIzaSyCRKIp_ALm8rO_hNMtZ0CXWXcXis_6198w",
   authDomain: "smartpet-28571.firebaseapp.com",
+  databaseURL: "https://smartpet-28571-default-rtdb.firebaseio.com",
   projectId: "smartpet-28571",
   storageBucket: "smartpet-28571.appspot.com",
   messagingSenderId: "1008461771159",
@@ -14,10 +15,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-// const auth = firebase.auth();
-// const db = firebase.firestore();
-// const analytics = getAnalytics(app);
+firebaseApp = firebase.initializeApp(firebaseConfig);
+auth = firebase.auth();
+db = firebase.firestore();
+// const analytics = getAnalytics(firebaseApp);
 
 // we need to update the firestore settings to avoid error in console
 // db.settings({timestampInSnapshots: true});

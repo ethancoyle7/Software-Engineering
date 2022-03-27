@@ -20,6 +20,9 @@ class MainScene extends Phaser.Scene {
         // this.itemsIcons = [];
         this.percent = 0;
         this.background = null;
+        // this.firebaseApp = firebase.initializeApp(firebaseConfig);
+        // this.db = firebase.firestore();
+
         // this.item = null;
         // this.scoreTable = this.database.collection('Scores')
         
@@ -514,6 +517,15 @@ class MainScene extends Phaser.Scene {
 
     }
 }
+function checkFireBase() {
+    if (!firebase.apps.length) {
+      console.log("Initializing Firebase App.");
+      return firebaseApp = firebase.initializeApp(firebaseConfig);
+    } else {
+      console.log("Firebase has been Initialized.");
+      return firebaseApp = firebase.app(); // if already initialized, use that one
+    }
+  }
 
 function getInfo() {
     // Calling Firebase Initialization method to make sure that we initialized firebase
@@ -528,5 +540,36 @@ function getInfo() {
       } else {
         alert('User is signed out.');
       }
+    });
+  }
+
+  function getNickname(){
+    var docRef = db.collection("users").doc(cred.user.uid);
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+  }
+
+  function updateColor(color){
+    var washingtonRef = db.collection("users").doc(cred.user.uid);
+
+    // Set the "capital" field of the city 'DC'
+    return washingtonRef.update({
+        color: color
+    })
+    .then(() => {
+        console.log("Color has been successfully updated!");
+    })
+    .catch((error) => {
+        // The document probably doesn't exist.
+        console.error("Error updating: ", error);
     });
   }
