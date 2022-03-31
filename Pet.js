@@ -9,16 +9,61 @@ class Pet{
         this.choice = '';
         this.lvl=0;
         this.pett=null;
-        
-        
+        //these are to input information (should be)
+        //used in the sign in page
+        this.lvlTable= this.database.collection('lvl')
+            .orderBy('lvls', 'desc')
+            .limit(10);
+        this.experienceTable= this.database.collection('exp')
+            .orderBy('experience','desc')
+            .limit(10);
+            
+        this.IDTable= this.database.collection('ID')
+            .orderBy('PetId','desc')
+            .limit(10);
+        //these values should be collected from pet
+        this.database=firebase.firestore();
+        this.experienceTable=this.database.collection('experience');
+        this.lvlTable=this.database.collection('lvls');
     }
+    //can get information from the firebase database 
+            init(data) {
+                // Get the username from the title screen
+                this.username = data.username;
+                if (this.username == "") {
+                    // No username was provided
+                    this.username = "Guest";
+                }    
+        
+    } 
+    //i suppose this is where you save progress?
+    async saveScore() {
+        let petlvl = await this.lvlTable.add({
+            name: this.username,
+            lvl: this.lvl
+        });
+        
+        let petexp= await this.experienceTable.add({
+            exp:this.exp
+        })
+        if (petlvl) console.log("lvl saved successfully!");
+        if(petexp) console.log("exp saved sucessfully");
+        else console.log("Score failed to save!");
+
+    }
+        
     Status(){
+       
         //lvl
         //experience
         //ID=generated
         //name= the thing that the player entered 
         //type= 1 / 2/ 3
         //Maturity= size so..... setScale(Maturity)
+
+
+
+
     }
     petCollider(){
         this.pett = this.add.sprite(200,250,"pet2run");
