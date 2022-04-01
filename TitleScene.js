@@ -22,7 +22,7 @@ preload()
     this.load.image("back", "./assets/TitleSceneBG.png");
     this.load.image("title", "./assets/title.png");
     this.load.image("eggchoice", "./assets/eggchoose.png");
-    this.load.image("teamlogo", "./assets/Crispy_Fried_Chickens_1.png");
+    this.load.image("teamlogo", "./assets/image (1).png");
     
 }
 
@@ -39,7 +39,8 @@ create()
     loop: true
     });
     // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
-    var LogoTeam = this.add.image(60, 51, "teamlogo");
+    var LogoTeam = this.add.image(70, 65, "teamlogo");
+    LogoTeam.setScale(.7);
     var title = this.add.image(225, 165, "title")
     var eggs = this.add.image(225, 600, "eggchoice")
 

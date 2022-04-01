@@ -22,8 +22,11 @@ class BootScene extends Phaser.Scene {
         
         //This is where images are loaded
         //this.load.image('use a short name', './assets/name_of_image');
+        this.load.image("teamlogo1", "./assets/image (1).png");
+        //var loo = this.add.image(225, 600, 'logor')
         
         this.load.image(BOOTPET[0].name,`./assets/${BOOTPET[0].image}`)
+        
         //loops through all image options of bootpet.js
         for (let i = 0; i < BOOTPET.length; i++) {
             this.load.image(BOOTPET[i].name, `./assets/${BOOTPET[i].image}`);
@@ -219,6 +222,7 @@ class BootScene extends Phaser.Scene {
         }); 
         // for health
         this.load.image('button','./assets/button.png')
+        
         // this.load.image("hungermeter","assets/hungrymeter.png")
         
           //load the images for the food
@@ -284,8 +288,8 @@ class BootScene extends Phaser.Scene {
         this.load.image('wipey', './assets/bathe/wet_wipe.png')
         this.load.image('box', './assets/bathe/toothpaste_box.png')
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
+        //this.load.image('logor', './assets/logoimage.png')
         
-
 
         //load the files to be used in the Fight scene
         this.load.audio('Fight', './assets/BossFight.mp3');
@@ -311,31 +315,45 @@ class BootScene extends Phaser.Scene {
         this.load.audio('6', './assets/mainsounds/Sunshine.mp3');
           //4,8,3
         // Loading events listeners
+        
+
+    //this.load.image(BOOTPET[1]);
+   //let index = Math.floor(Math.random() * BOOTPET.length); 
+   //this.setCat(BOOTPET[1]);
+        // this.load.image("teamlogo1", "./assets/image (1).png");
+        // this.add.image(225, 600, "teamlog1");
+
         this.load.on('progress', (percent) => {
             this.loadingBar.setScale(percent, 1);
             this.percentage = Math.floor(percent * 100);
             this.updateText();
+            
 
         });
+        //
+        //LogoTeam.setScale(.7); 
+        
+       
+        
         this.load.on('fileprogress', (data) => {
             // this.fileLoading = data.src;
             this.fileLoading = data.key;
             this.updateText();
-        }); 
+        });
+       
+        
+
         //changing the scene
         this.load.on('complete', () => {
             this.scene.start('TitleScene');
         }); 
     //this.setCat(BOOTPET[1]);
     }
-   // create(){
-         //this.load.image(BOOTPET[1]);
-        //let index = Math.floor(Math.random() * BOOTPET.length); 
-        //this.setCat(BOOTPET[1]);
-    //}
+  
     
-    updateText(){
-                       
+    updateText()
+    {
+                
         this.setCat(BOOTPET[0]);
         this.tweens.add({
             targets: [this.petImage],
@@ -362,10 +380,12 @@ class BootScene extends Phaser.Scene {
             }
         });  
 
+    
        this.loadingTxt.setText(`${this.percentage}%\n${this.fileLoading}`);
         
     }
-    setCat(petConfig){
+    setCat(petConfig)
+    {
         
         // Create a image of pet at position x:225,y:400
         this.petImage = this.add.image(225, 400, petConfig.name);
@@ -374,5 +394,6 @@ class BootScene extends Phaser.Scene {
     
     }
 
+    
     
 }
