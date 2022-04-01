@@ -302,13 +302,13 @@ class BootScene extends Phaser.Scene {
         this.load.audio('FightAnnounce', './assets/FinishHim.mp3');
         this.load.audio('petcall','./assets/SUCCESS CHEERS Win Cute Vocal Chime 03.wav');
         this.load.audio('press','./assets/EnemyHit.mp3');
-          //load up the audio to loop through the different background sounds
-          this.load.audio('1', './assets/mainsounds/Apprentice.mp3'); 
-          this.load.audio('2', './assets/mainsounds/DMinor.mp3');
-          this.load.audio('3', './assets/mainsounds/Morning.mp3');
-          this.load.audio('4','./assets/mainsounds/RainbowLollipop.mp3') 
-          this.load.audio('5','./assets/mainsounds/Stroll.mp3')
-          this.load.audio('6', './assets/mainsounds/Sunshine.mp3');
+        //load up the audio to loop through the different background sounds
+        this.load.audio('1', './assets/mainsounds/Apprentice.mp3'); 
+        this.load.audio('2', './assets/mainsounds/DMinor.mp3');
+        this.load.audio('3', './assets/mainsounds/Morning.mp3');
+        this.load.audio('4','./assets/mainsounds/RainbowLollipop.mp3') 
+        this.load.audio('5','./assets/mainsounds/Stroll.mp3')
+        this.load.audio('6', './assets/mainsounds/Sunshine.mp3');
           //4,8,3
         // Loading events listeners
         this.load.on('progress', (percent) => {
