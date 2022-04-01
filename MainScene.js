@@ -558,18 +558,3 @@ function getInfo() {
     });
   }
 
-  function updateColor(color){
-    var washingtonRef = db.collection("users").doc(cred.user.uid);
-
-    // Set the "capital" field of the city 'DC'
-    return washingtonRef.update({
-        color: color
-    })
-    .then(() => {
-        console.log("Color has been successfully updated!");
-    })
-    .catch((error) => {
-        // The document probably doesn't exist.
-        console.error("Error updating: ", error);
-    });
-  }

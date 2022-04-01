@@ -1,3 +1,5 @@
+
+
 /* This scene is a titlescene that plays first before the user starts the game
 *   This is where the user will log into their account
 *
@@ -17,7 +19,10 @@ preload()
 {  // this is the preload function, it loads all the assets for the scene
     this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
     this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
-    
+    this.load.image("back", "./assets/TitleSceneBG.png");
+    this.load.image("title", "./assets/title.png");
+    this.load.image("eggchoice", "./assets/eggchoose.png");
+    this.load.image("producer", "./assets/producertag.png");
 }
 
 create()
@@ -26,25 +31,18 @@ create()
     this.sound.stopAll();// stop all previous sounds
 //this is the create function
 //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
-    let bg = this.add.image(225,400, "bgname");
-    bg.setScale(.7); //changes the scale of the background image
+    let bg = this.add.image(225,400, "back");
+    bg.setScale(.6); //changes the scale of the background image
     this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
     volume: 0.5,
     loop: true
     });
+    // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
+    var title = this.add.image(225, 65, "title")
+    var producerline = this.add.image(225, 145, "producer")
+    var eggs = this.add.image(225, 600, "eggchoice")
 
-    let text = this.add.text(225, 400, "Choose an egg", { //puts text on screen at that location
-    fontSize: '36px', //there's a lot of text properties that can be edited here
-    fontFamily: 'Minecraft'
-    });
-    text.setOrigin(0.5, 0.5); //sets like the alignment of the text
-// text.setInteractive(); //sets whether or not the text can be clicked or not
-// this.input.on('pointerdown', ()=>{ // when mouse event, start main scene
-//     this.sound.stopAll();
-//     this.scene.start('MainScene',{type:this.eggNum});
-//});
-   
-    let redegg = this.add.sprite(75, 600, "redegg");
+    let redegg = this.add.sprite(75, 700, "redegg");
     redegg.setScale(2);
     redegg.setInteractive();
     redegg.on('pointerdown',()=>  {this.type="0";});    
@@ -67,7 +65,7 @@ create()
     });
     redegg.anims.play('idle');
 
-    let whiteegg = this.add.sprite(375, 600, "whiteegg");
+    let whiteegg = this.add.sprite(375, 700, "whiteegg");
     whiteegg.setScale(2);
     whiteegg.setInteractive();
     whiteegg.on('pointerdown',()=>  {      
@@ -92,7 +90,7 @@ create()
     });
     whiteegg.anims.play('idle');
 
-    let blueegg = this.add.sprite(225, 600, "blueegg");
+    let blueegg = this.add.sprite(225, 700, "blueegg");
     blueegg.setScale(2);
     blueegg.setInteractive();
     blueegg.on('pointerdown',()=>  {      
@@ -121,7 +119,7 @@ create()
 
 
     this.tweens.add({ // a tween is kinda like animation lite
-    targets: [text], //this one affects text
+    targets: eggs, //this one affects text
     duration: 900,
     alpha: 0, //affects opactiy
     yoyo: true, //yoyo effect
