@@ -70,28 +70,13 @@ class Runawaypet extends Phaser.Scene
         //add exit button
         var exit=this.add.image(230,500,'Exit')
         exit.setInteractive();
-        //when pressed down go to boot scene
-        //exit.on('pointerover',() =>;
+        //when pressed down go to title  scene
+        //cannot go to main because the pet ran away
         exit.on('pointerdown',() =>this.scene.start("TitleScene"));
         exit.on('pointerover',() => this.sound.play('Exit')); // hoverover
         this.tweens.add({
 
             targets: exit,//who it targetting
-            alpha: 0.5,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
-
-        });
-        //add exit button
-        var BackToMain=this.add.image(230,600,'MainSceneReturn')
-        BackToMain.setInteractive();
-        //once clicked start the main scene
-        BackToMain.on('pointerdown',() =>this.scene.start("MainScene"));
-        BackToMain.on('pointerover',() => this.sound.play('MainReturn'));
-        this.tweens.add({
-
-            targets: BackToMain,//who it targetting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,

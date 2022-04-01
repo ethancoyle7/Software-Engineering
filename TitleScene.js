@@ -22,7 +22,8 @@ preload()
     this.load.image("back", "./assets/TitleSceneBG.png");
     this.load.image("title", "./assets/title.png");
     this.load.image("eggchoice", "./assets/eggchoose.png");
-    this.load.image("producer", "./assets/producertag.png");
+    this.load.image("teamlogo", "./assets/Crispy_Fried_Chickens_1.png");
+    
 }
 
 create()
@@ -38,8 +39,8 @@ create()
     loop: true
     });
     // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
-    var title = this.add.image(225, 65, "title")
-    var producerline = this.add.image(225, 145, "producer")
+    var LogoTeam = this.add.image(60, 51, "teamlogo");
+    var title = this.add.image(225, 165, "title")
     var eggs = this.add.image(225, 600, "eggchoice")
 
     let redegg = this.add.sprite(75, 700, "redegg");
@@ -117,11 +118,20 @@ create()
     blueegg.anims.play('idle');
 
 
+    //yoyo effect for the title
+    this.tweens.add({
 
+        targets: title,//who it targetting
+        alpha: 0.2,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut'
+
+    });
     this.tweens.add({ // a tween is kinda like animation lite
     targets: eggs, //this one affects text
     duration: 900,
-    alpha: 0, //affects opactiy
+    alpha: 0.5, //affects opactiy
     yoyo: true, //yoyo effect
     repeat: -1 //-1 means yes repeat
     });
