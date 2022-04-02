@@ -41,9 +41,7 @@ create()
     loop: true
     });
     // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
-    var LogoTeam = this.add.image(70, 55, "teamlogo");
-    LogoTeam.setScale(.6);
-    var title = this.add.image(225, 165, "title")
+    var title = this.add.image(225, 80, "title")
     var eggs = this.add.image(225, 600, "eggchoice")
     //help button
     let homebutton1=this.add.image(300,50,'home');
