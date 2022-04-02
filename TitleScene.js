@@ -50,9 +50,10 @@ create()
     let redegg = this.add.sprite(75, 700, "redegg");
     redegg.setScale(2);
     redegg.setInteractive();
+    // on the pointer up feature, this option is passed to the other scenes
     redegg.on('pointerdown',()=>  {this.type="0";});    
     redegg.on('pointerup',()=>{
-        this.sound.stopAll();
+        this.sound.stopAll();// stop the music and load the next scene
         this.scene.start('MainScene',{
         type: this.type
     })}
@@ -68,8 +69,11 @@ create()
     frameRate: 5,
     repeat: -1
     });
-    redegg.anims.play('idle');
+    redegg.anims.play('idle');// play the red egg animations
 
+    //add the white egg sprite adn give it some movement,
+    // when click on, the number will be assigned and then passed
+    // to the other scenes
     let whiteegg = this.add.sprite(375, 700, "whiteegg");
     whiteegg.setScale(2);
     whiteegg.setInteractive();
@@ -95,6 +99,8 @@ create()
     });
     whiteegg.anims.play('idle');
 
+    //create a blue egg for blue character and when clicked the 
+    // blue character will load ad then be passed to the other scenes
     let blueegg = this.add.sprite(225, 700, "blueegg");
     blueegg.setScale(2);
     blueegg.setInteractive();
