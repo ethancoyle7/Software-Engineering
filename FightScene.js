@@ -23,7 +23,6 @@ class FightScene extends Phaser.Scene
     preload() 
     {
         this.load.image('Over', './assets/GameOverPicture.png');
-        
         this.load.audio('FightSound2','./assets/FightSound2.mp3')
     //load the files to be used in the scene  
     }
@@ -32,9 +31,7 @@ class FightScene extends Phaser.Scene
     // Runs when we first enter this scene
     create() 
     {
-        //for timed event
         
-       
         this.sound.stopAll();// stop all previous sounds
         //start the boss fight music
         this.sound.play('FightSound2', { volume: 1});
@@ -51,6 +48,9 @@ class FightScene extends Phaser.Scene
         this.pet =this.add.sprite(70,635,"pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
         this.pet.setInteractive();
+
+        //after passing in the number of the pet based off the egg, the number corresponds to that in 
+        // each choice list
         let choose=['pet','pet2run','pet3'];
         let choose2=['petpunch','pet2punch','pet3punch'];
         let choose3=['lightattack','pet2lightattack','pet3lightattack'];
@@ -266,10 +266,7 @@ class FightScene extends Phaser.Scene
                    
                    callbackScope: this,
                    loop: true
-               });
-               
-
-               
+               });       
     }
     // Runs every frame
     update() 

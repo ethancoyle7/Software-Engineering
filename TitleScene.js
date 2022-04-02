@@ -39,11 +39,14 @@ create()
     loop: true
     });
     // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
-    var LogoTeam = this.add.image(70, 65, "teamlogo");
-    LogoTeam.setScale(.7);
+    var LogoTeam = this.add.image(70, 55, "teamlogo");
+    LogoTeam.setScale(.6);
     var title = this.add.image(225, 165, "title")
     var eggs = this.add.image(225, 600, "eggchoice")
 
+
+
+    //adding the eggs to the scene for the user to make a choice
     let redegg = this.add.sprite(75, 700, "redegg");
     redegg.setScale(2);
     redegg.setInteractive();
