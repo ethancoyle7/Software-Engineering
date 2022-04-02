@@ -32,7 +32,6 @@ class BootScene extends Phaser.Scene {
         //this.load.image('use a short name', './assets/name_of_image');
         this.load.image("teamlogo1", "./assets/image (1).png");
         //var loo = this.add.image(225, 600, 'logor')
-        
         this.load.image(BOOTPET[0].name,`./assets/${BOOTPET[0].image}`)
         
         //loops through all image options of bootpet.js
@@ -42,17 +41,18 @@ class BootScene extends Phaser.Scene {
         }
 
         //This is the loading bar area - i reused some code
-        this.loadingBar = this.add.rectangle(235, 300, 420, 40, 0x22dd4b);
+        this.loadingBar = this.add.rectangle(225, 300, 450, 40, 0x22dd4b);
         this.loadingTxt = this.add.text(235,250, "0%", {
             fontSize: '24px',
             color: 'white',
             align: 'center'
         });
         this.loadingTxt.setOrigin(0.5);
-        // Load a bunch of assets 
-        this.load.image('square', './assets/square1.png');
+        this.loadingBar.setOrigin(0.5);
+        // Load a bunch of assets "squares"
+        this.load.image('loading assets', './assets/square1.png');
         for (let i = 0; i < 200; i++) {
-             this.load.image(`square-${i}`, './assets/square1.png');
+             this.load.image(`loading assets-${i}`, './assets/square1.png');
         }
 
         // "MainScene" preload to the screeen the background and the music
@@ -367,6 +367,7 @@ class BootScene extends Phaser.Scene {
             this.loadingBar.setScale(percent, 1);
             this.percentage = Math.floor(percent * 100);
             this.updateText();
+            this.createLogo();
             
 
         });
@@ -376,9 +377,10 @@ class BootScene extends Phaser.Scene {
        
         
         this.load.on('fileprogress', (data) => {
+            //this.updateText();
             // this.fileLoading = data.src;
             this.fileLoading = data.key;
-            this.updateText();
+            
         });
        
         
@@ -387,13 +389,18 @@ class BootScene extends Phaser.Scene {
         this.load.on('complete', () => {
             this.scene.start('TitleScene');
         }); 
+        
+        
     //this.setCat(BOOTPET[1]);
     }
-  
+    createLogo(){
+        let logo=this.add.image(225,100,'teamlogo1');
+        logo.setOrigin(0.5);
+    }
     
     updateText()
     {
-                
+        //this.add.image(200,30,'bishop');        
         this.setCat(BOOTPET[0]);
         this.tweens.add({
             targets: [this.petImage],
