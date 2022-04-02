@@ -15,6 +15,7 @@ class MainScene extends Phaser.Scene {
         this.health=null;
         this.width1=200;
         this.hungerw=200;
+        this.sound1=0;
         this.type='';
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
@@ -46,7 +47,7 @@ class MainScene extends Phaser.Scene {
         this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
         this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
         this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
-
+        this.load.image('mute','./assets/mic.png');
 
 
     }
@@ -72,6 +73,22 @@ class MainScene extends Phaser.Scene {
         background.setScale(.7);
         //default style to be used later
         var style = { font: "20px Arial", fill: "#fff" };//set style used in text
+        
+        //mute button
+        let mutebutton = this.add.image(400,200,'mute');
+        mutebutton.setScale(0.5);
+        mutebutton.setInteractive();
+        mutebutton.on('pointerdown',()=>{
+            console.log(this.sound1);
+            if(this.sound1==0){
+            this.sound1+=1;
+            console.log(this.sound1);
+            this.sound.stopAll();
+        }else{
+            this.sound1-=1;
+            this.sound.play(backgroundmusic[musicloop], { volume: 3 })
+        }
+        })
 
 
         //adding the sprite and then setting the scale on the screen

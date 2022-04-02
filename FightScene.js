@@ -8,6 +8,7 @@ class FightScene extends Phaser.Scene
         this.pet = null;
         this.enemy=null;
         this.type='';
+        this.sound1=0;
     }
     init(data)
     {
@@ -23,7 +24,8 @@ class FightScene extends Phaser.Scene
     preload() 
     {
         this.load.image('Over', './assets/GameOverPicture.png');
-        this.load.audio('FightSound2','./assets/FightSound2.mp3')
+        this.load.audio('FightSound2','./assets/FightSound2.mp3');
+        this.load.image('mute','./assets/mic.png');
     //load the files to be used in the scene  
     }
     
@@ -36,6 +38,8 @@ class FightScene extends Phaser.Scene
         //start the boss fight music
         this.sound.play('FightSound2', { volume: 1});
         this.sound.play('FightAnnounce');
+        
+
         // set the text font information to be used in styles
         var style = { font: "20px Arial", fill: "#ffffff" };
 
@@ -95,7 +99,21 @@ class FightScene extends Phaser.Scene
             frameRate: 12,
             repeat: 2
         });
-      
+        //mute button
+        let mutebutton = this.add.image(400,50,'mute');
+        mutebutton.setScale(0.5);
+        mutebutton.setInteractive();
+        mutebutton.on('pointerdown',()=>{
+            console.log(this.sound1);
+            if(this.sound1==0){
+            this.sound1+=1;
+            console.log(this.sound1);
+            this.sound.stopAll();
+        }else{
+            this.sound1-=1;
+            this.sound.play("FightSound2", { volume: 1});
+        }
+        })
 
         //play the pet animation and play sound whenever pressed down
        this.pet.anims.play('run');// play the pet animotion
