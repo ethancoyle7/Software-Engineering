@@ -7,8 +7,12 @@ constructor()
 }
 preload(){
     this.load.image('home','./assets/infobutton.png');
+    this.load.image('info', './assets/information.png');
 }
 create(){
+    var informationtext=this.add.image(230,380,"info"); 
+        informationtext.setScale(1.2);
+        //informationtext.setOrigin(0.5);
     let homebutton=this.add.image(200,100,'home');
     homebutton.setScale(.5);
     homebutton.setInteractive();
