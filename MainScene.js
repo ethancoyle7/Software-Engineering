@@ -127,9 +127,16 @@ class MainScene extends Phaser.Scene {
         });// bathing animation
         this.pet.anims.play('run'); // play the animation of the pet at the start of the game
 
-        //make the pet interactive and movable
-        this.pet.setInteractive({ draggable: true });
-        // to know the item is selected change the color of the item
+        //////////////////////////////////////////////////////////////////////////////////
+        // ██████╗ ██████╗  █████╗  ██████╗     ██╗████████╗███████╗███╗   ███╗███████╗ //
+        // ██╔══██╗██╔══██╗██╔══██╗██╔════╝     ██║╚══██╔══╝██╔════╝████╗ ████║██╔════╝ //
+        // ██║  ██║██████╔╝███████║██║  ███╗    ██║   ██║   █████╗  ██╔████╔██║███████╗ //
+        // ██║  ██║██╔══██╗██╔══██║██║   ██║    ██║   ██║   ██╔══╝  ██║╚██╔╝██║╚════██║ //
+        // ██████╔╝██║  ██║██║  ██║╚██████╔╝    ██║   ██║   ███████╗██║ ╚═╝ ██║███████║ //
+        // ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝     ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
+        //////////////////////////////////////////////////////////////////////////////////
+                                                                                    
+        // to make the items to interact with the pet draggable, initialize the draggin mechanic
         this.input.on('dragstart', function (pointer, gameObject) {
             gameObject.setTint(0xff0000);
         });
@@ -145,8 +152,16 @@ class MainScene extends Phaser.Scene {
             gameObject.clearTint();
         });
 
+        ///////////////////////////////////////////////////////////////////
+        // ██████╗ ███████╗████████╗    ██████╗  █████╗ ██████╗ ███████╗ //
+        // ██╔══██╗██╔════╝╚══██╔══╝    ██╔══██╗██╔══██╗██╔══██╗██╔════╝ //
+        // ██████╔╝█████╗     ██║       ██████╔╝███████║██████╔╝███████╗ //
+        // ██╔═══╝ ██╔══╝     ██║       ██╔══██╗██╔══██║██╔══██╗╚════██║ //
+        // ██║     ███████╗   ██║       ██████╔╝██║  ██║██║  ██║███████║ //
+        // ╚═╝     ╚══════╝   ╚═╝       ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ //
+        ///////////////////////////////////////////////////////////////////
+                                                                     
         // health, hunger, happiness creation below 
-
         //creating health rectangle and nice container to hold it
         var health = this.add.rectangle(178, 20, 350, 30, 0xe74c3c);
         health.setStrokeStyle(4, 0x1e0a08);
@@ -198,6 +213,14 @@ class MainScene extends Phaser.Scene {
         var PetPlay = this.add.text(320, 200, '', { font: '20px Arial', fill: '#00ff00' });
         
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
+        // ╚══██╔══╝██║████╗ ████║██╔════╝    ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝ //
+        //    ██║   ██║██╔████╔██║█████╗      █████╗  ██║   ██║█████╗  ██╔██╗ ██║   ██║   ███████╗ //
+        //    ██║   ██║██║╚██╔╝██║██╔══╝      ██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ╚════██║ //
+        //    ██║   ██║██║ ╚═╝ ██║███████╗    ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║   ███████║ //
+        //    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝ //
+        /////////////////////////////////////////////////////////////////////////////////////////////                                                                       
        //create atimer for the game loop inwhic the health will slowly decline and 
        // the attributes of the pet will increase and decrease depending on the actions
         this.timeLeft = 50000;
@@ -215,42 +238,22 @@ class MainScene extends Phaser.Scene {
                 var InteractionIcons = this.add.rectangle(225, 720, 440, 150, 0xe7a23c);
                 InteractionIcons.setStrokeStyle(5, 0x1e0a08);
                 //for the health of the pet
-                var val1 = Math.floor(Math.random() * 20) // using rand number between 0 and 10
+                var val1 = Math.floor(Math.random() * 2) // using rand number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
 
-                var val2 = Math.floor(Math.random() * 5) // using rand number between 0 and 10
-                hunger.width -= val2; //decrement the health randomly w/ val
-                console.log(hunger.width)//lets see what the width is 
-
                 //timing for the happiness to go down incrementally
-                var val3 = Math.floor(Math.random() * 5) // using rand number between 0 and 10
+                var val3 = Math.floor(Math.random() * 2) // using rand number between 0 and 10
                 happiness.width -= val3; //decrement the health randomly w/ val
                 console.log(happiness.width)//lets see what the width is 
 
                 //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                if (health.width < 1) {
-                    this.sound.stopAll();
-                    this.scene.start("MainDead",{
-                        type: this.type
-                        })
-                }
-                //if the pets hunger is less than 1 and the time left is 0, load the runawaypet scene
-                if (hunger.width < 1 && this.timeLeft <= 49990) {
-                    this.scene.start("Runawaypet",{
-                        type: this.type
-                        })
-                }
-                //if the health width is less than 1
-
-
-                if (health.width < 360)//placeholder for the value once if the players health,hunger happiness go above 350
+                if (health.width < 1) 
                 {
-                    // increment the value of the level
-                    value++;
-                    //set the new value to hold the level
-                    text.setText(['LVL\n\n' + value,]);
-                    //health.width==350;//trying to reset width
-
+                    this.sound.stopAll();
+                    this.scene.start("MainDead",
+                    {
+                        type: this.type
+                        })
                 }
                 if (health.width > 350)// if the health gets above 360 increment the experience by 1
                 {
@@ -271,6 +274,8 @@ class MainScene extends Phaser.Scene {
                     EXP.setText(['EXPERIENCE : ' + experience]);
                 }
 
+                // make the level increase when reach certain ammount of experience
+               
 
                 //add identifiers for the various components 
                 this.add.text(10, 650, "CLOTHE", style);//label it 
@@ -278,7 +283,15 @@ class MainScene extends Phaser.Scene {
                 this.add.text(260, 650, "PLAY", style);//label it 
                 this.add.text(370, 650, "FEED", style);//label it 
 
-
+                /////////////////////////////////////////////
+                // ██╗████████╗███████╗███╗   ███╗███████╗ //
+                // ██║╚══██╔══╝██╔════╝████╗ ████║██╔════╝ //
+                // ██║   ██║   █████╗  ██╔████╔██║███████╗ //
+                // ██║   ██║   ██╔══╝  ██║╚██╔╝██║╚════██║ //
+                // ██║   ██║   ███████╗██║ ╚═╝ ██║███████║ //
+                // ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
+                /////////////////////////////////////////////
+                                                       
                 //create list to iterate through with key string names of clothes
                 const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1", "outfit2", "outfit3", "shoes", "shoes2", "witchhat"];
                 const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
@@ -291,8 +304,8 @@ class MainScene extends Phaser.Scene {
                 clothing.on('pointerup', () => this.pet.anims.stop('feed'));
                 clothing.on('pointerup', () => this.pet.anims.play('run'));
                 clothing.on('pointerup', () => clothing.destroy())
-                clothing.on('pointerup', () => happiness.width += 15)
-                clothing.on('pointerup', () => hunger.width -= 10)
+                clothing.on('pointerup', () => happiness.width += 2)
+                clothing.on('pointerup', () => hunger.width -= 2)
                 clothing.on('pointerup', () => PetClothed.setText(['Pet Clothed']))
                 clothing.on('pointerup', () => this.sound.play('clothesound')) // play interaction sound
 
@@ -308,8 +321,8 @@ class MainScene extends Phaser.Scene {
                 bath.on('pointerup', () => this.pet.anims.stop('bathe+'));
                 bath.on('pointerup', () => this.pet.anims.play('run'));
                 bath.on('pointerup', () => bath.destroy())
-                bath.on('pointerup', () => health.width += 10)
-                bath.on('pointerup', () => happiness.width += 10)
+                bath.on('pointerup', () => health.width += 2)
+                bath.on('pointerup', () => happiness.width += 2)
                 bath.on('pointerup', () => PetClothed.setText(['Pet Bathed']))
                 bath.on('pointerup', () => this.sound.play('bathsound')) // play interaction sound
 
@@ -327,7 +340,7 @@ class MainScene extends Phaser.Scene {
                 playing.on('pointerup', () => this.pet.anims.stop('health+'));
                 playing.on('pointerup', () => this.pet.anims.play('run'));
                 playing.on('pointerup', () => playing.destroy())
-                playing.on('pointerup', () => happiness.width += 10)
+                playing.on('pointerup', () => happiness.width += 2)
                 playing.on('pointerup', () => PetClothed.setText(['Pet Playing']))
                 playing.on('pointerup', () => this.sound.play('happysound')) // play interaction sound
 
@@ -347,9 +360,9 @@ class MainScene extends Phaser.Scene {
                 feeding.on('pointerup', () => this.pet.anims.stop('feed'));
                 feeding.on('pointerup', () => this.pet.anims.play('run'));
                 feeding.on('pointerup', () => feeding.destroy())
-                feeding.on('pointerup', () => health.width += 10)
-                feeding.on('pointerup', () => happiness.width += 10)
-                feeding.on('pointerup', () => hunger.width += 10)
+                feeding.on('pointerup', () => health.width += 2)
+                feeding.on('pointerup', () => happiness.width += 2)
+                feeding.on('pointerup', () => hunger.width += 2)
                 feeding.on('pointerup', () => PetClothed.setText(['Pet Fed']))
                 //im trying to either stop the animation or destroy the previous one
                 //feeding.on('pointerup',() =>this.petClass.destroy());
@@ -369,12 +382,49 @@ class MainScene extends Phaser.Scene {
                         type: this.type
                         }))// lead to fight scene
                 }
+                //experience checker, if the user gets 10 experience points, then the pet will level up
+                if (experience>0 &&experience%10==0)//if the experience is divisible by 10 then the level increases
+                {
+                    value++;
+                    text.setText(['LVL\n\n' + value,]);
+                }
             },
             callbackScope: this,
             loop: true
         });
-        //calling the function Pet bar
-        //this.petAnimations();
+
+        ////////////////////////////////////////////////////////////////////
+        // ██████╗ ██╗   ██╗███╗   ██╗ █████╗ ██╗    ██╗ █████╗ ██╗   ██╗ //
+        // ██╔══██╗██║   ██║████╗  ██║██╔══██╗██║    ██║██╔══██╗╚██╗ ██╔╝ //
+        // ██████╔╝██║   ██║██╔██╗ ██║███████║██║ █╗ ██║███████║ ╚████╔╝  //
+        // ██╔══██╗██║   ██║██║╚██╗██║██╔══██║██║███╗██║██╔══██║  ╚██╔╝   //
+        // ██║  ██║╚██████╔╝██║ ╚████║██║  ██║╚███╔███╔╝██║  ██║   ██║    //
+        // ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    //
+        ////////////////////////////////////////////////////////////////////
+                                                                      
+        // load up a timer to moinotr that the pet is being fed
+        //if it is not fed within 3 hours, then the pet will die
+        this.timeLeft2 = 1800000;	//3 hours for the hunger and the pet to run away	
+        this.gameTimer2 = this.time.addEvent({
+                   delay: 500,
+                   callback: function()
+                   {
+                    this.timeLeft2 --;//decrement the time left
+                    var val2 = Math.floor(Math.random() *2) // using rand number between 0 an 2
+                    hunger.width -= val2; //decrement the health randomly w/ val
+                    console.log(hunger.width)//lets see what the width is 
+                     //if the pets hunger is less than 1 and the time left is 0, load the runawaypet scene
+                    if (hunger.width < 1 && this.timeLeft2 <= 0) //if the hunger bar goes below 1 and the time left is 0
+                    {                                           //then load the runawaypet scene
+                        this.scene.start("Runawaypet",{
+                        type: this.type
+                        })
+                    }
+                   },
+                   callbackScope: this,
+                   loop: true
+               });  
+        
     }
     
     // Runs every frame update any items inside of the scene
