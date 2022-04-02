@@ -16,7 +16,8 @@ const config = {
         // NewScene,
         // GateScene,
         BootScene,
-        TitleScene, //list of scenes in order they're going to appear in
+        TitleScene,
+        UserManualScene, //list of scenes in order they're going to appear in
         MainScene,
         FightScene,
         GameOver,
