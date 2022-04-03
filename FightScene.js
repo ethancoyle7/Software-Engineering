@@ -159,8 +159,10 @@ class FightScene extends Phaser.Scene
         Light.on('pointerdown',() =>enemyhealth.width-=2);//ENEMY HEALTH -=2
         Light.on('pointerdown',() =>console.log(enemyhealth.width)); //logging the width of the enemy bar
         Light.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        if(this.sound1==0){
         Light.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Light.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
+        }
         Light.on('pointerdown',() =>this.pet.anims.stop('run'));// stop the idle animation to create new animation effect
         Light.on('pointerdown',() =>this.pet.anims.play('light'));// play the punching animation
         //on relase of the button click
@@ -178,8 +180,10 @@ class FightScene extends Phaser.Scene
         Heavy.on('pointerdown',() =>enemyhealth.width-=5);//adjust the enemy health accordingly -5
         Heavy.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of enemy bar
         Heavy.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        if(this.sound1==0){
         Heavy.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Heavy.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
+        }
         Heavy.on('pointerdown',() =>this.pet.anims.stop('run'));// stop the idle animation to create new animation effect
         Heavy.on('pointerdown',() =>this.pet.anims.play('heavy'));// play the punching animation
         //on the release of the button
@@ -196,8 +200,10 @@ class FightScene extends Phaser.Scene
         Punch.on('pointerdown',() =>enemyhealth.width-=10);// enemy health -10
         Punch.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of the enemy bar
         Punch.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
+        if(this.sound1==0){
         Punch.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Punch.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1}));// create a tint to know got attacked
+        }
         Punch.on('pointerdown',() =>this.pet.anims.stop('run'));// stop the idle animation to create new animation effect
         Punch.on('pointerdown',() =>this.pet.anims.play('punch'));// play the punching animation
         //when released
