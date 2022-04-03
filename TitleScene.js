@@ -45,14 +45,14 @@ create()
     var eggs = this.add.image(225, 600, "eggchoice")
     //help button
     let homebutton1=this.add.image(40,50,'home');
-        homebutton1.setScale(0.5);
+        homebutton1.setScale(0.3);
         homebutton1.setInteractive();
         homebutton1.on('pointerdown',()=>{
             this.sound.stopAll();// stop the music and load the next scene
             this.scene.start('UserManualScene');
     })
     let mutebutton = this.add.image(400,50,'mute');
-        mutebutton.setScale(0.5);
+        mutebutton.setScale(0.3);
         mutebutton.setInteractive();
         mutebutton.on('pointerdown',()=>{
             console.log(this.sound1);

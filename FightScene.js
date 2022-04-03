@@ -272,7 +272,7 @@ class FightScene extends Phaser.Scene
                     }
                     
                     //this.pet.clearTint();
-                    if(pethealth.width<1)// if the pets health is less than 0, load the game over scene
+                    if(pethealth.width<=1)// if the pets health is less than 0, load the game over scene
                     {
                         //this.sound.removeByKey('Fight')
                         //this.sound.play("fatality");
@@ -283,7 +283,7 @@ class FightScene extends Phaser.Scene
                         //this.add.image(200,200,"Over")
                         
                     }
-                    if(enemyhealth.width< 1)// check for the enemy health to be less than 0
+                    if(enemyhealth.width<= 1)// check for the enemy health to be less than 0
                     {
                         //this.sound.removeByKey('Fight')
                         //this.sound.play("fatality");

@@ -8,13 +8,15 @@ constructor()
 preload(){
     this.load.image('home','./assets/infobutton.png');
     this.load.image('info', './assets/information.png');
+    this.load.image('BackToTitle', './assets/BackIcon.png');
+    
 }
 create(){
     var informationtext=this.add.image(230,380,"info"); 
         informationtext.setScale(1.2);
         //informationtext.setOrigin(0.5);
-    let homebutton=this.add.image(200,100,'home');
-    homebutton.setScale(.5);
+    let homebutton=this.add.image(400,755,'BackToTitle');
+    homebutton.setScale(.2);
     homebutton.setInteractive();
     homebutton.on('pointerup',()=>{
         //this.sound.stopAll();// stop the music and load the next scene
