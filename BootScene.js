@@ -70,7 +70,8 @@ class BootScene extends Phaser.Scene {
         // ███████║██║     ██║  ██║██║   ██║   ███████╗███████║██║  ██║███████╗███████╗   ██║   ███████║ //
         // ╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝   ╚═╝   ╚══════╝ //
         ///////////////////////////////////////////////////////////////////////////////////////////////////
-                                                                                                           
+                  
+       
         this.load.spritesheet('pet', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Run_6.png', { //this is for a spritesheet
             frameWidth: 32,
             frameHeight: 32

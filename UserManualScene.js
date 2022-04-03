@@ -22,6 +22,7 @@ create(){
         //this.sound.stopAll();// stop the music and load the next scene
         this.scene.start('TitleScene');
     })
+    
 }
 update(){
     
