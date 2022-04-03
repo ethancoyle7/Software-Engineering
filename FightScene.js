@@ -8,7 +8,7 @@ class FightScene extends Phaser.Scene
         this.pet = null;
         this.enemy=null;
         this.type='';
-        this.sound1=0;
+        this.sound3=0;
     }
     init(data)
     {
@@ -104,13 +104,13 @@ class FightScene extends Phaser.Scene
         mutebutton.setScale(0.5);
         mutebutton.setInteractive();
         mutebutton.on('pointerdown',()=>{
-            console.log(this.sound1);
-            if(this.sound1==0){
-            this.sound1+=1;
-            console.log(this.sound1);
+            console.log(this.sound3);
+            if(this.sound3==0){
+            this.sound3+=1;
+            console.log(this.sound3);
             this.sound.stopAll();
         }else{
-            this.sound1-=1;
+            this.sound3-=1;
             this.sound.play("FightSound2", { volume: 1});
         }
         })
@@ -159,7 +159,7 @@ class FightScene extends Phaser.Scene
         Light.on('pointerdown',() =>enemyhealth.width-=2);//ENEMY HEALTH -=2
         Light.on('pointerdown',() =>console.log(enemyhealth.width)); //logging the width of the enemy bar
         Light.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
-        if(this.sound1==0){
+        if(this.sound3==0){
         Light.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Light.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
         }
@@ -180,7 +180,7 @@ class FightScene extends Phaser.Scene
         Heavy.on('pointerdown',() =>enemyhealth.width-=5);//adjust the enemy health accordingly -5
         Heavy.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of enemy bar
         Heavy.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
-        if(this.sound1==0){
+        if(this.sound3==0){
         Heavy.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Heavy.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1})); // play sound when hit
         }
@@ -200,7 +200,7 @@ class FightScene extends Phaser.Scene
         Punch.on('pointerdown',() =>enemyhealth.width-=10);// enemy health -10
         Punch.on('pointerdown',() =>console.log(enemyhealth.width));//logging the width of the enemy bar
         Punch.on('pointerdown',() =>this.enemy.setTint(0xff0000));// create a tint to know got attacked
-        if(this.sound1==0){
+        if(this.sound3==0){
         Punch.on('pointerdown',() =>this.sound.play('press')); // play sound when hit
         Punch.on('pointerdown',() =>this.sound.play('EnemyHit', { volume: 0.1}));// create a tint to know got attacked
         }

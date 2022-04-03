@@ -15,7 +15,7 @@ class MainScene extends Phaser.Scene {
         this.health=null;
         this.width1=200;
         this.hungerw=200;
-        this.sound1=0;
+        this.sound2=0;
         this.type='';
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
@@ -79,13 +79,13 @@ class MainScene extends Phaser.Scene {
         mutebutton.setScale(0.5);
         mutebutton.setInteractive();
         mutebutton.on('pointerdown',()=>{
-            console.log(this.sound1);
-            if(this.sound1==0){
-            this.sound1+=1;
-            console.log(this.sound1);
+            console.log(this.sound2);
+            if(this.sound2==0){
+            this.sound2+=1;
+            console.log(this.sound2);
             this.sound.stopAll();
         }else{
-            this.sound1-=1;
+            this.sound2-=1;
             this.sound.play(backgroundmusic[musicloop], { volume: 3 })
         }
         })
@@ -324,7 +324,7 @@ class MainScene extends Phaser.Scene {
                 clothing.on('pointerup', () => happiness.width += 2)
                 clothing.on('pointerup', () => hunger.width -= 2)
                 clothing.on('pointerup', () => PetClothed.setText(['Pet Clothed']))
-                if(this.sound1==0){
+                if(this.sound2==0){
                 clothing.on('pointerup', () => this.sound.play('clothesound')) // play interaction sound
                 }
                 //iterate through the bathing by string name
@@ -342,7 +342,7 @@ class MainScene extends Phaser.Scene {
                 bath.on('pointerup', () => health.width += 2)
                 bath.on('pointerup', () => happiness.width += 2)
                 bath.on('pointerup', () => PetClothed.setText(['Pet Bathed']))
-                if(this.sound1==0){
+                if(this.sound2==0){
                 bath.on('pointerup', () => this.sound.play('bathsound')) // play interaction sound
                 }
                 //iterate through the toys
@@ -361,7 +361,7 @@ class MainScene extends Phaser.Scene {
                 playing.on('pointerup', () => playing.destroy())
                 playing.on('pointerup', () => happiness.width += 2)
                 playing.on('pointerup', () => PetClothed.setText(['Pet Playing']))
-                if(this.sound1==0){
+                if(this.sound2==0){
                 playing.on('pointerup', () => this.sound.play('happysound')) // play interaction sound
                 }
                 //lastly iterat through the food
@@ -386,7 +386,7 @@ class MainScene extends Phaser.Scene {
                 feeding.on('pointerup', () => PetClothed.setText(['Pet Fed']))
                 //im trying to either stop the animation or destroy the previous one
                 //feeding.on('pointerup',() =>this.petClass.destroy());
-                if(this.sound1==0){
+                if(this.sound2==0){
                 feeding.on('pointerup', () => this.sound.play('eatingsound')) // play interaction sound
                 }
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
