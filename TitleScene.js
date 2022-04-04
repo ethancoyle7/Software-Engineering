@@ -12,6 +12,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         this.bgmusic;
         this.type = '';
         this.sound1 = 0;
+        this.userID;
         //this.eggNum='';
     }
 
@@ -27,7 +28,9 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     }
 
     create() {
-        console.log(getID())
+        getID().then(value=>{
+            console.log(value)
+        })
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
