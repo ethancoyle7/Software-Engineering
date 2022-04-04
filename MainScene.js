@@ -54,7 +54,6 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() 
     {
-        getInfo();
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value = 0;
 
