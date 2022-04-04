@@ -30,7 +30,7 @@ preload()
 
 create()
 { 
-
+    getNickname()
     this.sound.stopAll();// stop all previous sounds
 //this is the create function
 //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
@@ -176,4 +176,62 @@ create()
 //         this.type="0";
 //         });
 // }
+}
+
+
+
+function checkFireBase() {
+    if (!firebase.apps.length) {
+        console.log("Initializing Firebase App.");
+        return firebaseApp = firebase.initializeApp(firebaseConfig);
+    } else {
+        console.log("Firebase has been Initialized.");
+        return firebaseApp = firebase.app(); // if already initialized, use that one
+    }
+}
+
+async function getNickname() {
+    // Calling Firebase Initialization method to make sure that we initialized firebase
+    firebaseApp = checkFireBase();
+    // Initialize firestore to store the nickname into the database
+    db = firebaseApp.firestore();
+    // Getting the user id
+    var user = firebase.auth().currentUser;
+    var uid;
+    // storing into a var.
+    if (user != null) {
+        uid = user.uid;
+    }
+    // now reading the user data and get the nickname
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach(async (doc) => {
+            // making sure we are returning only the user info
+            if(doc.id == await uid){
+                console.log(doc.id, " => ", doc.data().nickname);
+                return await doc.data().nickname;
+            }
+        });
+    });
+
+}
+
+function setColor(color) {
+    var washingtonRef = db.collection("users").doc(cred.user.uid);
+
+    // Set the "capital" field of the city 'DC'
+    return washingtonRef.update({
+        color: color
+    })
+        .then(() => {
+            console.log("Color has been successfully updated!");
+        })
+        .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating: ", error);
+        });
+}
+
+function addNewUser(){
+    var userList = scene.plugins.get('rexFirebase').add.onlineUserList(config);
+
 }
