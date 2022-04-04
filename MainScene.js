@@ -454,46 +454,46 @@ class MainScene extends Phaser.Scene {
         //console.log(this.hungerw);
 
     }
-}
-function checkFireBase() {
-    if (!firebase.apps.length) {
-      console.log("Initializing Firebase App.");
-      return firebaseApp = firebase.initializeApp(firebaseConfig);
-    } else {
-      console.log("Firebase has been Initialized.");
-      return firebaseApp = firebase.app(); // if already initialized, use that one
-    }
-  }
+ }
+// function checkFireBase() {
+//     if (!firebase.apps.length) {
+//       console.log("Initializing Firebase App.");
+//       return firebaseApp = firebase.initializeApp(firebaseConfig);
+//     } else {
+//       console.log("Firebase has been Initialized.");
+//       return firebaseApp = firebase.app(); // if already initialized, use that one
+//     }
+//   }
 
-// initialize the firebase app and  the details for it
-function getInfo() {
-    // Calling Firebase Initialization method to make sure that we initialized firebase
-    firebaseApp = checkFireBase();
-    firebaseApp.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        // var displayName = user.displayName;
-        var email = user.email;
-        // var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        console.log('id: ' + uid + ', email: ' + email);                // ...
-      } else {
-        alert('User is signed out.');
-      }
-    });
-  }
+// // initialize the firebase app and  the details for it
+// function getInfo() {
+//     // Calling Firebase Initialization method to make sure that we initialized firebase
+//     firebaseApp = checkFireBase();
+//     firebaseApp.auth().onAuthStateChanged(function (user) {
+//       if (user) {
+//         // var displayName = user.displayName;
+//         var email = user.email;
+//         // var isAnonymous = user.isAnonymous;
+//         var uid = user.uid;
+//         console.log('id: ' + uid + ', email: ' + email);                // ...
+//       } else {
+//         alert('User is signed out.');
+//       }
+//     });
+//   }
 
-  function getNickname(){
-    var docRef = db.collection("users").doc(cred.user.uid);
+//   function getNickname(){
+//     var docRef = db.collection("users").doc(cred.user.uid);
 
-    docRef.get().then((doc) => {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-  }
+//     docRef.get().then((doc) => {
+//         if (doc.exists) {
+//             console.log("Document data:", doc.data());
+//         } else {
+//             // doc.data() will be undefined in this case
+//             console.log("No such document!");
+//         }
+//     }).catch((error) => {
+//         console.log("Error getting document:", error);
+//     });
+//   }
 
