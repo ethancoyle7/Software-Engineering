@@ -20,7 +20,7 @@ function signUp() {
   const signUp = document.body.querySelector('#signup-form');
   nickname = signUp['nickname'].value;
   email = signUp['email'].value;
-  password = signUp['email'].value;
+  password = signUp['password'].value;
   console.log(email + ' ' + password)
 
   // Sign up function
