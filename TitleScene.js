@@ -12,7 +12,6 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         this.bgmusic;
         this.type = '';
         this.sound1 = 0;
-        this.userID;
         //this.eggNum='';
     }
 
@@ -25,12 +24,14 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         this.load.image("teamlogo", "./assets/image (1).png");
         this.load.image('home', './assets/infobutton.png');
         this.load.image('mute', './assets/mic.png');
+
     }
 
     create() {
-        getID().then(value=>{
-            console.log(value)
-        })
+        //this.userId = firebase.auth().currentUser.uid
+        // getID().then(value=>{
+        //     userId = value;
+        // })
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
