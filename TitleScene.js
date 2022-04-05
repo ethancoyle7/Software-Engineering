@@ -28,22 +28,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     }
 
     create() {
-        // setColor()
-        // getID().then(value=>{
-        //     userId = value;
-        // })
-        if (this.type == 0) {
-            console.log("red")
-        }
-        if (this.type == 1) {
-            console.log("white")
-        }
-        if (this.type == 2) {
-            console.log("blue")
-        }
-        if(this.type == null){
-            console.log("user didn't choose color yet.")
-        }
+
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
@@ -58,7 +43,12 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
         //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
         /////////////////////////////////////////////////////////////////////////
-
+        console.log('color: ', this.type)
+        if(readColor() == true){
+            this.scene.start('MainScene', {
+                type: this.type,
+            })
+        }
         // call the user name of the logged in user
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
@@ -79,11 +69,6 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         
         // if the user chose color already will redirect em to the main scene
         // console.log(readColor)
-        if(readColor() == true){
-            this.scene.start('MainScene', {
-                type: this.type,
-            })
-        }
 
 
 
@@ -141,7 +126,10 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         redegg.setScale(2);
         redegg.setInteractive();
         // on the pointer up feature, this option is passed to the other scenes
-        redegg.on('pointerdown', () => { this.type = "0"; });
+        redegg.on('pointerdown', () => {
+             this.type = "0"; 
+             setColor("red")
+            });
         redegg.on('pointerup', () => {
             this.sound.stopAll();// stop the music and load the next scene
             this.scene.start('MainScene', {
@@ -171,6 +159,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         whiteegg.setInteractive();
         whiteegg.on('pointerdown', () => {
             this.type = "1";
+            setColor("white")
         });
         whiteegg.on('pointerup', () => {
             this.sound.stopAll();
@@ -199,6 +188,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         blueegg.setInteractive();
         blueegg.on('pointerdown', () => {
             this.type = "2";
+            setColor("blue")
         });
         blueegg.on('pointerup', () => {
             this.sound.stopAll();
@@ -367,6 +357,43 @@ function readColor() {
 
 }
 
+function getColor() {
+    var user = firebaseApp.auth().currentUser;// get the current user
+    var uid;// get the user id
+    var color;//initialize the result to null
+    // storing into a var.
+    if (user != null) // if the user is not null
+    {
+        uid = user.uid;// get the user id
+    }
+    if (user == null) // if equal to null then there is sign in problem
+    {
+        alert('Please sign in.')
+    }
+    // // now reading the user data and get the nickname
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
+            if (doc.id == await uid) {
+                console.log(doc.data().color);
+                result = doc.data().color; // if the user is found override result to the nickname
+                //return doc.data();    
+            }
+        });
+    });
+    return color // return the result to the main function
+
+}
+
 function amiLoggedIn(){
-    return false;
+    var user = firebaseApp.auth().currentUser;// get the current user
+    var uid;// get the user id
+    if (user == null) // if equal to null then there is sign in problem
+    {
+        alert('Please sign in.')
+    }
+    if (user != null) // if the user is not null
+    {
+        uid = user.uid;// get the user id
+        return uid;
+    }
 }

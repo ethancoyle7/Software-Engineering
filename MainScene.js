@@ -53,18 +53,6 @@ class MainScene extends Phaser.Scene {
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value = 0;
 
-        if (this.type == 0) {
-            console.log("red")
-            setColor("red")
-        }
-        if (this.type == 1) {
-            console.log("white")
-            setColor("white")
-        }
-        if (this.type == 2) {
-            console.log("blue")
-            setColor("blue")
-        }
         //create container to randomize music everytime load up the main scene
         const backgroundmusic = ['1', '2', '3', '4', '5', '6']
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
