@@ -189,12 +189,12 @@ class FightScene extends Phaser.Scene
        //once the health is 0 or less than 0, then start the game over scene
        this.timeLeft = 50000;		
        this.gameTimer = this.time.addEvent({
-                   delay: 0,
+                   delay: 500,
                    callback: function()
                    {
                     this.timeLeft --;//decrement the time left
 
-                    var val=Math.floor(Math.random() * 10) // using rand number between 0 and 10
+                    var val=Math.floor(Math.random() * 5) // using rand number between 0 and 10
                                                            // for ai fight
                     pethealth.width-=val; //decrement the health randomly w/ val
                     console.log(pethealth.width)//lets see what the width is 
@@ -235,11 +235,12 @@ class FightScene extends Phaser.Scene
         // had issue with being able to go past this, so this timed event fixes that issue because there is no delay in the event
         this.timeLeft2 = 5000000;		
         this.gameTimer2 = this.time.addEvent({
-                   delay: 500,
+                   delay: 0,
                    callback: function()
                    {
                     this.timeLeft2 --;//decrement the time left
 
+                    
                     // creating attack buttons to attack the enemy 
                     //ie Light, Heavy, Punch etc 
                     ///////////////////////////////////////////
@@ -363,7 +364,15 @@ class FightScene extends Phaser.Scene
                         //create a cool down timer before can be clicked again
                         
                         /////////////////////////////////////////////////
-            
+                    if(pethealth.width<=1)// if the pets health is less than 0, load the game over scene
+                        {
+                            //this.sound.removeByKey('Fight')
+                            //this.sound.play("fatality");
+                            
+                            this.scene.start("GameOver",{
+                                type: this.type
+                                })
+                        }
                     if((enemyhealth.width-=attackval)<=2)// check for the enemy health to be less than 0
                     {
                                     //this.sound.removeByKey('Fight')
