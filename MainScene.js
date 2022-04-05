@@ -307,7 +307,7 @@ class MainScene extends Phaser.Scene {
                 // ╚██████╗███████╗╚██████╔╝   ██║   ██║  ██║██║██║ ╚████║╚██████╔╝//
                 //  ╚═════╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ //
                 /////////////////////////////////////////////////////////////////////  
-                                                  
+
                 //create list to iterate through with key string names of clothes
                 const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1", "outfit2", "outfit3", "shoes", "shoes2", "witchhat"];
                 const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
@@ -326,7 +326,7 @@ class MainScene extends Phaser.Scene {
                 clothing.on('pointerup', () =>
                 {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (clothing.x >= 60 || clothing.x <= 60 && clothing.y < 650)
+                    if (clothing.x >= 60 || clothing.x<= 60 || clothing.x<=0||clothing.x>=450 && clothing.y < 650)
                     {
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -365,7 +365,7 @@ class MainScene extends Phaser.Scene {
                 bath.on('pointerup', () =>
                 {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (bath.x >= 170 || bath.x <= 170 && bath.y < 650)
+                    if (bath.x >= 170 || bath.x<= 170 || bath.x<=0||bath.x>=450 && bath.y < 650)
                     {
                         this.pet.anims.stop('bathe+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -404,7 +404,7 @@ class MainScene extends Phaser.Scene {
                 playing.on('pointerup', () =>
                 {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (playing.x >= 280 || playing.x <= 280 && playing.y < 650)
+                    if (playing.x >= 280 || playing.x <= 280||playing.x<=0||playing.x>=450 && playing.y < 650)
                     {
                         this.pet.anims.stop('health+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -443,7 +443,9 @@ class MainScene extends Phaser.Scene {
                 feeding.on('pointerup', () =>
                 {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (feeding.x >= 390 || feeding.x <= 390 && feeding.y < 650)
+                    if (feeding.x >= 390 || feeding.x <= 390||feeding.x<=0||feeding.x>=450 && feeding.y < 650)
+                    //or if the clothing is moved above
+
                     {
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
