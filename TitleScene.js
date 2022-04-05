@@ -28,7 +28,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     }
 
     create() {
-        getNickname()
+        // setColor()
         // getID().then(value=>{
         //     userId = value;
         // })
@@ -51,7 +51,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
         //call the getnickname function to get the nickname of the user
-       console.log(getNickname()) // console log to see if it works
+    //    console.log(getNickname()) // console log to see if it works
         getNickname() // then call the .then function to pass in the promis value and get the id
             // from the await function, we can get the nickname of the user
             .then(usern => 
@@ -65,7 +65,12 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             .then(id => {
                 User.setText("User ID :" + [id]);//display it to the screen
             });
-        
+        // if the user chose color already will redirect em to the main scene
+        if(readColor){
+            this.scene.start('MainScene', {
+                type: this.type,
+            })
+        }
 
 
 
@@ -127,7 +132,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         redegg.on('pointerup', () => {
             this.sound.stopAll();// stop the music and load the next scene
             this.scene.start('MainScene', {
-                type: this.type
+                type: this.type,
             })
         }
 
@@ -302,7 +307,9 @@ return result // return the result to the main function
 
 function setColor(color) 
 {
-    var washingtonRef = db.collection("users").doc(cred.user.uid);
+    var user = firebaseApp.auth().currentUser;// get the current user
+    id = user.uid;
+    var washingtonRef = db.collection("users").doc(id);
 
     return washingtonRef.update({
         color: color
@@ -322,4 +329,41 @@ function addNewUser()
 {
     var userList = scene.plugins.get('rexFirebase').add.onlineUserList(config);
 
+}
+
+
+async function readColor() 
+{
+    var user = firebaseApp.auth().currentUser;// get the current user
+    var uid;// get the user id
+    // // storing into a var.
+    if (user != null) // if the user is not null
+    {
+        uid = user.uid;// get the user id
+    }
+    if (user == null) // if equal to null then there is sign in problem
+    {
+        alert('Please sign in.')
+    }
+    // // now reading the user data and get the nickname
+    await db.collection("users").get().then((querySnapshot) => 
+    {
+        querySnapshot.forEach(async (doc) => 
+        {// making sure we are returning only the user info
+            if (doc.id == await uid) 
+            {
+                if(doc.data().color !="none")
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                // console.log(doc.data().nickname);
+                // result = doc.data().nickname; // if the user is found override result to the nickname
+                //return doc.data();    
+            }
+        });
+    });
+    
 }
