@@ -28,7 +28,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     }
 
     create() {
-        //this.userId = firebase.auth().currentUser.uid
+        getNickname()
         // getID().then(value=>{
         //     userId = value;
         // })
@@ -40,24 +40,23 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         var User = this.add.text(10, 760, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
         getID() // then call the .then function to pass in the promis value and get the id
-        .then(id => {
-            User.setText("User :" + [id]);//display it to the screen
-        });
-        
-        
-        
+            .then(id => {
+                User.setText("User :" + [id]);//display it to the screen
+            });
+
+
 
         this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
             volume: 0.5,
             loop: true
         });
-       
-        
-        
+
+
+
         //access the value of getUID() and set it to the variable User
-        
-        
-        
+
+
+
         // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
         var title = this.add.image(225, 80, "title")
         var eggs = this.add.image(225, 600, "eggchoice")
@@ -211,86 +210,40 @@ function checkFireBase() {
     }
 }
 
-async function getID() 
-{
+async function getID() {
     const id = await firebase.auth().currentUser.uid;
-    
+
     console.log(id)
-    
-        //set the text indicator for the level icon text value
-        
-            
+
+    //set the text indicator for the level icon text value
+
+
     return id;
 }
 
 
 
-// async function getNickname() {
-//     const userID = await getID()
-//     const nickname = await readNickname(userID)
-//     console.log(nickname)
-//     return nickname
-// }
-// userID = await getID()
-// console.log(userID)
-function getNickname(uid)
-{
-    firebase.database().ref('users/' + uid).once("value", snap => 
-    {
-        console.log(snap.val()) 
-    })
-   
+async function getNickname() {
+    var user = firebaseApp.auth().currentUser;
+    var uid;
+    // // storing into a var.
+    if (user != null) {
+        uid = user.uid;
+    }
+    if (user == null) {
+        alert('Please sign in.')
+    }
+    // // now reading the user data and get the nickname
+    await db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach(async (doc) => {
+            // making sure we are returning only the user info
+            if (doc.id == await uid) {
+                console.log(doc.data().nickname);
+                return doc.data().nickname;
+            }
+        });
+    });
 }
-async function getData()
-{
-    var messageRef = db.collection('users').doc(getID())
-                .collection('messages').doc('message1');
-    getNickname(await getData())
-    
-}//display this to the screen
-
-// return user
-// const docId = await firebase
-//     .firestore()
-//     .collection('users')
-//     // .doc(userID)
-//     .get()
-//     .then(querySnapshot => {
-//         querySnapshot.forEach(async(doc) => {
-//             // if (doc.id == userID) {
-//                 // console.log(doc.data().nickname);
-//                 return doc.data().nickname; // The return here does nothing
-//             //  }
-//         });
-//         // You need to return something here
-//         return doc.data().nickname;
-//     });
-
-// console.log(docId);
-
-// // Calling Firebase Initialization method to make sure that we initialized firebase
-// // firebaseApp = checkFireBase();
-// // Initialize firestore to store the nickname into the database
-// db = await firebaseApp.firestore();
-// // Getting the user id
-// var user = firebase.auth().currentUser;
-// var uid;
-// // storing into a var.
-// if (user != null) {
-//     uid = user.uid;
-// }
-// // now reading the user data and get the nickname
-// await db.collection("users").get().then((querySnapshot) => {
-//     querySnapshot.forEach(async (doc) => {
-//         // making sure we are returning only the user info
-//         if (doc.id == await uid) {
-//             console.log(doc.id, " => ", doc.data().nickname);
-//             return doc.data().nickname;
-//         }
-//     });
-// });
-
-
 
 function setColor(color) {
     var washingtonRef = db.collection("users").doc(cred.user.uid);
