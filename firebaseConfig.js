@@ -18,6 +18,9 @@ const firebaseConfig = {
 firebaseApp = firebase.initializeApp(firebaseConfig);
 auth = firebase.auth();
 db = firebase.firestore();
+
+
+
 // const analytics = getAnalytics(firebaseApp);
 
 // we need to update the firestore settings to avoid error in console
