@@ -10,7 +10,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     constructor() {
         super("TitleScene");
         this.bgmusic;
-        this.type = '';
+        this.type;
         this.sound1 = 0;
         //this.eggNum='';
     }
@@ -32,6 +32,18 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // getID().then(value=>{
         //     userId = value;
         // })
+        if (this.type == 0) {
+            console.log("red")
+        }
+        if (this.type == 1) {
+            console.log("white")
+        }
+        if (this.type == 2) {
+            console.log("blue")
+        }
+        if(this.type == null){
+            console.log("user didn't choose color yet.")
+        }
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
@@ -64,10 +76,10 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             .then(id => {
                 User.setText("User ID :" + [id]);//display it to the screen
             });
-        console.log(readColor())
+        
         // if the user chose color already will redirect em to the main scene
         // console.log(readColor)
-        if(readColor){
+        if(readColor() == true){
             this.scene.start('MainScene', {
                 type: this.type,
             })
@@ -319,8 +331,9 @@ function addNewUser() {
     var userList = scene.plugins.get('rexFirebase').add.onlineUserList(config);
 
 }
-
-
+// the reason why is false becuase everytime I referesh the game,
+// it take me to the TitleScene and reset the value for "this.type" to NULL
+// so the value have to be called from the database
 function readColor() {
     var user = firebaseApp.auth().currentUser;// get the current user
     var uid;// get the user id
@@ -337,11 +350,14 @@ function readColor() {
     db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
             if (doc.id == await uid) {
-                console.log(doc.data().color)
-                if (doc.data().color == "none") {
+                if (doc.data().color == null) {
+                    console.log(doc.data().color)
+                    console.log("false")
                     return false;
                 }
                 else {
+                    console.log(doc.data().color)
+                    console.log("false")
                     return true;
                 }
                 // console.log(doc.data().nickname);
@@ -351,4 +367,8 @@ function readColor() {
         });
     });
 
+}
+
+function amiLoggedIn(){
+    return false;
 }
