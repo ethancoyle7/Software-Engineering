@@ -209,19 +209,11 @@ function checkFireBase() {
         return firebaseApp = firebase.app(); // if already initialized, use that one
     }
 }
-
 async function getID() {
     const id = await firebase.auth().currentUser.uid;
-
     console.log(id)
-
-    //set the text indicator for the level icon text value
-
-
     return id;
 }
-
-
 
 async function getNickname() {
     var user = firebaseApp.auth().currentUser;
@@ -239,7 +231,7 @@ async function getNickname() {
             // making sure we are returning only the user info
             if (doc.id == await uid) {
                 console.log(doc.data().nickname);
-                return doc.data().nickname;
+                return doc.data();
             }
         });
     });
