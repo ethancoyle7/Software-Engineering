@@ -352,12 +352,10 @@ function readColor() {
             if (doc.id == await uid) {
                 if (doc.data().color == null) {
                     console.log(doc.data().color)
-                    console.log("false")
                     return false;
                 }
                 else {
                     console.log(doc.data().color)
-                    console.log("false")
                     return true;
                 }
                 // console.log(doc.data().nickname);

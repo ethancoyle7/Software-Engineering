@@ -50,20 +50,19 @@ class MainScene extends Phaser.Scene {
     }
     // Runs when we first enter this scene
     create() {
-
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value = 0;
 
         if (this.type == 0) {
-            // console.log("red")
+            console.log("red")
             setColor("red")
         }
         if (this.type == 1) {
-            // console.log("white")
+            console.log("white")
             setColor("white")
         }
         if (this.type == 2) {
-            // console.log("blue")
+            console.log("blue")
             setColor("blue")
         }
         //create container to randomize music everytime load up the main scene

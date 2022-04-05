@@ -30,7 +30,7 @@ function signUp() {
     db.collection('users').doc(cred.user.uid).set({
     // db.collection('users').add({
       nickname: nickname,
-      color: "none",
+      color: null,
       fights: "0"
     })
 
