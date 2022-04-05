@@ -304,7 +304,6 @@ function setColor(color)
 {
     var washingtonRef = db.collection("users").doc(cred.user.uid);
 
-    // Set the "capital" field of the city 'DC'
     return washingtonRef.update({
         color: color
     })
