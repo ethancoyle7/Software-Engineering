@@ -26,17 +26,36 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         this.load.image('mute', './assets/mic.png');
     }
 
-    create() {
+    create() 
+        {
+            
         console.log(getID())
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
         let bg = this.add.image(225, 400, "back");
         bg.setScale(.6); //changes the scale of the background image
+        var User = this.add.text(10, 760, '', { font: '20px Arial', fill: '#00ff00' });
+        //call to the api to get the id of the logged in user
+        getID() // then call the .then function to pass in the promis value and get the id
+        .then(id => {
+            User.setText("User :" + [id]);//display it to the screen
+        });
+        
+        
+        
+
         this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
             volume: 0.5,
             loop: true
         });
+       
+        
+        
+        //access the value of getUID() and set it to the variable User
+        
+        
+        
         // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
         var title = this.add.image(225, 80, "title")
         var eggs = this.add.image(225, 600, "eggchoice")
@@ -189,11 +208,20 @@ function checkFireBase() {
         return firebaseApp = firebase.app(); // if already initialized, use that one
     }
 }
- 
-async function getID() {
+
+async function getID() 
+{
     const id = await firebase.auth().currentUser.uid;
+    
+    console.log(id)
+    
+        //set the text indicator for the level icon text value
+        
+            
     return id;
 }
+
+
 
 // async function getNickname() {
 //     const userID = await getID()
@@ -203,16 +231,21 @@ async function getID() {
 // }
 // userID = await getID()
 // console.log(userID)
-function getNickname(uid){
-    firebase.database().ref('users/' + uid).once("value", snap => {
-        console.log(snap.val())
+function getNickname(uid)
+{
+    firebase.database().ref('users/' + uid).once("value", snap => 
+    {
+        console.log(snap.val()) 
     })
+   
 }
-async function getData(){
+async function getData()
+{
     var messageRef = db.collection('users').doc(getID())
                 .collection('messages').doc('message1');
     getNickname(await getData())
-}
+    
+}//display this to the screen
 
 // return user
 // const docId = await firebase
