@@ -37,15 +37,39 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
         let bg = this.add.image(225, 400, "back");
         bg.setScale(.6); //changes the scale of the background image
+
+        /////////////////////////////////////////////////////////////////////////
+        // ██╗   ██╗███████╗███████╗██████╗     ██╗███╗   ██╗███████╗ ██████╗  //
+        // ██║   ██║██╔════╝██╔════╝██╔══██╗    ██║████╗  ██║██╔════╝██╔═══██╗ //
+        // ██║   ██║███████╗█████╗  ██████╔╝    ██║██╔██╗ ██║█████╗  ██║   ██║ //
+        // ██║   ██║╚════██║██╔══╝  ██╔══██╗    ██║██║╚██╗██║██╔══╝  ██║   ██║ //
+        // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
+        //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
+        /////////////////////////////////////////////////////////////////////////
+                                                                           
+        // call the user name of the logged in user
+        var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
+        //call to the api to get the id of the logged in user
+        //call the getnickname function to get the nickname of the user
+       console.log(getNickname()) // console log to see if it works
+        getNickname() // then call the .then function to pass in the promis value and get the id
+            // from the await function, we can get the nickname of the user
+            .then(usern => 
+            {
+                username.setText("Logged in As :" + [usern]);//display it to the screen
+            });
+        //get the user  id for the current logged in user
         var User = this.add.text(10, 760, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
         getID() // then call the .then function to pass in the promis value and get the id
             .then(id => {
-                User.setText("User :" + [id]);//display it to the screen
+                User.setText("User ID :" + [id]);//display it to the screen
             });
+        
 
 
 
+        //start the music for the scene
         this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
             volume: 0.5,
             loop: true
@@ -59,7 +83,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
 
         // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
         var title = this.add.image(225, 80, "title")
-        var eggs = this.add.image(225, 600, "eggchoice")
+        var eggs = this.add.image(225, 550, "eggchoice")
         //help button
         let homebutton1 = this.add.image(40, 50, 'home');
         homebutton1.setScale(0.3);
@@ -85,10 +109,17 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
                 });
             }
         })
-
-
+        ////////////////////////////////////////
+        // ███████╗ ██████╗  ██████╗ ███████╗ //
+        // ██╔════╝██╔════╝ ██╔════╝ ██╔════╝ //
+        // █████╗  ██║  ███╗██║  ███╗███████╗ //
+        // ██╔══╝  ██║   ██║██║   ██║╚════██║ //
+        // ███████╗╚██████╔╝╚██████╔╝███████║ //
+        // ╚══════╝ ╚═════╝  ╚═════╝ ╚══════╝ //
+        ///////////////////////////////////////
+                                          
         //adding the eggs to the scene for the user to make a choice
-        let redegg = this.add.sprite(75, 700, "redegg");
+        let redegg = this.add.sprite(75, 650, "redegg");
         redegg.setScale(2);
         redegg.setInteractive();
         // on the pointer up feature, this option is passed to the other scenes
@@ -117,7 +148,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         //add the white egg sprite adn give it some movement,
         // when click on, the number will be assigned and then passed
         // to the other scenes
-        let whiteegg = this.add.sprite(375, 700, "whiteegg");
+        let whiteegg = this.add.sprite(225, 650, "whiteegg");
         whiteegg.setScale(2);
         whiteegg.setInteractive();
         whiteegg.on('pointerdown', () => {
@@ -145,7 +176,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
 
         //create a blue egg for blue character and when clicked the 
         // blue character will load ad then be passed to the other scenes
-        let blueegg = this.add.sprite(225, 700, "blueegg");
+        let blueegg = this.add.sprite(375, 650, "blueegg");
         blueegg.setScale(2);
         blueegg.setInteractive();
         blueegg.on('pointerdown', () => {
@@ -172,7 +203,15 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         });
         blueegg.anims.play('idle');
 
-
+        ///////////////////////////////////////////////////////////
+        // ████████╗██╗    ██╗███████╗███████╗███╗   ██╗███████╗ //
+        // ╚══██╔══╝██║    ██║██╔════╝██╔════╝████╗  ██║██╔════╝ //
+        //    ██║   ██║ █╗ ██║█████╗  █████╗  ██╔██╗ ██║███████╗ //
+        //    ██║   ██║███╗██║██╔══╝  ██╔══╝  ██║╚██╗██║╚════██║ //
+        //    ██║   ╚███╔███╔╝███████╗███████╗██║ ╚████║███████║ //
+        //    ╚═╝    ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝ //
+        ///////////////////////////////////////////////////////////
+                                                             
         //yoyo effect for the title
         this.tweens.add({
 
@@ -198,62 +237,90 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     // }
 }
 
-
-
-function checkFireBase() {
-    if (!firebase.apps.length) {
+/////////////////////////////////////////////////////////////////////
+// █████╗ ██████╗ ██╗     ██████╗ █████╗ ██╗     ██╗     ███████╗  //
+// ██╔══██╗██╔══██╗██║    ██╔════╝██╔══██╗██║     ██║     ██╔════╝ //
+// ███████║██████╔╝██║    ██║     ███████║██║     ██║     ███████╗ //
+// ██╔══██║██╔═══╝ ██║    ██║     ██╔══██║██║     ██║     ╚════██║ //
+// ██║  ██║██║     ██║    ╚██████╗██║  ██║███████╗███████╗███████║ //
+// ╚═╝  ╚═╝╚═╝     ╚═╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ //
+/////////////////////////////////////////////////////////////////////
+                                                               
+function checkFireBase() 
+{
+    if (!firebase.apps.length) 
+    {
         console.log("Initializing Firebase App.");
         return firebaseApp = firebase.initializeApp(firebaseConfig);
-    } else {
+    }
+    else 
+    {
         console.log("Firebase has been Initialized.");
         return firebaseApp = firebase.app(); // if already initialized, use that one
     }
 }
-async function getID() {
-    const id = await firebase.auth().currentUser.uid;
-    console.log(id)
-    return id;
+// function to retrieve the id of the user
+async function getID() 
+{
+    const id = await firebase.auth().currentUser.uid;// wait for the result from the api call
+    console.log(id)// log to see the result is correct
+    return id;// return the user id number
 }
 
-async function getNickname() {
-    var user = firebaseApp.auth().currentUser;
-    var uid;
+
+// api call to get the nickname of the user that is logged in
+async function getNickname() 
+{
+    var user = firebaseApp.auth().currentUser;// get the current user
+    var uid;// get the user id
+    var result= null;//initialize the result to null
     // // storing into a var.
-    if (user != null) {
-        uid = user.uid;
+    if (user != null) // if the user is not null
+    {
+        uid = user.uid;// get the user id
     }
-    if (user == null) {
+    if (user == null) // if equal to null then there is sign in problem
+    {
         alert('Please sign in.')
     }
     // // now reading the user data and get the nickname
-    await db.collection("users").get().then((querySnapshot) => {
-        querySnapshot.forEach(async (doc) => {
-            // making sure we are returning only the user info
-            if (doc.id == await uid) {
+    await db.collection("users").get().then((querySnapshot) => 
+    {
+        querySnapshot.forEach(async (doc) => 
+        {// making sure we are returning only the user info
+            if (doc.id == await uid) 
+            {
                 console.log(doc.data().nickname);
-                return doc.data();
+                result = doc.data().nickname; // if the user is found override result to the nickname
+                //return doc.data();    
             }
         });
     });
+return result // return the result to the main function
+    
 }
 
-function setColor(color) {
+function setColor(color) 
+{
     var washingtonRef = db.collection("users").doc(cred.user.uid);
 
     // Set the "capital" field of the city 'DC'
     return washingtonRef.update({
         color: color
     })
-        .then(() => {
+        .then(() => 
+        {
             console.log("Color has been successfully updated!");
         })
-        .catch((error) => {
+        .catch((error) => 
+        {
             // The document probably doesn't exist.
             console.error("Error updating: ", error);
         });
 }
 
-function addNewUser() {
+function addNewUser() 
+{
     var userList = scene.plugins.get('rexFirebase').add.onlineUserList(config);
 
 }

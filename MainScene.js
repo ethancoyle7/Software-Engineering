@@ -299,15 +299,15 @@ class MainScene extends Phaser.Scene {
                 this.add.text(260, 650, "PLAY", style);//label it 
                 this.add.text(370, 650, "FEED", style);//label it 
 
-                /////////////////////////////////////////////
-                // ██╗████████╗███████╗███╗   ███╗███████╗ //
-                // ██║╚══██╔══╝██╔════╝████╗ ████║██╔════╝ //
-                // ██║   ██║   █████╗  ██╔████╔██║███████╗ //
-                // ██║   ██║   ██╔══╝  ██║╚██╔╝██║╚════██║ //
-                // ██║   ██║   ███████╗██║ ╚═╝ ██║███████║ //
-                // ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
-                /////////////////////////////////////////////
-                                                       
+                /////////////////////////////////////////////////////////////////////
+                // ██████╗██╗      ██████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗  //
+                // ██╔════╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██║████╗  ██║██╔════╝ //
+                // ██║     ██║     ██║   ██║   ██║   ███████║██║██╔██╗ ██║██║  ███╗//
+                // ██║     ██║     ██║   ██║   ██║   ██╔══██║██║██║╚██╗██║██║   ██║//
+                // ╚██████╗███████╗╚██████╔╝   ██║   ██║  ██║██║██║ ╚████║╚██████╔╝//
+                //  ╚═════╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ //
+                /////////////////////////////////////////////////////////////////////  
+                                                  
                 //create list to iterate through with key string names of clothes
                 const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1", "outfit2", "outfit3", "shoes", "shoes2", "witchhat"];
                 const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
@@ -315,17 +315,40 @@ class MainScene extends Phaser.Scene {
                 var clothing = this.add.image(60, 740, clothes[random])//add the key randomly chose value string name
                 clothing.setScale(3);// set the size
                 clothing.setInteractive({ draggable: true });// it is draggable
-                clothing.on('pointerdown', () => this.pet.anims.stop('run'));
-                clothing.on('pointerdown', () => this.pet.anims.play('feed'));
-                clothing.on('pointerup', () => this.pet.anims.stop('feed'));
-                clothing.on('pointerup', () => this.pet.anims.play('run'));
-                clothing.on('pointerup', () => clothing.destroy())
-                clothing.on('pointerup', () => happiness.width += 2)
-                clothing.on('pointerup', () => hunger.width -= 2)
-                clothing.on('pointerup', () => PetClothed.setText(['Pet Clothed']))
-                if(this.sound2==0){
-                clothing.on('pointerup', () => this.sound.play('clothesound')) // play interaction sound
-                }
+                
+                //on the pointer down trigger the stop and start new animation for the pet
+                clothing.on('pointerdown', () =>
+                {
+                    this.pet.anims.stop('run'); //stop the pet run
+                    this.pet.anims.play('feed'); //play the pet feed
+                });
+                //check to see if the clothing is moved and the pointer is up then destroy the clothing
+                clothing.on('pointerup', () =>
+                {
+                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    if (clothing.x >= 60 || clothing.x <= 60 && clothing.y < 650)
+                    {
+                        this.pet.anims.stop('feed')// stop the feed animation
+                        this.pet.anims.play('run')// play the run animation
+                        clothing.destroy(); // destroy the clothing
+                        PetClothed.setText([' PET CLOTHED']);   // set the text to be displayed
+                        hunger.width -=2;   //decrement the hunger
+                        happiness.width +=2; //increment the happiness
+                        if(this.sound2==0) //if the sound is not muted
+                        { 
+                            this.sound.play('clothesound'); //play the sound
+                        }
+                    }
+                });
+                ////////////////////////////////////////////////////////////
+                // ██████╗  █████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗ //
+                // ██╔══██╗██╔══██╗╚══██╔══╝██║  ██║██║████╗  ██║██╔════╝ //
+                // ██████╔╝███████║   ██║   ███████║██║██╔██╗ ██║██║  ███╗//
+                // ██╔══██╗██╔══██║   ██║   ██╔══██║██║██║╚██╗██║██║   ██║//
+                // ██████╔╝██║  ██║   ██║   ██║  ██║██║██║ ╚████║╚██████╔╝//
+                // ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ //
+                ////////////////////////////////////////////////////////////
+                                                                       
                 //iterate through the bathing by string name
                 const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo", "soapbox", "soap", "sunscreen", "toothbrush", "wipey", "box"];
                 const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
@@ -333,36 +356,77 @@ class MainScene extends Phaser.Scene {
                 var bath = this.add.image(170, 740, bathing[random2])//insert image with randomly chosen key
                 bath.setScale(3);//size the image
                 bath.setInteractive({ draggable: true });//it can be dragged
-                bath.on('pointerdown', () => this.pet.anims.stop('run'));
-                bath.on('pointerdown', () => this.pet.anims.play('bathe+'));
-                bath.on('pointerup', () => this.pet.anims.stop('bathe+'));
-                bath.on('pointerup', () => this.pet.anims.play('run'));
-                bath.on('pointerup', () => bath.destroy())
-                bath.on('pointerup', () => health.width += 2)
-                bath.on('pointerup', () => happiness.width += 2)
-                bath.on('pointerup', () => PetClothed.setText(['Pet Bathed']))
-                if(this.sound2==0){
-                bath.on('pointerup', () => this.sound.play('bathsound')) // play interaction sound
-                }
-                //iterate through the toys
+                bath.on('pointerdown', () =>
+                {
+                    this.pet.anims.stop('run'); //stop the pet run
+                    this.pet.anims.play('bathe+'); //play the pet feed
+                });
+                //check to see if the clothing is moved and the pointer is up then destroy the clothing
+                bath.on('pointerup', () =>
+                {
+                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    if (bath.x >= 170 || bath.x <= 170 && bath.y < 650)
+                    {
+                        this.pet.anims.stop('bathe+')// stop the feed animation
+                        this.pet.anims.play('run')// play the run animation
+                        bath.destroy(); // destroy the clothing
+                        PetClothed.setText([' PET BATHED']);   // set the text to be displayed
+                        health.width +=2;   //decrement the hunger
+                        happiness.width +=2; //increment the happiness
+                        if(this.sound2==0) //if the sound is not muted
+                        { 
+                            this.sound.play('bathsound'); //play the sound
+                        }
+                    }
+                });
+                
+                /////////////////////////////////////////////////////////////
+                // ██████╗ ██╗      █████╗ ██╗   ██╗██╗███╗   ██╗ ██████╗  //
+                // ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██║████╗  ██║██╔════╝  //
+                // ██████╔╝██║     ███████║ ╚████╔╝ ██║██╔██╗ ██║██║  ███╗ //
+                // ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██║██║╚██╗██║██║   ██║ //
+                // ██║     ███████╗██║  ██║   ██║   ██║██║ ╚████║╚██████╔╝ //
+                // ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝  //
+                /////////////////////////////////////////////////////////////
+                                                                       
                 const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1", "console2", "console3", "duckie", "octopus", "toy2"];
                 const random3 = Math.floor(Math.random() * toys.length);//random chose string name
                 var box3 = this.add.rectangle(280, 740, 100, 100, 0xe7a23c);//create box
                 var playing = this.add.image(280, 740, toys[random3])//add key to the new image
                 playing.setScale(3);//set the size
                 playing.setInteractive({ draggable: true });//draggable yes
-                //this generates an animation from petclass
-                //playing.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'health+'));
-                playing.on('pointerdown', () => this.pet.anims.stop('run'));
-                playing.on('pointerdown', () => this.pet.anims.play('health+'));
-                playing.on('pointerup', () => this.pet.anims.stop('health+'));
-                playing.on('pointerup', () => this.pet.anims.play('run'));
-                playing.on('pointerup', () => playing.destroy())
-                playing.on('pointerup', () => happiness.width += 2)
-                playing.on('pointerup', () => PetClothed.setText(['Pet Playing']))
-                if(this.sound2==0){
-                playing.on('pointerup', () => this.sound.play('happysound')) // play interaction sound
-                }
+                playing.on('pointerdown', () =>
+                {
+                    this.pet.anims.stop('run'); //stop the pet run
+                    this.pet.anims.play('health+'); //play the pet feed
+                });
+                //check to see if the clothing is moved and the pointer is up then destroy the clothing
+                playing.on('pointerup', () =>
+                {
+                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    if (playing.x >= 280 || playing.x <= 280 && playing.y < 650)
+                    {
+                        this.pet.anims.stop('health+')// stop the feed animation
+                        this.pet.anims.play('run')// play the run animation
+                        playing.destroy(); // destroy the clothing
+                        PetClothed.setText([' PET PLAYING']);   // set the text to be displayed
+                        health.width +=2;   //decrement the hunger
+                        happiness.width +=2; //increment the happiness
+                        if(this.sound2==0) //if the sound is not muted
+                        { 
+                            this.sound.play('happysound'); //play the sound
+                        }
+                    }
+                });
+                ///////////////////////////////////////////////////////////
+                // ███████╗███████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ //
+                // ██╔════╝██╔════╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ //
+                // █████╗  █████╗  █████╗  ██║  ██║██║██╔██╗ ██║██║  ███╗//
+                // ██╔══╝  ██╔══╝  ██╔══╝  ██║  ██║██║██║╚██╗██║██║   ██║//
+                // ██║     ███████╗███████╗██████╔╝██║██║ ╚████║╚██████╔╝//
+                // ╚═╝     ╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ //
+                ///////////////////////////////////////////////////////////
+                                                                      
                 //lastly iterat through the food
                 const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange", "grilledcheese", "eggs", "drink2", "drink", "donut", "cupcake", "chicken", "pancake"];
                 const random4 = Math.floor(Math.random() * food.length);//choose random value for the image icon from list
@@ -370,24 +434,31 @@ class MainScene extends Phaser.Scene {
                 var feeding = this.add.image(390, 740, food[random4])//input the key string name
                 feeding.setScale(3);// set the size
                 feeding.setInteractive({ draggable: true });//it can be dragged
-                //feeding.on('pointerdown',() =>this.signal=1);
-                //this generates an animation from petclass
-                //feeding.on('pointerdown',() =>this.petClass.Pet3Animation.call(this,'feed'));
-                feeding.on('pointerdown', () => this.pet.anims.stop('run'));
-                feeding.on('pointerdown', () => this.pet.anims.play('feed'));
-                //feeding.on('pointerup',() =>this.signal=0);
-                feeding.on('pointerup', () => this.pet.anims.stop('feed'));
-                feeding.on('pointerup', () => this.pet.anims.play('run'));
-                feeding.on('pointerup', () => feeding.destroy())
-                feeding.on('pointerup', () => health.width += 2)
-                feeding.on('pointerup', () => happiness.width += 2)
-                feeding.on('pointerup', () => hunger.width += 2)
-                feeding.on('pointerup', () => PetClothed.setText(['Pet Fed']))
-                //im trying to either stop the animation or destroy the previous one
-                //feeding.on('pointerup',() =>this.petClass.destroy());
-                if(this.sound2==0){
-                feeding.on('pointerup', () => this.sound.play('eatingsound')) // play interaction sound
-                }
+                feeding.on('pointerdown', () =>
+                {
+                    this.pet.anims.stop('run'); //stop the pet run
+                    this.pet.anims.play('feed'); //play the pet feed
+                });
+                //check to see if the clothing is moved and the pointer is up then destroy the clothing
+                feeding.on('pointerup', () =>
+                {
+                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    if (feeding.x >= 390 || feeding.x <= 390 && feeding.y < 650)
+                    {
+                        this.pet.anims.stop('feed')// stop the feed animation
+                        this.pet.anims.play('run')// play the run animation
+                        feeding.destroy(); // destroy the clothing
+                        PetClothed.setText([' PET FED']);   // set the text to be displayed
+                        health.width += 2
+                        happiness.width += 2
+                        hunger.width += 2
+                        if(this.sound2==0) //if the sound is not muted
+                        { 
+                            this.sound.play('eatingsound'); //play the sound
+                        }
+                    }
+                });
+                
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
                 {
 
