@@ -81,7 +81,8 @@ function getInfoFromFirebase() {
   // Calling Firebase Initialization method to make sure that we initialized firebase
   firebaseApp = checkFireBase();
   firebaseApp.auth().onAuthStateChanged(function (user) {
-    if (user) {
+    if (user) 
+    {
       // var displayName = user.displayName;
       var email = user.email;
       // var isAnonymous = user.isAnonymous;

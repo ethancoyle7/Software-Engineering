@@ -403,7 +403,7 @@ class MainScene extends Phaser.Scene {
                         }))// lead to fight scene
                 }
                 //experience checker, if the user gets 10 experience points, then the pet will level up
-                if (experience>0 &&experience%10==0)//if the experience is divisible by 10 then the level increases
+                if (experience>0 &&experience%3==0)//if the experience is divisible by 10 then the level increases
                 {
                     value++;
                     text.setText(['LVL\n\n' + value,]);
