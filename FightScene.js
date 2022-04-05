@@ -100,19 +100,23 @@ class FightScene extends Phaser.Scene
             repeat: 2
         });
         //mute button
-        let mutebutton = this.add.image(400,50,'mute');
-        mutebutton.setScale(0.5);
-        mutebutton.setInteractive();
-        mutebutton.on('pointerdown',()=>{
+        let mutebutton = this.add.image(400,50,'mute'); // creating a mute button
+        mutebutton.setScale(0.2); // setting the scale
+        mutebutton.setInteractive();// make it clickable
+        mutebutton.on('pointerdown',()=>
+        {
             console.log(this.sound3);
-            if(this.sound3==0){
+            if(this.sound3==0)
+            {
             this.sound3+=1;
             console.log(this.sound3);
             this.sound.stopAll();
-        }else{
+            }
+            else
+            {
             this.sound3-=1;
             this.sound.play("FightSound2", { volume: 1});
-        }
+            }
         })
 
         //play the pet animation and play sound whenever pressed down
@@ -181,10 +185,11 @@ class FightScene extends Phaser.Scene
         //    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝ //
         /////////////////////////////////////////////////////////////////////////////////////////////  
        //create a timed event that acts as the ai fighting the characters player 
+       
        //once the health is 0 or less than 0, then start the game over scene
        this.timeLeft = 50000;		
        this.gameTimer = this.time.addEvent({
-                   delay: 500,
+                   delay: 0,
                    callback: function()
                    {
                     this.timeLeft --;//decrement the time left
@@ -193,7 +198,8 @@ class FightScene extends Phaser.Scene
                                                            // for ai fight
                     pethealth.width-=val; //decrement the health randomly w/ val
                     console.log(pethealth.width)//lets see what the width is 
-
+                    
+                    
                     //set it where the pet when is attack changes to a different color
                     if(val>0)
                     {
@@ -229,125 +235,140 @@ class FightScene extends Phaser.Scene
         // had issue with being able to go past this, so this timed event fixes that issue because there is no delay in the event
         this.timeLeft2 = 5000000;		
         this.gameTimer2 = this.time.addEvent({
-                   delay: 0,
+                   delay: 500,
                    callback: function()
                    {
                     this.timeLeft2 --;//decrement the time left
 
                     // creating attack buttons to attack the enemy 
-        //ie Light, Heavy, Punch etc 
-        ///////////////////////////////////////////
-        // ██╗     ██╗ ██████╗ ██╗  ██╗████████╗ //
-        // ██║     ██║██╔════╝ ██║  ██║╚══██╔══╝ //
-        // ██║     ██║██║  ███╗███████║   ██║    //
-        // ██║     ██║██║   ██║██╔══██║   ██║    //
-        // ███████╗██║╚██████╔╝██║  ██║   ██║    //
-        // ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝    //
-        ///////////////////////////////////////////
-         var attackval=0                                    
-         //give them rectangle and make interactive and when clicked, they adjust the pet health
-         var Light = this.add.rectangle(340,660, 150, 30, 0xb8860b);
-         Light.setStrokeStyle(4, 0x1e0a08);
-         this.add.text(290, 650, "Light Attack", style);//label it 
-         Light.setInteractive() // SET IT INTERACTIVE
-         Light.on('pointerdown', () =>
-                 {
-                     attackval=2;
-                     enemyhealth.width-=attackval;//ENEMY HEALTH -=2
-                     console.log(enemyhealth.width); //logging the width of the enemy bar
-                     this.enemy.setTint(0xff0000);// create a tint to know got attacked
-                     if(this.sound3==0)
-                     {
-                          this.sound.play('press'); // play sound when hit
-                          this.sound.play('EnemyHit', { volume: 0.1}); // play sound when hit
-                     }
-                     this.pet.anims.stop('run');// stop the idle animation to create new animation effect
-                     this.pet.anims.play('light');// play the punching animation
-                 });
-         Light.on('pointerup', () =>
-                 {
-                     this.enemy.clearTint();// on the pointer up clear the tint
-                     button.setScale( 1 ); //BUTTON ANIMATION
-                     this.pet.anims.stop('light');// stop the previous animation
-                     this.pet.anims.play('run');// got back to the idle animation
-                 });
- 
-         //create container and rectangle for the heavy attack
-         ///////////////////////////////////////////////
-         // ██╗  ██╗███████╗ █████╗ ██╗   ██╗██╗   ██╗//
-         // ██║  ██║██╔════╝██╔══██╗██║   ██║╚██╗ ██╔╝//
-         // ███████║█████╗  ███████║██║   ██║ ╚████╔╝ //
-         // ██╔══██║██╔══╝  ██╔══██║╚██╗ ██╔╝  ╚██╔╝  //
-         // ██║  ██║███████╗██║  ██║ ╚████╔╝    ██║   //
-         // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝  ╚═══╝     ╚═╝   //
-         ///////////////////////////////////////////////
-                                                   
-         var Heavy = this.add.rectangle(340, 700, 150, 30, 0xb8860b);
-         Heavy.setStrokeStyle(4, 0x1e0a08); // BORDER AROUND THE RECTANGLE
-         this.add.text(280, 690, "Heavy Attack", style);//label it 
-         Heavy.setInteractive() // set it interactive
-         Heavy.on('pointerdown', () =>
-             {
-                 attackval=5
-                 enemyhealth.width-=attackval;//adjust the enemy health accordingly -5
-                 console.log(enemyhealth.width);//logging the width of enemy bar
-                 this.enemy.setTint(0xff0000);// create a tint to know got attacked
-                 if(this.sound3==0)
-                 {
-                     this.sound.play('press'); // play sound when hit
-                     this.sound.play('EnemyHit', { volume: 0.1}); // play sound when hit
-                 }
-                 this.pet.anims.stop('run');// stop the idle animation to create new animation effect
-                 this.pet.anims.play('heavy');// play the punching animation
-             });
-         Heavy.on('pointerup', () =>
-             {
-                 this.enemy.clearTint();// on the pointer up clear the tint
-                 button.setScale( 1 );
-                 this.pet.anims.stop('heavy');// stop the previous animation
-                 this.pet.anims.play('run');// got back to the idle animation
-             });
-         /////////////////////////////////////////////////
-         // ██████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗ //
-         // ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║ //
-         // ██████╔╝██║   ██║██╔██╗ ██║██║     ███████║ //
-         // ██╔═══╝ ██║   ██║██║╚██╗██║██║     ██╔══██║ //
-         // ██║     ╚██████╔╝██║ ╚████║╚██████╗██║  ██║ //
-         // ╚═╝      ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝ //
-         /////////////////////////////////////////////////
-                                                    
-         //create rectangle for punching and nice container to hold it
-         var Punch = this.add.rectangle(340, 740, 150, 30, 0xb8860b);
-         Punch.setStrokeStyle(4, 0x1e0a08);
-         this.add.text(280, 730, "Double Punch", style);//label it 
-         Punch.setInteractive() // make it interactive
-         Punch.on('pointerdown', () =>
-             {
-                 attackval=10
-                 enemyhealth.width-=attackval;// enemy health -10
-                 console.log(enemyhealth.width);//logging the width of the enemy bar
-                 this.enemy.setTint(0xff0000);// create a tint to know got attacked
-                 if(this.sound3==0)
-                 {
-                     this.sound.play('press'); // play sound when hit
-                     this.sound.play('EnemyHit', { volume: 0.1});// create a tint to know got attacked
-                 }
-                 this.pet.anims.stop('run');// stop the idle animation to create new animation effect
-                 this.pet.anims.play('punch');// play the punching animation
-             });
-         Punch.on('pointerup', () =>
-             {
-                 this.enemy.clearTint();// on the pointer up clear the tint
-                 button.setScale( 1 );
-                 this.pet.anims.stop('punch');// stop the previous animation
-                 this.pet.anims.play('run');// got back to the idle animation
-             });
- 
+                    //ie Light, Heavy, Punch etc 
+                    ///////////////////////////////////////////
+                    // ██╗     ██╗ ██████╗ ██╗  ██╗████████╗ //
+                    // ██║     ██║██╔════╝ ██║  ██║╚══██╔══╝ //
+                    // ██║     ██║██║  ███╗███████║   ██║    //
+                    // ██║     ██║██║   ██║██╔══██║   ██║    //
+                    // ███████╗██║╚██████╔╝██║  ██║   ██║    //
+                    // ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝    //
+                    ///////////////////////////////////////////
+                    var attackval=0                                    
+                    //give them rectangle and make interactive and when clicked, they adjust the pet health
+                    var Light = this.add.rectangle(340,660, 150, 30, 0xb8860b);
+                    Light.setStrokeStyle(4, 0x1e0a08);
+                    this.add.text(290, 650, "Light Attack", style);//label it
+                    
+                        Light.setInteractive() // SET IT INTERACTIVE
+                    
+                    
+                        Light.on('pointerdown', () =>
+                                {
+                                    attackval=2;//set the attack value to 2
+                                    enemyhealth.width-=attackval;//ENEMY HEALTH -=2
+                                    console.log(enemyhealth.width); //logging the width of the enemy bar
+                                    this.enemy.setTint(0xff0000);// create a tint to know got attacked
+                                    if(this.sound3==0)
+                                    {
+                                        this.sound.play('press'); // play sound when hit
+                                        this.sound.play('EnemyHit', { volume: 0.1}); // play sound when hit
+                                    }
+                                    this.pet.anims.stop('run');// stop the idle animation to create new animation effect
+                                    this.pet.anims.play('light');// play the punching animation
+                                });
+                        
+                    Light.on('pointerup', () =>
+                            {
+                                this.enemy.clearTint();// on the pointer up clear the tint
+                                button.setScale( 1 ); //BUTTON ANIMATION
+                                this.pet.anims.stop('light');// stop the previous animation
+                                this.pet.anims.play('run');// got back to the idle animation
+                            });
+                            
+            
+                    //create container and rectangle for the heavy attack
+                    ///////////////////////////////////////////////
+                    // ██╗  ██╗███████╗ █████╗ ██╗   ██╗██╗   ██╗//
+                    // ██║  ██║██╔════╝██╔══██╗██║   ██║╚██╗ ██╔╝//
+                    // ███████║█████╗  ███████║██║   ██║ ╚████╔╝ //
+                    // ██╔══██║██╔══╝  ██╔══██║╚██╗ ██╔╝  ╚██╔╝  //
+                    // ██║  ██║███████╗██║  ██║ ╚████╔╝    ██║   //
+                    // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝  ╚═══╝     ╚═╝   //
+                    ///////////////////////////////////////////////
+                                                            
+                    var Heavy = this.add.rectangle(340, 700, 150, 30, 0xb8860b);
+                    Heavy.setStrokeStyle(4, 0x1e0a08); // BORDER AROUND THE RECTANGLE
+                    this.add.text(280, 690, "Heavy Attack", style);//label it 
+                    
+                            Heavy.setInteractive() // set it interactive
+                        
+                    
+                        Heavy.on('pointerdown', () =>
+                        {
+                            attackval=5 //set the attack value to 5
+                            enemyhealth.width-=attackval;//adjust the enemy health accordingly -5
+                            console.log(enemyhealth.width);//logging the width of enemy bar
+                            this.enemy.setTint(0xff0000);// create a tint to know got attacked
+                            if(this.sound3==0)
+                            {
+                                this.sound.play('press'); // play sound when hit
+                                this.sound.play('EnemyHit', { volume: 0.1}); // play sound when hit
+                            }
+                            this.pet.anims.stop('run');// stop the idle animation to create new animation effect
+                            this.pet.anims.play('heavy');// play the punching animation
+                        });
+                        
+                    Heavy.on('pointerup', () =>
+                        {
+                            this.enemy.clearTint();// on the pointer up clear the tint
+                            button.setScale( 1 );
+                            this.pet.anims.stop('heavy');// stop the previous animation
+                            this.pet.anims.play('run');// got back to the idle animation
+                        });
+                    /////////////////////////////////////////////////
+                    // ██████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗ //
+                    // ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║ //
+                    // ██████╔╝██║   ██║██╔██╗ ██║██║     ███████║ //
+                    // ██╔═══╝ ██║   ██║██║╚██╗██║██║     ██╔══██║ //
+                    // ██║     ╚██████╔╝██║ ╚████║╚██████╗██║  ██║ //
+                    // ╚═╝      ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝ //
+                    /////////////////////////////////////////////////
+                                                                
+                    //create rectangle for punching and nice container to hold it
+                    var Punch = this.add.rectangle(340, 740, 150, 30, 0xb8860b);
+                    Punch.setStrokeStyle(4, 0x1e0a08);
+                    this.add.text(280, 730, "Double Punch", style);//label it 
+                    
+                    Punch.setInteractive() // make it interactive
+                    
+                    Punch.on('pointerdown', () =>
+                        {
+                            attackval=10 //set the attack value to 10
+                            enemyhealth.width-=attackval;// enemy health -10
+                            console.log(enemyhealth.width);//logging the width of the enemy bar
+                            this.enemy.setTint(0xff0000);// create a tint to know got attacked
+                            if(this.sound3==0)
+                            {
+                                this.sound.play('press'); // play sound when hit
+                                this.sound.play('EnemyHit', { volume: 0.1});// create a tint to know got attacked
+                            }
+                            this.pet.anims.stop('run');// stop the idle animation to create new animation effect
+                            this.pet.anims.play('punch');// play the punching animation
+                        });
+                    Punch.on('pointerup', () =>
+                        {
+                            this.enemy.clearTint();// on the pointer up clear the tint
+                            button.setScale( 1 );
+                            this.pet.anims.stop('punch');// stop the previous animation
+                            this.pet.anims.play('run');// got back to the idle animation
+                        });
+                        
+                        //create a cool down timer before can be clicked again
+                        
+                        /////////////////////////////////////////////////
+            
                     if((enemyhealth.width-=attackval)<=2)// check for the enemy health to be less than 0
                     {
-                        //this.sound.removeByKey('Fight')
-                        //this.sound.play("fatality");
-                        
+                                    //this.sound.removeByKey('Fight')
+                                    //this.sound.play("fatality");
+                                    
                         this.scene.start("WinScene",
                         {
                             type: this.type
