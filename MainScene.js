@@ -53,17 +53,17 @@ class MainScene extends Phaser.Scene {
 
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value = 0;
-        
+
         if (this.type == 0) {
-            console.log("red")
+            // console.log("red")
             setColor("red")
         }
         if (this.type == 1) {
-            console.log("white")
+            // console.log("white")
             setColor("white")
         }
         if (this.type == 2) {
-            console.log("blue")
+            // console.log("blue")
             setColor("blue")
         }
         //create container to randomize music everytime load up the main scene
@@ -74,7 +74,6 @@ class MainScene extends Phaser.Scene {
         this.sound.play(backgroundmusic[musicloop], { volume: 3 })//insert image with randomly chosen key
         // for clarification the console will show what music number is playing
         console.log(backgroundmusic[musicloop])//see what sound playing
-
 
         //add the background to the scene
         let background = this.add.image(200, 400, 'bg');

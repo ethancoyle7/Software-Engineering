@@ -46,16 +46,15 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
         //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
         /////////////////////////////////////////////////////////////////////////
-                                                                           
+
         // call the user name of the logged in user
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
         //call the getnickname function to get the nickname of the user
-    //    console.log(getNickname()) // console log to see if it works
+        //    console.log(getNickname()) // console log to see if it works
         getNickname() // then call the .then function to pass in the promis value and get the id
             // from the await function, we can get the nickname of the user
-            .then(usern => 
-            {
+            .then(usern => {
                 username.setText("Logged in As :" + [usern]);//display it to the screen
             });
         //get the user  id for the current logged in user
@@ -65,7 +64,9 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             .then(id => {
                 User.setText("User ID :" + [id]);//display it to the screen
             });
+        console.log(readColor())
         // if the user chose color already will redirect em to the main scene
+        // console.log(readColor)
         if(readColor){
             this.scene.start('MainScene', {
                 type: this.type,
@@ -122,7 +123,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ███████╗╚██████╔╝╚██████╔╝███████║ //
         // ╚══════╝ ╚═════╝  ╚═════╝ ╚══════╝ //
         ///////////////////////////////////////
-                                          
+
         //adding the eggs to the scene for the user to make a choice
         let redegg = this.add.sprite(75, 650, "redegg");
         redegg.setScale(2);
@@ -216,7 +217,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         //    ██║   ╚███╔███╔╝███████╗███████╗██║ ╚████║███████║ //
         //    ╚═╝    ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝ //
         ///////////////////////////////////////////////////////////
-                                                             
+
         //yoyo effect for the title
         this.tweens.add({
 
@@ -250,23 +251,19 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
 // ██║  ██║██║     ██║    ╚██████╗██║  ██║███████╗███████╗███████║ //
 // ╚═╝  ╚═╝╚═╝     ╚═╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ //
 /////////////////////////////////////////////////////////////////////
-                                                               
-function checkFireBase() 
-{
-    if (!firebase.apps.length) 
-    {
+
+function checkFireBase() {
+    if (!firebase.apps.length) {
         console.log("Initializing Firebase App.");
         return firebaseApp = firebase.initializeApp(firebaseConfig);
     }
-    else 
-    {
+    else {
         console.log("Firebase has been Initialized.");
         return firebaseApp = firebase.app(); // if already initialized, use that one
     }
 }
 // function to retrieve the id of the user
-async function getID() 
-{
+async function getID() {
     const id = await firebase.auth().currentUser.uid;// wait for the result from the api call
     console.log(id)// log to see the result is correct
     return id;// return the user id number
@@ -274,11 +271,10 @@ async function getID()
 
 
 // api call to get the nickname of the user that is logged in
-async function getNickname() 
-{
+async function getNickname() {
     var user = firebaseApp.auth().currentUser;// get the current user
     var uid;// get the user id
-    var result= null;//initialize the result to null
+    var result = null;//initialize the result to null
     // // storing into a var.
     if (user != null) // if the user is not null
     {
@@ -289,24 +285,20 @@ async function getNickname()
         alert('Please sign in.')
     }
     // // now reading the user data and get the nickname
-    await db.collection("users").get().then((querySnapshot) => 
-    {
-        querySnapshot.forEach(async (doc) => 
-        {// making sure we are returning only the user info
-            if (doc.id == await uid) 
-            {
+    await db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
+            if (doc.id == await uid) {
                 console.log(doc.data().nickname);
                 result = doc.data().nickname; // if the user is found override result to the nickname
                 //return doc.data();    
             }
         });
     });
-return result // return the result to the main function
-    
+    return result // return the result to the main function
+
 }
 
-function setColor(color) 
-{
+function setColor(color) {
     var user = firebaseApp.auth().currentUser;// get the current user
     id = user.uid;
     var washingtonRef = db.collection("users").doc(id);
@@ -314,26 +306,22 @@ function setColor(color)
     return washingtonRef.update({
         color: color
     })
-        .then(() => 
-        {
+        .then(() => {
             console.log("Color has been successfully updated!");
         })
-        .catch((error) => 
-        {
+        .catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating: ", error);
         });
 }
 
-function addNewUser() 
-{
+function addNewUser() {
     var userList = scene.plugins.get('rexFirebase').add.onlineUserList(config);
 
 }
 
 
-async function readColor() 
-{
+function readColor() {
     var user = firebaseApp.auth().currentUser;// get the current user
     var uid;// get the user id
     // // storing into a var.
@@ -346,18 +334,15 @@ async function readColor()
         alert('Please sign in.')
     }
     // // now reading the user data and get the nickname
-    await db.collection("users").get().then((querySnapshot) => 
-    {
-        querySnapshot.forEach(async (doc) => 
-        {// making sure we are returning only the user info
-            if (doc.id == await uid) 
-            {
-                if(doc.data().color !="none")
-                {
-                    return true;
-                }
-                else{
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
+            if (doc.id == await uid) {
+                console.log(doc.data().color)
+                if (doc.data().color == "none") {
                     return false;
+                }
+                else {
+                    return true;
                 }
                 // console.log(doc.data().nickname);
                 // result = doc.data().nickname; // if the user is found override result to the nickname
@@ -365,5 +350,5 @@ async function readColor()
             }
         });
     });
-    
+
 }
