@@ -2,7 +2,7 @@
 
 /* This scene is a titlescene that plays first before the user starts the game
 *   This is where the user will log into their account
-*
+* 
 *
 */
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
