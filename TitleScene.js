@@ -28,7 +28,15 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     }
 
     create() {
-
+        // Check if the user chose an egg or not
+        // if the user chose an egg, user needs to be redirected to the MainScene
+        // Otherwise user needs to choose an egg.
+        if(checkColor()){
+            console.log("user has chosen color already.")
+            this.scene.start('MainScene', {
+                type: this.type,
+            })
+        }
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
@@ -43,14 +51,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
         //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
         /////////////////////////////////////////////////////////////////////////
-        if(checkColor()){
-            console.log("user has chosen color already.")
-            this.scene.start('MainScene', {
-                type: this.type,
-            })
-        }
 
-        
         // call the user name of the logged in user
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
@@ -268,26 +269,25 @@ function checkFireBase() {
 }
 // function to retrieve the id of the user
 async function getID() {
-    const id = await firebase.auth().currentUser.uid;// wait for the result from the api call
-    console.log(id)// log to see the result is correct
-    return id;// return the user id number
+    var user = await firebaseApp.auth().currentUser;// get the current user
+    var uid;// get the user id
+    if (user == null) // if equal to null then there is sign in problem
+    {
+        alert('Please sign in.')
+        return null;
+    }
+    if (user != null) // if the user is not null
+    {
+        uid = user.uid;// get the user id
+        console.log(uid)
+        return uid;
+    }
 }
 
 
 // api call to get the nickname of the user that is logged in
 async function getNickname() {
-    var user = firebaseApp.auth().currentUser;// get the current user
-    var uid;// get the user id
-    var result = null;//initialize the result to null
-    // // storing into a var.
-    if (user != null) // if the user is not null
-    {
-        uid = user.uid;// get the user id
-    }
-    if (user == null) // if equal to null then there is sign in problem
-    {
-        alert('Please sign in.')
-    }
+    uid = getID()
     // // now reading the user data and get the nickname
     await db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
@@ -303,10 +303,8 @@ async function getNickname() {
 }
 
 function setColor(color) {
-    var user = firebaseApp.auth().currentUser;// get the current user
-    id = user.uid;
-    var washingtonRef = db.collection("users").doc(id);
-
+    uid = getID()
+    var washingtonRef = db.collection("users").doc(uid);
     return washingtonRef.update({
         color: color
     })
@@ -319,59 +317,8 @@ function setColor(color) {
         });
 }
 
-function addNewUser() {
-    var userList = scene.plugins.get('rexFirebase').add.onlineUserList(config);
-
-}
-// the reason why is false becuase everytime I referesh the game,
-// it take me to the TitleScene and reset the value for "this.type" to NULL
-// so the value have to be called from the database
-function readColor() {
-    var user = firebaseApp.auth().currentUser;// get the current user
-    var uid;// get the user id
-    // // storing into a var.
-    if (user != null) // if the user is not null
-    {
-        uid = user.uid;// get the user id
-    }
-    if (user == null) // if equal to null then there is sign in problem
-    {
-        alert('Please sign in.')
-    }
-    // // now reading the user data and get the nickname
-    db.collection("users").get().then((querySnapshot) => {
-        querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
-            if (doc.id == await uid) {
-                if (doc.data().color == null) {
-                    console.log(doc.data().color)
-                    return false;
-                }
-                else {
-                    console.log(doc.data().color)
-                    return true;
-                }
-                // console.log(doc.data().nickname);
-                // result = doc.data().nickname; // if the user is found override result to the nickname
-                //return doc.data();    
-            }
-        });
-    });
-
-}
-
 function checkColor() {
-    var user = firebaseApp.auth().currentUser;// get the current user
-    var uid;// get the user id
-    var color;//initialize the result to null
-    // storing into a var.
-    if (user != null) // if the user is not null
-    {
-        uid = user.uid;// get the user id
-    }
-    if (user == null) // if equal to null then there is sign in problem
-    {
-        alert('Please sign in.')
-    }
+    uid = getID()
     // now reading the user data and get the nickname
     db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
@@ -379,11 +326,11 @@ function checkColor() {
                 console.log(doc.data().color)
                 // consoloe.log(typeof doc.data().color)
                 if(doc.data().color != null){
-                    console.log("true")
+                    console.log("user is already chose an egg, redirecting...")
                     return true;
                 }
                 else{
-                    console.log("false")
+                    console.log("user needs to choose an egg.")
                     return false;
                 }
                 // result = doc.data().color; // if the user is found override result to the nickname
@@ -392,19 +339,5 @@ function checkColor() {
         });
     });
     // return color // return the result to the main function
-
 }
 
-function amiLoggedIn(){
-    var user = firebaseApp.auth().currentUser;// get the current user
-    var uid;// get the user id
-    if (user == null) // if equal to null then there is sign in problem
-    {
-        alert('Please sign in.')
-    }
-    if (user != null) // if the user is not null
-    {
-        uid = user.uid;// get the user id
-        return uid;
-    }
-}
