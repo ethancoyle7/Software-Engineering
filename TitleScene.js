@@ -43,12 +43,14 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
         //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
         /////////////////////////////////////////////////////////////////////////
-        console.log('color: ', this.type)
-        if(readColor() == true){
+        if(checkColor()){
+            console.log("user has chosen color already.")
             this.scene.start('MainScene', {
                 type: this.type,
             })
         }
+
+        
         // call the user name of the logged in user
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
@@ -357,7 +359,7 @@ function readColor() {
 
 }
 
-function getColor() {
+function checkColor() {
     var user = firebaseApp.auth().currentUser;// get the current user
     var uid;// get the user id
     var color;//initialize the result to null
@@ -370,17 +372,26 @@ function getColor() {
     {
         alert('Please sign in.')
     }
-    // // now reading the user data and get the nickname
+    // now reading the user data and get the nickname
     db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
             if (doc.id == await uid) {
-                console.log(doc.data().color);
-                result = doc.data().color; // if the user is found override result to the nickname
+                console.log(doc.data().color)
+                // consoloe.log(typeof doc.data().color)
+                if(doc.data().color != null){
+                    console.log("true")
+                    return true;
+                }
+                else{
+                    console.log("false")
+                    return false;
+                }
+                // result = doc.data().color; // if the user is found override result to the nickname
                 //return doc.data();    
             }
         });
     });
-    return color // return the result to the main function
+    // return color // return the result to the main function
 
 }
 
