@@ -23,5 +23,4 @@ db = firebase.firestore();
 
 // const analytics = getAnalytics(firebaseApp);
 
-// we need to update the firestore settings to avoid error in console
-// db.settings({timestampInSnapshots: true});
+
