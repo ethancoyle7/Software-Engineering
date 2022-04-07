@@ -3,6 +3,8 @@
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+
 const firebaseConfig = { 
   apiKey: "AIzaSyCRKIp_ALm8rO_hNMtZ0CXWXcXis_6198w",
   authDomain: "smartpet-28571.firebaseapp.com",
@@ -18,7 +20,6 @@ const firebaseConfig = {
 firebaseApp = firebase.initializeApp(firebaseConfig);
 auth = firebase.auth();
 db = firebase.firestore();
-
 
 
 // const analytics = getAnalytics(firebaseApp);

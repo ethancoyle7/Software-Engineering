@@ -1,5 +1,4 @@
 
-
 // Function will check if the firebase is initialize
 function checkFireBase() {
   if (!firebase.apps.length) {
@@ -92,4 +91,13 @@ function getInfoFromFirebase() {
       alert('User is signed out.');
     }
   });
+}
+
+function checkIfUserIsLoggedIn(){
+  if (user != null) // if the user is not null
+  {
+   alert("You already logged in. Redirecting...")
+   window.location.replace('/game.html'); 
+  }
+
 }
