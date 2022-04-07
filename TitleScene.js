@@ -31,7 +31,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // Check if the user chose an egg or not
         // if the user chose an egg, user needs to be redirected to the MainScene
         // Otherwise user needs to choose an egg.
-        if(checkColor()){
+        if(checkPoint()){
             console.log("user has chosen color already.")
             this.scene.start('MainScene', {
                 type: this.type,
@@ -287,7 +287,7 @@ async function getID() {
 
 // api call to get the nickname of the user that is logged in
 async function getNickname() {
-    uid = getID()
+    uid = getID() // calling getID function to get the user id
     // // now reading the user data and get the nickname
     await db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
@@ -301,14 +301,14 @@ async function getNickname() {
     return result // return the result to the main function
 
 }
-
+// Function will set a color for new user and update this value (color) on firebase database
 function setColor(color) {
-    uid = getID()
-    var washingtonRef = db.collection("users").doc(uid);
+    uid = getID() // calling getID function to get the user id
+    var washingtonRef = db.collection("users").doc(uid); // go into the users collections then into the user profile data
     return washingtonRef.update({
-        color: color
+        color: color // update the color with the one we passed earlier
     })
-        .then(() => {
+        .then(() => { // print out a message telling the info has been updated.
             console.log("Color has been successfully updated!");
         })
         .catch((error) => {
@@ -317,10 +317,10 @@ function setColor(color) {
         });
 }
 
-function checkColor() {
-    uid = getID()
+function checkPoint() {
+    uid = getID() // calling getID function to get the user id
     // now reading the user data and get the nickname
-    db.collection("users").get().then((querySnapshot) => {
+    db.collection("users").get().then((querySnapshot) => { // get into the users collection
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
             if (doc.id == await uid) {
                 console.log(doc.data().color)
