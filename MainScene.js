@@ -187,7 +187,7 @@ class MainScene extends Phaser.Scene {
         //create rectangle for hunger stats and nice container to hold it
         var hunger = this.add.rectangle(178, 100, 350, 30, 0x3c82e7);
         hunger.setStrokeStyle(4, 0x1e0a08);
-        this.add.text(10, 88, "HUNGER", style);//label it 
+        this.add.text(10, 88, "SATISFACTION", style);//label it 
         //create rectangle for xp points
 
         //oscillating display of rectangle targetting this rectangle
