@@ -44,6 +44,7 @@ class MainScene extends Phaser.Scene {
         this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
         this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
         this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
+        this.load.audio('levelingup', './assets/LevelUPP.mp3');
         this.load.image('mute', './assets/mic.png');
 
 
@@ -51,7 +52,7 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() {
         this.sound.stopAll()// to prevent looping stop all previous sounds
-        var value = 0;
+        var value = 1;
 
         //create container to randomize music everytime load up the main scene
         const backgroundmusic = ['1', '2', '3', '4', '5', '6']
@@ -239,6 +240,7 @@ class MainScene extends Phaser.Scene {
             delay: 700,
             callback: function () {
                 this.timeLeft--;//decrement the time left
+              
                 //experience.width-=350
                 //resetting the values of the notifcations
                 PetClothed.setText([''])
@@ -248,40 +250,15 @@ class MainScene extends Phaser.Scene {
                 var InteractionIcons = this.add.rectangle(225, 720, 440, 150, 0xe7a23c);
                 InteractionIcons.setStrokeStyle(5, 0x1e0a08);
                 //for the health of the pet
-                var val1 = Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                var val1 = Math.floor(Math.random() * 5) // using rand number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
 
                 //timing for the happiness to go down incrementally
-                var val3 = Math.floor(Math.random() * 2) // using rand number between 0 and 10
+                var val3 = Math.floor(Math.random() * 5) // using rand number between 0 and 10
                 happiness.width -= val3; //decrement the health randomly w/ val
                 console.log(happiness.width)//lets see what the width is 
 
-                //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                if (health.width < 1) {
-                    this.sound.stopAll();
-                    this.scene.start("MainDead",
-                        {
-                            type: this.type
-                        })
-                }
-                if (health.width > 350)// if the health gets above 360 increment the experience by 1
-                {
-                    health.width = 300//reset the wdith
-                    experience++;
-                    EXP.setText(['EXPERIENCE : ' + experience]);
-                }
-                if (hunger.width > 350)// if the hunger gets above 360 increment the experience by 1
-                {
-                    hunger.width = 300//reset the width
-                    experience++;
-                    EXP.setText(['EXPERIENCE : ' + experience]);
-                }
-                if (happiness.width > 350)// if the happiness gets above 360 increment the experience by 1
-                {
-                    happiness.width = 350//reset the width
-                    experience++;
-                    EXP.setText(['EXPERIENCE : ' + experience]);
-                }
+                
 
                 // make the level increase when reach certain ammount of experience
 
@@ -322,13 +299,22 @@ class MainScene extends Phaser.Scene {
                         this.pet.anims.play('run')// play the run animation
                         clothing.destroy(); // destroy the clothing
                         PetClothed.setText([' PET CLOTHED']);   // set the text to be displayed
-                        hunger.width -= 2;   //decrement the hunger
-                        happiness.width += 2; //increment the happiness
+                        
+                        var clothingupdate= happiness.width += 2; //add happiness
+                        happiness.width+=2
+                        if (clothingupdate>=350)
+                        {
+                            happiness.width=350// reset the width
+                            experience++;
+                            EXP.setText(['EXPERIENCE : ' + experience]);
+                        }
+                        
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('clothesound'); //play the sound
                         }
                     }
+                   
                 });
                 ////////////////////////////////////////////////////////////
                 // ██████╗  █████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗ //
@@ -358,13 +344,31 @@ class MainScene extends Phaser.Scene {
                         this.pet.anims.play('run')// play the run animation
                         bath.destroy(); // destroy the clothing
                         PetClothed.setText([' PET BATHED']);   // set the text to be displayed
-                        health.width += 2;   //decrement the hunger
-                        happiness.width += 2; //increment the happiness
+                       
+                        // var petbathed= health.width += 2; //add happiness
+                        // health.width+=2
+                        // if (petbathed>=350)
+                        // {
+                        //     happiness.width=350// reset the width
+                        //     experience++;
+                        //     EXP.setText(['EXPERIENCE : ' + experience]);
+                        // }
+                        // pet is happy it got bathed
+                        var PetBathHappy= happiness.width += 2; //add happiness
+                        happiness.width+=2
+                        if (PetBathHappy>=350)
+                        {
+                            happiness.width=350// reset the width
+                            experience++;
+                            EXP.setText(['EXPERIENCE : ' + experience]);
+                        }
+                        
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('bathsound'); //play the sound
                         }
                     }
+                   
                 });
 
                 /////////////////////////////////////////////////////////////
@@ -394,13 +398,23 @@ class MainScene extends Phaser.Scene {
                         this.pet.anims.play('run')// play the run animation
                         playing.destroy(); // destroy the clothing
                         PetClothed.setText([' PET PLAYING']);   // set the text to be displayed
-                        health.width += 2;   //decrement the hunger
-                        happiness.width += 2; //increment the happiness
+                        // health.width += increment;   //decrement the hunger
+                        var PetPlaying= happiness.width += 2; //add happiness
+                        happiness.width+=2
+                        if (PetPlaying>=350)
+                        {
+                            happiness.width=350// reset the width
+                            experience++;
+                            EXP.setText(['EXPERIENCE : ' + experience]);
+                        }
+                        //happiness.width += increment; //increment the happiness
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('happysound'); //play the sound
                         }
                     }
+                    
+                   
                 });
                 ///////////////////////////////////////////////////////////
                 // ███████╗███████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ //
@@ -433,14 +447,40 @@ class MainScene extends Phaser.Scene {
                         this.pet.anims.play('run')// play the run animation
                         feeding.destroy(); // destroy the clothing
                         PetClothed.setText([' PET FED']);   // set the text to be displayed
-                        health.width += 2
-                        happiness.width += 2
-                        hunger.width += 2
+                        //health.width += increment
+
+                        var PetHappy= happiness.width += 2; //add happiness
+                        happiness.width+=2
+                        if (PetHappy>=350)
+                        {
+                            happiness.width=350// reset the width
+                            experience++;
+                            EXP.setText(['EXPERIENCE : ' + experience]);
+                        }
+                        var Satisfied= hunger.width += 2; //add happiness
+                        hunger.width+=2
+                        if (Satisfied>=350)
+                        {
+                            hunger.width=350// reset the width
+                            experience++;
+                            EXP.setText(['EXPERIENCE : ' + experience]);
+                        }
+
+                        //increment the health bar and chck if goes over 350
+                        var FoodHealth= health.width += 2; //add happiness
+                        health.width+=5
+                        if (FoodHealth>=350)
+                        {
+                            health.width=350// reset the width
+                            experience++;
+                            EXP.setText(['EXPERIENCE : ' + experience]);
+                        }
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('eatingsound'); //play the sound
                         }
                     }
+                  
                 });
 
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
@@ -457,12 +497,51 @@ class MainScene extends Phaser.Scene {
                         type: this.type
                     }))// lead to fight scene
                 }
-                //experience checker, if the user gets 10 experience points, then the pet will level up
-                if (experience > 0 && experience % 3 == 0)//if the experience is divisible by 10 then the level increases
+                if (experience >= 30)// once certain ammount of experience, level up and play sound
                 {
-                    value++;
-                    text.setText(['LVL\n\n' + value,]);
+                    // play the level up sound
+                    this.sound.play('levelingup');
+                    //this.pet.anims.stop('levelup'); //stop the pet level up
+                    //this.pet.anims.play('run'); //play the pet run
+                    PetClothed.setText([' PET LEVELED UP']); //set the text to be displayed
+                    //reset the experience
+                    experience = 0;
+                    value++// increment the value for the level
+                    text.setText([
+                        'LVL \n\n ' + value,
+            
+                    ]);
+            
+                    EXP.setText(['EXPERIENCE : ' + experience]);
                 }
+               
+
+                // create bounds for the containers
+                // to avoid it going to the left
+                if (health.width <= 5) 
+                    {
+                        health.width=5;// reset it to 2
+                        
+                        
+                    }
+                 //if he health is less than 0 and the timer is less than 0, then the game over scene is called
+                 if (health.width <= 5 && this.timeLeft <= 0)// if the time runs out and the health is at 2, then the game over scene is called
+                 {
+                     this.scene.start("MainDead",
+                             {
+                                 type: this.type
+                             })
+                 }
+                if (happiness.width <= 5) // if the happiness falls below this, reset the val
+                {
+                    happiness.width==5;// reset it to 2
+                        
+                        
+                }
+                //experience checker, if the user gets 10 experience points, then the pet will level up
+                
+                //if one or more of the conditions are true and the pet dies, then the scene changes to game over
+                
             },
             callbackScope: this,
             loop: true
@@ -484,7 +563,7 @@ class MainScene extends Phaser.Scene {
             delay: 500,
             callback: function () {
                 this.timeLeft2--;//decrement the time left
-                var val2 = Math.floor(Math.random() * 2) // using rand number between 0 an 2
+                var val2 = Math.floor(Math.random() * 5) // using rand number between 0 an 2
                 hunger.width -= val2; //decrement the health randomly w/ val
                 console.log(hunger.width)//lets see what the width is 
                 //if the pets hunger is less than 1 and the time left is 0, load the runawaypet scene
@@ -498,11 +577,15 @@ class MainScene extends Phaser.Scene {
             callbackScope: this,
             loop: true
         });
+        //console.log(" the experience " +experience)
 
+        
     }
 
     // Runs every frame update any items inside of the scene
     update() {
+        //function to check for the value of the experience
+        
         //console.log(this.hungerw);
 
     }
