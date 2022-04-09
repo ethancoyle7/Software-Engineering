@@ -79,7 +79,8 @@ function signOut() {
 function getInfoFromFirebase() {
   // Calling Firebase Initialization method to make sure that we initialized firebase
   firebaseApp = checkFireBase();
-  firebaseApp.auth().onAuthStateChanged(function (user) {
+  firebaseApp.auth().onAuthStateChanged(function (user) 
+  {
     if (user) 
     {
       // var displayName = user.displayName;
@@ -93,7 +94,8 @@ function getInfoFromFirebase() {
   });
 }
 
-function checkIfUserIsLoggedIn(){
+function checkIfUserIsLoggedIn()
+{
   if (user != null) // if the user is not null
   {
    alert("You already logged in. Redirecting...")
