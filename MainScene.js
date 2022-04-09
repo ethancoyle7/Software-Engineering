@@ -577,7 +577,7 @@ class MainScene extends Phaser.Scene {
                         type: this.type
                     }))// lead to fight scene
                 }
-                if (experience >= 30)// once certain ammount of experience, level up and play sound
+                if (experience >= 10)// once certain ammount of experience, level up and play sound
                 {
                     // play the level up sound
                     this.sound.play('levelingup');
