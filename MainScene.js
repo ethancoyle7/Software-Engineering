@@ -395,7 +395,8 @@ class MainScene extends Phaser.Scene {
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
                 bath.on('pointerup', () => {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (bath.x >= 170 || bath.x <= 170 || bath.x <= 0 || bath.x >= 450 && bath.y < 650) {
+                    if (bath.x >= 170 || bath.x <= 170 || bath.x <= 0 || bath.x >= 450 && bath.y < 650) 
+                    {
                         this.pet.anims.stop('bathe+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
                         bath.destroy(); // destroy the clothing
@@ -425,6 +426,7 @@ class MainScene extends Phaser.Scene {
                     }
                    
                 });
+                
 
                 /////////////////////////////////////////////////////////////
                 // ██████╗ ██╗      █████╗ ██╗   ██╗██╗███╗   ██╗ ██████╗  //
@@ -451,6 +453,7 @@ class MainScene extends Phaser.Scene {
                     this.pet.anims.play('health+'); //play the pet feed
                 });
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
+                
                 playing.on('pointerup', () => {
                     //if the clothing is moved above where orginally is, destroy it and do some things
                     if (playing.x >= 280 || playing.x <= 280 || playing.x <= 0 || playing.x >= 450 && playing.y < 650) {
@@ -512,12 +515,14 @@ class MainScene extends Phaser.Scene {
                     this.pet.anims.play('feed'); //play the pet feed
                 });
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
+                
+
                 feeding.on('pointerup', () => {
                     //var feeding = this.add.image(390, 740, food[random4])//input the key string name
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (feeding.x >= 390 || feeding.x <= 390 || feeding.x <= 0 || feeding.x >= 450 && feeding.y < 650)
+                    if (feeding.x >= 390 || feeding.x <= 390 || feeding.x <= 0 || feeding.x >= 450 && feeding.y < 650) 
                     //or if the clothing is moved above
-        
+                    
                     {
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -561,8 +566,11 @@ class MainScene extends Phaser.Scene {
                         {
                             this.sound.play('eatingsound'); //play the sound
                         }
-                    }   
+                    }
+                    
                 });
+                
+                
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
                 {
 
@@ -649,9 +657,7 @@ class MainScene extends Phaser.Scene {
             callbackScope: this,
             loop: true
         });
-
-        
-
+    
         
     }
 

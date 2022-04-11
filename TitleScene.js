@@ -7,7 +7,8 @@
 */
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
     //methods and variables owned by it. This is where i make a lot of mistakes lol
-    constructor() {
+    constructor() 
+    {
         super("TitleScene");
         this.bgmusic;
         this.type;
@@ -15,7 +16,8 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         //this.eggNum='';
     }
 
-    preload() {  // this is the preload function, it loads all the assets for the scene
+    preload()
+    {  // this is the preload function, it loads all the assets for the scene
         this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
         this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
         this.load.image("back", "./assets/TitleSceneBG.png");
@@ -27,13 +29,15 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
 
     }
 
-    create() {
+    create() 
+    {
         // Check if the user chose an egg or not
         // if the user chose an egg, user needs to be redirected to the MainScene
         // Otherwise user needs to choose an egg.
         if(checkPoint()){
             console.log("user has chosen color already.")
-            this.scene.start('MainScene', {
+            this.scene.start('MainScene', 
+            {
                 type: this.type,
             })
         }
@@ -51,7 +55,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
         //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
         /////////////////////////////////////////////////////////////////////////
-
+        var usernameUD=null
         // call the user name of the logged in user
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
@@ -61,15 +65,19 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             // from the await function, we can get the nickname of the user
             .then(usern => {
                 username.setText("Logged in As :" + [usern]);//display it to the screen
+                //var usernameUD = usern;
             });
+        
         //get the user  id for the current logged in user
         var User = this.add.text(10, 760, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
         getID() // then call the .then function to pass in the promis value and get the id
             .then(id => {
+
                 User.setText("User ID :" + [id]);//display it to the screen
             });
-        
+            
+        //console.log("our user is :"+result)
         // if the user chose color already will redirect em to the main scene
         // console.log(readColor)
 
@@ -160,13 +168,16 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         let whiteegg = this.add.sprite(225, 650, "whiteegg");
         whiteegg.setScale(2);
         whiteegg.setInteractive();
-        whiteegg.on('pointerdown', () => {
+        whiteegg.on('pointerdown', () => 
+        {
             this.type = "1";
             setColor("white")
         });
-        whiteegg.on('pointerup', () => {
+        whiteegg.on('pointerup', () => 
+        {
             this.sound.stopAll();
-            this.scene.start('MainScene', {
+            this.scene.start('MainScene', 
+            {
                 type: this.type
             })
         }
@@ -175,7 +186,8 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         //creating pet2 egganimation
         whiteegg.anims.create({
             key: 'idle',
-            frames: this.anims.generateFrameNumbers('whiteegg', {
+            frames: this.anims.generateFrameNumbers('whiteegg', 
+            {
                 start: 0,
                 end: 3
             }),
@@ -189,13 +201,16 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         let blueegg = this.add.sprite(375, 650, "blueegg");
         blueegg.setScale(2);
         blueegg.setInteractive();
-        blueegg.on('pointerdown', () => {
+        blueegg.on('pointerdown', () => 
+        {
             this.type = "2";
             setColor("blue")
         });
-        blueegg.on('pointerup', () => {
+        blueegg.on('pointerup', () => 
+        {
             this.sound.stopAll();
-            this.scene.start('MainScene', {
+            this.scene.start('MainScene',
+            {
                 type: this.type
             })
         }
@@ -213,6 +228,9 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             repeat: -1
         });
         blueegg.anims.play('idle');
+        //store the choice of the egg inside of firebase
+       
+
 
         ///////////////////////////////////////////////////////////
         // ████████╗██╗    ██╗███████╗███████╗███╗   ██╗███████╗ //
@@ -286,12 +304,15 @@ async function getID() {
 
 
 // api call to get the nickname of the user that is logged in
-async function getNickname() {
+async function getNickname() 
+{
     uid = getID() // calling getID function to get the user id
     // // now reading the user data and get the nickname
-    await db.collection("users").get().then((querySnapshot) => {
+    await db.collection("users").get().then((querySnapshot) => 
+    {
         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
             if (doc.id == await uid) {
+                
                 console.log(doc.data().nickname);
                 result = doc.data().nickname; // if the user is found override result to the nickname
                 //return doc.data();    
@@ -299,10 +320,11 @@ async function getNickname() {
         });
     });
     return result // return the result to the main function
-
 }
+
 // Function will set a color for new user and update this value (color) on firebase database
-function setColor(color) {
+function setColor(color) 
+{
     uid = getID() // calling getID function to get the user id
     var washingtonRef = db.collection("users").doc(uid); // go into the users collections then into the user profile data
     return washingtonRef.update({
