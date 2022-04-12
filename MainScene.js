@@ -701,7 +701,9 @@ class MainScene extends Phaser.Scene {
                 if (experience >= 2)// once certain ammount of experience, level up and play sound
                 {
                     // play the level up sound
+                    if(sound2 ==0){
                     this.sound.play('levelingup');
+                    }
                     //this.pet.anims.stop('levelup'); //stop the pet level up
                     //this.pet.anims.play('run'); //play the pet run
                     PetClothed.setText(['LEVEL UP!']); //set the text to be displayed
