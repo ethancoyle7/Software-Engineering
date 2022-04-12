@@ -47,7 +47,7 @@ class FightScene extends Phaser.Scene
         // load the background image and set x and y coords
         // then set the scale to .7
         let background2 = this.add.image(225, 400, 'circus');
-        background2.setScale(3);
+        background2.setScale(.7);
         
         //add the pet to the screen and add idle animation
         this.pet =this.add.sprite(70,635,"pet")

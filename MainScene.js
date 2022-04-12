@@ -262,7 +262,9 @@ class MainScene extends Phaser.Scene {
         //////////////////////////////////////////////////////////////////////////////////
                                                                                     
         //display helpful tool for the user that easing in and out about the labels
-        var Info = this.add.text(45, 625, '', { font: '20px Arial', fill: '#00ff00' });
+        var InfoBox = this.add.rectangle(225, 630, 450, 30, 0x000000);
+        InfoBox.setStrokeStyle(2, 0x1e0a08);
+        var Info = this.add.text(5, 615, '', { font: '24px Arial', fill: '#00ff00' });
                 //set the text indicator for the level icon text value
                 Info.setText([
                     'Click/Drag Item Below to Interact with Pet',
@@ -821,4 +823,4 @@ class MainScene extends Phaser.Scene {
 //     }).catch((error) => {
 //         console.log("Error getting document:", error);
 //     });
-//   }
+//   }[e]
