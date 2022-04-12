@@ -17,6 +17,7 @@ class MainScene extends Phaser.Scene {
         this.hungerw = 200;
         this.sound2 = 0;
         this.type = '';
+        this.level=0;
         this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         this.percent = 0;
@@ -34,6 +35,8 @@ class MainScene extends Phaser.Scene {
             // No username was provided
             this.type = "0";
         }
+        this.level = data.level;
+
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -205,10 +208,18 @@ class MainScene extends Phaser.Scene {
         //txt to be inside of the level to let the user know what level they are on
         var text = this.add.text(378, 30, '', { font: '20px Courier', fill: '#00ff00' });
         //set the text indicator for the level icon text value
+        if(this.level>9){
         text.setText([
-            'LVL \n\n ' + value,
-
-        ]);
+            
+            'LVL \n\n ' + (value+this.level),
+            console.log("level is:"),
+            console.log(this.level)
+        ]);}
+        else{
+            text.setText([
+            
+                'LVL \n\n ' + value,
+            ]);}
 
         //creating experience bar and value
         var experience = 0;
@@ -573,7 +584,7 @@ class MainScene extends Phaser.Scene {
                 
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
                 {
-
+                    this.level=value;
                     //for the fight button hover over to press for fight
                     // this button leads to click sequence when pressed
                     const button = this.add.image(70, 200, 'button')
@@ -582,7 +593,8 @@ class MainScene extends Phaser.Scene {
                     button.on('pointerup', () => button.setScale(1));// on ppinter up
                     button.on('pointerdown', () => this.sound.stopAll());// remove the bg music
                     button.on('pointerdown', () => this.scene.start('FightScene', {
-                        type: this.type
+                        type: this.type,
+                        level: this.level
                     }))// lead to fight scene
                 }
                 if (experience >= 10)// once certain ammount of experience, level up and play sound

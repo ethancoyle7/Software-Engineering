@@ -13,6 +13,7 @@ class WinScene extends Phaser.Scene {
             // No username was provided
             this.type = "0";
         }
+        this.level=data.level;
     }
     preload() {
         this.load.image('win', './assets/winner.png');
@@ -87,7 +88,7 @@ class WinScene extends Phaser.Scene {
                 var BackToMain = this.add.image(230, 600, 'MainSceneReturn')
                 BackToMain.setInteractive();
                 //once clicked start the main scene
-                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type }));
+                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level }));
                 BackToMain.on('pointerover', () => this.sound.play('MainReturn'));
                 this.tweens.add({
 

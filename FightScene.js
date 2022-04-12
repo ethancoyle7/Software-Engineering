@@ -18,6 +18,7 @@ class FightScene extends Phaser.Scene
             // No username was provided
             this.type = "0";
         }
+        this.level=data.level;
     }
     
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -380,7 +381,8 @@ class FightScene extends Phaser.Scene
                                     
                         this.scene.start("WinScene",
                         {
-                            type: this.type
+                            type: this.type,
+                            level: this.level
                         })
                     }
                    },
