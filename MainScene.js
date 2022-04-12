@@ -49,6 +49,7 @@ class MainScene extends Phaser.Scene {
         this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
         this.load.audio('levelingup', './assets/LevelUPP.mp3');
         this.load.image('mute', './assets/mic.png');
+        
 
 
     }
@@ -81,7 +82,7 @@ class MainScene extends Phaser.Scene {
         const backgroundmusic = ['1', '2', '3', '4', '5', '6']
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         const musicloop = Math.floor(Math.random() * backgroundmusic.length);//choose random string name
-        //var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
+        //var box2 = this.add.rectangle(170, 735, 100, 100, 0xe7a23c);//create box to cover up overlapping
         this.sound.play(backgroundmusic[musicloop], { volume: 3 })//insert image with randomly chosen key
         // for clarification the console will show what music number is playing
         console.log(backgroundmusic[musicloop])//see what sound playing
@@ -197,6 +198,7 @@ class MainScene extends Phaser.Scene {
         ///////////////////////////////////////////////////////////////////
 
         // health, hunger, happiness creation below 
+        
         //creating health rectangle and nice container to hold it
         var health = this.add.rectangle(178, 20, 350, 30, 0xe74c3c);
         health.setStrokeStyle(4, 0x1e0a08);
@@ -243,11 +245,10 @@ class MainScene extends Phaser.Scene {
             'EXPERIENCE : ' + experience,
         ]);
 
-        var InteractionIcons = this.add.rectangle(225, 720, 440, 150, 0xe7a23c);
-                InteractionIcons.setStrokeStyle(5, 0x1e0a08);
+      
         // to help identify the interactions and the array of items, create label to differentiatte
         var PetFed = this.add.text(320, 140, '', { font: '20px Arial', fill: '#00ff00' });
-        var PetClothed = this.add.text(320, 160, '', { font: '20px Arial', fill: '#00ff00' });
+        var PetClothed = this.add.text(310, 130, '', { font: '20px Arial', fill: '#00ff00' });
         var PetBathed = this.add.text(320, 180, '', { font: '20px Arial', fill: '#00ff00' });
         var PetPlay = this.add.text(320, 200, '', { font: '20px Arial', fill: '#00ff00' });
 
@@ -260,38 +261,97 @@ class MainScene extends Phaser.Scene {
         // ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
         //////////////////////////////////////////////////////////////////////////////////
                                                                                     
+        //display helpful tool for the user that easing in and out about the labels
+        var Info = this.add.text(45, 625, '', { font: '20px Arial', fill: '#00ff00' });
+                //set the text indicator for the level icon text value
+                Info.setText([
+                    'Click/Drag Item Below to Interact with Pet',
+                ]);
+                this.tweens.add({
 
+                    targets: Info,//who it targetting
+                    alpha: 0.5,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'Sine.easeInOut'
+        
+                });
+        // display the box that holds the identifiers for the icons
+        var InteractionIcons = this.add.rectangle(225, 660, 450, 30, 0xe7a23c);
+        InteractionIcons.setStrokeStyle(2, 0x1e0a08);
+        //add identifiers for the various components 
+        this.add.text(10, 650, "CLOTHE", style);//label it 
+        this.add.text(135, 650, "BATHE", style);//label it 
+        this.add.text(260, 650, "PLAY", style);//label it 
+        this.add.text(370, 650, "FEED", style);//label it 
         //load up the food items
         const food = ["bun", "soup", "sandwich1", "sandwich2", "pancake2", "OJ", "orange", "grilledcheese", "eggs", "drink2", "drink", "donut", "cupcake", "chicken", "pancake"];
         const random4 = Math.floor(Math.random() * food.length);//choose random value for the image icon from list
-        //var box4 = this.add.rectangle(390, 740, 100, 100, 0xe7a23c);//add box
-        var feeding = this.add.image(390, 740, food[random4])//input the key string name
+        //var box4 = this.add.rectangle(390, 735, 100, 100, 0xe7a23c);//add box
+        var feeding = this.add.image(390, 735, food[random4])//input the key string name
         feeding.setScale(3);// set the size
         feeding.setInteractive({ draggable: true });//it can be dragged
+        this.tweens.add({
+
+            targets: feeding,//who it targetting
+            alpha: 0.8,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
 
         //for the playing load up random image
         const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1", "console2", "console3", "duckie", "octopus", "toy2"];
         const random3 = Math.floor(Math.random() * toys.length);//random chose string name
-        //var box3 = this.add.rectangle(280, 740, 100, 100, 0xe7a23c);//create box
-        var playing = this.add.image(280, 740, toys[random3])//add key to the new image
+        //var box3 = this.add.rectangle(280, 735, 100, 100, 0xe7a23c);//create box
+        var playing = this.add.image(280, 735, toys[random3])//add key to the new image
         playing.setScale(3);//set the size
         playing.setInteractive({ draggable: true });//draggable yes
+        this.tweens.add({
+
+            targets: playing,//who it targetting
+            alpha: 0.8,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
         
         //for the bathing load up random image
         const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo", "soapbox", "soap", "sunscreen", "toothbrush", "wipey", "box"];
         const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
-        //var box2 = this.add.rectangle(170, 740, 100, 100, 0xe7a23c);//create box to cover up overlapping
-        var bath = this.add.image(170, 740, bathing[random2])//insert image with randomly chosen key
+        //var box2 = this.add.rectangle(170, 735, 100, 100, 0xe7a23c);//create box to cover up overlapping
+        var bath = this.add.image(170, 735, bathing[random2])//insert image with randomly chosen key
         bath.setScale(3);//size the image
         bath.setInteractive({ draggable: true });//it can be dragged
+        this.tweens.add({
+
+            targets: bath,//who it targetting
+            alpha: 0.8,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
 
         //create list to iterate through with key string names of clothes
         const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1", "outfit2", "outfit3", "shoes", "shoes2", "witchhat"];
         const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
-        //var box = this.add.rectangle(60, 740, 100, 100, 0xe7a23c);//becasue it loops it needs box before to cover up the old image
-        var clothing = this.add.image(60, 740, clothes[random])//add the key randomly chose value string name
+        //var box = this.add.rectangle(60, 735, 100, 100, 0xe7a23c);//becasue it loops it needs box before to cover up the old image
+        var clothing = this.add.image(60, 735, clothes[random])//add the key randomly chose value string name
         clothing.setScale(3);// set the size
         clothing.setInteractive({ draggable: true });// it is draggable
+        this.tweens.add({
+
+            targets: clothing,//who it targetting
+            alpha: 0.8,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
+        
         
         
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -330,17 +390,6 @@ class MainScene extends Phaser.Scene {
                 happiness.width -= val3; //decrement the health randomly w/ val
                 console.log(happiness.width)//lets see what the width is 
 
-                
-
-                // make the level increase when reach certain ammount of experience
-
-
-                //add identifiers for the various components 
-                this.add.text(10, 650, "CLOTHE", style);//label it 
-                this.add.text(135, 650, "BATHE", style);//label it 
-                this.add.text(260, 650, "PLAY", style);//label it 
-                this.add.text(370, 650, "FEED", style);//label it 
-
                 /////////////////////////////////////////////////////////////////////
                 // ██████╗██╗      ██████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗  //
                 // ██╔════╝██║     ██╔═══██╗╚══██╔══╝██║  ██║██║████╗  ██║██╔════╝ //
@@ -352,13 +401,22 @@ class MainScene extends Phaser.Scene {
 
                 if(clothing==null)//check to see if the destroyed image is null
                     {
-                        console.log('null image')
+                        console.log('null image')//log the null image to console
                         experience++;
                         EXP.setText(['EXPERIENCE : ' + experience]);
                         const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
-                        clothing = this.add.image(60, 740, clothes[random])//add the key randomly chose value string name
+                        clothing = this.add.image(60, 735, clothes[random])//add the key randomly chose value string name
                         clothing.setScale(3);// set the size
                         clothing.setInteractive({ draggable: true });// it is draggable
+                        this.tweens.add({
+
+                            targets: clothing,//who it targetting
+                            alpha: 0.8,
+                            yoyo: true,
+                            repeat: -1,
+                            ease: 'Sine.easeInOut' //effect fr our image
+                
+                        });
                     }
                    
                 //on the pointer down trigger the stop and start new animation for the pet
@@ -404,13 +462,22 @@ class MainScene extends Phaser.Scene {
                 
                 if(bath==null)//check to see if the destroyed image is null
                     {
-                        console.log('null image')
+                        console.log('null image')//log the null imade ang increase experience
                         experience++;
                         EXP.setText(['EXPERIENCE : ' + experience]);
                         const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
-                        bath = this.add.image(170, 740, bathing[random2])//insert image with randomly chosen key
+                        bath = this.add.image(170, 735, bathing[random2])//insert image with randomly chosen key
                         bath.setScale(3);//size the image
                         bath.setInteractive({ draggable: true });//it can be dragged
+                        this.tweens.add({
+
+                            targets: bath,//who it targetting
+                            alpha: 0.8,
+                            yoyo: true,
+                            repeat: -1,
+                            ease: 'Sine.easeInOut' //ease effect for item
+                
+                        });
                     }
                    
                 bath.on('pointerdown', () => {
@@ -464,13 +531,22 @@ class MainScene extends Phaser.Scene {
 
                 if(playing==null)//check to see if the destroyed image is null
                     {
-                        console.log('null image')
-                        experience++;
-                        EXP.setText(['EXPERIENCE : ' + experience]);
+                        console.log('null image')// log the null image
+                        experience++;// increase the experiecne by one and add new image
+                        EXP.setText(['EXPERIENCE : ' + experience]); // display the experience text
                         const random3 = Math.floor(Math.random() * toys.length);//random chose string name
-                        playing = this.add.image(280, 740, toys[random3])//add key to the new image
+                        playing = this.add.image(280, 735, toys[random3])//add key to the new image
                         playing.setScale(3);//set the size
                         playing.setInteractive({ draggable: true });//draggable yes
+                        this.tweens.add({
+
+                            targets: playing,//who it targetting
+                            alpha: 0.8,
+                            yoyo: true,
+                            repeat: -1,
+                            ease: 'Sine.easeInOut' // effect for our item
+                
+                        });
                     }
                    
                 playing.on('pointerdown', () => {
@@ -524,15 +600,24 @@ class MainScene extends Phaser.Scene {
                 // ╚═╝     ╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ //
                 ///////////////////////////////////////////////////////////
 
-                if(feeding==null)
+                if(feeding==null)//check to see if the image is null, if it is add new randomly picked image
                     {
                         console.log('null image')
                         experience++;
                         EXP.setText(['EXPERIENCE : ' + experience]);
                         var random4 = Math.floor(Math.random() * food.length);//random chose string name
-                        feeding = this.add.image(390, 740, food[random4])//input the key string name
+                        feeding = this.add.image(390, 735, food[random4])//input the key string name
                         feeding.setScale(3);// set the size
                         feeding.setInteractive({ draggable: true });//it can be dragged
+                        this.tweens.add({
+
+                            targets: feeding,//who it targetting
+                            alpha: 0.8, // the transparency level
+                            yoyo: true,//yoyo effect
+                            repeat: -1,//constantly repeat
+                            ease: 'Sine.easeInOut' // add ease effect to the feeding icon
+                
+                        });
                     }
                 feeding.on('pointerdown', () => {
                     
@@ -543,7 +628,7 @@ class MainScene extends Phaser.Scene {
                 
 
                 feeding.on('pointerup', () => {
-                    //var feeding = this.add.image(390, 740, food[random4])//input the key string name
+                    //var feeding = this.add.image(390, 735, food[random4])//input the key string name
                     //if the clothing is moved above where orginally is, destroy it and do some things
                     if (feeding.x >= 390 || feeding.x <= 390 || feeding.x <= 0 || feeding.x >= 450 && feeding.y < 650) 
                     //or if the clothing is moved above
@@ -617,7 +702,7 @@ class MainScene extends Phaser.Scene {
                     this.sound.play('levelingup');
                     //this.pet.anims.stop('levelup'); //stop the pet level up
                     //this.pet.anims.play('run'); //play the pet run
-                    PetClothed.setText([' PET LEVELED UP']); //set the text to be displayed
+                    PetClothed.setText(['LEVEL UP!']); //set the text to be displayed
                     //reset the experience
                     experience = 0;
                     value++// increment the value for the level

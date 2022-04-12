@@ -31,7 +31,9 @@ class BootScene extends Phaser.Scene {
         //This is where images are loaded
         //this.load.image('use a short name', './assets/name_of_image');
         this.load.image("teamlogo1", "./assets/image (1).png");
+        
         //var loo = this.add.image(225, 600, 'logor')
+        this.load.image("Moogles", "./assets/MisterMoogles.png");
         this.load.image(BOOTPET[0].name,`./assets/${BOOTPET[0].image}`)
         
         //loops through all image options of bootpet.js
@@ -56,7 +58,8 @@ class BootScene extends Phaser.Scene {
         }
 
         // "MainScene" preload to the screeen the background and the music
-        this.load.image('bg', './assets/background.png');
+        //this.load.image('bg', './assets/background.png');
+        this.load.image('bg', './assets/MisterMoogles.png');
         this.load.image('circus', './assets/circusbackground.png');
         this.load.image('Return', './assets/ReturntoMainButton.png');
 
@@ -398,6 +401,7 @@ class BootScene extends Phaser.Scene {
         let logo=this.add.image(225,100,'teamlogo1');
         logo.setOrigin(0.5);
     }
+    
     
     updateText()
     {
