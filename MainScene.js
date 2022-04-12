@@ -30,7 +30,8 @@ class MainScene extends Phaser.Scene {
     }
     init(data) {
         this.type = data.type;
-        if (this.type == "") {
+        if (this.type == "") 
+        {
             // No username was provided
             this.type = "0";
         }
@@ -54,7 +55,27 @@ class MainScene extends Phaser.Scene {
     // Runs when we first enter this scene
     create() {
         this.sound.stopAll()// to prevent looping stop all previous sounds
-        var value = 1;
+        var value=0 // value for the level
+        //check to see if the level being passed is undefined or not
+        if(this.level==undefined)// if undefined set the level to 0
+        {
+        console.log("level is undefined");
+        this.level=0;
+        this.level=value;
+        }
+        else// if not undefined set the level to the level passed
+        {
+            console.log(" not undefined");
+            value=this.level;
+        }
+        //set the text to the level
+        //this.add.text(10, 10, 'Level: ' + value, { fontSize: '32px', fill: '#000' });
+        
+       
+    
+        //increment this.level by one
+        //this.level = this.level + 1;
+        console.log(" our level is this: "+value);
 
         //create container to randomize music everytime load up the main scene
         const backgroundmusic = ['1', '2', '3', '4', '5', '6']
@@ -207,19 +228,13 @@ class MainScene extends Phaser.Scene {
         //txt to be inside of the level to let the user know what level they are on
         var text = this.add.text(378, 30, '', { font: '20px Courier', fill: '#00ff00' });
         //set the text indicator for the level icon text value
-        if(this.level>9){
+        
+        //set the text to display the level
         text.setText([
             
-            'LVL \n\n ' + (value+this.level),
-            console.log("level is:"),
-            console.log(this.level)
-        ]);}
-        else{
-            text.setText([
-            
-                'LVL \n\n ' + value,
-            ]);}
-
+                 'LVL \n\n ' + (this.level),
+                 console.log("level is"+this.level)
+             ]);
         //creating experience bar and value
         var experience = 0;
         var EXP = this.add.text(10, 130, '', { font: '20px Arial', fill: '#00ff00' });
@@ -596,7 +611,7 @@ class MainScene extends Phaser.Scene {
                         level: this.level
                     }))// lead to fight scene
                 }
-                if (experience >= 10)// once certain ammount of experience, level up and play sound
+                if (experience >= 2)// once certain ammount of experience, level up and play sound
                 {
                     // play the level up sound
                     this.sound.play('levelingup');
@@ -606,13 +621,9 @@ class MainScene extends Phaser.Scene {
                     //reset the experience
                     experience = 0;
                     value++// increment the value for the level
-                    //to prevent level from being undefined
-                    //allow the level to continue increasing.... 
-                    if(this.level == null || this.level <10){
-                        this.level=0;
-                    }
+                   
                     text.setText([
-                        'LVL \n\n ' + (value + this.level),
+                        'LVL \n\n ' + (this.level+=1),
             
                     ]);
             

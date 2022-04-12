@@ -63,7 +63,7 @@ class GameOver extends Phaser.Scene
                 start:0,
                 end: 7
             }),
-            frameRate: 5,
+            frameRate: 3,
             repeat: -1
         });
         this.pet.anims.play("dead")
@@ -83,23 +83,9 @@ class GameOver extends Phaser.Scene
             ease: 'Sine.easeInOut'
 
         });
+        
         //add exit button
-        var BackToMain=this.add.image(230,600,'MainSceneReturn')
-        BackToMain.setInteractive();
-        //once clicked start the main scene
-        BackToMain.on('pointerdown',() =>this.scene.start("MainScene"));
-        BackToMain.on('pointerover',() => this.sound.play('MainReturn'));
-        this.tweens.add({
-
-            targets: BackToMain,//who it targetting
-            alpha: 0.5,
-            yoyo: true,
-            repeat: -1,
-            ease: 'Sine.easeInOut'
-
-        });
-        //add exit button
-        var Retry=this.add.image(230,700,'RetryFight')
+        var Retry=this.add.image(230,600,'RetryFight')
         Retry.setInteractive();
         Retry.on('pointerdown',() =>this.scene.start("FightScene"));
         Retry.on('pointerover',() => this.sound.play('Rematch'));
