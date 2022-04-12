@@ -1,4 +1,3 @@
-
 class MainScene extends Phaser.Scene {
 
     // This is where we define data members
@@ -607,8 +606,13 @@ class MainScene extends Phaser.Scene {
                     //reset the experience
                     experience = 0;
                     value++// increment the value for the level
+                    //to prevent level from being undefined
+                    //allow the level to continue increasing.... 
+                    if(this.level == null || this.level <10){
+                        this.level=0;
+                    }
                     text.setText([
-                        'LVL \n\n ' + value,
+                        'LVL \n\n ' + (value + this.level),
             
                     ]);
             
