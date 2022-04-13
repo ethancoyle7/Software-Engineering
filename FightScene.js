@@ -194,9 +194,31 @@ class FightScene extends Phaser.Scene
                    delay: 500,
                    callback: function()
                    {
+                    var enemyattack=5
+                    //if statement to boost up the intensity of the fight
+                    if(this.level>=10 &&this.level<20)
+                    {
+                        enemyattack=5
+                    }
+                    if(this.level>=20 &&this.level<30)//between 20 and 30
+                    {
+                        enemyattack=6
+                    }
+                    if(this.level>=30 &&this.level<40) //between 30 and 40
+                    {
+                        enemyattack=7
+                    }
+                    if(this.level>=40 &&this.level<50) //between 40 and 50
+                    {
+                        enemyattack=8
+                    }
+                    else //if level is 50 or more
+                    { 
+                        enemyattack=9
+                    }
                     this.timeLeft --;//decrement the time left
 
-                    var val=Math.floor(Math.random() * 5) // using rand number between 0 and 10
+                    var val=Math.floor(Math.random() * enemyattack) // using rand number between 0 and 10
                                                            // for ai fight
                     pethealth.width-=val; //decrement the health randomly w/ val
                     console.log(pethealth.width)//lets see what the width is 

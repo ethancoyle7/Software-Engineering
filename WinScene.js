@@ -26,6 +26,7 @@ class WinScene extends Phaser.Scene {
 
     create() {
 
+        console.log(this.level)
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('YOUWIN');
@@ -88,7 +89,8 @@ class WinScene extends Phaser.Scene {
                 var BackToMain = this.add.image(230, 600, 'MainSceneReturn')
                 BackToMain.setInteractive();
                 //once clicked start the main scene
-                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level }));
+                //if win the the fight then going back to the main have bonus of adding 2 to the level
+                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level+=2 }));
                 BackToMain.on('pointerover', () => this.sound.play('MainReturn'));
                 this.tweens.add({
 

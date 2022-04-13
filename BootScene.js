@@ -1,5 +1,7 @@
-class BootScene extends Phaser.Scene {
-    constructor(){
+class BootScene extends Phaser.Scene 
+{
+    constructor()
+    {
         super("BootScene");
         //defining the variables needed
         this.loadBar = null;
@@ -59,7 +61,7 @@ class BootScene extends Phaser.Scene {
 
         // "MainScene" preload to the screeen the background and the music
         //this.load.image('bg', './assets/background.png');
-        this.load.image('bg', './assets/MisterMoogles.png');
+        this.load.image('bg', './assets/background.png');
         //background for the fightscene load up
         this.load.image('circus', './assets/MarleyFight.png');
         //this.load.image('circus', './assets/circusbackground.png');
