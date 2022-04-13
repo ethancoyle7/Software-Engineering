@@ -104,7 +104,7 @@ class WinScene extends Phaser.Scene {
                 //add exit button
                 var Retry = this.add.image(230, 700, 'RetryFight')
                 Retry.setInteractive();
-                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type }));
+                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type,level:this.level }));
                 Retry.on('pointerover', () => this.sound.play('Rematch'));
                 this.tweens.add({
 

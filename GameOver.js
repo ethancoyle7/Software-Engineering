@@ -14,6 +14,7 @@ class GameOver extends Phaser.Scene
             // No username was provided
             this.type = "0";
         }
+        this.level=data.level;//pass in the level
     }
     
     preload() 
@@ -87,7 +88,8 @@ class GameOver extends Phaser.Scene
         //add exit button
         var Retry=this.add.image(230,600,'RetryFight')
         Retry.setInteractive();
-        Retry.on('pointerdown',() =>this.scene.start("FightScene"));
+        Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type, level:this.level }));
+        //Retry.on('pointerdown',() =>this.scene.start("FightScene"));
         Retry.on('pointerover',() => this.sound.play('Rematch'));
         this.tweens.add({
 
