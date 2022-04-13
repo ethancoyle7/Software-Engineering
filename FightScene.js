@@ -63,7 +63,8 @@ class FightScene extends Phaser.Scene
         //create idle animation for the pet whenever pet is not doing anything
         this.pet.anims.create({
             key: 'run',
-            frames: this.anims.generateFrameNumbers(choose[this.type], {
+            frames: this.anims.generateFrameNumbers(choose[this.type], 
+            {
                 start: 0,
                 end: 5
             }),
@@ -73,7 +74,8 @@ class FightScene extends Phaser.Scene
         //creating animation for the double punch
         this.pet.anims.create({
             key: 'punch',
-            frames: this.anims.generateFrameNumbers(choose2[this.type], {
+            frames: this.anims.generateFrameNumbers(choose2[this.type], 
+            {
                 start: 0,
                 end: 5
             }),
@@ -83,7 +85,8 @@ class FightScene extends Phaser.Scene
         //for the light attack create animation sequence
         this.pet.anims.create({
             key: 'light',
-            frames: this.anims.generateFrameNumbers(choose3[this.type], {
+            frames: this.anims.generateFrameNumbers(choose3[this.type], 
+            {
                 start: 0,
                 end: 3
             }),
@@ -93,7 +96,8 @@ class FightScene extends Phaser.Scene
         //create animation for the heavy attacking character
         this.pet.anims.create({
             key: 'heavy',
-            frames: this.anims.generateFrameNumbers(choose4[this.type], {
+            frames: this.anims.generateFrameNumbers(choose4[this.type], 
+            {
                 start: 0,
                 end: 5
             }),
@@ -135,7 +139,8 @@ class FightScene extends Phaser.Scene
         //this.enemy.anims.play('idle2');// play the pet animotion
         this.enemy.anims.create({
             key: 'idle2',
-            frames: this.anims.generateFrameNumbers('pet2', {
+            frames: this.anims.generateFrameNumbers('pet2', 
+            {
                 start: 0,
                 end: 10
             }),
@@ -161,10 +166,11 @@ class FightScene extends Phaser.Scene
             button.on('pointerdown',() => this.sound.stopAll())
 	        button.on('pointerdown', () => button.setScale( 1.1 ))
 	        button.on('pointerup', () => button.setScale( 1 ));
-            button.on('pointerdown',() => this.scene.start('MainScene',{
+            button.on('pointerdown',() => this.scene.start('MainScene',
+            {
                 type: this.type,
                 level: this.level-=2 // return to main and pass the pet type and the level back
-                }))
+            }))
        
         this.tweens.add({
 
