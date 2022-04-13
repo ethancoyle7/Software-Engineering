@@ -163,7 +163,7 @@ class FightScene extends Phaser.Scene
 	        button.on('pointerup', () => button.setScale( 1 ));
             button.on('pointerdown',() => this.scene.start('MainScene',{
                 type: this.type,
-                level: this.level // return to main and pass the pet type and the level back
+                level: this.level-=2 // return to main and pass the pet type and the level back
                 }))
        
         this.tweens.add({
