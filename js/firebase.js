@@ -58,7 +58,7 @@ function signIn() {
   password = document.getElementById("password").value;
   firebase.auth().signInWithEmailAndPassword(email, password).then((cred) => {
     alert("Login Successfully.");
-    window.location.replace('/game.html');
+    window.location.replace('game.html');
   }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
