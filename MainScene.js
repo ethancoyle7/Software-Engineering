@@ -3,24 +3,19 @@ class MainScene extends Phaser.Scene {
     // This is where we define data members
     constructor() {
         super("MainScene");
-        this.BATHCOORDS = [50, 750];
-        this.CLOTHECOORDS = [150, 750];
-        this.FOODCOORDS = [275, 750];
-        this.TOYCOORDS = [375, 750];
         this.pet = null;
-        this.petClass = null;
-        this.hunger = null;
-        this.happiness = null;
-        this.health = null;
-        this.width1 = 200;
-        this.hungerw = 200;
+        //this.petClass = null;
+        //this.hunger = null;
+        //this.happiness = null;
+        //this.health = null;
+  
         this.sound2 = 0;
         this.type = '';
         this.level=0;
-        this.items = [];// this is a collection of items
+        //this.items = [];// this is a collection of items
         // this.itemsIcons = [];
-        this.percent = 0;
-        this.background = null;
+        //this.percent = 0;
+        //this.background = null;
         // this.firebaseApp = firebase.initializeApp(firebaseConfig);
         // this.db = firebase.firestore();
 
@@ -43,12 +38,12 @@ class MainScene extends Phaser.Scene {
     preload() {
         // // preload to the screeen the background and the music
         // loading up the audio for the pet interation sounds
-        this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
-        this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
-        this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
-        this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
-        this.load.audio('levelingup', './assets/LevelUPP.mp3');
-        this.load.image('mute', './assets/mic.png');
+        // this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
+        // this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
+        // this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
+        // this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
+        // this.load.audio('levelingup', './assets/LevelUPP.mp3');
+        // this.load.image('mute', './assets/mic.png');
         
 
 
@@ -410,7 +405,8 @@ class MainScene extends Phaser.Scene {
             ease: 'Sine.easeInOut'
 
         });
-        
+        console.log(" feeding x is " + feeding.x);
+        console.log(" feeding y is " + feeding.y);
         
         /////////////////////////////////////////////////////////////////////////////////////////////
         // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
@@ -444,12 +440,7 @@ class MainScene extends Phaser.Scene {
                 var increment=2
                 //if statement to boost up the intensity of the fight
                 
-                if(this.level<10) //if the level is less than 10
-                {
-                    levelupvalue=2
-                    decrement=1
-                    increment=2
-                }
+               
                 if(this.level>=10 &&this.level<20) //if the level is less than 10
                 {
                     levelupvalue=3 //increase the level up value
@@ -507,9 +498,15 @@ class MainScene extends Phaser.Scene {
                     increment=11 //increment is 11
 
                 }
+                else{
+                    console.log("default decrement is here  " + decrement);
+                    decrement=1
+                }
                 //for the health of the pet
+               
                 var val1 = Math.floor(Math.random() * decrement) // using rand number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
+                console.log("val1 is " + val1);
 
                 var val2 = Math.floor(Math.random() * decrement) // using rand number between 0 an 2
                 hunger.width -= val2; //decrement the health randomly w/ val
@@ -758,15 +755,26 @@ class MainScene extends Phaser.Scene {
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
                 
 
-                feeding.on('pointerup', () => {
+                feeding.on('pointerup', () => 
+                {
                     //var feeding = this.add.image(390, 735, food[random4])//input the key string name
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (feeding.x >= 390 || feeding.x <= 390 || feeding.x <= 0 || feeding.x >= 450 && feeding.y < 650) 
+                    
+                    //console.log(feeding.x)
+                    //console.log("feeding y : "+feeding.y)
                     //or if the clothing is moved above
                     
-                    {
+                    
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
+                    if (feeding.y< 690)
+                   
+                    //or if the clothing is moved above
+                    
+
+                    {
+                        console.log("feeding x is"+feeding.x)
+                        console.log("feeding y : "+feeding.y)
                         feeding.destroy(); // destroy the clothing
                         console.log(' is it destroyed??')
                         //feeding.destroy()

@@ -322,6 +322,13 @@ class BootScene extends Phaser.Scene
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         //this.load.image('logor', './assets/logoimage.png')
 
+        //main scene preload
+        this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
+        this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
+        this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
+        this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
+        this.load.audio('levelingup', './assets/LevelUPP.mp3');
+        this.load.image('mute', './assets/mic.png');
 
         //////////////////////////////////////////////////////////////////////////////////
         // █████╗ ██╗   ██╗██████╗ ██╗ ██████╗     ███████╗██╗██╗     ███████╗███████╗  //
