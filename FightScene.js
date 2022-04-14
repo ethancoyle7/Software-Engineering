@@ -9,6 +9,11 @@ class FightScene extends Phaser.Scene
         this.enemy=null;
         this.type='';
         this.sound3=0;
+        this.enemyheath = null;
+        this.victory = false;
+        this.defeat = false;
+        this.pethealth = null;
+        this.level = 0;
     }
     init(data)
     {
@@ -156,7 +161,7 @@ class FightScene extends Phaser.Scene
                                                                                          
         // making health and container for the pet
         var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x1e0a08);
-        var pethealth = this.add.rectangle(105, 740, 200, 30, 0xe74c3c);
+        this.pethealth = this.add.rectangle(105, 740, 200, 30, 0xe74c3c);
         this.add.text(50,730, "HEALTH", style);//label it
         
          //add enemy sprite
@@ -176,8 +181,8 @@ class FightScene extends Phaser.Scene
         });
         this.enemy.anims.play('idle2');// play the pet animotion
         //making health and container for the enemy
-        var enemyhealthcontainer = this.add.rectangle(340, 200, 205, 35, 0x1e0a08);
-        var enemyhealth = this.add.rectangle(340, 200, 200, 30, 0xe74c3c);
+        var enemyheathcontainer = this.add.rectangle(340, 200, 205, 35, 0x1e0a08);
+        this.enemyheath = this.add.rectangle(340, 200, 200, 30, 0xe74c3c);
         this.add.text(320,190, "HEALTH", style);//label it
 
         //WE WANT A RECTANGLE TO HOLD THE ATTACK BUTTONS INSIDE SO MAKE IT BEFORE
@@ -209,7 +214,7 @@ class FightScene extends Phaser.Scene
         
         });
        //whats the enemys stats for the width which represents remaining health
-       //console.log(enemyhealth.width)
+       //console.log(this.enemyheath.width)
   
         /////////////////////////////////////////////////////////////////////////////////////////////
         // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
@@ -275,8 +280,8 @@ class FightScene extends Phaser.Scene
 
                     var val=Math.floor(Math.random() * enemyattack) // using rand number between 0 and 10
                                                            // for ai fight
-                    pethealth.width-=val; //decrement the health randomly w/ val
-                    //console.log(pethealth.width)//lets see what the width is 
+                    this.pethealth.width-=val; //decrement the health randomly w/ val
+                    //console.log(this.pethealth.width)//lets see what the width is 
                     
                     
                     //set it where the pet when is attack changes to a different color
@@ -292,17 +297,17 @@ class FightScene extends Phaser.Scene
                     }
                     
                     //this.pet.clearTint();
-                    if(pethealth.width<=1)// if the pets health is less than 0, load the game over scene
-                    {
-                        //this.sound.removeByKey('Fight')
-                        //this.sound.play("fatality");
+                    // if(this.pethealth.width<=1)// if the pets health is less than 0, load the game over scene
+                    // {
+                    //     //this.sound.removeByKey('Fight')
+                    //     //this.sound.play("fatality");
                         
-                        this.scene.start("GameOver",{
-                            type: this.type,level:this.level
-                            })
-                        //this.add.image(200,200,"Over")
+                    //     this.scene.start("WinScene",{
+                    //         type: this.type,level:this.level
+                    //         })
+                    //     //this.add.image(200,200,"Over")
                         
-                    }
+                    // }
                    
                    },
                    
@@ -402,25 +407,25 @@ class FightScene extends Phaser.Scene
                                 {
                                     console.log("our  light attack value for level "+this.level+" is "+light);
                                     //attackval=2;//set the attack value to 2
-                                    var attack0=enemyhealth.width-=light;//adjust the enemy health accordingly -5
-                                    if(attack0<=2)// check for the enemy health to be less than 0
-                                    {
-                                                    //this.sound.removeByKey('Fight')
-                                                    //this.sound.play("fatality");
+                                    var attack0=this.enemyheath.width-=light;//adjust the enemy health accordingly -5
+                                    // if(attack0<=2)// check for the enemy health to be less than 0
+                                    // {
+                                    //                 //this.sound.removeByKey('Fight')
+                                    //                 //this.sound.play("fatality");
                                                     
-                                        this.scene.start("WinScene",
-                                        {
-                                            type: this.type,
-                                            level: this.level
-                                        })
-                                    }
-                                    else
-                                    {
-                                        enemyhealth.width-=light;
-                                        console.log(enemyhealth.width)
+                                    //     this.scene.start("WinScene",
+                                    //     {
+                                    //         type: this.type,
+                                    //         level: this.level
+                                    //     })
+                                    // }
+                                    // else
+                                    // {
+                                       this.enemyheath.width-=light;
+                                        console.log(this.enemyheath.width)
                                         
                                         //ENEMY HEALTH -=2
-                                        console.log(enemyhealth.width); //logging the width of the enemy bar
+                                        console.log(this.enemyheath.width); //logging the width of the enemy bar
                                         this.enemy.setTint(0xff0000);// create a tint to know got attacked
                                         if(this.sound3==0)
                                         {
@@ -429,7 +434,7 @@ class FightScene extends Phaser.Scene
                                         }
                                         this.pet.anims.stop('run');// stop the idle animation to create new animation effect
                                         this.pet.anims.play('light');// play the punching animation
-                                    }
+                                    // }
                                 });
                         
                     Light.on('pointerup', () =>
@@ -463,25 +468,25 @@ class FightScene extends Phaser.Scene
                         {
                             //attackval=5 //set the attack value to 5
                             console.log("our  heavy attack value for level "+this.level+" is "+heavy);
-                            var attack=enemyhealth.width-=heavy;//adjust the enemy health accordingly -5
-                            if(attack<=2)// check for the enemy health to be less than 0
-                            {
-                                            //this.sound.removeByKey('Fight')
-                                            //this.sound.play("fatality");
+                            var attack=this.enemyheath.width-=heavy;//adjust the enemy health accordingly -5
+                            // if(attack<=2)// check for the enemy health to be less than 0
+                            // {
+                            //                 //this.sound.removeByKey('Fight')
+                            //                 //this.sound.play("fatality");
                                             
-                                this.scene.start("WinScene",
-                                {
-                                    type: this.type,
-                                    level: this.level
-                                })
-                            }
-                            else
-                            {
-                                enemyhealth.width-=heavy;
-                                console.log(enemyhealth.width)
+                            //     this.scene.start("WinScene",
+                            //     {
+                            //         type: this.type,
+                            //         level: this.level
+                            //     })
+                            // }
+                            // else
+                            // {
+                               this.enemyheath.width-=heavy;
+                                console.log(this.enemyheath.width)
                             
-                            //enemyhealth.width-=heavy;//adjust the enemy health accordingly -5
-                                console.log(enemyhealth.width);//logging the width of enemy bar
+                            //this.enemyheath.width-=heavy;//adjust the enemy health accordingly -5
+                                console.log(this.enemyheath.width);//logging the width of enemy bar
                                 this.enemy.setTint(0xff0000);// create a tint to know got attacked
                                 if(this.sound3==0)
                                 {
@@ -490,7 +495,7 @@ class FightScene extends Phaser.Scene
                                 }
                                 this.pet.anims.stop('run');// stop the idle animation to create new animation effect
                                 this.pet.anims.play('heavy');// play the punching animation
-                            }
+                            // }
                         });
                         
                     Heavy.on('pointerup', () =>
@@ -522,25 +527,25 @@ class FightScene extends Phaser.Scene
                             //console.log(" And our punrch val is"+punch);
                             //attackval=10 //set the attack value to 10
                             console.log("our punch value for level "+this.level+" is "+punch);
-                            var attack2=enemyhealth.width-=punch;//adjust the enemy health accordingly -5
-                            if(attack2<=2)// check for the enemy health to be less than 0
-                            {
-                                            //this.sound.removeByKey('Fight')
-                                            //this.sound.play("fatality");
+                            var attack2=this.enemyheath.width-=punch;//adjust the enemy health accordingly -5
+                            // if(attack2<=2)// check for the enemy health to be less than 0
+                            // {
+                            //                 //this.sound.removeByKey('Fight')
+                            //                 //this.sound.play("fatality");
                                             
-                                this.scene.start("WinScene",
-                                {
-                                    type: this.type,
-                                    level: this.level
-                                })
-                            }
-                            else
-                            {
-                                enemyhealth.width-=punch;
-                                console.log(enemyhealth.width)
+                            //     this.scene.start("WinScene",
+                            //     {
+                            //         type: this.type,
+                            //         level: this.level
+                            //     })
+                            // }
+                            // else
+                            // {
+                               this.enemyheath.width-=punch;
+                                console.log(this.enemyheath.width)
                             
-                                //enemyhealth.width-=punch;// enemy health -10
-                                console.log(enemyhealth.width);//logging the width of the enemy bar
+                                //this.enemyheath.width-=punch;// enemy health -10
+                                console.log(this.enemyheath.width);//logging the width of the enemy bar
                                 this.enemy.setTint(0xff0000);// create a tint to know got attacked
                                 if(this.sound3==0)
                                 {
@@ -549,7 +554,7 @@ class FightScene extends Phaser.Scene
                                 }
                                 this.pet.anims.stop('run');// stop the idle animation to create new animation effect
                                 this.pet.anims.play('punch');// play the punching animation
-                            }
+                            // }
                         });
                     Punch.on('pointerup', () =>
                         {
@@ -562,16 +567,16 @@ class FightScene extends Phaser.Scene
                         //create a cool down timer before can be clicked again
                         
                         /////////////////////////////////////////////////
-                    if(pethealth.width<=1)// if the pets health is less than 0, load the game over scene
-                        {
-                            //this.sound.removeByKey('Fight')
-                            //this.sound.play("fatality");
+                    // if(this.pethealth.width<=1)// if the pets health is less than 0, load the game over scene
+                    //     {
+                    //         //this.sound.removeByKey('Fight')
+                    //         //this.sound.play("fatality");
                             
-                            //go to the game over scen pass the type and the level to the scene
-                            this.scene.start("GameOver",{
-                                type: this.type,level:this.level
-                                })
-                        }
+                    //         //go to the game over scen pass the type and the level to the scene
+                    //         this.scene.start("GameOver",{
+                    //             type: this.type,level:this.level
+                    //             })
+                    //     }
                     
                    },
                    
@@ -581,8 +586,49 @@ class FightScene extends Phaser.Scene
     }
     // Runs every frame
     update() 
-    {
+    {  
+        this.checkWin();
+        this.checkDead();
+        if(this.victory){
+            this.endFight();
+            this.scene.start("WinScene",
+            {
+                type: this.type,
+                level: this.level
+            })
+        }
+
+        if(this.defeat){
+            this.endFight();
+            this.scene.start("GameOver",{
+                type: this.type,level:this.level
+                })
+        }
      
         
+    }
+
+    checkWin(){
+        if(this.enemyheath.width<=0){
+            this.victory = true;
+        }
+    }
+
+    checkDead(){
+        if(this.pethealth.width<=0){
+            this.defeat = true;
+        }
+    }
+
+
+    endFight(){
+        this.pet = null;
+        this.enemy=null;
+        this.type='';
+        this.sound3=0;
+        this.enemyheath = null;
+        this.victory = false;
+        this.defeat = false;
+        this.pethealth = null;
     }
 }
