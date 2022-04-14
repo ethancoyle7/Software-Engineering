@@ -500,7 +500,7 @@ class MainScene extends Phaser.Scene {
                 }
                 else{
                     console.log("default decrement is here  " + decrement);
-                    decrement=1
+                    decrement=3
                 }
                 //for the health of the pet
                
