@@ -441,12 +441,7 @@ class MainScene extends Phaser.Scene {
                 //if statement to boost up the intensity of the fight
                 
                
-                if(this.level>=10 &&this.level<20) //if the level is less than 10
-                {
-                    levelupvalue=3 //increase the level up value
-                    decrement=2 //decrement is 2
-                    increment=3 //increment is 3
-                }
+                
                 if(this.level>=20 &&this.level<30) //if the level is less than 10
                 {
                     levelupvalue=4 //level up value is 4
@@ -767,8 +762,8 @@ class MainScene extends Phaser.Scene {
                     
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
-                    if (feeding.y< 690)
-                   
+                    //if (feeding.y< 690)
+                    if (feeding.x >= 390 || feeding.x <= 390 || feeding.x <= 0 || feeding.x >= 450 && feeding.y < 650)
                     //or if the clothing is moved above
                     
 

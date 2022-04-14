@@ -23,7 +23,9 @@ const config = {
         GameOver,
         WinScene,
         MainDead,
-        Runawaypet
+        Runawaypet,
+        RetirementScene,
+        Credits
     ],
     physics: {
         default: 'arcade',
