@@ -47,6 +47,11 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         let bg = this.add.image(225, 400, "back");
         bg.setScale(.6); //changes the scale of the background image
 
+        //start the music for the scene
+        this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
+            volume: 0.5,
+            loop: true
+        });
         /////////////////////////////////////////////////////////////////////////
         // ██╗   ██╗███████╗███████╗██████╗     ██╗███╗   ██╗███████╗ ██████╗  //
         // ██║   ██║██╔════╝██╔════╝██╔══██╗    ██║████╗  ██║██╔════╝██╔═══██╗ //
@@ -55,7 +60,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ╚██████╔╝███████║███████╗██║  ██║    ██║██║ ╚████║██║     ╚██████╔╝ //
         //  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  //
         /////////////////////////////////////////////////////////////////////////
-        var usernameUD=null
+        
         // call the user name of the logged in user
         var username = this.add.text(10, 735, '', { font: '20px Arial', fill: '#00ff00' });
         //call to the api to get the id of the logged in user
@@ -83,11 +88,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
 
 
 
-        //start the music for the scene
-        this.bgmusic = this.sound.play("bgmusic", { //creates variable called music that plays the music
-            volume: 0.5,
-            loop: true
-        });
+       
 
 
 
