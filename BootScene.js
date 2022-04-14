@@ -246,6 +246,21 @@ class BootScene extends Phaser.Scene
         }); 
         // for health
         this.load.image('button','./assets/button.png')
+
+        this.load.spritesheet('pinkwalk', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Walk_6.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
+        this.load.spritesheet('whitewalk', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Walk_6.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
+        this.load.spritesheet('bluewalk', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Walk_6.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
         
         // this.load.image("hungermeter","assets/hungrymeter.png")
         //////////////////////////////////////////////////////////////////////////
@@ -430,6 +445,7 @@ class BootScene extends Phaser.Scene
                 if(this.imageNum < BOOTPET.length){
                 //let index = Math.floor(Math.random() * BOOTPET.length);
                 let index = this.imageNum;
+                console.log(index);
                 this.setCat(BOOTPET[index]);
                 //this.setCat(BOOTPET[]);
                     this.imageNum++;
