@@ -441,12 +441,7 @@ class MainScene extends Phaser.Scene {
                 //if statement to boost up the intensity of the fight
                 
                
-                if(this.level>=10 &&this.level<20) //if the level is less than 10
-                {
-                    levelupvalue=3 //increase the level up value
-                    decrement=2 //decrement is 2
-                    increment=3 //increment is 3
-                }
+                
                 if(this.level>=20 &&this.level<30) //if the level is less than 10
                 {
                     levelupvalue=4 //level up value is 4
