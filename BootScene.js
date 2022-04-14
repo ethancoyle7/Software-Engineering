@@ -55,9 +55,9 @@ class BootScene extends Phaser.Scene
         this.loadingBar.setOrigin(0.5);
         // Load a bunch of assets "squares"
         this.load.image('loading assets', './assets/square1.png');
-        for (let i = 0; i < 200; i++) {
-             this.load.image(`loading assets-${i}`, './assets/square1.png');
-        }
+        // for (let i = 0; i < 200; i++) {
+        //      this.load.image(`loading assets-${i}`, './assets/square1.png');
+        // }
 
         // "MainScene" preload to the screeen the background and the music
         //this.load.image('bg', './assets/background.png');
