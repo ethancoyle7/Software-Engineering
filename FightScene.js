@@ -262,7 +262,7 @@ class FightScene extends Phaser.Scene
                         enemyattack=7
                        
                     }
-                    if(this.level>=40 &&this.level<50) //between 40 and 50
+                    if(this.level>=40) //between 40 and 50
                     {
                         enemyattack=8
                         

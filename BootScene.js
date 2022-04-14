@@ -55,9 +55,9 @@ class BootScene extends Phaser.Scene
         this.loadingBar.setOrigin(0.5);
         // Load a bunch of assets "squares"
         this.load.image('loading assets', './assets/square1.png');
-        for (let i = 0; i < 200; i++) {
-             this.load.image(`loading assets-${i}`, './assets/square1.png');
-        }
+        // for (let i = 0; i < 200; i++) {
+        //      this.load.image(`loading assets-${i}`, './assets/square1.png');
+        // }
 
         // "MainScene" preload to the screeen the background and the music
         //this.load.image('bg', './assets/background.png');
@@ -322,6 +322,13 @@ class BootScene extends Phaser.Scene
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         //this.load.image('logor', './assets/logoimage.png')
 
+        //main scene preload
+        this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
+        this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
+        this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
+        this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
+        this.load.audio('levelingup', './assets/LevelUPP.mp3');
+        this.load.image('mute', './assets/mic.png');
 
         //////////////////////////////////////////////////////////////////////////////////
         // █████╗ ██╗   ██╗██████╗ ██╗ ██████╗     ███████╗██╗██╗     ███████╗███████╗  //
