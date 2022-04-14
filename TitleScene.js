@@ -65,21 +65,30 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
                 //var usernameUD = usern;
             });
         getColor().then(color => {
-            if (checkPoint()) {
+                if(color == null){
+                    console.log('move on');
+                }
                 if (color == "red") {
                     this.type = "0";
+                    this.scene.start('MainScene',
+                    {
+                        type: this.type,
+                    })
                 }
                 if (color == "white") {
                     this.type = "1";
+                    this.scene.start('MainScene',
+                    {
+                        type: this.type,
+                    })
                 }
                 if (color == "blue") {
                     this.type = "2";
+                    this.scene.start('MainScene',
+                    {
+                        type: this.type,
+                    })
                 }
-                this.scene.start('MainScene',
-                {
-                    type: this.type,
-                })
-            }
         });
 
         //get the user  id for the current logged in user
@@ -336,30 +345,6 @@ function setColor(color) {
         });
 }
 
-function checkPoint() {
-    uid = userData["uid"] // calling getID function to get the user id
-    // now reading the user data and get the nickname
-    db.collection("users").get().then((querySnapshot) => { // get into the users collection
-        querySnapshot.forEach((doc) => {// making sure we are returning only the user info
-            if (doc.id == uid) {
-                userData["color"] = doc.data().color;
-                // consoloe.log(typeof doc.data().color)
-                if (doc.data().color == null) {
-                    console.log("user needs to choose an egg.")
-                    return false;
-                }
-                else {
-                    console.log("user chose an egg already... redirecting...")
-                    return true;
-                }
-                // result = doc.data().color; // if the user is found override result to the nickname
-                //return doc.data();    
-            }
-        });
-    });
-    // return color // return the result to the main function
-}
-
 async function getColor() {
     uid = userData['uid']
     // // now reading the user data and get the nickname
@@ -374,29 +359,3 @@ async function getColor() {
     });
     return result // return the result to the main function
 }
-
-
-// function newCheck(color) {
-//     uid = userData['uid'] // calling getID function to get the user id
-//     // now reading the user data and get the nickname
-//     db.collection("users").get().then((querySnapshot) => { // get into the users collection
-//         querySnapshot.forEach(async (doc) => {// making sure we are returning only the user info
-//             if (doc.id == uid) {
-//                 console.log(doc.data().color)
-//                 // consoloe.log(typeof doc.data().color)
-//                 if (color != null) {
-//                     console.log("user is already chose an egg, redirecting...")
-//                     return true;
-//                 }
-//                 else {
-//                     console.log("user needs to choose an egg.")
-//                     return false;
-//                 }
-//                 // result = doc.data().color; // if the user is found override result to the nickname
-//                 //return doc.data();    
-//             }
-//         });
-//     });
-//     // return color // return the result to the main function
-// }
-
