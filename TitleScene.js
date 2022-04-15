@@ -1,5 +1,3 @@
-
-
 /* This scene is a titlescene that plays first before the user starts the game
 *   This is where the user will log into their account
 * 
