@@ -17,11 +17,11 @@ class MainDead extends Phaser.Scene
     }
     preload() 
     {
-        this.load.image('Over', './assets/GameOverPicture.png');
-        this.load.image('Exit', './assets/exitbutton.png'); 
-        this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
-        this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
-        this.load.image('wipey', './assets/bathe/wet_wipe.png')
+        // this.load.image('Over', './assets/GameOverPicture.png');
+        // this.load.image('Exit', './assets/exitbutton.png'); 
+        // this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
+        // this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
+        // this.load.image('wipey', './assets/bathe/wet_wipe.png')
     }
 
     create() 
