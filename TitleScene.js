@@ -1,5 +1,3 @@
-
-
 /* This scene is a titlescene that plays first before the user starts the game
 *   This is where the user will log into their account
 * 
@@ -17,14 +15,14 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     }
 
     preload() {  // this is the preload function, it loads all the assets for the scene
-        this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
-        this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
-        this.load.image("back", "./assets/TitleSceneBG.png");
-        this.load.image("title", "./assets/title.png");
-        this.load.image("eggchoice", "./assets/eggchoose.png");
-        this.load.image("teamlogo", "./assets/image (1).png");
-        this.load.image('home', './assets/infobutton.png');
-        this.load.image('mute', './assets/mic.png');
+        // this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
+        // this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
+        // this.load.image("back", "./assets/TitleSceneBG.png");
+        // this.load.image("title", "./assets/title.png");
+        // this.load.image("eggchoice", "./assets/eggchoose.png");
+        // this.load.image("teamlogo", "./assets/image (1).png");
+        // this.load.image('home', './assets/infobutton.png');
+        // this.load.image('mute', './assets/mic.png');
 
     }
 

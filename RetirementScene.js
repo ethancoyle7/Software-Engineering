@@ -14,6 +14,7 @@ class RetirementScene extends Phaser.Scene {
         this.level = data.level;
     }
     preload() {
+        this.load.image('Retired', './assets/retirementtxt.png');
         this.load.image('NewGame', './assets/NewGamebtn.png');
         this.load.image('Quit', './assets/quitbtn.png');
         this.load.image('Credits', './assets/creditsbtn.png');
@@ -46,22 +47,23 @@ class RetirementScene extends Phaser.Scene {
             image.setBlendMode(Phaser.BlendModes.ADD);// blend them all together
             this.sprites.push({ s: image, r: 2 + Math.random() * 6 });
         }
+        let rect = this.add.rectangle(230, 200, 450, 300, 0x000000);
+        rect.setAlpha(.5);
+        let retire = this.add.image(230, 200, "Retired");
 
-
-
-        this.pet = this.add.sprite(230, 350, "pet")
+        this.pet = this.add.sprite(230, 350, "pet");
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
-        let choose3 = ['winningpet', 'pet2winningpet', 'pet3winningpet'];
+        let choose3 = ['pinkwalk', 'whitewalk', 'bluewalk'];
         this.pet.anims.create({
-            key: 'winner',
+            key: 'walk',
             frames: this.anims.generateFrameNumbers(choose3[this.type], {
                 start: 0,
-                end: 7
+                end: 5
             }),
-            frameRate: 8,
+            frameRate: 6,
             repeat: -1
         });
-        this.pet.anims.play("winner")
+        this.pet.anims.play("walk")
         //add exit button
         this.gameTimer = this.time.addEvent({
             delay: 750,

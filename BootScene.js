@@ -246,6 +246,21 @@ class BootScene extends Phaser.Scene
         }); 
         // for health
         this.load.image('button','./assets/button.png')
+
+        this.load.spritesheet('pinkwalk', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Walk_6.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
+        this.load.spritesheet('whitewalk', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Walk_6.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
+        this.load.spritesheet('bluewalk', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Walk_6.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
         
         // this.load.image("hungermeter","assets/hungrymeter.png")
         //////////////////////////////////////////////////////////////////////////
@@ -322,6 +337,16 @@ class BootScene extends Phaser.Scene
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
         //this.load.image('logor', './assets/logoimage.png')
 
+        //title scene preload
+        this.load.image("bgname", "./assets/background.png"); //this is how you load assets, it's the name then file path
+        this.load.audio("bgmusic", "./assets/gamemusic.mp3"); //you have to specify this.load.image or .audio too
+        this.load.image("back", "./assets/TitleSceneBG.png");
+        this.load.image("title", "./assets/title.png");
+        this.load.image("eggchoice", "./assets/eggchoose.png");
+        this.load.image("teamlogo", "./assets/image (1).png");
+        this.load.image('home', './assets/infobutton.png');
+        this.load.image('mute', './assets/mic.png');
+
         //main scene preload
         this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
         this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
@@ -329,6 +354,41 @@ class BootScene extends Phaser.Scene
         this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
         this.load.audio('levelingup', './assets/LevelUPP.mp3');
         this.load.image('mute', './assets/mic.png');
+
+        //main dead preload
+        this.load.image('Over', './assets/GameOverPicture.png');
+        this.load.image('Exit', './assets/exitbutton.png'); 
+        this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
+        this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
+        this.load.image('wipey', './assets/bathe/wet_wipe.png')
+
+        //fight scene preload
+        this.load.image('Over', './assets/GameOverPicture.png');
+        this.load.audio('FightSound2','./assets/FightSound2.mp3');
+        this.load.image('mute','./assets/mic.png');
+
+        //win scene preload
+        this.load.image('win', './assets/winner.png');
+        this.load.image('Exit', './assets/exitbutton.png');
+        this.load.image('MainSceneReturn', './assets/mainreturn.png');
+        this.load.image('RetryFight', './assets/fightretry.png');
+        this.load.image('particle', './assets/yellow.png');
+        this.load.audio('WINNER', './assets/WinMusic.mp3');
+        // runaway pet scene preload 
+        this.load.image('PetGone', './assets/PetRunAway.png');
+        this.load.image('Exit', './assets/exitbutton.png'); 
+        this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
+        this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
+        this.load.image('wipey', './assets/bathe/wet_wipe.png')
+
+
+        //game over scene
+        this.load.image('Over', './assets/GameOverPicture.png');
+        this.load.image('Exit', './assets/exitbutton.png'); 
+        this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
+        this.load.image('RetryFight', './assets/fightretry.png'); 
+        this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
+        this.load.image('wipey', './assets/bathe/wet_wipe.png')
 
         //////////////////////////////////////////////////////////////////////////////////
         // █████╗ ██╗   ██╗██████╗ ██╗ ██████╗     ███████╗██╗██╗     ███████╗███████╗  //
@@ -430,6 +490,7 @@ class BootScene extends Phaser.Scene
                 if(this.imageNum < BOOTPET.length){
                 //let index = Math.floor(Math.random() * BOOTPET.length);
                 let index = this.imageNum;
+                console.log(index);
                 this.setCat(BOOTPET[index]);
                 //this.setCat(BOOTPET[]);
                     this.imageNum++;

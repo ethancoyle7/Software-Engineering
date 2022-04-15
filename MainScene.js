@@ -508,12 +508,12 @@ class MainScene extends Phaser.Scene {
 
                 var val2 = Math.floor(Math.random() * decrement) // using rand number between 0 an 2
                 hunger.width -= val2; //decrement the health randomly w/ val
-                console.log(hunger.width)//lets see what the width is 
+                //console.log(hunger.width)//lets see what the width is 
 
                 //timing for the happiness to go down incrementally
                 var val3 = Math.floor(Math.random() * decrement) // using rand number between 0 and 10
                 happiness.width -= val3; //decrement the health randomly w/ val
-                console.log(happiness.width)//lets see what the width is 
+                //console.log(happiness.width)//lets see what the width is 
 
                 /////////////////////////////////////////////////////////////////////
                 // ██████╗██╗      ██████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗  //
@@ -771,8 +771,8 @@ class MainScene extends Phaser.Scene {
                     
 
                     {
-                        console.log("feeding x is"+feeding.x)
-                        console.log("feeding y : "+feeding.y)
+                        // console.log("feeding x is"+feeding.x)
+                        // console.log("feeding y : "+feeding.y)
                         feeding.destroy(); // destroy the clothing
                         console.log(' is it destroyed??')
                         //feeding.destroy()
