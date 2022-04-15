@@ -185,10 +185,11 @@ class MainScene extends Phaser.Scene {
         // ██████╔╝██║  ██║██║  ██║╚██████╔╝    ██║   ██║   ███████╗██║ ╚═╝ ██║███████║ //
         // ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝     ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
         //////////////////////////////////////////////////////////////////////////////////
-
+        
         // to make the items to interact with the pet draggable, initialize the draggin mechanic
         this.input.on('dragstart', function (pointer, gameObject) {
             gameObject.setTint(0xff0000);
+            
         });
         // curing the drag, the user can pick the item and then drag it where they
         //want it to go
@@ -231,9 +232,11 @@ class MainScene extends Phaser.Scene {
         //create rectangle for xp points
 
         //oscillating display of rectangle targetting this rectangle
+        //this takes the form of a rectangle with a purple fill fading 
+        //in and out constantly
         this.tweens.add({
 
-            targets: levelrect,//who it targetting
+            targets: levelrect,//rectangle it is targetting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,
