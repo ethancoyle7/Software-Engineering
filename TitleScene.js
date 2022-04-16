@@ -3,6 +3,7 @@
 * 
 *
 */
+var allusers = []
 userData = {}
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
     //methods and variables owned by it. This is where i make a lot of mistakes lol
@@ -62,6 +63,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
                 username.setText("Logged in As :" + [usern]);//display it to the screen
                 //var usernameUD = usern;
             });
+
         getColor().then(color => {
                 if(color == null){
                     console.log('move on');
@@ -356,4 +358,17 @@ async function getColor() {
         });
     });
     return result // return the result to the main function
+}
+function getUsers() {
+    uid = userData['uid']
+    // now reading the user data and get the nickname
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {// making sure we are returning only the user info
+            if(doc.id != uid)
+            {
+                allusers.push({name: doc.data().nickname, color: doc.data().color})
+            }
+        });
+    });
+    // return allusers.length? obj[ allusers[allusers.length * Math.random() | 0]] : void 0;    
 }

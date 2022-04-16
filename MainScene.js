@@ -53,6 +53,11 @@ class MainScene extends Phaser.Scene {
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value=0 // value for the level
 
+
+        // get users
+        getUsers();
+        console.log(allusers)
+
         //////////////////////////////////////////////////////////////////////////
         // ██╗    ██╗   ██╗██╗          ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ //
         // ██║    ██║   ██║██║         ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝ //

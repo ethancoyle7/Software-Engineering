@@ -15,12 +15,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-    <script src="firebaseConfig.js"></script>
 </head>
 
 <body>
@@ -69,35 +63,34 @@
                                     <td align="center"><br>
                                         <!-- <button type="submit" class="btn-normal">LOGIN</button> -->
                                         <button class="btn-normal" type="button" onclick="signIn();">LOGIN</button>
-                                        <p class="error pink-text center-align"></p>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td align="left"><br>
-                                        <a class="forgotpassword">Forget Password?</a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <hr style="background-color:#fff;height:1px;margin:0px" />
+                                        <!-- <p class="error pink-text center-align"></p> -->
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center">
+                                        <br>
+                                        <button type="button" id="signUp" onclick="openForm()" class="btn-normal">REGISTER</button>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td align="left"><br>
+                                        <a class="forgotpassword">Forget Password?</a>
+                                    </td>
+                                </tr> -->
+
+                                <!-- <tr>
+                                    <td>
+                                        <hr style="background-color:#fff;height:1px;margin:0px" />
+                                    </td>
+                                </tr> -->
+                                <!-- <tr>
+                                    <td align="center">
                                         <br />
                                         <a class="btn-normal" onclick="signInAnonymously()">PLAY AS GUEST</a>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </table>
                         </form>
-                        <tr>
-                            <td align="center">
-                                <br />
-                                <button type="button" id="signUp" onclick="openForm()" class="btn-normal">CREATE AN ACCOUNT</button>
-                            </td>
-                        </tr>
                     </td>
                 </tr>
             </table>
