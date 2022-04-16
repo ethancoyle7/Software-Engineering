@@ -60,9 +60,20 @@ class MainScene extends Phaser.Scene
 
         
         // get users
-        getUsers().then(users => {
+        getUsers().then(users => 
+            {
             console.log(users);
-            console.log("color of the enemy is: "+enemycolor);
+            console.log("the enemy we will fight is name is : "+enemey);
+        });
+        getEnemyColor().then(enemyColor => 
+            {
+                getUsers().then(users => 
+                    {
+                    console.log(users);
+                    console.log("the enemy we will fight is name is : "+enemey);
+                });
+                console.log(enemyColor);
+                console.log("the usernames color of that one  is : "+enemyColor);
         });
         
 
@@ -70,14 +81,14 @@ class MainScene extends Phaser.Scene
         // it will NOT print and it will gave us undefined
         // This problem I've talked to Griffin about it
         // Still trying to figure out why this is happenning
-        console.log(allusers[0]);
-        console.log("our dictionary is :",dict)
-        console.log('testing color value',colorvalue2)
+        //console.log(allusers[0]);
+        //console.log("our dictionary is :",dict)
+        //console.log('testing color value',colorvalue2)
         //console.log("our picked fighter is ",fighterpicked)
 
-        console.log(" the color is :",dict['color'])
+        //console.log(" the color is :",dict['color'])
         // you could view the whole list of users
-        console.log(allusers)
+        //console.log(allusers)
         //////////////////////////////////////////////////////////////////////////
         // ██╗    ██╗   ██╗██╗          ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ //
         // ██║    ██║   ██║██║         ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝ //

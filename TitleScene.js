@@ -10,6 +10,7 @@ const Array1=[]
 const Array2=[]
 var colorvalue2=null
 var enemycolor
+var enemey
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
     //methods and variables owned by it. This is where i make a lot of mistakes lol
     constructor() {
@@ -390,40 +391,50 @@ async function getUsers() {
         console.log('Randomly pick a fighter to fight')
         const fighter = Math.floor(Math.random() * Array1.length);//picks random array index of the first value
                                                                   //which is the nickname  index
-        console.log("figher is " + Array1[fighter])// name of the fighter
+        //console.log("figher is " + Array1[fighter])// name of the fighter
+        enemey=Array1[fighter]//name of the enemy
         //const ourfightername= Array1[fighter]
         var colorvalue= fighter// since the arrays are the same size return the index number of the fighter
-        var colorvalue2= Array2[fighter]// since the arrays are the same size return the index number of the fighter
-        console.log("colorvalue is " + Array2[colorvalue])// that index will be the index value of the other array
-        console.log(" the enemy is " + Array1[fighter]+" and his color is "+Array2[colorvalue])
+        //var colorvalue2= Array2[fighter]// since the arrays are the same size return the index number of the fighter
+        //console.log("colorvalue is " + Array2[colorvalue])// that index will be the index value of the other array
+        //console.log(" the enemy is " + Array1[fighter]+" and his color is "+Array2[colorvalue])
         console.log('this is the end of the choosing fighting opponent')
         if(Array2[colorvalue]=="blue")
         {
-            console.log('the enemy is blue')
+            console.log('the color is blue')
             enemycolor="blue"
         }
         else if(Array2[colorvalue]=="red")
         {
-            console.log('the enemy is red')
+            console.log('the color is red')
             enemycolor="red"
         }
         else if(Array2[colorvalue]=="white")
         {
-            console.log('the enemy is white')
+            console.log('the color is white')
             enemycolor="white"
         }
         else if(Array2[colorvalue]=="none"||null)
         {
-            console.log('the enemy is none')
+            console.log('the color  is none')
             enemycolor="none"
         }
         else
         {
             console.log('the enemy is undefined')
         }
-        return Array1[fighter]//passing the color of the enemy
+        
+        return enemey//passing the color of the enemy
         
     });
-   
+    
+    return enemey//passing the color of the enemy
     // return allusers.length? obj[ allusers[allusers.length * Math.random() | 0]] : void 0;    
 }
+//call the getuser function and return the color
+async function getEnemyColor() 
+{
+    await getUsers()
+    return enemycolor
+}
+
