@@ -56,8 +56,14 @@ class MainScene extends Phaser.Scene {
 
         // get users
         getUsers();
-        console.log(allusers)
+        // put if you trying to print only one which I'm going to print only one user info
+        // it will NOT print and it will gave us undefined
+        // This problem I've talked to Griffin about it
+        // Still trying to figure out why this is happenning
+        console.log(allusers[0])
 
+        // you could view the whole list of users
+        console.log(allusers)
         //////////////////////////////////////////////////////////////////////////
         // ██╗    ██╗   ██╗██╗          ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ //
         // ██║    ██║   ██║██║         ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝ //
