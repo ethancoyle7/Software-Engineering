@@ -5,6 +5,11 @@
 */
 var allusers = []
 userData = {}
+var dict={}
+const Array1=[]
+const Array2=[]
+var colorvalue2=null
+var enemycolor
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
     //methods and variables owned by it. This is where i make a lot of mistakes lol
     constructor() {
@@ -359,16 +364,66 @@ async function getColor() {
     });
     return result // return the result to the main function
 }
-function getUsers() {
+async function getUsers() {
     uid = userData['uid']
     // now reading the user data and get the nickname
-    db.collection("users").get().then((querySnapshot) => {
+    await db.collection("users").get().then((querySnapshot) => 
+    {
         querySnapshot.forEach((doc) => {// making sure we are returning only the user info
             if(doc.id != uid)
             {
+                
+                //push each nickname into dict
+                dict['nickname']=doc.data().nickname
+                dict['color']=doc.data().color
+                Array1.push(doc.data().nickname)//nickname
+                Array2.push(doc.data().color)//color
+
                 allusers.push({name: doc.data().nickname, color: doc.data().color})
+
+                
             }
         });
+        
+        //print out the value at the fighter
+        //console.log(Array1[fighter])
+        console.log('Randomly pick a fighter to fight')
+        const fighter = Math.floor(Math.random() * Array1.length);//picks random array index of the first value
+                                                                  //which is the nickname  index
+        console.log("figher is " + Array1[fighter])// name of the fighter
+        //const ourfightername= Array1[fighter]
+        var colorvalue= fighter// since the arrays are the same size return the index number of the fighter
+        var colorvalue2= Array2[fighter]// since the arrays are the same size return the index number of the fighter
+        console.log("colorvalue is " + Array2[colorvalue])// that index will be the index value of the other array
+        console.log(" the enemy is " + Array1[fighter]+" and his color is "+Array2[colorvalue])
+        console.log('this is the end of the choosing fighting opponent')
+        if(Array2[colorvalue]=="blue")
+        {
+            console.log('the enemy is blue')
+            enemycolor="blue"
+        }
+        else if(Array2[colorvalue]=="red")
+        {
+            console.log('the enemy is red')
+            enemycolor="red"
+        }
+        else if(Array2[colorvalue]=="white")
+        {
+            console.log('the enemy is white')
+            enemycolor="white"
+        }
+        else if(Array2[colorvalue]=="none"||null)
+        {
+            console.log('the enemy is none')
+            enemycolor="none"
+        }
+        else
+        {
+            console.log('the enemy is undefined')
+        }
+        return Array1[fighter]//passing the color of the enemy
+        
     });
+   
     // return allusers.length? obj[ allusers[allusers.length * Math.random() | 0]] : void 0;    
 }

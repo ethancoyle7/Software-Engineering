@@ -1,7 +1,9 @@
-class MainScene extends Phaser.Scene {
+class MainScene extends Phaser.Scene 
+{
 
     // This is where we define data members
-    constructor() {
+    constructor() 
+    {
         super("MainScene");
         this.pet = null;
         //this.petClass = null;
@@ -23,7 +25,8 @@ class MainScene extends Phaser.Scene {
         // this.scoreTable = this.database.collection('Scores')
 
     }
-    init(data) {
+    init(data) 
+    {
         this.type = data.type;
         if (this.type == "") 
         {
@@ -31,11 +34,13 @@ class MainScene extends Phaser.Scene {
             this.type = "0";
         }
         this.level = data.level;
+        this.enemy= data.enemy;
 
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
-    preload() {
+    preload() 
+    {
         // // preload to the screeen the background and the music
         // loading up the audio for the pet interation sounds
         // this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
@@ -53,15 +58,24 @@ class MainScene extends Phaser.Scene {
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value=0 // value for the level
 
-
+        
         // get users
-        getUsers();
+        getUsers().then(users => {
+            console.log(users);
+            console.log("color of the enemy is: "+enemycolor);
+        });
+        
+
         // put if you trying to print only one which I'm going to print only one user info
         // it will NOT print and it will gave us undefined
         // This problem I've talked to Griffin about it
         // Still trying to figure out why this is happenning
-        console.log(allusers[0])
+        console.log(allusers[0]);
+        console.log("our dictionary is :",dict)
+        console.log('testing color value',colorvalue2)
+        //console.log("our picked fighter is ",fighterpicked)
 
+        console.log(" the color is :",dict['color'])
         // you could view the whole list of users
         console.log(allusers)
         //////////////////////////////////////////////////////////////////////////
