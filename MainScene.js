@@ -39,6 +39,8 @@ class MainScene extends Phaser.Scene
     create() {
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value=0 // value for the level
+        
+        
 
         //call the getnickname function
         getNickname().then(data => {
@@ -46,6 +48,7 @@ class MainScene extends Phaser.Scene
             this.playername = data;//assign the api return data of the player nickname to the nickname to be used throughout
             //console.log("your nickname is ",this.playername);//loggin the data to see if working and it is
         });
+        
         //to display all the users log all the accounts
         console.log(allusers)
         // var EnemyName=""

@@ -255,11 +255,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             repeat: -1 //-1 means yes repeat
         });
     }
-    // update(){
-    //     redegg.on('pointerdown',()=>  {      
-    //         this.type="0";
-    //         });
-    // }
+   
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -343,7 +339,8 @@ function setColor(color) {
         });
 }
 
-async function getColor() {
+async function getColor() 
+{
     uid = userData['uid']
     // // now reading the user data and get the nickname
     await db.collection("users").get().then((querySnapshot) => {
@@ -351,7 +348,8 @@ async function getColor() {
             if (doc.id == uid) {
                 userData['color'] = doc.data().color;
                 result = doc.data().color; // if the user is found override result to the nickname
-                //return doc.data();    
+                //return doc.data();  
+                console.log("her her her here")  
             }
         });
     });
