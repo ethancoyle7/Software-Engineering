@@ -16,6 +16,7 @@ class FightScene extends Phaser.Scene
         this.enemy1= 0;
         this.enemyname='';
         this.playername=""
+        
     }
     init(data)
     {
@@ -450,19 +451,18 @@ class FightScene extends Phaser.Scene
                                     console.log("our  light attack value for level "+this.level+" is "+light);
                                     //attackval=2;//set the attack value to 2
                                     var attack0=this.enemyheath.width-=light;//adjust the enemy health accordingly -5
-                                    // if(attack0<=2)// check for the enemy health to be less than 0
-                                    // {
-                                    //                 //this.sound.removeByKey('Fight')
-                                    //                 //this.sound.play("fatality");
-                                                    
-                                    //     this.scene.start("WinScene",
-                                    //     {
-                                    //         type: this.type,
-                                    //         level: this.level
-                                    //     })
-                                    // }
-                                    // else
-                                    // {
+                                    if(attack0<=2)// check for the enemy health to be less than 0
+                                    {
+                                       this.endFight();
+                                       this.scene.start("WinScene",
+                                       {
+                                           type: this.type,
+                                           level: this.level,
+                                           playername: this.playername//pass the playername to the next scene
+                                       })
+                                  
+                                   }
+                                    
                                        this.enemyheath.width-=light;
                                         console.log(this.enemyheath.width)
                                         
@@ -511,19 +511,18 @@ class FightScene extends Phaser.Scene
                             //attackval=5 //set the attack value to 5
                             console.log("our  heavy attack value for level "+this.level+" is "+heavy);
                             var attack=this.enemyheath.width-=heavy;//adjust the enemy health accordingly -5
-                            // if(attack<=2)// check for the enemy health to be less than 0
-                            // {
-                            //                 //this.sound.removeByKey('Fight')
-                            //                 //this.sound.play("fatality");
-                                            
-                            //     this.scene.start("WinScene",
-                            //     {
-                            //         type: this.type,
-                            //         level: this.level
-                            //     })
-                            // }
-                            // else
-                            // {
+                            if(attack<=2)// check for the enemy health to be less than 0
+                             {
+                                this.endFight();
+                                this.scene.start("WinScene",
+                                {
+                                    type: this.type,
+                                    level: this.level,
+                                    playername: this.playername//pass the playername to the next scene
+                                })
+                           
+                            }
+                           
                                this.enemyheath.width-=heavy;
                                 console.log(this.enemyheath.width)
                             
@@ -570,19 +569,18 @@ class FightScene extends Phaser.Scene
                             //attackval=10 //set the attack value to 10
                             console.log("our punch value for level "+this.level+" is "+punch);
                             var attack2=this.enemyheath.width-=punch;//adjust the enemy health accordingly -5
-                            // if(attack2<=2)// check for the enemy health to be less than 0
-                            // {
-                            //                 //this.sound.removeByKey('Fight')
-                            //                 //this.sound.play("fatality");
-                                            
-                            //     this.scene.start("WinScene",
-                            //     {
-                            //         type: this.type,
-                            //         level: this.level
-                            //     })
-                            // }
-                            // else
-                            // {
+                            if(attack2<=2)// check for the enemy health to be less than 0
+                             {
+                                this.endFight();
+                                this.scene.start("WinScene",
+                                {
+                                    type: this.type,
+                                    level: this.level,
+                                    playername: this.playername//pass the playername to the next scene
+                                })
+                           
+                            }
+                            
                                this.enemyheath.width-=punch;
                                 console.log(this.enemyheath.width)
                             
@@ -606,20 +604,6 @@ class FightScene extends Phaser.Scene
                             this.pet.anims.play('run');// got back to the idle animation
                         });
                         
-                        //create a cool down timer before can be clicked again
-                        
-                        /////////////////////////////////////////////////
-                    // if(this.pethealth.width<=1)// if the pets health is less than 0, load the game over scene
-                    //     {
-                    //         //this.sound.removeByKey('Fight')
-                    //         //this.sound.play("fatality");
-                            
-                    //         //go to the game over scen pass the type and the level to the scene
-                    //         this.scene.start("GameOver",{
-                    //             type: this.type,level:this.level
-                    //             })
-                    //     }
-                    
                    },
                    
                    callbackScope: this,
@@ -629,17 +613,8 @@ class FightScene extends Phaser.Scene
     // Runs every frame
     update() 
     {  
-        this.checkWin();
+        //this.checkWin();
         this.checkDead();
-        if(this.victory){
-            this.endFight();
-            this.scene.start("WinScene",
-            {
-                type: this.type,
-                level: this.level,
-                playername: this.playername//pass the playername to the next scene
-            })
-        }
 
         if(this.defeat){
             this.endFight();
@@ -650,15 +625,9 @@ class FightScene extends Phaser.Scene
      
         
     }
-
-    checkWin(){
-        if(this.enemyheath.width<=0){
-            this.victory = true;
-        }
-    }
-
     checkDead(){
-        if(this.pethealth.width<=0){
+        if(this.pethealth.width<=0)
+        {
             this.defeat = true;
         }
     }
