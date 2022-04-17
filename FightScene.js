@@ -14,6 +14,8 @@ class FightScene extends Phaser.Scene
         this.pethealth = null;
         this.level = 0;
         this.enemy1= 0;
+        this.enemyname='';
+        this.playername=""
     }
     init(data)
     {
@@ -25,6 +27,8 @@ class FightScene extends Phaser.Scene
         }
         this.level=data.level;
         this.enemy1=data.enemy;
+        this.enemyname=data.enemyname;
+        this.playername=data.playername;
     }
     
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -208,27 +212,33 @@ class FightScene extends Phaser.Scene
         var pethealthcontainer = this.add.rectangle(105, 740, 205, 35, 0x1e0a08);
         this.pethealth = this.add.rectangle(105, 740, 200, 30, 0xe74c3c);
         this.add.text(50,730, "HEALTH", style);//label it
+        //add the player name
+        //display the players name
+        var playernamebg = this.add.rectangle(110,770,200,25,0x000000);
+        playernamebg.setAlpha(0.5);
+        this.add.text(10,760, this.playername, { font: '20px Arial', fill: '#00ff00' });
+        //add grey transparent background for the playername
         
-         //add enemy sprite
-        //allign it above the enemy health bar and then make it play idle animation
-        // this.enemy = this.add.sprite(375, 105, "pet2")
-        // this.enemy.setScale(.4,.4);//set the scale of the enemy for fight to fit the scene width and height
-        // //this.enemy.anims.play('idle2');// play the pet animotion
-        // this.enemy.anims.create({
-        //     key: 'idle2',
-        //     frames: this.anims.generateFrameNumbers('pet2', 
-        //     {
-        //         start: 0,
-        //         end: 10
-        //     }),
-        //     frameRate: 12,
-        //     repeat: -1
-        // });
-        // this.enemy.anims.play('idle2');// play the pet animotion
+        
+       
         //making health and container for the enemy
         var enemyheathcontainer = this.add.rectangle(340, 200, 205, 35, 0x1e0a08);
         this.enemyheath = this.add.rectangle(340, 200, 200, 30, 0xe74c3c);
         this.add.text(320,190, "HEALTH", style);//label it
+        //this.add.text(270,210, "Enemy :"+this.enemyname, style);//label it
+        var opponentnamebg = this.add.rectangle(340,230,200,25,0x000000);
+        opponentnamebg.setAlpha(0.5)
+        var OpponenetName = this.add.text(240, 220, '', { font: '20px Arial', fill: '#00ff00' });
+        //set the text indicator for the level icon text value
+        OpponenetName.setText([
+            this.enemyname
+        ]);
+        //add grey transparent background for the opponentname
+        ;
+
+        //align the text to the left
+        //OpponenetName.setAlign('left');
+
 
         //WE WANT A RECTANGLE TO HOLD THE ATTACK BUTTONS INSIDE SO MAKE IT BEFORE
         //ATTACK BUTTONS SO AS TO NOT COVER UP BARS
@@ -313,12 +323,7 @@ class FightScene extends Phaser.Scene
                         
                     
                     }
-                    // else //if level is 50 or more
-                    // { 
-                    //     enemyattack=9
-                       
-                        
-                    // }
+                    //if statement to boost up the intensity of the fight
                     console.log("enemy attack with "+enemyattack)
                     
                     this.timeLeft --;//decrement the time left
@@ -326,33 +331,25 @@ class FightScene extends Phaser.Scene
                     var val=Math.floor(Math.random() * enemyattack) // using rand number between 0 and 10
                                                            // for ai fight
                     this.pethealth.width-=val; //decrement the health randomly w/ val
-                    //console.log(this.pethealth.width)//lets see what the width is 
-                    
-                    
+
+
                     //set it where the pet when is attack changes to a different color
                     if(val>0)
                     {
+                        // enemyq.anims.stop('run');//stop the animations
+                        // enemyq.anims.play('punch');//play the punch animation
                         this.pet.setTint(0xff0000);
                         //this.sound.play('EnemyHit')
                     }
                     //set the tint clear so user knows that the pet hasnt been hurt
                     if(val==0)
                     {
+                        // enemyq.anims.stop('punch');//stop the animations
+                        // enemyq.anims.play('run');//play the run animation
                         this.pet.clearTint(); 
                     }
                     
-                    //this.pet.clearTint();
-                    // if(this.pethealth.width<=1)// if the pets health is less than 0, load the game over scene
-                    // {
-                    //     //this.sound.removeByKey('Fight')
-                    //     //this.sound.play("fatality");
-                        
-                    //     this.scene.start("WinScene",{
-                    //         type: this.type,level:this.level
-                    //         })
-                    //     //this.add.image(200,200,"Over")
-                        
-                    // }
+                   
                    
                    },
                    
@@ -639,14 +636,15 @@ class FightScene extends Phaser.Scene
             this.scene.start("WinScene",
             {
                 type: this.type,
-                level: this.level
+                level: this.level,
+                playername: this.playername//pass the playername to the next scene
             })
         }
 
         if(this.defeat){
             this.endFight();
             this.scene.start("GameOver",{
-                type: this.type,level:this.level
+                type: this.type,level:this.level,playername:this.playername
                 })
         }
      

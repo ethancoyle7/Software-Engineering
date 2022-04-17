@@ -18,6 +18,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         this.bgmusic;
         this.type;
         this.sound1 = 0;
+        //this.playername=""
         //this.eggNum='';
     }
 

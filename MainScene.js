@@ -11,6 +11,8 @@ class MainScene extends Phaser.Scene
         this.level=0;
         this.enemy=""
         this.encolor=""
+        this.enemyname=""
+        this.playername=""
         
 
     }
@@ -24,6 +26,8 @@ class MainScene extends Phaser.Scene
         }
         this.level = data.level;
         this.enemy= data.enemy;
+        this.enemyname=data.enemyname;
+        this.playername=data.playername;
 
     }
 
@@ -36,7 +40,12 @@ class MainScene extends Phaser.Scene
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value=0 // value for the level
 
-        
+        //call the getnickname function
+        getNickname().then(data => {
+            //console.log(data);
+            this.playername = data;//assign the api return data of the player nickname to the nickname to be used throughout
+            //console.log("your nickname is ",this.playername);//loggin the data to see if working and it is
+        });
         //to display all the users log all the accounts
         console.log(allusers)
         // var EnemyName=""
@@ -46,6 +55,9 @@ class MainScene extends Phaser.Scene
             //console.log(users);
 
             console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
+            //assign the enemy name to the value of the enemy
+            this.enemyname=enemey;
+            //console.log("the nombre of our enemy is : "+this.enemyname);//name of the enemy
             //EnemyName=enemey;
             //this.enemy=enemey;// assign to value
             getEnemyColor().then(enemyColor => 
@@ -847,7 +859,9 @@ class MainScene extends Phaser.Scene
                     button.on('pointerdown', () => this.scene.start('FightScene', {
                         type: this.type,
                         level: this.level,
-                        enemy: this.enemy
+                        enemy: this.enemy,
+                        enemyname: this.enemyname,//pass in the name of the enemy
+                        playername: this.playername//pass in the player name
                     }))// lead to fight scene
                 }
                 //lets boost intensity of the next levelling up take longer to level up after certain level

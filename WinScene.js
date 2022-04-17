@@ -3,6 +3,9 @@ class WinScene extends Phaser.Scene {
     {             
         super('WinScene'); 
         this.sprites = []; 
+        this.enemyname='';
+        this.enemy=""
+        this.playername='';
 
     }
     init(data)
@@ -15,13 +18,47 @@ class WinScene extends Phaser.Scene {
         }
         this.level=data.level;
         this.enemy= data.enemy;
+        this.enemyname=data.enemyname;
+        this.playername=data.playername;
     }
     preload() 
     {
     }
 
-    create() {
+    create() 
+    {
 
+        getNickname().then(data => {
+            //console.log(data);
+            this.playername = data;//assign the api return data of the player nickname to the nickname to be used throughout
+            //console.log("your nickname is ",this.playername);//loggin the data to see if working and it is
+        });
+        getUsers().then(users => 
+            {
+            //console.log(users);
+
+            console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
+            //EnemyName=enemey;
+            this.enemyname=enemey; //pass in the enemy
+            //this.enemy=enemey;// assign to value
+            getEnemyColor().then(enemyColor => 
+                {
+                    //EnemyName=enemey;
+                    console.log(enemyColor);
+                    console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
+                    //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
+                    //for the fight color animation
+                    if(enemyColor=='red'){
+                        this.enemy=0;
+                    }
+                    else if(enemyColor == 'white'){
+                        this.enemy=1;
+                    }
+                    else{
+                        this.enemy=2;
+                    }
+            });
+        });
         console.log(this.level)
         //this.sound.stop('Fight');
         this.sound.stopAll();
@@ -111,7 +148,7 @@ class WinScene extends Phaser.Scene {
                 BackToMain.setInteractive();
                 //once clicked start the main scene
                 //if win the the fight then going back to the main have bonus of adding 2 to the level
-                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level+=2, }));
+                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level+=2}));
                 BackToMain.on('pointerover', () => this.sound.play('MainReturn'));
                 this.tweens.add({
 
@@ -125,7 +162,7 @@ class WinScene extends Phaser.Scene {
                 //add exit button
                 var Retry = this.add.image(230, 700, 'RetryFight')
                 Retry.setInteractive();
-                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type,level:this.level,enemy: this.enemy }));
+                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type,level:this.level,enemy: this.enemy,enemyname:this.enemyname,playername:this.playername }));
                 Retry.on('pointerover', () => this.sound.play('Rematch'));
                 this.tweens.add({
 

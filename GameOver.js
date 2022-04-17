@@ -4,6 +4,9 @@ class GameOver extends Phaser.Scene
     {
         super('GameOver');
         this.sprites = [];
+        this.enemyname='';
+        this.enemy=""
+        this.playername='';
         
     }
     init(data)
@@ -16,6 +19,9 @@ class GameOver extends Phaser.Scene
         }
         this.level=data.level;//pass in the level
         this.enemy= data.enemy; //pass in the enemy
+        this.enemyname=data.enemyname;
+        this.playername=data.playername;
+        
     }
     
     preload() 
@@ -25,6 +31,7 @@ class GameOver extends Phaser.Scene
 
     create() 
     {
+        
         //this.sound.stop('Fight');
         this.sound.stopAll();
         this.sound.play('KO');
@@ -85,6 +92,7 @@ class GameOver extends Phaser.Scene
 
             console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
             //EnemyName=enemey;
+            this.enemyname=enemey; //pass in the enemy
             //this.enemy=enemey;// assign to value
             getEnemyColor().then(enemyColor => 
                 {
@@ -108,7 +116,7 @@ class GameOver extends Phaser.Scene
         //add exit button
         var Retry=this.add.image(230,600,'RetryFight')
         Retry.setInteractive();
-        Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type, level:this.level,enemy: this.enemy }));
+        Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type, level:this.level,enemy: this.enemy,enemyname:this.enemyname,playername:this.playername }));
         //Retry.on('pointerdown',() =>this.scene.start("FightScene"));
         Retry.on('pointerover',() => this.sound.play('Rematch'));
         this.tweens.add({

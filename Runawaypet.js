@@ -6,6 +6,7 @@ class Runawaypet extends Phaser.Scene
         this.sprites = [];
         this.type='';
         this.pet=null;
+        this.playername='';
     }
     init(data)
     {
@@ -15,6 +16,7 @@ class Runawaypet extends Phaser.Scene
             // No username was provided
             this.type = "0";
         }
+        this.playername=data.playername;
     }
     preload() 
     {
@@ -66,7 +68,7 @@ class Runawaypet extends Phaser.Scene
         exit.setInteractive();
         //when pressed down go to title  scene
         //cannot go to main because the pet ran away
-        exit.on('pointerdown',() =>this.scene.start("TitleScene"));
+        exit.on('pointerdown',() =>this.scene.start("TitleScene",{playername:this.playername}));
         exit.on('pointerover',() => this.sound.play('Exit')); // hoverover
         this.tweens.add({
 
