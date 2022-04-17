@@ -84,8 +84,18 @@ class MainScene extends Phaser.Scene
                     console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
                     //this.encolor=enemyColor;// assign to value
                     //EnemyCol=enemyColor;
+                    if(enemyColor=='red'){
+                        this.enemy=0;
+                    }
+                    else if(enemyColor == 'white'){
+                        this.enemy=1;
+                    }
+                    else{
+                        this.enemy=2;
+                    }
             });
         });
+        
         // console.log(" the enemy name be ",EnemyName);
         // console.log(" the enemy color be ",EnemyCol);
 
@@ -879,7 +889,8 @@ class MainScene extends Phaser.Scene
                     button.on('pointerdown', () => this.sound.stopAll());// remove the bg music
                     button.on('pointerdown', () => this.scene.start('FightScene', {
                         type: this.type,
-                        level: this.level
+                        level: this.level,
+                        enemy: this.enemy
                     }))// lead to fight scene
                 }
                 //lets boost intensity of the next levelling up take longer to level up after certain level

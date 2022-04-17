@@ -6,7 +6,7 @@ class FightScene extends Phaser.Scene
     {
         super('FightScene');
         this.pet = null;
-        this.enemy=null;
+        //this.enemyq=null;
         this.type='';
         this.sound3=0;
         this.enemyheath = null;
@@ -14,6 +14,7 @@ class FightScene extends Phaser.Scene
         this.defeat = false;
         this.pethealth = null;
         this.level = 0;
+        this.enemy1= 0;
     }
     init(data)
     {
@@ -24,6 +25,7 @@ class FightScene extends Phaser.Scene
             this.type = "0";
         }
         this.level=data.level;
+        this.enemy1=data.enemy;
     }
     
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
@@ -69,10 +71,10 @@ class FightScene extends Phaser.Scene
 
         //after passing in the number of the pet based off the egg, the number corresponds to that in 
         // each choice list
-        let choose=['pet','pet2run','pet3'];
-        let choose2=['petpunch','pet2punch','pet3punch'];
-        let choose3=['lightattack','pet2lightattack','pet3lightattack'];
-        let choose4=['heavyattack','pet2heavyattack','pet3heavyattack'];
+        let choose=['pet','pet2run','pet3','enemy','enemy2','enemy3'];
+        let choose2=['petpunch','pet2punch','pet3punch','enemypunch','enemy2punch','enemy3punch'];
+        let choose3=['lightattack','pet2lightattack','pet3lightattack','enemylightattack','enemy2lightattack','enemy3lightattack'];
+        let choose4=['heavyattack','pet2heavyattack','pet3heavyattack','enemyheavyattack','enemy2heavyattack','enemy3heavyattack'];
         //create idle animation for the pet whenever pet is not doing anything
 
         /////////////////////////////////////////////////////////////////////////////////////
@@ -127,6 +129,55 @@ class FightScene extends Phaser.Scene
             frameRate: 12,
             repeat: 2
         });
+        //play the pet animation and play sound whenever pressed down
+        this.pet.anims.play('run');// play the pet animotion
+        //------------------ENEMY ANIMATIONS---------------------------------------------------
+        var enemyq = this.add.sprite(375, 105, "pet2");
+        enemyq.setScale(5);
+        enemyq.anims.create({
+            key: 'run',
+            frames: this.anims.generateFrameNumbers(choose[(this.enemy1)], 
+            {
+                start: 0,
+                end: 5
+            }),
+            frameRate: 12,
+            repeat: -1
+        });
+        //creating animation for the double punch
+        enemyq.anims.create({
+            key: 'punch',
+            frames: this.anims.generateFrameNumbers(choose2[(this.enemy1+2)], 
+            {
+                start: 0,
+                end: 5
+            }),
+            frameRate: 12,
+            repeat: 2
+        });
+        //for the light attack create animation sequence
+        enemyq.anims.create({
+            key: 'light',
+            frames: this.anims.generateFrameNumbers(choose3[(this.enemy1+2)], 
+            {
+                start: 3,
+                end: 0
+            }),
+            frameRate: 12,
+            repeat: 2
+        });
+        //create animation for the heavy attacking character
+        enemyq.anims.create({
+            key: 'heavy',
+            frames: this.anims.generateFrameNumbers(choose4[(this.enemy1+2)], 
+            {
+                frames:[5,4,3,2,1,0]
+            }),
+            frameRate: 12,
+            repeat: 2
+        });
+        //play the enemy animation and play sound whenever pressed down
+        enemyq.anims.play('run');// play the enemy animation
         //mute button
         let mutebutton = this.add.image(400,50,'mute'); // creating a mute button
         mutebutton.setScale(0.2); // setting the scale
@@ -147,8 +198,7 @@ class FightScene extends Phaser.Scene
             }
         })
 
-        //play the pet animation and play sound whenever pressed down
-       this.pet.anims.play('run');// play the pet animotion
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     //    ██╗  ██╗███████╗ █████╗ ██╗  ████████╗██╗  ██╗    ██████╗  █████╗ ██████╗ ███████╗ //
@@ -166,20 +216,20 @@ class FightScene extends Phaser.Scene
         
          //add enemy sprite
         //allign it above the enemy health bar and then make it play idle animation
-        this.enemy = this.add.sprite(375, 105, "pet2")
-        this.enemy.setScale(.4,.4);//set the scale of the enemy for fight to fit the scene width and height
-        //this.enemy.anims.play('idle2');// play the pet animotion
-        this.enemy.anims.create({
-            key: 'idle2',
-            frames: this.anims.generateFrameNumbers('pet2', 
-            {
-                start: 0,
-                end: 10
-            }),
-            frameRate: 12,
-            repeat: -1
-        });
-        this.enemy.anims.play('idle2');// play the pet animotion
+        // this.enemy = this.add.sprite(375, 105, "pet2")
+        // this.enemy.setScale(.4,.4);//set the scale of the enemy for fight to fit the scene width and height
+        // //this.enemy.anims.play('idle2');// play the pet animotion
+        // this.enemy.anims.create({
+        //     key: 'idle2',
+        //     frames: this.anims.generateFrameNumbers('pet2', 
+        //     {
+        //         start: 0,
+        //         end: 10
+        //     }),
+        //     frameRate: 12,
+        //     repeat: -1
+        // });
+        // this.enemy.anims.play('idle2');// play the pet animotion
         //making health and container for the enemy
         var enemyheathcontainer = this.add.rectangle(340, 200, 205, 35, 0x1e0a08);
         this.enemyheath = this.add.rectangle(340, 200, 200, 30, 0xe74c3c);
@@ -426,7 +476,7 @@ class FightScene extends Phaser.Scene
                                         
                                         //ENEMY HEALTH -=2
                                         console.log(this.enemyheath.width); //logging the width of the enemy bar
-                                        this.enemy.setTint(0xff0000);// create a tint to know got attacked
+                                        enemyq.setTint(0xff0000);// create a tint to know got attacked
                                         if(this.sound3==0)
                                         {
                                             this.sound.play('press'); // play sound when hit
@@ -439,7 +489,7 @@ class FightScene extends Phaser.Scene
                         
                     Light.on('pointerup', () =>
                             {
-                                this.enemy.clearTint();// on the pointer up clear the tint
+                                enemyq.clearTint();// on the pointer up clear the tint
                                 button.setScale( 1 ); //BUTTON ANIMATION
                                 this.pet.anims.stop('light');// stop the previous animation
                                 this.pet.anims.play('run');// got back to the idle animation
@@ -487,7 +537,7 @@ class FightScene extends Phaser.Scene
                             
                             //this.enemyheath.width-=heavy;//adjust the enemy health accordingly -5
                                 console.log(this.enemyheath.width);//logging the width of enemy bar
-                                this.enemy.setTint(0xff0000);// create a tint to know got attacked
+                                enemyq.setTint(0xff0000);// create a tint to know got attacked
                                 if(this.sound3==0)
                                 {
                                     this.sound.play('press'); // play sound when hit
@@ -500,7 +550,7 @@ class FightScene extends Phaser.Scene
                         
                     Heavy.on('pointerup', () =>
                         {
-                            this.enemy.clearTint();// on the pointer up clear the tint
+                            enemyq.clearTint();// on the pointer up clear the tint
                             button.setScale( 1 );
                             this.pet.anims.stop('heavy');// stop the previous animation
                             this.pet.anims.play('run');// got back to the idle animation
@@ -546,7 +596,7 @@ class FightScene extends Phaser.Scene
                             
                                 //this.enemyheath.width-=punch;// enemy health -10
                                 console.log(this.enemyheath.width);//logging the width of the enemy bar
-                                this.enemy.setTint(0xff0000);// create a tint to know got attacked
+                                enemyq.setTint(0xff0000);// create a tint to know got attacked
                                 if(this.sound3==0)
                                 {
                                     this.sound.play('press'); // play sound when hit
@@ -558,7 +608,7 @@ class FightScene extends Phaser.Scene
                         });
                     Punch.on('pointerup', () =>
                         {
-                            this.enemy.clearTint();// on the pointer up clear the tint
+                            enemyq.clearTint();// on the pointer up clear the tint
                             button.setScale( 1 );
                             this.pet.anims.stop('punch');// stop the previous animation
                             this.pet.anims.play('run');// got back to the idle animation
@@ -623,7 +673,7 @@ class FightScene extends Phaser.Scene
 
     endFight(){
         this.pet = null;
-        this.enemy=null;
+        //this.enemyq=null;
         this.type='';
         this.sound3=0;
         this.enemyheath = null;
