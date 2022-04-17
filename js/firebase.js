@@ -69,9 +69,10 @@ function signIn() {
 // Function to SignOut of the user account
 function signOut() {
   // Calling Firebase Initialization method to make sure that we initialized firebase
-  firebaseApp = checkFireBase();
   // Then call the signed out method
   firebaseApp.auth().signOut();
+  console.log('Your signed out successfully.')
+  window.location.replace('/index.html'); 
 
 }
 
@@ -98,10 +99,14 @@ function checkIfUserIsLoggedIn()
 {
   firebaseApp.auth().onAuthStateChanged(function (user) 
   {
-  if (user != null) // if the user is not null
-  {
-   alert("You already logged in. Redirecting...")
-   window.location.replace('/game.html'); 
+  // if (user != null) // if the user is not null
+  // {
+  //  console.log("You already logged in. Redirecting...")
+  //  window.location.replace('/game.html'); 
+  // }
+  if(user == null){
+    console.log("You need to sign in. Redirecting...")
+    window.location.replace('/index.html'); 
   }
   });
 }

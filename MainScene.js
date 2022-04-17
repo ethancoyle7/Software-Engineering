@@ -1,46 +1,42 @@
-class MainScene extends Phaser.Scene 
-{
+class MainScene extends Phaser.Scene {
 
     // This is where we define data members
-    constructor() 
-    {
+    constructor() {
         super("MainScene");
         this.pet = null;
         this.sound2 = 0;
         this.type = '';
-        this.level=0;
-        this.enemy=""
-        this.encolor=""
-        this.enemyname=""
-        this.playername=""
-        
+        this.level = 0;
+        this.enemy = ""
+        this.encolor = ""
+        this.enemyname = ""
+        this.playername = ""
+
 
     }
-    init(data) 
-    {
+    init(data) {
         this.type = data.type;
-        if (this.type == "") 
-        {
+        if (this.type == "") {
             // No username was provided
             this.type = "0";
         }
         this.level = data.level; // Level of the player
-        this.enemy= data.enemy; // Enemy type
-        this.enemyname=data.enemyname; // Enemy name
-        this.playername=data.playername; // Player name
+        this.enemy = data.enemy; // Enemy type
+        this.enemyname = data.enemyname; // Enemy name
+        this.playername = data.playername; // Player name
 
     }
 
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
-    preload() 
-    {
+    preload() {
+        this.load.image('quitbtn','./assets/quitbtn.png')
     }
     // Runs when we first enter this scene
     create() {
         this.sound.stopAll()// to prevent looping stop all previous sounds
-        var value=0 // value for the level
-        
-        
+        var value = 0 // value for the level
+
+
 
         //call the getnickname function
         getNickname().then(data => {
@@ -48,41 +44,39 @@ class MainScene extends Phaser.Scene
             this.playername = data;//assign the api return data of the player nickname to the nickname to be used throughout
             //console.log("your nickname is ",this.playername);//loggin the data to see if working and it is
         });
-        
+
         //to display all the users log all the accounts
         console.log(allusers)
         // var EnemyName=""
         // var EnemyCol=""
-        getUsers().then(users => 
-            {
+        getUsers().then(users => {
             //console.log(users);
 
-            console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
+            console.log("the enemy we will fight is name is : " + enemey);//name of the enemy
             //assign the enemy name to the value of the enemy
-            this.enemyname=enemey;
+            this.enemyname = enemey;
             //console.log("the nombre of our enemy is : "+this.enemyname);//name of the enemy
             //EnemyName=enemey;
             //this.enemy=enemey;// assign to value
-            getEnemyColor().then(enemyColor => 
-                {
-                    //EnemyName=enemey;
-                    console.log(enemyColor);
-                    console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
-                    //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
-                    //for the fight color animation
-                    if(enemyColor=='red'){
-                        this.enemy=0;
-                    }
-                    else if(enemyColor == 'white'){
-                        this.enemy=1;
-                    }
-                    else{
-                        this.enemy=2;
-                    }
+            getEnemyColor().then(enemyColor => {
+                //EnemyName=enemey;
+                console.log(enemyColor);
+                console.log("the usernames color of that one  is : " + enemyColor);// color of the enemy
+                //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
+                //for the fight color animation
+                if (enemyColor == 'red') {
+                    this.enemy = 0;
+                }
+                else if (enemyColor == 'white') {
+                    this.enemy = 1;
+                }
+                else {
+                    this.enemy = 2;
+                }
             });
         });
-        
-       
+
+
         //////////////////////////////////////////////////////////////////////////
         // ██╗    ██╗   ██╗██╗          ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ //
         // ██║    ██║   ██║██║         ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝ //
@@ -91,27 +85,27 @@ class MainScene extends Phaser.Scene
         // ███████╗╚████╔╝ ███████╗    ╚██████╗██║  ██║███████╗╚██████╗██║  ██╗ //
         // ╚══════╝ ╚═══╝  ╚══════╝     ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝ //
         //////////////////////////////////////////////////////////////////////////
-                                                                            
+
         //check to see if the level being passed is undefined or not
-        if(this.level==undefined)// if undefined set the level to 0
+        if (this.level == undefined)// if undefined set the level to 0
         {
-        console.log("level is undefined");
-        this.level=0;
-        this.level=value;
+            console.log("level is undefined");
+            this.level = 0;
+            this.level = value;
         }
         else// if not undefined set the level to the level passed
         {
             console.log(" not undefined");
-            value=this.level;
+            value = this.level;
         }
         //set the text to the level
         //this.add.text(10, 10, 'Level: ' + value, { fontSize: '32px', fill: '#000' });
-        
-       
-    
+
+
+
         //increment this.level by one
         //this.level = this.level + 1;
-        console.log(" our level is this: "+value);
+        console.log(" our level is this: " + value);
 
         ////////////////////////////////////////////////////////////////////////////////////////
         // ██████╗  █████╗ ███╗   ███╗███████╗    ███████╗███████╗████████╗██╗   ██╗██████╗   //
@@ -121,7 +115,7 @@ class MainScene extends Phaser.Scene
         // ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ███████║███████╗   ██║   ╚██████╔╝██║      //
         //  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝      //
         ////////////////////////////////////////////////////////////////////////////////////////
-                                                                                          
+
         //create container to randomize music everytime load up the main scene
         const backgroundmusic = ['1', '2', '3', '4', '5', '6']
         //const bathing = ["lotion", "brush", "gloves", "detergent", "sanitizer", "brush2", "shampoo","soapbox","soap","sunscreen","toothbrush","wipey","box"];
@@ -215,11 +209,11 @@ class MainScene extends Phaser.Scene
         // ██████╔╝██║  ██║██║  ██║╚██████╔╝    ██║   ██║   ███████╗██║ ╚═╝ ██║███████║ //
         // ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝     ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
         //////////////////////////////////////////////////////////////////////////////////
-        
+
         // to make the items to interact with the pet draggable, initialize the draggin mechanic
         this.input.on('dragstart', function (pointer, gameObject) {
             gameObject.setTint(0xff0000);
-            
+
         });
         // curing the drag, the user can pick the item and then drag it where they
         //want it to go
@@ -243,7 +237,7 @@ class MainScene extends Phaser.Scene
         ///////////////////////////////////////////////////////////////////
 
         // health, hunger, happiness creation below 
-        
+
         //creating health rectangle and nice container to hold it
         var health = this.add.rectangle(178, 20, 350, 30, 0xe74c3c);
         health.setStrokeStyle(4, 0x1e0a08);
@@ -277,13 +271,13 @@ class MainScene extends Phaser.Scene
         //txt to be inside of the level to let the user know what level they are on
         var text = this.add.text(378, 30, '', { font: '20px Courier', fill: '#00ff00' });
         //set the text indicator for the level icon text value
-        
+
         //set the text to display the level
         text.setText([
-            
-                 'LVL \n\n ' + (this.level),
-                 console.log("level is"+this.level)
-             ]);
+
+            'LVL \n\n ' + (this.level),
+            console.log("level is" + this.level)
+        ]);
         //creating experience bar and value
         var experience = 0;
         var EXP = this.add.text(10, 130, '', { font: '20px Arial', fill: '#00ff00' });
@@ -292,7 +286,14 @@ class MainScene extends Phaser.Scene
             'EXPERIENCE : ' + experience,
         ]);
 
-      
+        const signoutButton = this.add.image(80 ,200 , 'quitbtn')
+        signoutButton.setInteractive() // set it interactive
+        signoutButton.setScale(2)
+        signoutButton.on('pointerdown', () => signOut())
+        // signoutButton.on('pointerup', () => signOut.setScale(2.5));
+
+
+
         // to help identify the interactions and the array of items, create label to differentiatte
         var PetFed = this.add.text(320, 140, '', { font: '20px Arial', fill: '#00ff00' });
         var PetClothed = this.add.text(310, 130, '', { font: '20px Arial', fill: '#00ff00' });
@@ -307,24 +308,24 @@ class MainScene extends Phaser.Scene
         // ███████╗╚██████╔╝██║  ██║██████╔╝    ██║   ██║   ███████╗██║ ╚═╝ ██║███████║ //
         // ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚═╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝ //
         //////////////////////////////////////////////////////////////////////////////////
-                                                                                    
+
         //display helpful tool for the user that easing in and out about the labels
         var InfoBox = this.add.rectangle(225, 630, 450, 30, 0x000000);
         InfoBox.setStrokeStyle(2, 0x1e0a08);
         var Info = this.add.text(5, 615, '', { font: '24px Arial', fill: '#00ff00' });
-                //set the text indicator for the level icon text value
-                Info.setText([
-                    'Click/Drag Item Below to Interact with Pet',
-                ]);
-                this.tweens.add({
+        //set the text indicator for the level icon text value
+        Info.setText([
+            'Click/Drag Item Below to Interact with Pet',
+        ]);
+        this.tweens.add({
 
-                    targets: Info,//who it targetting
-                    alpha: 0.5,
-                    yoyo: true,
-                    repeat: -1,
-                    ease: 'Sine.easeInOut'
-        
-                });
+            targets: Info,//who it targetting
+            alpha: 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+
+        });
         // display the box that holds the identifiers for the icons
         var InteractionIcons = this.add.rectangle(225, 660, 450, 30, 0xe7a23c);
         InteractionIcons.setStrokeStyle(2, 0x1e0a08);
@@ -375,7 +376,7 @@ class MainScene extends Phaser.Scene
             ease: 'Sine.easeInOut'
 
         });
-        
+
         //for the bathing load up random image
         var bathcircle = this.add.circle(170, 735, 50, 0x000000);
         bathcircle.setStrokeStyle(4, 0x00ff00);
@@ -440,7 +441,7 @@ class MainScene extends Phaser.Scene
         });
         //console.log(" feeding x is " + feeding.x);
         //console.log(" feeding y is " + feeding.y);
-        
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
         // ╚══██╔══╝██║████╗ ████║██╔════╝    ██╔════╝██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝ //
@@ -456,7 +457,7 @@ class MainScene extends Phaser.Scene
             delay: 500,
             callback: function () {
                 this.timeLeft--;//decrement the time left
-              
+
                 //experience.width-=350
                 //resetting the values of the notifcations
                 PetClothed.setText([''])
@@ -468,70 +469,70 @@ class MainScene extends Phaser.Scene
                 Warning2.setText(['']);
 
                 //set values dependant on the level
-                var levelupvalue=2
-                var decrement=1
-                var increment=2
+                var levelupvalue = 2
+                var decrement = 1
+                var increment = 2
                 //if statement to boost up the intensity of the fight
-                
-               
-                
-                if(this.level>=20 &&this.level<30) //if the level is less than 10
+
+
+
+                if (this.level >= 20 && this.level < 30) //if the level is less than 10
                 {
-                    levelupvalue=4 //level up value is 4
-                    decrement=3 //decrement is 3
-                    increment=4 //increment is 4
+                    levelupvalue = 4 //level up value is 4
+                    decrement = 3 //decrement is 3
+                    increment = 4 //increment is 4
                 }
-                if(this.level>=30 &&this.level<40) //if the level is less than 10
+                if (this.level >= 30 && this.level < 40) //if the level is less than 10
                 {
-                    levelupvalue=5 //level up value is 5
-                    decrement=4 //decrement is 4
-                    increment=5 //increment is 5
+                    levelupvalue = 5 //level up value is 5
+                    decrement = 4 //decrement is 4
+                    increment = 5 //increment is 5
                 }
-                if(this.level>=40 &&this.level<50) //if the level is less than 10
+                if (this.level >= 40 && this.level < 50) //if the level is less than 10
                 {
-                    levelupvalue=6 //level up value is 6
-                    decrement=5 //decrement is 5
-                    increment=6 //increment is 6
+                    levelupvalue = 6 //level up value is 6
+                    decrement = 5 //decrement is 5
+                    increment = 6 //increment is 6
                 }
-                if(this.level>=50 &&this.level<60) //if the level is less than 10
+                if (this.level >= 50 && this.level < 60) //if the level is less than 10
                 {
-                    levelupvalue=7 //level up value is 7
-                    decrement=6 //decrement is 6
-                    increment=7 //increment is 7
+                    levelupvalue = 7 //level up value is 7
+                    decrement = 6 //decrement is 6
+                    increment = 7 //increment is 7
 
                 }
-                if(this.level>=60 &&this.level<70) //if the level is less than 10
+                if (this.level >= 60 && this.level < 70) //if the level is less than 10
                 {
-                    levelupvalue=8 //level up value is 8
-                    decrement=7 //decrement is 7
-                    increment=8 //increment is 8
+                    levelupvalue = 8 //level up value is 8
+                    decrement = 7 //decrement is 7
+                    increment = 8 //increment is 8
                 }
-                if(this.level>=70 &&this.level<80) //if the level is less than 10
+                if (this.level >= 70 && this.level < 80) //if the level is less than 10
                 {
-                    levelupvalue=9 //level up value is 9
-                    decrement=8 //decrement is 8
-                    increment=9 //increment is 9
+                    levelupvalue = 9 //level up value is 9
+                    decrement = 8 //decrement is 8
+                    increment = 9 //increment is 9
                 }
-                if(this.level>=80 &&this.level<90) //if the level is less than 10
+                if (this.level >= 80 && this.level < 90) //if the level is less than 10
                 {
-                    levelupvalue=10 //level up value is 10
-                    decrement=9 //decrement is 9
-                    increment=10 //increment is 10
+                    levelupvalue = 10 //level up value is 10
+                    decrement = 9 //decrement is 9
+                    increment = 10 //increment is 10
 
                 }
-                if(this.level>=90) //if the level is less than 10
+                if (this.level >= 90) //if the level is less than 10
                 {
-                    levelupvalue=11 //level up value is 11
-                    decrement=10 //decrement is 10
-                    increment=11 //increment is 11
+                    levelupvalue = 11 //level up value is 11
+                    decrement = 10 //decrement is 10
+                    increment = 11 //increment is 11
 
                 }
-                else{
+                else {
                     //console.log("default decrement is here  " + decrement);
-                    decrement=3
+                    decrement = 3
                 }
                 //for the health of the pet
-               
+
                 var val1 = Math.floor(Math.random() * decrement) // using rand number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
                 //console.log("val1 is " + val1);
@@ -554,26 +555,26 @@ class MainScene extends Phaser.Scene
                 //  ╚═════╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ //
                 /////////////////////////////////////////////////////////////////////  
 
-                if(clothing==null)//check to see if the destroyed image is null
-                    {
-                        console.log('null image')//log the null image to console
-                        experience++;
-                        EXP.setText(['EXPERIENCE : ' + experience]);
-                        const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
-                        clothing = this.add.image(60, 735, clothes[random])//add the key randomly chose value string name
-                        clothing.setScale(2.5);// set the size
-                        clothing.setInteractive({ draggable: true });// it is draggable
-                        this.tweens.add({
+                if (clothing == null)//check to see if the destroyed image is null
+                {
+                    console.log('null image')//log the null image to console
+                    experience++;
+                    EXP.setText(['EXPERIENCE : ' + experience]);
+                    const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
+                    clothing = this.add.image(60, 735, clothes[random])//add the key randomly chose value string name
+                    clothing.setScale(2.5);// set the size
+                    clothing.setInteractive({ draggable: true });// it is draggable
+                    this.tweens.add({
 
-                            targets: clothing,//who it targetting
-                            alpha: 0.8,
-                            yoyo: true,
-                            repeat: -1,
-                            ease: 'Sine.easeInOut' //effect fr our image
-                
-                        });
-                    }
-                   
+                        targets: clothing,//who it targetting
+                        alpha: 0.8,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Sine.easeInOut' //effect fr our image
+
+                    });
+                }
+
                 //on the pointer down trigger the stop and start new animation for the pet
                 clothing.on('pointerdown', () => {
                     this.pet.anims.stop('run'); //stop the pet run
@@ -582,27 +583,25 @@ class MainScene extends Phaser.Scene
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
                 clothing.on('pointerup', () => {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (clothing.x >= 60 || clothing.x <= 60 || clothing.x <= 0 || clothing.x >= 450 && clothing.y < 650) 
-                    {
+                    if (clothing.x >= 60 || clothing.x <= 60 || clothing.x <= 0 || clothing.x >= 450 && clothing.y < 650) {
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
                         clothing.destroy(); // destroy the clothing
-                        clothing=null
-                        var clothingupdate= happiness.width += increment; //add happiness
-                        happiness.width+=increment
-                        if (clothingupdate>=350)
-                        {
-                            happiness.width=350// reset the width setting outter right bounds
-                            
+                        clothing = null
+                        var clothingupdate = happiness.width += increment; //add happiness
+                        happiness.width += increment
+                        if (clothingupdate >= 350) {
+                            happiness.width = 350// reset the width setting outter right bounds
+
                         }
-                        
+
                         PetClothed.setText([' PET CLOTHED']);   // set the text to be displayed
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('clothesound'); //play the sound
                         }
                     }
-                   
+
                 });
                 ////////////////////////////////////////////////////////////
                 // ██████╗  █████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗ //
@@ -614,27 +613,27 @@ class MainScene extends Phaser.Scene
                 ////////////////////////////////////////////////////////////
 
                 //iterate through the bathing by string name
-                
-                if(bath==null)//check to see if the destroyed image is null
-                    {
-                        console.log('null image')//log the null imade ang increase experience
-                        experience++;
-                        EXP.setText(['EXPERIENCE : ' + experience]);
-                        const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
-                        bath = this.add.image(170, 735, bathing[random2])//insert image with randomly chosen key
-                        bath.setScale(2.5);//size the image
-                        bath.setInteractive({ draggable: true });//it can be dragged
-                        this.tweens.add({
 
-                            targets: bath,//who it targetting
-                            alpha: 0.8,
-                            yoyo: true,
-                            repeat: -1,
-                            ease: 'Sine.easeInOut' //ease effect for item
-                
-                        });
-                    }
-                   
+                if (bath == null)//check to see if the destroyed image is null
+                {
+                    console.log('null image')//log the null imade ang increase experience
+                    experience++;
+                    EXP.setText(['EXPERIENCE : ' + experience]);
+                    const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
+                    bath = this.add.image(170, 735, bathing[random2])//insert image with randomly chosen key
+                    bath.setScale(2.5);//size the image
+                    bath.setInteractive({ draggable: true });//it can be dragged
+                    this.tweens.add({
+
+                        targets: bath,//who it targetting
+                        alpha: 0.8,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Sine.easeInOut' //ease effect for item
+
+                    });
+                }
+
                 bath.on('pointerdown', () => {
                     this.pet.anims.stop('run'); //stop the pet run
                     this.pet.anims.play('bathe+'); //play the pet feed
@@ -642,38 +641,35 @@ class MainScene extends Phaser.Scene
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
                 bath.on('pointerup', () => {
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    if (bath.x >= 170 || bath.x <= 170 || bath.x <= 0 || bath.x >= 450 && bath.y < 650) 
-                    {
+                    if (bath.x >= 170 || bath.x <= 170 || bath.x <= 0 || bath.x >= 450 && bath.y < 650) {
                         this.pet.anims.stop('bathe+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
                         bath.destroy(); // destroy the clothing
-                        bath=null
+                        bath = null
                         PetClothed.setText([' PET BATHED']);   // set the text to be displayed
 
                         //cheking for bounds and updating the happiness and health
-                        var bathupdatehappiness= happiness.width += 2; //add happiness
-                        happiness.width+=2
-                        if (bathupdatehappiness>=350)
-                        {
-                            happiness.width=350// reset the width setting outter right bounds
-                            
+                        var bathupdatehappiness = happiness.width += 2; //add happiness
+                        happiness.width += 2
+                        if (bathupdatehappiness >= 350) {
+                            happiness.width = 350// reset the width setting outter right bounds
+
                         }
                         //checking the health of the pet and  then resestting it if above 350
-                        var bathupdatehealth= health.width += increment; //add happiness
-                        health.width+=2
-                        if (bathupdatehealth>=350)
-                        {
-                            health.width=350// reset the width setting outter right bounds
-                            
+                        var bathupdatehealth = health.width += increment; //add happiness
+                        health.width += 2
+                        if (bathupdatehealth >= 350) {
+                            health.width = 350// reset the width setting outter right bounds
+
                         }
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('bathsound'); //play the sound
                         }
                     }
-                   
+
                 });
-                
+
 
                 /////////////////////////////////////////////////////////////
                 // ██████╗ ██╗      █████╗ ██╗   ██╗██╗███╗   ██╗ ██████╗  //
@@ -684,68 +680,68 @@ class MainScene extends Phaser.Scene
                 // ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝  //
                 /////////////////////////////////////////////////////////////
 
-                if(playing==null)//check to see if the destroyed image is null
-                    {
-                        console.log('null image')// log the null image
-                        experience++;// increase the experiecne by one and add new image
-                        EXP.setText(['EXPERIENCE : ' + experience]); // display the experience text
-                        const random3 = Math.floor(Math.random() * toys.length);//random chose string name
-                        playing = this.add.image(280, 735, toys[random3])//add key to the new image
-                        playing.setScale(2.5);//set the size
-                        playing.setInteractive({ draggable: true });//draggable yes
-                        this.tweens.add({
+                if (playing == null)//check to see if the destroyed image is null
+                {
+                    console.log('null image')// log the null image
+                    experience++;// increase the experiecne by one and add new image
+                    EXP.setText(['EXPERIENCE : ' + experience]); // display the experience text
+                    const random3 = Math.floor(Math.random() * toys.length);//random chose string name
+                    playing = this.add.image(280, 735, toys[random3])//add key to the new image
+                    playing.setScale(2.5);//set the size
+                    playing.setInteractive({ draggable: true });//draggable yes
+                    this.tweens.add({
 
-                            targets: playing,//who it targetting
-                            alpha: 0.8,
-                            yoyo: true,
-                            repeat: -1,
-                            ease: 'Sine.easeInOut' // effect for our item
-                
-                        });
-                    }
-                   
+                        targets: playing,//who it targetting
+                        alpha: 0.8,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Sine.easeInOut' // effect for our item
+
+                    });
+                }
+
                 playing.on('pointerdown', () => {
                     this.pet.anims.stop('run'); //stop the pet run
                     this.pet.anims.play('health+'); //play the pet feed
                 });
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
-                
+
                 playing.on('pointerup', () => {
                     //if the clothing is moved above where orginally is, destroy it and do some things
                     if (playing.x >= 280 || playing.x <= 280 || playing.x <= 0 || playing.x >= 450 && playing.y < 650) {
                         this.pet.anims.stop('health+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
                         playing.destroy(); // destroy the clothing
-                        playing=null//set it to null value
+                        playing = null//set it to null value
                         PetClothed.setText([' PET PLAYING']);   // set the text to be displayed
                         // health.width += increment;   //decrement the hunger
 
                         //increment bars and check for bounds
-                        var playupdatehappiness= happiness.width += increment; //add happiness
-                        happiness.width+=increment //increment the happiness
-                        if (playupdatehappiness>=350) //if the happiness is out of bounds
+                        var playupdatehappiness = happiness.width += increment; //add happiness
+                        happiness.width += increment //increment the happiness
+                        if (playupdatehappiness >= 350) //if the happiness is out of bounds
                         {
-                            happiness.width=350// reset the width setting outter right bounds
-                            
+                            happiness.width = 350// reset the width setting outter right bounds
+
                         }
                         //checking and incrementing the health bar
-                        var bathupdatehealth= health.width += increment; //add happiness
-                        health.width+=increment //increment the happiness
+                        var bathupdatehealth = health.width += increment; //add happiness
+                        health.width += increment //increment the happiness
                         //hunger.width+=20
-                        if (bathupdatehealth>=350) //check to see if the happiness is out of bounds
+                        if (bathupdatehealth >= 350) //check to see if the happiness is out of bounds
                         {
-                            health.width=350// reset the width setting outter right bounds
-                            
+                            health.width = 350// reset the width setting outter right bounds
+
                         }
-                       
+
                         //happiness.width += increment; //increment the happiness
                         if (this.sound2 == 0) //if the sound is not muted
                         {
                             this.sound.play('happysound'); //play the sound
                         }
                     }
-                    
-                   
+
+
                 });
                 ///////////////////////////////////////////////////////////
                 // ███████╗███████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ //
@@ -756,49 +752,48 @@ class MainScene extends Phaser.Scene
                 // ╚═╝     ╚══════╝╚══════╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ //
                 ///////////////////////////////////////////////////////////
 
-                if(feeding==null)//check to see if the image is null, if it is add new randomly picked image
-                    {
-                        console.log('null image')
-                        experience++;
-                        EXP.setText(['EXPERIENCE : ' + experience]);
-                        var random4 = Math.floor(Math.random() * food.length);//random chose string name
-                        feeding = this.add.image(390, 735, food[random4])//input the key string name
-                        feeding.setScale(2.5);// set the size
-                        feeding.setInteractive({ draggable: true });//it can be dragged
-                        this.tweens.add({
+                if (feeding == null)//check to see if the image is null, if it is add new randomly picked image
+                {
+                    console.log('null image')
+                    experience++;
+                    EXP.setText(['EXPERIENCE : ' + experience]);
+                    var random4 = Math.floor(Math.random() * food.length);//random chose string name
+                    feeding = this.add.image(390, 735, food[random4])//input the key string name
+                    feeding.setScale(2.5);// set the size
+                    feeding.setInteractive({ draggable: true });//it can be dragged
+                    this.tweens.add({
 
-                            targets: feeding,//who it targetting
-                            alpha: 0.8, // the transparency level
-                            yoyo: true,//yoyo effect
-                            repeat: -1,//constantly repeat
-                            ease: 'Sine.easeInOut' // add ease effect to the feeding icon
-                
-                        });
-                    }
+                        targets: feeding,//who it targetting
+                        alpha: 0.8, // the transparency level
+                        yoyo: true,//yoyo effect
+                        repeat: -1,//constantly repeat
+                        ease: 'Sine.easeInOut' // add ease effect to the feeding icon
+
+                    });
+                }
                 feeding.on('pointerdown', () => {
-                    
+
                     this.pet.anims.stop('run'); //stop the pet run
                     this.pet.anims.play('feed'); //play the pet feed
                 });
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
-                
 
-                feeding.on('pointerup', () => 
-                {
+
+                feeding.on('pointerup', () => {
                     //var feeding = this.add.image(390, 735, food[random4])//input the key string name
                     //if the clothing is moved above where orginally is, destroy it and do some things
-                    
+
                     //console.log(feeding.x)
                     //console.log("feeding y : "+feeding.y)
                     //or if the clothing is moved above
-                    
-                    
-                        this.pet.anims.stop('feed')// stop the feed animation
-                        this.pet.anims.play('run')// play the run animation
+
+
+                    this.pet.anims.stop('feed')// stop the feed animation
+                    this.pet.anims.play('run')// play the run animation
                     //if (feeding.y< 690)
                     if (feeding.x >= 390 || feeding.x <= 390 || feeding.x <= 0 || feeding.x >= 450 && feeding.y < 650)
                     //or if the clothing is moved above
-                    
+
 
                     {
                         // console.log("feeding x is"+feeding.x)
@@ -806,38 +801,38 @@ class MainScene extends Phaser.Scene
                         feeding.destroy(); // destroy the clothing
                         console.log(' is it destroyed??')
                         //feeding.destroy()
-                        feeding=null
-                        
+                        feeding = null
+
                         //if the food is destroyed, load another image
-                        
-                        
+
+
                         PetClothed.setText([' PET FED']);   // set the text to be displayed
                         //health.width += increment
-        
+
                         //increment bars and check for bounds
-                        var foodupdatehealth= health.width += increment; //add happiness
-                        health.width+=increment //increment the happiness
-                        if (foodupdatehealth>=350) //if the happiness is out of bounds
+                        var foodupdatehealth = health.width += increment; //add happiness
+                        health.width += increment //increment the happiness
+                        if (foodupdatehealth >= 350) //if the happiness is out of bounds
                         {
-                            health.width=350// reset the width setting outter right bounds
-                            
+                            health.width = 350// reset the width setting outter right bounds
+
                         }
                         //update the happiness
-                        var foodupdatehappiness= happiness.width += increment; //add happiness
-                        happiness.width+=increment //increment the happiness
-                        if (foodupdatehappiness>=350) //if the happiness is out of bounds
+                        var foodupdatehappiness = happiness.width += increment; //add happiness
+                        happiness.width += increment //increment the happiness
+                        if (foodupdatehappiness >= 350) //if the happiness is out of bounds
                         {
-                            happiness.width=350// reset the width setting outter right bounds
-                            
+                            happiness.width = 350// reset the width setting outter right bounds
+
                         }
                         //update the hunger bar
-                        var foodupdatehunger= hunger.width += increment; //add happiness
-                        hunger.width+=increment //increment the happiness
+                        var foodupdatehunger = hunger.width += increment; //add happiness
+                        hunger.width += increment //increment the happiness
                         //hunger.width-=50
-                        if (foodupdatehunger>=350) //if the happiness is out of bounds
+                        if (foodupdatehunger >= 350) //if the happiness is out of bounds
                         {
-                            hunger.width=350// reset the width setting outter right bounds
-                            
+                            hunger.width = 350// reset the width setting outter right bounds
+
                         }
                         //sound play
                         if (this.sound2 == 0) //if the sound is not muted
@@ -845,13 +840,13 @@ class MainScene extends Phaser.Scene
                             this.sound.play('eatingsound'); //play the sound
                         }
                     }
-                    
+
                 });
-                
-                
+
+
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
                 {
-                    this.level=value;
+                    this.level = value;
                     //for the fight button hover over to press for fight
                     // this button leads to click sequence when pressed
                     const button = this.add.image(70, 200, 'button')
@@ -868,14 +863,13 @@ class MainScene extends Phaser.Scene
                     }))// lead to fight scene
                 }
                 //lets boost intensity of the next levelling up take longer to level up after certain level
-               
+
                 //after checking the level adjust the imcrement to the new level up value
                 if (experience >= levelupvalue)// once certain ammount of experience, level up and play sound
                 {
                     // play the level up sound
-                    if(this.sound2 ==0)
-                    {
-                    this.sound.play('levelingup');
+                    if (this.sound2 == 0) {
+                        this.sound.play('levelingup');
                     }
                     //this.pet.anims.stop('levelup'); //stop the pet level up
                     //this.pet.anims.play('run'); //play the pet run
@@ -883,64 +877,62 @@ class MainScene extends Phaser.Scene
                     //reset the experience
                     experience = 0;
                     value++// increment the value for the level
-                   
+
                     text.setText([
-                        'LVL \n\n ' + (this.level+=1),
-            
+                        'LVL \n\n ' + (this.level += 1),
+
                     ]);
-            
+
                     EXP.setText(['EXPERIENCE : ' + experience]);
                 }
-               
+
 
                 // create bounds for the containers
                 // to avoid it going to the left
-                
-                if (health.width > 5) 
-                    {
-                        Warning.setText([
-                            '',
-                        ]);
-                    }
-                if (health.width <= 5 && this.timeLeft != 0) 
-                    {
-                        health.width=5;// reset it to 5
-                        //create a text in the middle of the screen to say Feed Your Pet
-                        
-                        //set text box to warn user they must feed the pet
-                        
-                                //set the text indicator for the level icon text value
-                                Warning.setText([
-                                    'Pet Needs Attention!!',
-                                ]);
-                                this.tweens.add({
 
-                                    targets: Warning,//who it targetting
-                                    alpha: 0.5,
-                                    yoyo: true,
-                                    repeat: -1,
-                                    ease: 'Sine.easeInOut'
-                        
-                                });
-                        
- 
-                    }
+                if (health.width > 5) {
+                    Warning.setText([
+                        '',
+                    ]);
+                }
+                if (health.width <= 5 && this.timeLeft != 0) {
+                    health.width = 5;// reset it to 5
+                    //create a text in the middle of the screen to say Feed Your Pet
 
-                 //if he health is less than 0 and the timer is less than 0, then the game over scene is called
-                 if (health.width <= 5 && this.timeLeft <= 0)// if the time runs out and the health is at 2, then the game over scene is called
-                 {
-                     this.scene.start("MainDead",
-                             {
-                                 type: this.type
-                             })
-                 }
-                 //create left bound checking with the happiness bar if it falls below 5 reset it on the screne to 5 
+                    //set text box to warn user they must feed the pet
+
+                    //set the text indicator for the level icon text value
+                    Warning.setText([
+                        'Pet Needs Attention!!',
+                    ]);
+                    this.tweens.add({
+
+                        targets: Warning,//who it targetting
+                        alpha: 0.5,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Sine.easeInOut'
+
+                    });
+
+
+                }
+
+                //if he health is less than 0 and the timer is less than 0, then the game over scene is called
+                if (health.width <= 5 && this.timeLeft <= 0)// if the time runs out and the health is at 2, then the game over scene is called
+                {
+                    this.scene.start("MainDead",
+                        {
+                            type: this.type
+                        })
+                }
+                //create left bound checking with the happiness bar if it falls below 5 reset it on the screne to 5 
 
                 if (happiness.width <= 5) // if the happiness falls below this, reset the val
                 {
-                    happiness.width=5;// reset it to 2
-                        
-                        
+                    happiness.width = 5;// reset it to 2
+
+
                 }
                 ////////////////////////////////////////////////////////////////////
                 // ██████╗ ██╗   ██╗███╗   ██╗ █████╗ ██╗    ██╗ █████╗ ██╗   ██╗ //
@@ -951,44 +943,42 @@ class MainScene extends Phaser.Scene
                 // ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    //
                 ////////////////////////////////////////////////////////////////////
                 //experience checker, if the user gets 10 experience points, then the pet will level up
-                 //reate bounds check if the time left is not less than 0 then reset the hunger width to 5
+                //reate bounds check if the time left is not less than 0 then reset the hunger width to 5
                 //after resetting make another heck to see if the time is 0 and if the hunger is still less than 5
                 // load the run away scene because the pet did not get fed before the time runs out
-                
-                if(hunger.width>5)
-                {
+
+                if (hunger.width > 5) {
                     Warning2.setText([
                         '',
                     ]);
                 }
-                if(hunger.width<=5 && this.timeLeft2 !=0)
-                {
-                    hunger.width=5;// reset it to 5
+                if (hunger.width <= 5 && this.timeLeft2 != 0) {
+                    hunger.width = 5;// reset it to 5
                     //set text box to warn user they must feed the pet
-                    
+
                     //set the text indicator for the level icon text value
                     Warning2.setText([
                         'Your Pet is Hungry!!',
                     ]);
-                    
+
                 }
                 //if hunger.width is not 5 or less
-                
+
                 else if (hunger.width <= 5 && this.timeLeft2 <= 0) //if the hunger bar goes below 1 and the time left is 0
                 {   //then load the runawaypet scene
-                    this.scene.start("Runawaypet", 
-                    {
-                        type: this.type// pass the type of pet into the new scene
-                    })
+                    this.scene.start("Runawaypet",
+                        {
+                            type: this.type// pass the type of pet into the new scene
+                        })
                 }
                 //if one or more of the conditions are true and the pet dies, then the scene changes to game over
-                
+
             },
             callbackScope: this,
             loop: true
         });
-    
-        
+
+
     }
 
     // Runs every frame update any items inside of the scene
