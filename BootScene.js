@@ -261,7 +261,46 @@ class BootScene extends Phaser.Scene
             frameWidth: 32,
             frameHeight: 32
         });
-        
+        //----------------Enemy sprite sheet------------------------------
+        //loading sprite sheet for fight animations for punching
+        this.load.spritesheet('enemypunch', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Push_66.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('enemy2punch', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Push_66.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });       
+        this.load.spritesheet('enemy3punch', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Push_66.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });       
+        //loading sprite sheet for fight animations for light attack
+        this.load.spritesheet('enemylightattack', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Attack1_44.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('enemy2lightattack', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Attack1_44.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('enemy3lightattack', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Attack1_44.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });        
+         //loading sprite sheet for fight animations for heavy  attack
+         this.load.spritesheet('enemyheavyattack', './assets/final spritesheets/1 Pink_Monster/Pink_Monster_Attack2_66.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('enemy2heavyattack', './assets/final spritesheets/2 Owlet_Monster/Owlet_Monster_Attack2_66.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet('enemy3heavyattack', './assets/final spritesheets/3 Dude_Monster/Dude_Monster_Attack2_66.png', { //this is for a spritesheet
+            frameWidth: 32,
+            frameHeight: 32
+        });
         // this.load.image("hungermeter","assets/hungrymeter.png")
         //////////////////////////////////////////////////////////////////////////
         // ██████╗ ███████╗████████╗    ██╗████████╗███████╗███╗   ███╗███████╗ //
