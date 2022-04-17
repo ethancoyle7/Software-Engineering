@@ -27,7 +27,7 @@ function signUp() {
     // close the signup modal & reset form
     alert('Account has been created.');
     db.collection('users').doc(cred.user.uid).set({
-    // db.collection('users').add({
+      // db.collection('users').add({
       nickname: nickname,
       color: null,
       fights: "0"
@@ -72,7 +72,7 @@ function signOut() {
   // Then call the signed out method
   firebaseApp.auth().signOut();
   console.log('Your signed out successfully.')
-  window.location.replace('/index.html'); 
+  window.location.replace('/index.html');
 
 }
 
@@ -80,10 +80,8 @@ function signOut() {
 function getInfoFromFirebase() {
   // Calling Firebase Initialization method to make sure that we initialized firebase
   firebaseApp = checkFireBase();
-  firebaseApp.auth().onAuthStateChanged(function (user) 
-  {
-    if (user) 
-    {
+  firebaseApp.auth().onAuthStateChanged(function (user) {
+    if (user) {
       // var displayName = user.displayName;
       var email = user.email;
       // var isAnonymous = user.isAnonymous;
@@ -95,18 +93,21 @@ function getInfoFromFirebase() {
   });
 }
 
-function checkIfUserIsLoggedIn()
-{
-  firebaseApp.auth().onAuthStateChanged(function (user) 
-  {
-  // if (user != null) // if the user is not null
-  // {
-  //  console.log("You already logged in. Redirecting...")
-  //  window.location.replace('/game.html'); 
-  // }
-  if(user == null){
-    console.log("You need to sign in. Redirecting...")
-    window.location.replace('/index.html'); 
-  }
+function checkIfUserIsLoggedIn() {
+  firebaseApp.auth().onAuthStateChanged(function (user) {
+    if (user == null) {
+      console.log("You need to sign in. Redirecting...")
+      window.location.replace('/index.html');
+    }
+  });
+}
+
+function userIsLoggedIn() {
+  firebaseApp.auth().onAuthStateChanged(function (user) {
+    if (user != null) // if the user is not null
+    {
+      console.log("You already logged in. Redirecting...")
+      window.location.replace('/game.html');
+    }
   });
 }

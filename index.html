@@ -30,14 +30,26 @@
     ######################################################################################################################### -->
 <!DOCTYPE html>
 <html>
+
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="firebaseConfig.js"></script>
+    <script src="js/firebase.js"></script>
+    <script>
+        userIsLoggedIn();
+    </script>
     <title>
         Smart Pet Login
     </title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="site.css" />
-        <!-- Mobile viewport settings, avoid scroll/scale -->
+    <!-- Mobile viewport settings, avoid scroll/scale -->
     <!-- kinda not sure what these do so don't mess with them -->
     <meta name="viewport"
         content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -47,7 +59,10 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 </head>
 
+<!-- <link rel="preload" onload="checkIfUserIsLoggedIn();"> -->
+
 <!--<body> onload="checkIfUserIsLoggedIn();">-->
+
 <body>
     <div>
         <div class="parent-container">
@@ -74,7 +89,8 @@
 
                                 <tr>
                                     <td>
-                                        <input id="email" placeholder="Enter Email" type="text" class="inputbox" required>
+                                        <input id="email" placeholder="Enter Email" type="text" class="inputbox"
+                                            required>
                                     </td>
                                 </tr>
 
@@ -86,7 +102,8 @@
 
                                 <tr>
                                     <td>
-                                        <input id="password" placeholder="Enter Password" type="password" class="inputbox" required>
+                                        <input id="password" placeholder="Enter Password" type="password"
+                                            class="inputbox" required>
                                     </td>
                                 </tr>
 
@@ -100,7 +117,8 @@
                                 <tr>
                                     <td align="center">
                                         <br>
-                                        <button type="button" id="signUp" onclick="openForm()" class="btn-normal">REGISTER</button>
+                                        <button type="button" id="signUp" onclick="openForm()"
+                                            class="btn-normal">REGISTER</button>
                                     </td>
                                 </tr>
                                 <!-- <tr>
@@ -126,77 +144,70 @@
                 </tr>
             </table>
         </div>
-<div class="form-popup" id="popForm">
-    <table width="100%">
-    <form id="signup-form" class="form-container">
-      <tr>
-        <td align="center">
-            <h1>Create an account</h1>
-            <hr style="background-color:#fff;height:1px;width: 40%;margin:0px" />
-        </td>
-    </tr>
-    <tr>
-        <td align="center">
-            <label class="labelc"><b><br>Email</b></label>
-        </td>
-    </tr>
-    <tr>
-        <td align="center">
-            <input type="text" placeholder="Enter Email" class="inputbox" id="email" required>
-        </td>
-    </tr>
-    <tr>
-        <td align="center"><br>
-            <label class="labelc"><b>Password</b></label>
-        </td>
-    </tr>
-    <tr>
-        <td align="center">
-            <input type="password" class="inputbox" placeholder="Enter Password" id="password" required>
-        </td>
-    </tr>
-    <tr>
-        <td align="center"><br>
-            <label class="labelc"><b>Nickname</b></label>
-        </td>
-    </tr>
-    <tr>
-        <td align="center">
-            <input type="text" placeholder="Please enter your nickname" class="inputbox" id="nickname" required>
-        </td>
-        
-    </tr> 
-    <tr>
-        <td align="center"><br>
-            <button type="button" class="btn-normal" onclick="signUp()">Sign Up</button><br><br>
-            <p class="error pink-text center-align"></p>
-        </td>
-    </tr>
-    <tr>
-        <td align="center">
-            <button type="button" class="white-btn-normal" onclick="closeForm()">Close</button>
-        </td>
-    </tr>
-    </form>
-    </table>
-  </div>
-  
+        <div class="form-popup" id="popForm">
+            <table width="100%">
+                <form id="signup-form" class="form-container">
+                    <tr>
+                        <td align="center">
+                            <h1>Create an account</h1>
+                            <hr style="background-color:#fff;height:1px;width: 40%;margin:0px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label class="labelc"><b><br>Email</b></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <input type="text" placeholder="Enter Email" class="inputbox" id="email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center"><br>
+                            <label class="labelc"><b>Password</b></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <input type="password" class="inputbox" placeholder="Enter Password" id="password" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center"><br>
+                            <label class="labelc"><b>Nickname</b></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <input type="text" placeholder="Please enter your nickname" class="inputbox" id="nickname"
+                                required>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td align="center"><br>
+                            <button type="button" class="btn-normal" onclick="signUp()">Sign Up</button><br><br>
+                            <p class="error pink-text center-align"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <button type="button" class="white-btn-normal" onclick="closeForm()">Close</button>
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-    <script src="firebaseConfig.js"></script>
-    <script src="js/firebase.js"></script>
     <script>
         function openForm() {
-          document.getElementById("popForm").style.display = "block";
+            document.getElementById("popForm").style.display = "block";
         }
-        
+
         function closeForm() {
-          document.getElementById("popForm").style.display = "none";
+            document.getElementById("popForm").style.display = "none";
         }
     </script>
 </body>

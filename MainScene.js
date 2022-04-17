@@ -286,7 +286,7 @@ class MainScene extends Phaser.Scene {
             'EXPERIENCE : ' + experience,
         ]);
 
-        const signoutButton = this.add.image(80 ,200 , 'quitbtn')
+        const signoutButton = this.add.image(70 ,200 , 'quitbtn')
         signoutButton.setInteractive() // set it interactive
         signoutButton.setScale(2)
         signoutButton.on('pointerdown', () => signOut())
@@ -849,7 +849,7 @@ class MainScene extends Phaser.Scene {
                     this.level = value;
                     //for the fight button hover over to press for fight
                     // this button leads to click sequence when pressed
-                    const button = this.add.image(70, 200, 'button')
+                    const button = this.add.image(70, 275, 'button')
                     button.setInteractive() // set it interactive
                     button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
                     button.on('pointerup', () => button.setScale(1));// on ppinter up
