@@ -40,7 +40,7 @@ class FightScene extends Phaser.Scene
 
     // Runs when we first enter this scene
     create() 
-    {
+    { 
         ////////////////////////////////////////////////
         // ███████╗███████╗████████╗██╗   ██╗██████╗  //
         // ██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗ //
@@ -642,7 +642,7 @@ class FightScene extends Phaser.Scene
     endFight(){
         this.pet = null;
         //this.enemyq=null;
-        this.type='';
+        // this.type='';
         this.sound3=0;
         this.enemyheath = null;
         this.victory = false;
