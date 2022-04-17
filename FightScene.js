@@ -71,10 +71,13 @@ class FightScene extends Phaser.Scene
 
         //after passing in the number of the pet based off the egg, the number corresponds to that in 
         // each choice list
-        let choose=['pet','pet2run','pet3','enemy','enemy2','enemy3'];
-        let choose2=['petpunch','pet2punch','pet3punch','enemypunch','enemy2punch','enemy3punch'];
-        let choose3=['lightattack','pet2lightattack','pet3lightattack','enemylightattack','enemy2lightattack','enemy3lightattack'];
-        let choose4=['heavyattack','pet2heavyattack','pet3heavyattack','enemyheavyattack','enemy2heavyattack','enemy3heavyattack'];
+        let choose=['pet','pet2run','pet3'];
+        let choose2=['petpunch','pet2punch','pet3punch'];
+        let choose3=['lightattack','pet2lightattack','pet3lightattack'];
+        let choose4=['heavyattack','pet2heavyattack','pet3heavyattack'];
+        let choose5=['enemypunch','enemy2punch','enemy3punch'];
+        let choose6=['enemylightattack','enemy2lightattack','enemylightattack'];
+        let choose7=['enemyheavyattack','enemy2heavyattack','enemy3heavyattack'];
         //create idle animation for the pet whenever pet is not doing anything
 
         /////////////////////////////////////////////////////////////////////////////////////
@@ -136,7 +139,7 @@ class FightScene extends Phaser.Scene
         enemyq.setScale(5);
         enemyq.anims.create({
             key: 'run',
-            frames: this.anims.generateFrameNumbers(choose[(this.enemy1)], 
+            frames: this.anims.generateFrameNumbers(choose[this.enemy1], 
             {
                 start: 0,
                 end: 5
@@ -147,37 +150,38 @@ class FightScene extends Phaser.Scene
         //creating animation for the double punch
         enemyq.anims.create({
             key: 'punch',
-            frames: this.anims.generateFrameNumbers(choose2[(this.enemy1+2)], 
+            frames: this.anims.generateFrameNumbers(choose5[this.enemy1], 
             {
-                start: 0,
-                end: 5
+               start: 5,
+               end: 0
             }),
             frameRate: 12,
-            repeat: 2
+            repeat: -1
         });
         //for the light attack create animation sequence
         enemyq.anims.create({
             key: 'light',
-            frames: this.anims.generateFrameNumbers(choose3[(this.enemy1+2)], 
+            frames: this.anims.generateFrameNumbers(choose6[this.enemy1], 
             {
-                start: 3,
-                end: 0
+                start: 0,
+                end: 3
             }),
             frameRate: 12,
-            repeat: 2
+            repeat: -1
         });
         //create animation for the heavy attacking character
         enemyq.anims.create({
             key: 'heavy',
-            frames: this.anims.generateFrameNumbers(choose4[(this.enemy1+2)], 
+            frames: this.anims.generateFrameNumbers(choose7[this.enemy1], 
             {
-                frames:[5,4,3,2,1,0]
+                start:5,
+                end:0
             }),
-            frameRate: 12,
-            repeat: 2
+            frameRate: 8,
+            repeat: -1
         });
         //play the enemy animation and play sound whenever pressed down
-        enemyq.anims.play('run');// play the enemy animation
+        enemyq.anims.play('heavy');// play the enemy animation
         //mute button
         let mutebutton = this.add.image(400,50,'mute'); // creating a mute button
         mutebutton.setScale(0.2); // setting the scale
