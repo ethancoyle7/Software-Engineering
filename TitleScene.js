@@ -388,7 +388,7 @@ async function getUsers() {
         
         //print out the value at the fighter
         //console.log(Array1[fighter])
-        console.log('Randomly pick a fighter to fight')
+        //console.log('Randomly pick a fighter to fight')
         const fighter = Math.floor(Math.random() * Array1.length);//picks random array index of the first value
                                                                   //which is the nickname  index
         //console.log("figher is " + Array1[fighter])// name of the fighter
@@ -398,33 +398,34 @@ async function getUsers() {
         //var colorvalue2= Array2[fighter]// since the arrays are the same size return the index number of the fighter
         //console.log("colorvalue is " + Array2[colorvalue])// that index will be the index value of the other array
         //console.log(" the enemy is " + Array1[fighter]+" and his color is "+Array2[colorvalue])
-        console.log('this is the end of the choosing fighting opponent')
+        //console.log('this is the end of the choosing fighting opponent')
         if(Array2[colorvalue]=="blue")
         {
-            console.log('the color is blue')
+            //console.log('the color is blue')
             enemycolor="blue"
         }
         else if(Array2[colorvalue]=="red")
         {
-            console.log('the color is red')
+            //console.log('the color is red')
             enemycolor="red"
         }
         else if(Array2[colorvalue]=="white")
         {
-            console.log('the color is white')
+            //console.log('the color is white')
             enemycolor="white"
         }
-        else if(Array2[colorvalue]=="none"||null)
+        else if(Array2[colorvalue]=="none"||Array2[colorvalue]=="null")
         {
-            console.log('the color  is none')
-            enemycolor="none"
+            //console.log('the color  is none')
+            console.log("color defaulted to red")
+            enemycolor="red"
         }
-        else
-        {
-            console.log('the enemy is undefined')
-        }
+        // else
+        // {
+        //     console.log('the enemy is undefined')
+        // }
         
-        return enemey//passing the color of the enemy
+        //return enemey//passing the color of the enemy
         
     });
     
@@ -437,4 +438,7 @@ async function getEnemyColor()
     await getUsers()
     return enemycolor
 }
+
+
+
 

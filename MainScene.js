@@ -14,6 +14,8 @@ class MainScene extends Phaser.Scene
         this.sound2 = 0;
         this.type = '';
         this.level=0;
+        this.enemy=""
+        this.encolor=""
         //this.items = [];// this is a collection of items
         // this.itemsIcons = [];
         //this.percent = 0;
@@ -59,23 +61,33 @@ class MainScene extends Phaser.Scene
         var value=0 // value for the level
 
         
-        // get users
+        // get usersgetUsers.
+        // getUsers().then(users => 
+        //     {
+        //     console.log(users);
+        //     console.log("the enemy we will fight is name is : "+enemey);
+        // });
+        console.log(allusers)
+        // var EnemyName=""
+        // var EnemyCol=""
         getUsers().then(users => 
             {
-            console.log(users);
-            console.log("the enemy we will fight is name is : "+enemey);
+            //console.log(users);
+
+            console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
+            //EnemyName=enemey;
+            //this.enemy=enemey;// assign to value
+            getEnemyColor().then(enemyColor => 
+                {
+                    //EnemyName=enemey;
+                    console.log(enemyColor);
+                    console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
+                    //this.encolor=enemyColor;// assign to value
+                    //EnemyCol=enemyColor;
+            });
         });
-        getEnemyColor().then(enemyColor => 
-            {
-                getUsers().then(users => 
-                    {
-                    console.log(users);
-                    console.log("the enemy we will fight is name is : "+enemey);
-                });
-                console.log(enemyColor);
-                console.log("the usernames color of that one  is : "+enemyColor);
-        });
-        
+        // console.log(" the enemy name be ",EnemyName);
+        // console.log(" the enemy color be ",EnemyCol);
 
         // put if you trying to print only one which I'm going to print only one user info
         // it will NOT print and it will gave us undefined
@@ -135,7 +147,7 @@ class MainScene extends Phaser.Scene
         //var box2 = this.add.rectangle(170, 735, 100, 100, 0xe7a23c);//create box to cover up overlapping
         this.sound.play(backgroundmusic[musicloop], { volume: 3 })//insert image with randomly chosen key
         // for clarification the console will show what music number is playing
-        console.log(backgroundmusic[musicloop])//see what sound playing
+        //console.log(backgroundmusic[musicloop])//see what sound playing
 
         //add the background to the scene
         let background = this.add.image(200, 400, 'bg');
@@ -148,10 +160,10 @@ class MainScene extends Phaser.Scene
         mutebutton.setScale(0.5);
         mutebutton.setInteractive();
         mutebutton.on('pointerdown', () => {
-            console.log(this.sound2);
+            //console.log(this.sound2);
             if (this.sound2 == 0) {
                 this.sound2 += 1;
-                console.log(this.sound2);
+                //console.log(this.sound2);
                 this.sound.stopAll();
             } else {
                 this.sound2 -= 1;
@@ -444,8 +456,8 @@ class MainScene extends Phaser.Scene
             ease: 'Sine.easeInOut'
 
         });
-        console.log(" feeding x is " + feeding.x);
-        console.log(" feeding y is " + feeding.y);
+        //console.log(" feeding x is " + feeding.x);
+        //console.log(" feeding y is " + feeding.y);
         
         /////////////////////////////////////////////////////////////////////////////////////////////
         // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
@@ -533,14 +545,14 @@ class MainScene extends Phaser.Scene
 
                 }
                 else{
-                    console.log("default decrement is here  " + decrement);
+                    //console.log("default decrement is here  " + decrement);
                     decrement=3
                 }
                 //for the health of the pet
                
                 var val1 = Math.floor(Math.random() * decrement) // using rand number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
-                console.log("val1 is " + val1);
+                //console.log("val1 is " + val1);
 
                 var val2 = Math.floor(Math.random() * decrement) // using rand number between 0 an 2
                 hunger.width -= val2; //decrement the health randomly w/ val
