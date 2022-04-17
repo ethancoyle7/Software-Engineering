@@ -625,14 +625,16 @@ class FightScene extends Phaser.Scene
      
         
     }
+    //check in the update if the pet health is less than 0
     checkDead(){
-        if(this.pethealth.width<=0)
+        if(this.pethealth.width<=0) // if the pet health is less than 0
         {
-            this.defeat = true;
+            this.defeat = true; // set defeat to true
         }
     }
 
 
+    //at end of the fight set back to orginal vals
     endFight(){
         this.pet = null;
         //this.enemyq=null;

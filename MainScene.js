@@ -24,10 +24,10 @@ class MainScene extends Phaser.Scene
             // No username was provided
             this.type = "0";
         }
-        this.level = data.level;
-        this.enemy= data.enemy;
-        this.enemyname=data.enemyname;
-        this.playername=data.playername;
+        this.level = data.level; // Level of the player
+        this.enemy= data.enemy; // Enemy type
+        this.enemyname=data.enemyname; // Enemy name
+        this.playername=data.playername; // Player name
 
     }
 
