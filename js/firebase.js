@@ -96,10 +96,12 @@ function getInfoFromFirebase() {
 
 function checkIfUserIsLoggedIn()
 {
+  firebaseApp.auth().onAuthStateChanged(function (user) 
+  {
   if (user != null) // if the user is not null
   {
    alert("You already logged in. Redirecting...")
    window.location.replace('/game.html'); 
   }
-
+  });
 }
