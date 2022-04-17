@@ -993,9 +993,5 @@ class MainScene extends Phaser.Scene
 
     // Runs every frame update any items inside of the scene
     update() {
-        //function to check for the value of the experience
-        
-        //console.log(this.hungerw);
-
     }
 }
