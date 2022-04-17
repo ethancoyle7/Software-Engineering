@@ -15,17 +15,12 @@ class GameOver extends Phaser.Scene
             this.type = "0";
         }
         this.level=data.level;//pass in the level
+        this.enemy= data.enemy; //pass in the enemy
     }
     
     preload() 
     {
-        // this.load.image('Over', './assets/GameOverPicture.png');
-        // this.load.image('Exit', './assets/exitbutton.png'); 
-        // this.load.image('MainSceneReturn', './assets/mainreturn.png'); 
-        // this.load.image('RetryFight', './assets/fightretry.png'); 
-        // this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
-        // this.load.image('wipey', './assets/bathe/wet_wipe.png')
-        //this.load.audio('WINNER', './assets/WinMusic.mp3');
+      
     }
 
     create() 
@@ -84,11 +79,36 @@ class GameOver extends Phaser.Scene
             ease: 'Sine.easeInOut'
 
         });
+        getUsers().then(users => 
+            {
+            //console.log(users);
+
+            console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
+            //EnemyName=enemey;
+            //this.enemy=enemey;// assign to value
+            getEnemyColor().then(enemyColor => 
+                {
+                    //EnemyName=enemey;
+                    console.log(enemyColor);
+                    console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
+                    //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
+                    //for the fight color animation
+                    if(enemyColor=='red'){
+                        this.enemy=0;
+                    }
+                    else if(enemyColor == 'white'){
+                        this.enemy=1;
+                    }
+                    else{
+                        this.enemy=2;
+                    }
+            });
+        });
         
         //add exit button
         var Retry=this.add.image(230,600,'RetryFight')
         Retry.setInteractive();
-        Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type, level:this.level }));
+        Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type, level:this.level,enemy: this.enemy }));
         //Retry.on('pointerdown',() =>this.scene.start("FightScene"));
         Retry.on('pointerover',() => this.sound.play('Rematch'));
         this.tweens.add({

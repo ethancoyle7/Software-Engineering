@@ -14,14 +14,10 @@ class WinScene extends Phaser.Scene {
             this.type = "0";
         }
         this.level=data.level;
+        this.enemy= data.enemy;
     }
-    preload() {
-        // this.load.image('win', './assets/winner.png');
-        // this.load.image('Exit', './assets/exitbutton.png');
-        // this.load.image('MainSceneReturn', './assets/mainreturn.png');
-        // this.load.image('RetryFight', './assets/fightretry.png');
-        // this.load.image('particle', './assets/yellow.png');
-        // this.load.audio('WINNER', './assets/WinMusic.mp3');
+    preload() 
+    {
     }
 
     create() {
@@ -67,6 +63,31 @@ class WinScene extends Phaser.Scene {
         });
         this.pet.anims.play("winner")
         //add exit button
+        getUsers().then(users => 
+            {
+            //console.log(users);
+
+            console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
+            //EnemyName=enemey;
+            //this.enemy=enemey;// assign to value
+            getEnemyColor().then(enemyColor => 
+                {
+                    //EnemyName=enemey;
+                    console.log(enemyColor);
+                    console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
+                    //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
+                    //for the fight color animation
+                    if(enemyColor=='red'){
+                        this.enemy=0;
+                    }
+                    else if(enemyColor == 'white'){
+                        this.enemy=1;
+                    }
+                    else{
+                        this.enemy=2;
+                    }
+            });
+        });
         this.gameTimer = this.time.addEvent({
             delay: 750,
             callback: function () {
@@ -90,7 +111,7 @@ class WinScene extends Phaser.Scene {
                 BackToMain.setInteractive();
                 //once clicked start the main scene
                 //if win the the fight then going back to the main have bonus of adding 2 to the level
-                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level+=2 }));
+                BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level+=2, }));
                 BackToMain.on('pointerover', () => this.sound.play('MainReturn'));
                 this.tweens.add({
 
@@ -104,7 +125,7 @@ class WinScene extends Phaser.Scene {
                 //add exit button
                 var Retry = this.add.image(230, 700, 'RetryFight')
                 Retry.setInteractive();
-                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type,level:this.level }));
+                Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type,level:this.level,enemy: this.enemy }));
                 Retry.on('pointerover', () => this.sound.play('Rematch'));
                 this.tweens.add({
 

@@ -6,25 +6,12 @@ class MainScene extends Phaser.Scene
     {
         super("MainScene");
         this.pet = null;
-        //this.petClass = null;
-        //this.hunger = null;
-        //this.happiness = null;
-        //this.health = null;
-  
         this.sound2 = 0;
         this.type = '';
         this.level=0;
         this.enemy=""
         this.encolor=""
-        //this.items = [];// this is a collection of items
-        // this.itemsIcons = [];
-        //this.percent = 0;
-        //this.background = null;
-        // this.firebaseApp = firebase.initializeApp(firebaseConfig);
-        // this.db = firebase.firestore();
-
-        // this.item = null;
-        // this.scoreTable = this.database.collection('Scores')
+        
 
     }
     init(data) 
@@ -43,17 +30,6 @@ class MainScene extends Phaser.Scene
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() 
     {
-        // // preload to the screeen the background and the music
-        // loading up the audio for the pet interation sounds
-        // this.load.audio('bathsound', './assets/PetSounds/bathsound.wav');
-        // this.load.audio('eatingsound', './assets/PetSounds/eatpet.wav');
-        // this.load.audio('happysound', './assets/PetSounds/HappySound.wav');
-        // this.load.audio('clothesound', './assets/PetSounds/ClothingSound.wav');
-        // this.load.audio('levelingup', './assets/LevelUPP.mp3');
-        // this.load.image('mute', './assets/mic.png');
-        
-
-
     }
     // Runs when we first enter this scene
     create() {
@@ -61,12 +37,7 @@ class MainScene extends Phaser.Scene
         var value=0 // value for the level
 
         
-        // get usersgetUsers.
-        // getUsers().then(users => 
-        //     {
-        //     console.log(users);
-        //     console.log("the enemy we will fight is name is : "+enemey);
-        // });
+        //to display all the users log all the accounts
         console.log(allusers)
         // var EnemyName=""
         // var EnemyCol=""
@@ -82,8 +53,8 @@ class MainScene extends Phaser.Scene
                     //EnemyName=enemey;
                     console.log(enemyColor);
                     console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
-                    //this.encolor=enemyColor;// assign to value
-                    //EnemyCol=enemyColor;
+                    //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
+                    //for the fight color animation
                     if(enemyColor=='red'){
                         this.enemy=0;
                     }
@@ -96,21 +67,7 @@ class MainScene extends Phaser.Scene
             });
         });
         
-        // console.log(" the enemy name be ",EnemyName);
-        // console.log(" the enemy color be ",EnemyCol);
-
-        // put if you trying to print only one which I'm going to print only one user info
-        // it will NOT print and it will gave us undefined
-        // This problem I've talked to Griffin about it
-        // Still trying to figure out why this is happenning
-        //console.log(allusers[0]);
-        //console.log("our dictionary is :",dict)
-        //console.log('testing color value',colorvalue2)
-        //console.log("our picked fighter is ",fighterpicked)
-
-        //console.log(" the color is :",dict['color'])
-        // you could view the whole list of users
-        //console.log(allusers)
+       
         //////////////////////////////////////////////////////////////////////////
         // ██╗    ██╗   ██╗██╗          ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ //
         // ██║    ██║   ██║██║         ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝ //
