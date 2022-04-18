@@ -1,7 +1,7 @@
 # OUR PROJECT
 
 
-## -----------------------------------------------------------------------------------------------------------------------#
+
 ##  Authors   : Ethan Coyle, Jereen LeBlanc, Paige Champagne, Fowzy Alsaud                                                #
 ##  Class     : Software Engineering CMPS 4991                                                                            #
 ##  Instructor: Dr. StringFellow                                                                                          #
@@ -9,6 +9,7 @@
 ##  Title     : Marleys Adventures                                                                                        #
 ##  Company   : Crispy Fried Chickens                                                                                     #
 ##  Date      : January 2022-April 2022                                                                                   #
+## ------------------------------------------------------------------------                                               #
 ###                                                                                                                       #
 ###  The purpose of this assignment was to develop a mobile application game representing a smart pet mobile application  #
 ###      in which the user signs into the game or creates an account and then they choose a pet. After choosing a pet,    #
@@ -27,13 +28,13 @@
 ###      the user is able to view a few options: retry fight, back to main or exit(which will lead to the title scene     #
 ###      in which the player can choose another pet) doing this however reset all the stats of the player including the   #
 ###      level.                                                                                                           #
-### ----------------------------------------------------------------------------------------------------------------------#
+
 
 
 
 |   #    | File Link       | Description                          |
 |------- |-------------------|-------------------------------------------------|
-| [01](.BootScene.js]| [BootScene](./BootScene.js) | [ This Link Leads to the scene where all the contents are booted](./BootScene.js)|
+| [01](.BootScene.js)| [BootScene](./BootScene.js) | [ This Link Leads to the scene where all the contents are booted](./BootScene.js)|
 | [02](.TitleScene.js) |  [MainScene](./TitleScene.js) | [ This Link leads to the Title Scene(where the user will choose their egg)](./TitleScene.js)|
 | [02](.MainScene.js) |  [MainScene](./MainScene.js) | [ This Link leads to the Main Scene in which is the first scene that is loaded](./MainScene.js)|
 | [03](.BootScene.js) |  [Fight Scene](./BootScene.js) | [ This File contains all the scope for the Battling Pet Scene](./BootScene.js)|
