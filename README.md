@@ -1,34 +1,33 @@
 # OUR PROJECT
-<!--#########################################################################################################################
-    #                                                                                                                       #
-    #                                                                                                                       #
-    #                                   Authors   : Ethan Coyle, Jereen LeBlanc, Paige Champagne, Fowzy Alsaud              #
-    #                                   Class     : Software Engineering CMPS 4991                                          #
-    #                                   Instructor: Dr. StringFellow                                                        #
-    #                                   Assignment: Semester Project                                                        #
-    #                                   Title     : Marleys Adventures                                                      #
-    #                                   Company   : Crispy Fried Chickens                                                   #
-    #                                   Date      : January 2022-April 2022                                                 #
-    #########################################################################################################################
-    #                                                                                                                       #
-    #  The purpose of this assignment was to develop a mobile application game representing a smart pet mobile application  #
-    #      in which the user signs into the game or creates an account and then they choose a pet. After choosing a pet,    #
-    #      the user is able to interact with their pet by feeding, bathing, clothing and playing with their pet. After      #
-    #      reaching a certain level, the user is then able to use their pet to fight another pet and to see if they can win #
-    #      the fight intensity is based upon the players level so the higher the level, the more intense the fight will be  #
-    #      in the main scene of the fight, if the pet is not taken care of, then the pet will run away after 3 hours of not #
-    #      being taken care of. If the pets health drains and the timer runs out, then the pet will die so make sure to take#
-    #      care of you pet. The player is able to interact with the pet on the main scene by clicking any of the icons      #
-    #      locate on the bottom portion of the main scene by either clicking or dragging to the screen. The result of these #
-    #      actions will effect the status bars of the players health. On the title scene before choosing the egg to choose  #
-    #      their pet, they can click the info button at the top left to view in game information to help them as well.      #
-    #      the game is pretty straight forward even in the fight scene, the player will be faced with an opponent and in the#
-    #      bottom right, there will be an atack bar of all the available attacks, these buttons are interactive so when     #
-    #      user clicks on any of the buttons, they will directly affect the enemy you are facing. In the game over scenes,  #
-    #      the user is able to view a few options: retry fight, back to main or exit(which will lead to the title scene     #
-    #      in which the player can choose another pet) doing this however reset all the stats of the player including the   #
-    #      level.                                                                                                           #
-    #########################################################################################################################-->
+
+
+## -----------------------------------------------------------------------------------------------------------------------#
+##  Authors   : Ethan Coyle, Jereen LeBlanc, Paige Champagne, Fowzy Alsaud                                                #
+##  Class     : Software Engineering CMPS 4991                                                                            #
+##  Instructor: Dr. StringFellow                                                                                          #
+##  Assignment: Semester Project                                                                                          #
+##  Title     : Marleys Adventures                                                                                        #
+##  Company   : Crispy Fried Chickens                                                                                     #
+##  Date      : January 2022-April 2022                                                                                   #
+###                                                                                                                       #
+###  The purpose of this assignment was to develop a mobile application game representing a smart pet mobile application  #
+###      in which the user signs into the game or creates an account and then they choose a pet. After choosing a pet,    #
+###      the user is able to interact with their pet by feeding, bathing, clothing and playing with their pet. After      #
+###      reaching a certain level, the user is then able to use their pet to fight another pet and to see if they can win #
+###      the fight intensity is based upon the players level so the higher the level, the more intense the fight will be  #
+###      in the main scene of the fight, if the pet is not taken care of, then the pet will run away after 3 hours of not #
+###      being taken care of. If the pets health drains and the timer runs out, then the pet will die so make sure to take#
+###      care of you pet. The player is able to interact with the pet on the main scene by clicking any of the icons      #
+###      locate on the bottom portion of the main scene by either clicking or dragging to the screen. The result of these #
+###      actions will effect the status bars of the players health. On the title scene before choosing the egg to choose  #
+###      their pet, they can click the info button at the top left to view in game information to help them as well.      #
+###      the game is pretty straight forward even in the fight scene, the player will be faced with an opponent and in the#
+###      bottom right, there will be an atack bar of all the available attacks, these buttons are interactive so when     #
+###      user clicks on any of the buttons, they will directly affect the enemy you are facing. In the game over scenes,  #
+###      the user is able to view a few options: retry fight, back to main or exit(which will lead to the title scene     #
+###      in which the player can choose another pet) doing this however reset all the stats of the player including the   #
+###      level.                                                                                                           #
+### ----------------------------------------------------------------------------------------------------------------------#
 
 
 
