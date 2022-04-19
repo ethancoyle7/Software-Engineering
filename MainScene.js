@@ -42,7 +42,7 @@ class MainScene extends Phaser.Scene {
         getNickname().then(data => {
             //console.log(data);
             this.playername = data;//assign the api return data of the player nickname to the nickname to be used throughout
-            //console.log("your nickname is ",this.playername);//loggin the data to see if working and it is
+            //console.log("your nickname is ",this.playername);//login the data to see if working and it is
         });
 
         //to display all the users log all the accounts
@@ -155,7 +155,7 @@ class MainScene extends Phaser.Scene {
         // depending on the pet the value passed in will be assigned to certain pet and
         //the number passed in will reference the choice below i.e if the user
         // choses 1 then the value inside of the game will reference list item number 1
-        // in each choic below
+        // in each choice below
         let choose = ['pet', 'pet2run', 'pet3'];
         let choose2 = ['petclimb', 'pet2climb', 'pet3climb'];
         let choose3 = ['winningpet', 'pet2winningpet', 'pet3winningpet'];
@@ -255,12 +255,12 @@ class MainScene extends Phaser.Scene {
         this.add.text(10, 88, "SATISFACTION", style);//label it 
         //create rectangle for xp points
 
-        //oscillating display of rectangle targetting this rectangle
+        //oscillating display of rectangle targeting this rectangle
         //this takes the form of a rectangle with a purple fill fading 
         //in and out constantly
         this.tweens.add({
 
-            targets: levelrect,//rectangle it is targetting
+            targets: levelrect,//rectangle it is targeting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,
@@ -294,7 +294,7 @@ class MainScene extends Phaser.Scene {
 
 
 
-        // to help identify the interactions and the array of items, create label to differentiatte
+        // to help identify the interactions and the array of items, create label to differentiate
         var PetFed = this.add.text(320, 140, '', { font: '20px Arial', fill: '#00ff00' });
         var PetClothed = this.add.text(310, 130, '', { font: '20px Arial', fill: '#00ff00' });
         var PetBathed = this.add.text(320, 180, '', { font: '20px Arial', fill: '#00ff00' });
@@ -319,7 +319,7 @@ class MainScene extends Phaser.Scene {
         ]);
         this.tweens.add({
 
-            targets: Info,//who it targetting
+            targets: Info,//who it targeting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,
@@ -335,7 +335,7 @@ class MainScene extends Phaser.Scene {
         this.add.text(260, 650, "PLAY", style);//label it 
         this.add.text(370, 650, "FEED", style);//label it 
         //load up the food items
-        //draw a semi transparent circle colored grey
+        //draw a semi transparent circle colored gray
         var foodcircle = this.add.circle(390, 735, 50, 0x000000);
         foodcircle.setStrokeStyle(4, 0x00ff00);
         foodcircle.setAlpha(0.5);
@@ -349,7 +349,7 @@ class MainScene extends Phaser.Scene {
         feeding.setInteractive({ draggable: true });//it can be dragged
         this.tweens.add({
 
-            targets: feeding,//who it targetting
+            targets: feeding,//who it targeting
             alpha: 0.8,
             yoyo: true,
             repeat: -1,
@@ -362,14 +362,14 @@ class MainScene extends Phaser.Scene {
         toycircle.setAlpha(0.5);
         //for the playing load up random image
         const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1", "console2", "console3", "duckie", "octopus", "toy2"];
-        const random3 = Math.floor(Math.random() * toys.length);//random chose string name
+        const random3 = Math.floor(Math.random() * toys.length);//randomly chosen string name
         //var box3 = this.add.rectangle(280, 735, 100, 100, 0xe7a23c);//create box
         var playing = this.add.image(280, 735, toys[random3])//add key to the new image
         playing.setScale(2.5);//set the size
         playing.setInteractive({ draggable: true });//draggable yes
         this.tweens.add({
 
-            targets: playing,//who it targetting
+            targets: playing,//who it targeting
             alpha: 0.8,
             yoyo: true,
             repeat: -1,
@@ -389,7 +389,7 @@ class MainScene extends Phaser.Scene {
         bath.setInteractive({ draggable: true });//it can be dragged
         this.tweens.add({
 
-            targets: bath,//who it targetting
+            targets: bath,//who it targeting
             alpha: 0.8,
             yoyo: true,
             repeat: -1,
@@ -403,13 +403,13 @@ class MainScene extends Phaser.Scene {
         //create list to iterate through with key string names of clothes
         const clothes = ["bikini", "boots", "boots2", "bowtie", "hat", "jacket", "outfit1", "outfit2", "outfit3", "shoes", "shoes2", "witchhat"];
         const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
-        //var box = this.add.rectangle(60, 735, 100, 100, 0xe7a23c);//becasue it loops it needs box before to cover up the old image
-        var clothing = this.add.image(60, 735, clothes[random])//add the key randomly chose value string name
+        //var box = this.add.rectangle(60, 735, 100, 100, 0xe7a23c);//because it loops it needs box before to cover up the old image
+        var clothing = this.add.image(60, 735, clothes[random])//add the key randomly choice value string name
         clothing.setScale(2.5);// set the size
         clothing.setInteractive({ draggable: true });// it is draggable
         this.tweens.add({
 
-            targets: clothing,//who it targetting
+            targets: clothing,//who it targeting
             alpha: 0.8,
             yoyo: true,
             repeat: -1,
@@ -420,10 +420,10 @@ class MainScene extends Phaser.Scene {
         //and if the health stays at 5 till the the three hours, then the player will die
         var Warning = this.add.text(130, 345, '', { font: '24px Arial', fill: '#00ff00' }); //health warning
         var Warning2 = this.add.text(130, 365, '', { font: '24px Arial', fill: '#00ff00' });//before the pet runs away
-        //adding tweens to the wanrings for flashing
+        //adding tweens to the warnings for flashing
         this.tweens.add({
 
-            targets: Warning,//who it targetting
+            targets: Warning,//who it targeting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,
@@ -432,7 +432,7 @@ class MainScene extends Phaser.Scene {
         });
         this.tweens.add({
 
-            targets: Warning2,//who it targetting
+            targets: Warning2,//who it targeting
             alpha: 0.5,
             yoyo: true,
             repeat: -1,
@@ -450,7 +450,7 @@ class MainScene extends Phaser.Scene {
         //    ██║   ██║██║ ╚═╝ ██║███████╗    ███████╗ ╚████╔╝ ███████╗██║ ╚████║   ██║   ███████║ //
         //    ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝    ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝ //
         /////////////////////////////////////////////////////////////////////////////////////////////                                                                       
-        //create atimer for the game loop inwhic the health will slowly decline and 
+        //create a timer for the game loop which will cause the pets' health value to slowly decline and 
         // the attributes of the pet will increase and decrease depending on the actions
         this.timeLeft = 1800000;// 3 hours
         this.gameTimer = this.time.addEvent({
@@ -459,7 +459,7 @@ class MainScene extends Phaser.Scene {
                 this.timeLeft--;//decrement the time left
 
                 //experience.width-=350
-                //resetting the values of the notifcations
+                //resetting the values of the notifications
                 PetClothed.setText([''])
                 PetBathed.setText(['']);
                 PetFed.setText(['']);
@@ -533,16 +533,16 @@ class MainScene extends Phaser.Scene {
                 }
                 //for the health of the pet
 
-                var val1 = Math.floor(Math.random() * decrement) // using rand number between 0 and 10
+                var val1 = Math.floor(Math.random() * decrement) // using random number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
                 //console.log("val1 is " + val1);
 
-                var val2 = Math.floor(Math.random() * decrement) // using rand number between 0 an 2
+                var val2 = Math.floor(Math.random() * decrement) // using random number between 0 and 2
                 hunger.width -= val2; //decrement the health randomly w/ val
                 //console.log(hunger.width)//lets see what the width is 
 
                 //timing for the happiness to go down incrementally
-                var val3 = Math.floor(Math.random() * decrement) // using rand number between 0 and 10
+                var val3 = Math.floor(Math.random() * decrement) // using random number between 0 and 10
                 happiness.width -= val3; //decrement the health randomly w/ val
                 //console.log(happiness.width)//lets see what the width is 
 
@@ -561,16 +561,16 @@ class MainScene extends Phaser.Scene {
                     experience++;
                     EXP.setText(['EXPERIENCE : ' + experience]);
                     const random = Math.floor(Math.random() * clothes.length);// choose random value and put it in the image
-                    clothing = this.add.image(60, 735, clothes[random])//add the key randomly chose value string name
+                    clothing = this.add.image(60, 735, clothes[random])//add the key randomly choice value string name
                     clothing.setScale(2.5);// set the size
                     clothing.setInteractive({ draggable: true });// it is draggable
                     this.tweens.add({
 
-                        targets: clothing,//who it targetting
+                        targets: clothing,//who it targeting
                         alpha: 0.8,
                         yoyo: true,
                         repeat: -1,
-                        ease: 'Sine.easeInOut' //effect fr our image
+                        ease: 'Sine.easeInOut' //effect for our image
 
                     });
                 }
@@ -582,7 +582,7 @@ class MainScene extends Phaser.Scene {
                 });
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
                 clothing.on('pointerup', () => {
-                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    //if the clothing is moved above where originally is, destroy it and do some things
                     if (clothing.x >= 60 || clothing.x <= 60 || clothing.x <= 0 || clothing.x >= 450 && clothing.y < 650) {
                         this.pet.anims.stop('feed')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -591,7 +591,7 @@ class MainScene extends Phaser.Scene {
                         var clothingupdate = happiness.width += increment; //add happiness
                         happiness.width += increment
                         if (clothingupdate >= 350) {
-                            happiness.width = 350// reset the width setting outter right bounds
+                            happiness.width = 350// reset the width setting outer right bounds
 
                         }
 
@@ -616,7 +616,7 @@ class MainScene extends Phaser.Scene {
 
                 if (bath == null)//check to see if the destroyed image is null
                 {
-                    console.log('null image')//log the null imade ang increase experience
+                    console.log('null image')//log the null image and increase experience
                     experience++;
                     EXP.setText(['EXPERIENCE : ' + experience]);
                     const random2 = Math.floor(Math.random() * bathing.length);//choose random string name
@@ -625,7 +625,7 @@ class MainScene extends Phaser.Scene {
                     bath.setInteractive({ draggable: true });//it can be dragged
                     this.tweens.add({
 
-                        targets: bath,//who it targetting
+                        targets: bath,//who it targeting
                         alpha: 0.8,
                         yoyo: true,
                         repeat: -1,
@@ -640,7 +640,7 @@ class MainScene extends Phaser.Scene {
                 });
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
                 bath.on('pointerup', () => {
-                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    //if the clothing is moved above where originally is, destroy it and do some things
                     if (bath.x >= 170 || bath.x <= 170 || bath.x <= 0 || bath.x >= 450 && bath.y < 650) {
                         this.pet.anims.stop('bathe+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -648,18 +648,18 @@ class MainScene extends Phaser.Scene {
                         bath = null
                         PetClothed.setText([' PET BATHED']);   // set the text to be displayed
 
-                        //cheking for bounds and updating the happiness and health
+                        //checking for bounds and updating the happiness and health
                         var bathupdatehappiness = happiness.width += 2; //add happiness
                         happiness.width += 2
                         if (bathupdatehappiness >= 350) {
-                            happiness.width = 350// reset the width setting outter right bounds
+                            happiness.width = 350// reset the width setting outer right bounds
 
                         }
                         //checking the health of the pet and  then resestting it if above 350
                         var bathupdatehealth = health.width += increment; //add happiness
                         health.width += 2
                         if (bathupdatehealth >= 350) {
-                            health.width = 350// reset the width setting outter right bounds
+                            health.width = 350// reset the width setting outer right bounds
 
                         }
                         if (this.sound2 == 0) //if the sound is not muted
@@ -683,15 +683,15 @@ class MainScene extends Phaser.Scene {
                 if (playing == null)//check to see if the destroyed image is null
                 {
                     console.log('null image')// log the null image
-                    experience++;// increase the experiecne by one and add new image
+                    experience++;// increase the experience by one and add new image
                     EXP.setText(['EXPERIENCE : ' + experience]); // display the experience text
-                    const random3 = Math.floor(Math.random() * toys.length);//random chose string name
+                    const random3 = Math.floor(Math.random() * toys.length);//random choice string name
                     playing = this.add.image(280, 735, toys[random3])//add key to the new image
                     playing.setScale(2.5);//set the size
                     playing.setInteractive({ draggable: true });//draggable yes
                     this.tweens.add({
 
-                        targets: playing,//who it targetting
+                        targets: playing,//who it targeting
                         alpha: 0.8,
                         yoyo: true,
                         repeat: -1,
@@ -707,7 +707,7 @@ class MainScene extends Phaser.Scene {
                 //check to see if the clothing is moved and the pointer is up then destroy the clothing
 
                 playing.on('pointerup', () => {
-                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    //if the clothing is moved above where originally is, destroy it and do some things
                     if (playing.x >= 280 || playing.x <= 280 || playing.x <= 0 || playing.x >= 450 && playing.y < 650) {
                         this.pet.anims.stop('health+')// stop the feed animation
                         this.pet.anims.play('run')// play the run animation
@@ -721,7 +721,7 @@ class MainScene extends Phaser.Scene {
                         happiness.width += increment //increment the happiness
                         if (playupdatehappiness >= 350) //if the happiness is out of bounds
                         {
-                            happiness.width = 350// reset the width setting outter right bounds
+                            happiness.width = 350// reset the width setting outer right bounds
 
                         }
                         //checking and incrementing the health bar
@@ -730,7 +730,7 @@ class MainScene extends Phaser.Scene {
                         //hunger.width+=20
                         if (bathupdatehealth >= 350) //check to see if the happiness is out of bounds
                         {
-                            health.width = 350// reset the width setting outter right bounds
+                            health.width = 350// reset the width setting outer right bounds
 
                         }
 
@@ -763,7 +763,7 @@ class MainScene extends Phaser.Scene {
                     feeding.setInteractive({ draggable: true });//it can be dragged
                     this.tweens.add({
 
-                        targets: feeding,//who it targetting
+                        targets: feeding,//who it targeting
                         alpha: 0.8, // the transparency level
                         yoyo: true,//yoyo effect
                         repeat: -1,//constantly repeat
@@ -781,7 +781,7 @@ class MainScene extends Phaser.Scene {
 
                 feeding.on('pointerup', () => {
                     //var feeding = this.add.image(390, 735, food[random4])//input the key string name
-                    //if the clothing is moved above where orginally is, destroy it and do some things
+                    //if the clothing is moved above where originally is, destroy it and do some things
 
                     //console.log(feeding.x)
                     //console.log("feeding y : "+feeding.y)
@@ -814,7 +814,7 @@ class MainScene extends Phaser.Scene {
                         health.width += increment //increment the happiness
                         if (foodupdatehealth >= 350) //if the happiness is out of bounds
                         {
-                            health.width = 350// reset the width setting outter right bounds
+                            health.width = 350// reset the width setting outer right bounds
 
                         }
                         //update the happiness
@@ -822,7 +822,7 @@ class MainScene extends Phaser.Scene {
                         happiness.width += increment //increment the happiness
                         if (foodupdatehappiness >= 350) //if the happiness is out of bounds
                         {
-                            happiness.width = 350// reset the width setting outter right bounds
+                            happiness.width = 350// reset the width setting outer right bounds
 
                         }
                         //update the hunger bar
@@ -831,7 +831,7 @@ class MainScene extends Phaser.Scene {
                         //hunger.width-=50
                         if (foodupdatehunger >= 350) //if the happiness is out of bounds
                         {
-                            hunger.width = 350// reset the width setting outter right bounds
+                            hunger.width = 350// reset the width setting outer right bounds
 
                         }
                         //sound play
@@ -852,7 +852,7 @@ class MainScene extends Phaser.Scene {
                     const button = this.add.image(70, 275, 'button')
                     button.setInteractive() // set it interactive
                     button.on('pointerdown', () => button.setScale(1.1))// set the scale of the button
-                    button.on('pointerup', () => button.setScale(1));// on ppinter up
+                    button.on('pointerup', () => button.setScale(1));// on pointer up
                     button.on('pointerdown', () => this.sound.stopAll());// remove the bg music
                     button.on('pointerdown', () => this.scene.start('FightScene', {
                         type: this.type,
@@ -862,10 +862,10 @@ class MainScene extends Phaser.Scene {
                         playername: this.playername//pass in the player name
                     }))// lead to fight scene
                 }
-                //lets boost intensity of the next levelling up take longer to level up after certain level
+                //lets boost intensity of the next leveling up take longer to level up after certain level
 
-                //after checking the level adjust the imcrement to the new level up value
-                if (experience >= levelupvalue)// once certain ammount of experience, level up and play sound
+                //after checking the level adjust the increment to the new level up value
+                if (experience >= levelupvalue)// once certain amount of experience, level up and play sound
                 {
                     // play the level up sound
                     if (this.sound2 == 0) {
@@ -907,7 +907,7 @@ class MainScene extends Phaser.Scene {
                     ]);
                     this.tweens.add({
 
-                        targets: Warning,//who it targetting
+                        targets: Warning,//who it targeting
                         alpha: 0.5,
                         yoyo: true,
                         repeat: -1,
@@ -926,7 +926,7 @@ class MainScene extends Phaser.Scene {
                             type: this.type
                         })
                 }
-                //create left bound checking with the happiness bar if it falls below 5 reset it on the screne to 5 
+                //create left bound checking with the happiness bar if it falls below 5 reset it on the screen to 5 
 
                 if (happiness.width <= 5) // if the happiness falls below this, reset the val
                 {

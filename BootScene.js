@@ -61,7 +61,7 @@ class BootScene extends Phaser.Scene
         //      this.load.image(`loading assets-${i}`, './assets/square1.png');
         // }
 
-        // "MainScene" preload to the screeen the background and the music
+        // "MainScene" preload to the screen the background and the music
         //this.load.image('bg', './assets/background.png');
         this.load.image('bg', './assets/background.png');
         //background for the fightscene load up
@@ -447,7 +447,7 @@ class BootScene extends Phaser.Scene
         this.load.audio('EnemyHit','./assets/EnemyHit.mp3')
         this.load.audio('Exit','./assets/exit.mp3') // for hover over exit
         //set initial picture
-        // preload to the screeen the background and the music in Main Scene
+        // preload to the screen the background and the music in Main Scene
         this.load.audio('bgmusic', './assets/gamemusic.mp3');
         this.load.audio('MainReturn', './assets/BackMain.mp3');
         this.load.audio('Rematch', './assets/RetryMatch.mp3');

@@ -162,7 +162,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         });
         redegg.anims.play('idle');// play the red egg animations
 
-        //add the white egg sprite adn give it some movement,
+        //add the white egg sprite and give it some movement,
         // when click on, the number will be assigned and then passed
         // to the other scenes
         let whiteegg = this.add.sprite(225, 650, "whiteegg");
@@ -240,7 +240,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         //yoyo effect for the title
         this.tweens.add({
 
-            targets: title,//who it targetting
+            targets: title,//who it targeting
             alpha: 0.2,
             yoyo: true,
             repeat: -1,
@@ -250,7 +250,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         this.tweens.add({ // a tween is kinda like animation lite
             targets: eggs, //this one affects text
             duration: 900,
-            alpha: 0.5, //affects opactiy
+            alpha: 0.5, //modifies opacity
             yoyo: true, //yoyo effect
             repeat: -1 //-1 means yes repeat
         });
