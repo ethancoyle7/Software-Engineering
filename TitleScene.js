@@ -5,12 +5,14 @@
 */
 var allusers = []
 userData = {}
-var dict={}
-const Array1=[]
-const Array2=[]
-var colorvalue2=null
+var dict = {}
+const Array1 = []
+const Array2 = []
+var colorvalue2 = null
 var enemycolor
 var enemey
+let userChooseEgg = false;
+
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
     //methods and variables owned by it. This is where i make a lot of mistakes lol
     constructor() {
@@ -63,30 +65,35 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             });
 
         getColor().then(color => {
-                if(color == null){
-                    console.log('move on');
-                }
+            if (userChooseEgg == true || color == null) {
+                // if (color == null) {
+                console.log('let it choose');
+                userChooseEgg = false;
+                // }
+            }
+            else {
                 if (color == "red") {
                     this.type = "0";
                     this.scene.start('MainScene',
-                    {
-                        type: this.type,
-                    })
+                        {
+                            type: this.type,
+                        })
                 }
                 if (color == "white") {
                     this.type = "1";
                     this.scene.start('MainScene',
-                    {
-                        type: this.type,
-                    })
+                        {
+                            type: this.type,
+                        })
                 }
                 if (color == "blue") {
                     this.type = "2";
                     this.scene.start('MainScene',
-                    {
-                        type: this.type,
-                    })
+                        {
+                            type: this.type,
+                        })
                 }
+            }
         });
 
         //get the user  id for the current logged in user
@@ -255,7 +262,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
             repeat: -1 //-1 means yes repeat
         });
     }
-   
+
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -339,8 +346,7 @@ function setColor(color) {
         });
 }
 
-async function getColor() 
-{
+async function getColor() {
     uid = userData['uid']
     // // now reading the user data and get the nickname
     await db.collection("users").get().then((querySnapshot) => {
@@ -349,7 +355,7 @@ async function getColor()
                 userData['color'] = doc.data().color;
                 result = doc.data().color; // if the user is found override result to the nickname
                 //return doc.data();  
-                console.log("her her her here")  
+                console.log("her her her here")
             }
         });
     });
@@ -358,73 +364,66 @@ async function getColor()
 async function getUsers() {
     uid = userData['uid']
     // now reading the user data and get the nickname
-    await db.collection("users").get().then((querySnapshot) => 
-    {
+    await db.collection("users").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {// making sure we are returning only the user info
-            if(doc.id != uid)
-            {
-                
+            if (doc.id != uid) {
+
                 //push each nickname into dict
-                dict['nickname']=doc.data().nickname
-                dict['color']=doc.data().color
+                dict['nickname'] = doc.data().nickname
+                dict['color'] = doc.data().color
                 Array1.push(doc.data().nickname)//nickname
                 Array2.push(doc.data().color)//color
 
-                allusers.push({name: doc.data().nickname, color: doc.data().color})
+                allusers.push({ name: doc.data().nickname, color: doc.data().color })
 
-                
+
             }
         });
-        
+
         //print out the value at the fighter
         //console.log(Array1[fighter])
         //console.log('Randomly pick a fighter to fight')
         const fighter = Math.floor(Math.random() * Array1.length);//picks random array index of the first value
-                                                                  //which is the nickname  index
+        //which is the nickname  index
         //console.log("figher is " + Array1[fighter])// name of the fighter
-        enemey=Array1[fighter]//name of the enemy
+        enemey = Array1[fighter]//name of the enemy
         //const ourfightername= Array1[fighter]
-        var colorvalue= fighter// since the arrays are the same size return the index number of the fighter
+        var colorvalue = fighter// since the arrays are the same size return the index number of the fighter
         //var colorvalue2= Array2[fighter]// since the arrays are the same size return the index number of the fighter
         //console.log("colorvalue is " + Array2[colorvalue])// that index will be the index value of the other array
         //console.log(" the enemy is " + Array1[fighter]+" and his color is "+Array2[colorvalue])
         //console.log('this is the end of the choosing fighting opponent')
-        if(Array2[colorvalue]=="blue")
-        {
+        if (Array2[colorvalue] == "blue") {
             //console.log('the color is blue')
-            enemycolor="blue"
+            enemycolor = "blue"
         }
-        else if(Array2[colorvalue]=="red")
-        {
+        else if (Array2[colorvalue] == "red") {
             //console.log('the color is red')
-            enemycolor="red"
+            enemycolor = "red"
         }
-        else if(Array2[colorvalue]=="white")
-        {
+        else if (Array2[colorvalue] == "white") {
             //console.log('the color is white')
-            enemycolor="white"
+            enemycolor = "white"
         }
-        else if(Array2[colorvalue]=="none"||Array2[colorvalue]=="null")
-        {
+        else if (Array2[colorvalue] == "none" || Array2[colorvalue] == "null") {
             //console.log('the color  is none')
             console.log("color defaulted to red")
-            enemycolor="red"
+            enemycolor = "red"
         }
         // else
         // {
         //     console.log('the enemy is undefined')
         // }
-        
+
         //return enemey//passing the color of the enemy
-        
+
     });
-    
+
     return enemey//passing the color of the enemy
     // return allusers.length? obj[ allusers[allusers.length * Math.random() | 0]] : void 0;    
 }
 //call the getuser function and return the color
-async function getEnemyColor() 
-{
+async function getEnemyColor() {
     await getUsers()
     return enemycolor
 }

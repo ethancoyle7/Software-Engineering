@@ -107,7 +107,10 @@ function userIsLoggedIn() {
     if (user != null) // if the user is not null
     {
       console.log("You already logged in. Redirecting...")
-      window.location.replace('/game.html');
+      window.location.replace('game.html');
+    }
+    else{
+      console.log("do nothing")
     }
   });
 }
