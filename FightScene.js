@@ -299,22 +299,22 @@ class FightScene extends Phaser.Scene {
                 //dependent upon the level, the atttacker will attack with diffrent intensity
                 if (this.level >= 10 && this.level < 20) {
                     //generate random number between 0 and 5
-                    var EnemyAttack = Math.floor(Math.random() * 5)
-                    enemyattack = EnemyAttack
+                    
+                    enemyattack = 6
 
 
                 }
                 if (this.level >= 20 && this.level < 30)//between 20 and 30
                 {
                     var EnemyAttack = Math.floor(Math.random() * 6)
-                    enemyattack = EnemyAttack
+                    enemyattack = 8
 
 
                 }
                 if (this.level >= 30) //between 30 and 40
                 {
                     var EnemyAttack = Math.floor(Math.random() * 8)
-                    enemyattack = EnemyAttack
+                    enemyattack = 10
 
                 }
                 //if statement to boost up the intensity of the fight
