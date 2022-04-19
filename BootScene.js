@@ -531,7 +531,7 @@ class BootScene extends Phaser.Scene
                 if(this.imageNum < BOOTPET.length){
                 //let index = Math.floor(Math.random() * BOOTPET.length);
                 let index = this.imageNum;
-                console.log(index);
+                //console.log(index);
                 this.setCat(BOOTPET[index]);
                 //this.setCat(BOOTPET[]);
                     this.imageNum++;

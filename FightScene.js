@@ -59,7 +59,7 @@ class FightScene extends Phaser.Scene {
         background2.setScale(.7);
 
         //add the pet to the screen and add idle animation
-        this.pet = this.add.sprite(70, 635, "pet")
+        this.pet = this.add.sprite(100, 635, "pet")
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
         this.pet.setInteractive();
 
@@ -129,7 +129,7 @@ class FightScene extends Phaser.Scene {
         //play the pet animation and play sound whenever pressed down
         this.pet.anims.play('run');// play the pet animotion
         //------------------ENEMY ANIMATIONS---------------------------------------------------
-        var enemyq = this.add.sprite(375, 105, "pet2");
+        var enemyq = this.add.sprite(340, 90, "pet2");
         enemyq.setScale(5);
         enemyq.anims.create({
             key: 'run',
@@ -177,14 +177,14 @@ class FightScene extends Phaser.Scene {
         //play the enemy animation and play sound whenever pressed down
         enemyq.anims.play('heavy');// play the enemy animation
         //mute button
-        let mutebutton = this.add.image(400, 50, 'mute'); // creating a mute button
-        mutebutton.setScale(0.2); // setting the scale
+        let mutebutton = this.add.image(50, 120, 'mute'); // creating a mute button
+        mutebutton.setScale(0.4); // setting the scale
         mutebutton.setInteractive();// make it clickable
         mutebutton.on('pointerdown', () => {
             console.log(this.sound3);
             if (this.sound3 == 0) {
                 this.sound3 += 1;
-                console.log(this.sound3);
+                //console.log(this.sound3);
                 this.sound.stopAll();
             }
             else {
@@ -238,9 +238,10 @@ class FightScene extends Phaser.Scene {
 
         //WE WANT A RECTANGLE TO HOLD THE ATTACK BUTTONS INSIDE SO MAKE IT BEFORE
         //ATTACK BUTTONS SO AS TO NOT COVER UP BARS
-        var AttackContainer = this.add.rectangle(340, 680, 175, 170, 0xa9a9a9);
+        //var AttackContainer = this.add.rectangle(340, 680, 175, 170, 0xa9a9a9);
+        var AttackContainer = this.add.rectangle(340, 620, 175, 250, 0xa9a9a9);
         AttackContainer.setStrokeStyle(4, 0x1e0a08);
-        this.add.text(290, 600, "ATTACKS", style);//label it 
+        this.add.text(290, 500, "ATTACKS", style);//label it 
 
         // create a button to return back to main scene and if the button press
         //perform some actions
@@ -291,34 +292,33 @@ class FightScene extends Phaser.Scene {
                 // ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝   ╚═╝       ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ //
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                var enemyattack = 5
+                var enemyattack = 0 // the basis attack value
+                var EnemyAttack = 0 //the enemy attack set to 0
 
                 //if statement to boost up the intensity of the fight
                 //dependent upon the level, the atttacker will attack with diffrent intensity
                 if (this.level >= 10 && this.level < 20) {
-                    enemyattack = 5
+                    //generate random number between 0 and 5
+                    var EnemyAttack = Math.floor(Math.random() * 5)
+                    enemyattack = EnemyAttack
 
 
                 }
                 if (this.level >= 20 && this.level < 30)//between 20 and 30
                 {
-                    enemyattack = 6
+                    var EnemyAttack = Math.floor(Math.random() * 6)
+                    enemyattack = EnemyAttack
 
 
                 }
-                if (this.level >= 30 && this.level < 40) //between 30 and 40
+                if (this.level >= 30) //between 30 and 40
                 {
-                    enemyattack = 7
-
-                }
-                if (this.level >= 40) //between 40 and 50
-                {
-                    enemyattack = 8
-
+                    var EnemyAttack = Math.floor(Math.random() * 8)
+                    enemyattack = EnemyAttack
 
                 }
                 //if statement to boost up the intensity of the fight
-                console.log("enemy attack with " + enemyattack)
+                //console.log("enemy attack with " + enemyattack)
 
                 this.timeLeft--;//decrement the time left
 
@@ -366,50 +366,37 @@ class FightScene extends Phaser.Scene {
 
 
 
-                var heavy = 5
-                var light = 3
-                var punch = 6
+                //basis values at the start of the fight
+                var heavy = 2
+                var light = 1
+                var punch = 3
                 //console.log(" the level is inside of the second timer is  :"+this.level);
                 //if statement to boost up the intensity of the fight
                 //dependent upon the level, the attack values will be scalled accross the levels
                 if (this.level >= 10 && this.level < 20) {
-                    heavy = 5
-                    light = 3
-                    punch = 6
+                    heavy = 2
+                    light = 1
+                    punch = 3
 
                 }
                 if (this.level >= 20 && this.level < 30)//between 20 and 30
                 {
 
-                    heavy = 6
-                    light = 4
-                    punch = 7
+                    heavy = 3
+                    light = 2
+                    punch = 4
 
                 }
-                if (this.level >= 30 && this.level < 40) //between 30 and 40
+                if (this.level >= 30 ) //greater than or equal to 30
                 {
 
-                    heavy = 7
-                    light = 5
-                    punch = 8
+                    //adjust attack settings
+                    heavy = 4
+                    light = 3
+                    punch = 5
 
                 }
-                if (this.level >= 40 && this.level < 50) //between 40 and 50
-                {
-
-                    heavy = 8
-                    light = 6
-                    punch = 9
-
-                }
-                if (this.level >= 50)//if level is 50 or more
-                {
-
-                    heavy = 9
-                    light = 7
-                    punch = 10
-
-                }
+                
                 //console.log(" the punch  is :"+punch);
                 //console.log(" the light  is :"+light);
                 //console.log(" the heavy  is :"+heavy);
@@ -428,15 +415,15 @@ class FightScene extends Phaser.Scene {
                 ///////////////////////////////////////////
                 var attackval = 0
                 //give them rectangle and make interactive and when clicked, they adjust the pet health
-                var Light = this.add.rectangle(340, 660, 150, 30, 0xb8860b);
+                var Light = this.add.rectangle(340, 550, 150, 30, 0xb8860b);
                 Light.setStrokeStyle(4, 0x1e0a08);
-                this.add.text(290, 650, "Light Attack", style);//label it
+                this.add.text(290, 540, "Light Attack", style);//label it
 
                 Light.setInteractive() // SET IT INTERACTIVE
 
 
                 Light.on('pointerdown', () => {
-                    console.log("our  light attack value for level " + this.level + " is " + light);
+                    //console.log("our  light attack value for level " + this.level + " is " + light);
                     //attackval=2;//set the attack value to 2
                     var attack0 = this.enemyheath.width -= light;//adjust the enemy health accordingly -5
                     if (attack0 <= 2)// check for the enemy health to be less than 0
@@ -454,10 +441,10 @@ class FightScene extends Phaser.Scene {
                     }
 
                     this.enemyheath.width -= light;
-                    console.log(this.enemyheath.width)
+                    //console.log(this.enemyheath.width)
 
                     //ENEMY HEALTH -=2
-                    console.log(this.enemyheath.width); //logging the width of the enemy bar
+                    //console.log(this.enemyheath.width); //logging the width of the enemy bar
                     enemyq.setTint(0xff0000);// create a tint to know got attacked
                     if (this.sound3 == 0) {
                         this.sound.play('press'); // play sound when hit
@@ -486,9 +473,9 @@ class FightScene extends Phaser.Scene {
                 // ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝  ╚═══╝     ╚═╝   //
                 ///////////////////////////////////////////////
 
-                var Heavy = this.add.rectangle(340, 700, 150, 30, 0xb8860b);
+                var Heavy = this.add.rectangle(340, 590, 150, 30, 0xb8860b);
                 Heavy.setStrokeStyle(4, 0x1e0a08); // BORDER AROUND THE RECTANGLE
-                this.add.text(280, 690, "Heavy Attack", style);//label it 
+                this.add.text(280, 580, "Heavy Attack", style);//label it 
                 //console.log(" the level is :"+this.level);
                 //console.log(" And our punrch val is"+heavy);
                 Heavy.setInteractive() // set it interactive
@@ -496,7 +483,7 @@ class FightScene extends Phaser.Scene {
 
                 Heavy.on('pointerdown', () => {
                     //attackval=5 //set the attack value to 5
-                    console.log("our  heavy attack value for level " + this.level + " is " + heavy);
+                    //console.log("our  heavy attack value for level " + this.level + " is " + heavy);
                     var attack = this.enemyheath.width -= heavy;//adjust the enemy health accordingly -5
                     if (attack <= 2)// check for the enemy health to be less than 0
                     {
@@ -513,10 +500,10 @@ class FightScene extends Phaser.Scene {
                     }
 
                     this.enemyheath.width -= heavy;
-                    console.log(this.enemyheath.width)
+                    //console.log(this.enemyheath.width)
 
                     //this.enemyheath.width-=heavy;//adjust the enemy health accordingly -5
-                    console.log(this.enemyheath.width);//logging the width of enemy bar
+                    //console.log(this.enemyheath.width);//logging the width of enemy bar
                     enemyq.setTint(0xff0000);// create a tint to know got attacked
                     if (this.sound3 == 0) {
                         this.sound.play('press'); // play sound when hit
@@ -543,9 +530,9 @@ class FightScene extends Phaser.Scene {
                 /////////////////////////////////////////////////
 
                 //create rectangle for punching and nice container to hold it
-                var Punch = this.add.rectangle(340, 740, 150, 30, 0xb8860b);
+                var Punch = this.add.rectangle(340, 630, 150, 30, 0xb8860b);
                 Punch.setStrokeStyle(4, 0x1e0a08);
-                this.add.text(280, 730, "Double Punch", style);//label it 
+                this.add.text(280, 620, "Double Punch", style);//label it 
 
                 Punch.setInteractive() // make it interactive
 
@@ -553,7 +540,7 @@ class FightScene extends Phaser.Scene {
                     //console.log(" the level is :"+this.level);
                     //console.log(" And our punrch val is"+punch);
                     //attackval=10 //set the attack value to 10
-                    console.log("our punch value for level " + this.level + " is " + punch);
+                    //console.log("our punch value for level " + this.level + " is " + punch);
                     var attack2 = this.enemyheath.width -= punch;//adjust the enemy health accordingly -5
                     if (attack2 <= 2)// check for the enemy health to be less than 0
                     {
@@ -569,10 +556,10 @@ class FightScene extends Phaser.Scene {
                     }
 
                     this.enemyheath.width -= punch;
-                    console.log(this.enemyheath.width)
+                    //console.log(this.enemyheath.width)
 
                     //this.enemyheath.width-=punch;// enemy health -10
-                    console.log(this.enemyheath.width);//logging the width of the enemy bar
+                    //console.log(this.enemyheath.width);//logging the width of the enemy bar
                     enemyq.setTint(0xff0000);// create a tint to know got attacked
                     if (this.sound3 == 0) {
                         this.sound.play('press'); // play sound when hit
@@ -589,6 +576,177 @@ class FightScene extends Phaser.Scene {
                     this.pet.anims.play('run');// got back to the idle animation
                 });
 
+
+            // pet will learn a new attack if their level is  greater than 20
+            if(this.level<20)
+            {
+                //set containter for the attack level up display info
+                var AttackText = this.add.text(290,660, '', { font: '20px Courier', fill: '#00ff00' });
+                //Add text to let the user know they must level their player up if they want to learn a new attack
+                AttackText.setText([' Level Up\n To Learn\nNew Attack']);
+                //make it flashing in and out
+                
+            }
+            this.tweens.add({
+
+                targets: AttackText,//who it targeting
+                alpha: 1,//what the alpha value is
+                yoyo: true, //make it go back and forth
+                repeat: -1, //repeat it forever
+                ease: 'Sine.easeInOut' 
+    
+            });
+            ////////////////////////////////////////////////////////////////////////////////////////
+            // ███╗   ██╗███████╗██╗    ██╗     █████╗ ████████╗████████╗ █████╗  ██████╗██╗  ██╗ //
+            // ████╗  ██║██╔════╝██║    ██║    ██╔══██╗╚══██╔══╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝ //
+            // ██╔██╗ ██║█████╗  ██║ █╗ ██║    ███████║   ██║      ██║   ███████║██║     █████╔╝  //
+            // ██║╚██╗██║██╔══╝  ██║███╗██║    ██╔══██║   ██║      ██║   ██╔══██║██║     ██╔═██╗  //
+            // ██║ ╚████║███████╗╚███╔███╔╝    ██║  ██║   ██║      ██║   ██║  ██║╚██████╗██║  ██╗ //
+            // ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝     ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ //
+            ////////////////////////////////////////////////////////////////////////////////////////
+                                                                                              
+            //once past the level 20, the attacktext will no longer display
+            if(this.level>=20) // if between level 20 and
+            {
+            //add an atack box for the pet to learn a new
+                    var SpecialAttack = this.add.rectangle(340,670, 150, 30, 0xb8860b);
+                    SpecialAttack.setStrokeStyle(4, 0x1e0a08);
+                    this.add.text(290, 660, "Special ", style);//label it
+                    
+                    SpecialAttack.setInteractive() // SET IT INTERACTIVE
+                    
+                    
+                        SpecialAttack.on('pointerdown', () =>
+                                {
+                                    
+                                    //generate a random value between 1 and 10
+                                    var randomval = Phaser.Math.Between(1, 10); // special attack has variable damage
+
+                                    var specialattack=this.enemyheath.width-=randomval;//adjust the enemy health accordingly -5
+                                    if(specialattack<=2)// check for the enemy health to be less than 0
+                                    {
+                                        this.endFight();
+                                        userChooseEgg = true;
+                                        this.scene.start("WinScene",
+                                        {
+                                            type: this.type,
+                                            level: this.level,
+                                            playername: this.playername//pass the playername to the next scene
+                                        })
+                                        console.log('the boolean is: ', userChooseEgg)
+                                    
+                                    }
+                                    
+                                        this.enemyheath.width-=randomval;
+                                        //console.log(this.enemyheath.width)
+                                        
+                                        //ENEMY HEALTH -=2
+                                        //console.log(this.enemyheath.width); //logging the width of the enemy bar
+                                        enemyq.setTint(0xff0000);// create a tint to know got attacked
+                                        if(this.sound3==0)
+                                        {
+                                            this.sound.play('press'); // play sound when hit
+                                            this.sound.play('EnemyHit', { volume: 0.1}); // play sound when hit
+                                        }
+                                        this.pet.anims.stop('run');// stop the idle animation to create new animation effect
+                                        this.pet.anims.play('light');// play the punching animation
+                                    // }
+                                });
+                        
+                    SpecialAttack.on('pointerup', () =>
+                            {
+                                enemyq.clearTint();// on the pointer up clear the tint
+                                button.setScale( 1 ); //BUTTON ANIMATION
+                                this.pet.anims.stop('light');// stop the previous animation
+                                this.pet.anims.play('run');// got back to the idle animation
+                            });
+            }// end of the if statement for new attack learned
+
+
+            //add display to let the user know they must level up to learn a new attack
+            if(this.level>=20 && this.level<30)
+            {
+                //set containter for the attack level up display info
+                var AttackText2 = this.add.text(270,700, '', { font: '20px Courier', fill: '#00ff00' });
+                //Add text to let the user know they must level their player up if they want to learn a new attack
+                AttackText2.setText([' Level Up To\nLearn Attack']);
+                //make it flashing in and out
+                
+            }
+            this.tweens.add({
+
+                targets: AttackText2,//who it targeting
+                alpha: 1,//what the alpha value is
+                yoyo: true, //make it go back and forth
+                repeat: -1, //repeat it forever
+                ease: 'Sine.easeInOut' 
+    
+            });
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+            // ███╗   ██╗███████╗██╗    ██╗     █████╗ ████████╗████████╗ █████╗  ██████╗██╗  ██╗    ██████╗  //
+            // ████╗  ██║██╔════╝██║    ██║    ██╔══██╗╚══██╔══╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝    ╚════██╗ //
+            // ██╔██╗ ██║█████╗  ██║ █╗ ██║    ███████║   ██║      ██║   ███████║██║     █████╔╝      █████╔╝ //
+            // ██║╚██╗██║██╔══╝  ██║███╗██║    ██╔══██║   ██║      ██║   ██╔══██║██║     ██╔═██╗     ██╔═══╝  //
+            // ██║ ╚████║███████╗╚███╔███╔╝    ██║  ██║   ██║      ██║   ██║  ██║╚██████╗██║  ██╗    ███████╗ //
+            // ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝     ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝    ╚══════╝ //
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                                                                          
+            if(this.level>=30) // player learns new attack after level 30
+            {
+                
+                //add the box for the attack
+                    var SpecialAttack2 = this.add.rectangle(340,710, 150, 30, 0xb8860b);
+                    SpecialAttack2.setStrokeStyle(4, 0x1e0a08);
+                    this.add.text(290, 700, "Punish Him", style);//label it
+                    
+                    SpecialAttack2.setInteractive() // SET IT INTERACTIVE
+                    
+                    //create pointer down and pointer up methods for this attack
+                        SpecialAttack2.on('pointerdown', () =>
+                                {
+                                    
+                                    //generate a random value between 1 and 15
+                                    var randomval2 = Phaser.Math.Between(1, 15); // special attack has variable damage
+
+                                    var specialattack2=this.enemyheath.width-=randomval2;//adjust the enemy health accordingly -5
+                                    if(specialattack2<=2)// check for the enemy health to be less than 0
+                                    {
+                                        this.endFight();
+                                        userChooseEgg = true;
+                                        this.scene.start("WinScene",
+                                        {
+                                            type: this.type,
+                                            level: this.level,
+                                            playername: this.playername//pass the playername to the next scene
+                                        })
+                                        console.log('the boolean is: ', userChooseEgg)
+                                    
+                                    }
+                                    
+                                        this.enemyheath.width-=randomval2;
+                                        //console.log(this.enemyheath.width)
+                                        
+                                        //ENEMY HEALTH -=2
+                                        //console.log(this.enemyheath.width); //logging the width of the enemy bar
+                                        enemyq.setTint(0xff0000);// create a tint to know got attacked
+                                        if(this.sound3==0)
+                                        {
+                                            this.sound.play('press'); // play sound when hit
+                                            this.sound.play('EnemyHit', { volume: 0.1}); // play sound when hit
+                                        }
+                                        this.pet.anims.stop('run');// stop the idle animation to create new animation effect
+                                        this.pet.anims.play('light');// play the punching animation
+                                    // }
+                                });
+                        
+                    SpecialAttack2.on('pointerup', () =>
+                            {
+                                enemyq.clearTint();// on the pointer up clear the tint
+                                button.setScale( 1 ); //BUTTON ANIMATION
+                                this.pet.anims.stop('light');// stop the previous animation
+                                this.pet.anims.play('run');// got back to the idle animation
+                            });
+            }// end of the if statement for new attack learned
             },
 
             callbackScope: this,
@@ -632,4 +790,3 @@ class FightScene extends Phaser.Scene {
         this.pethealth = null;
     }
 }
-
