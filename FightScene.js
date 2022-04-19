@@ -623,7 +623,7 @@ class FightScene extends Phaser.Scene {
                                     var randomval = Phaser.Math.Between(1, 10); // special attack has variable damage
 
                                     var specialattack=this.enemyheath.width-=randomval;//adjust the enemy health accordingly -5
-                                    if(specialattack<=2)// check for the enemy health to be less than 0
+                                    if(specialattack<=5)// check for the enemy health to be less than 0
                                     {
                                         this.endFight();
                                         userChooseEgg = true;
@@ -709,7 +709,7 @@ class FightScene extends Phaser.Scene {
                                     var randomval2 = Phaser.Math.Between(1, 15); // special attack has variable damage
 
                                     var specialattack2=this.enemyheath.width-=randomval2;//adjust the enemy health accordingly -5
-                                    if(specialattack2<=2)// check for the enemy health to be less than 0
+                                    if(specialattack2<=5)// check for the enemy health to be less than 0
                                     {
                                         this.endFight();
                                         userChooseEgg = true;
