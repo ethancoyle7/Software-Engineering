@@ -150,13 +150,23 @@ class MainScene extends Phaser.Scene {
 
         //adding the sprite and then setting the scale on the screen
         this.pet = this.add.sprite(200, 500, "pet");
-        //setting the size of pet according to its level
-
-        if((this.level+value<10)){
-            this.pet.setScale(6);
+        //setting the initial size of pet according to its level
+        //this is the size shown upon loading the page
+        if(this.level<10){
+            this.pet.setScale(5);
             console.log("At least I work");
             console.log(this.level);
             console.log(value);
+        }
+        else if(this.level>=10 && this.level <20){
+            this.pet.setScale(7)
+            console.log(value)
+        }
+        else if(this.level>20 && this.level <30){
+            this.pet.setScale(8);
+        }
+        else if(this.level >=30){
+            this.pet.setScale(9);
         }
         
 
@@ -894,14 +904,16 @@ class MainScene extends Phaser.Scene {
 
                     EXP.setText(['EXPERIENCE : ' + experience]);
                 }
-                if((this.level + value)>=10 && (this.level + value)<20){
+                //this changes the size of the pet every 10 levels
+                //It stops growing in size at level 30
+                if(value>=10 && value <20){
                     this.pet.setScale(7)
-                    console.log((this.level + value))
+                    console.log(value)
                 }
-                else if((this.level+value)>20 && (this.level + value) <30){
+                else if(value>20 && value <30){
                     this.pet.setScale(8);
                 }
-                else if((this.level + value) >30){
+                else if(value >=30){
                     this.pet.setScale(9);
                 }
 
