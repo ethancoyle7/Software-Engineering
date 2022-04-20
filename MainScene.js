@@ -149,8 +149,16 @@ class MainScene extends Phaser.Scene {
 
 
         //adding the sprite and then setting the scale on the screen
-        this.pet = this.add.sprite(200, 500, "pet")
-        this.pet.setScale(6);
+        this.pet = this.add.sprite(200, 500, "pet");
+        //setting the size of pet according to its level
+
+        if((this.level+value<10)){
+            this.pet.setScale(6);
+            console.log("At least I work");
+            console.log(this.level);
+            console.log(value);
+        }
+        
 
         // depending on the pet the value passed in will be assigned to certain pet and
         //the number passed in will reference the choice below i.e if the user
@@ -847,6 +855,7 @@ class MainScene extends Phaser.Scene {
                 if (value >= 10)//if the value hits a certain level, then the battle icon pops up
                 {
                     this.level = value;
+                    
                     //for the fight button hover over to press for fight
                     // this button leads to click sequence when pressed
                     const button = this.add.image(70, 275, 'button')
@@ -885,7 +894,16 @@ class MainScene extends Phaser.Scene {
 
                     EXP.setText(['EXPERIENCE : ' + experience]);
                 }
-
+                if((this.level + value)>=10 && (this.level + value)<20){
+                    this.pet.setScale(7)
+                    console.log((this.level + value))
+                }
+                else if((this.level+value)>20 && (this.level + value) <30){
+                    this.pet.setScale(8);
+                }
+                else if((this.level + value) >30){
+                    this.pet.setScale(9);
+                }
 
                 // create bounds for the containers
                 // to avoid it going to the left
@@ -978,10 +996,10 @@ class MainScene extends Phaser.Scene {
             loop: true
         });
 
-
     }
 
     // Runs every frame update any items inside of the scene
     update() {
+
     }
 }

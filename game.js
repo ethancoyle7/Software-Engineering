@@ -15,6 +15,7 @@ const config = {
     scene: [
         // NewScene,
         // GateScene,
+        BackgroundScene,
         BootScene,
         TitleScene,
         UserManualScene, //list of scenes in order they're going to appear in

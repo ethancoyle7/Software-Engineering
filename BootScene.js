@@ -34,17 +34,17 @@ class BootScene extends Phaser.Scene
                                                                      
         //This is where images are loaded
         //this.load.image('use a short name', './assets/name_of_image');
-        this.load.image("teamlogo1", "./assets/image (1).png");
+        //this.load.image("teamlogo1", "./assets/image (1).png");
         
         //var loo = this.add.image(225, 600, 'logor')
         this.load.image("Moogles", "./assets/MisterMoogles.png");
-        this.load.image(BOOTPET[0].name,`./assets/${BOOTPET[0].image}`)
+        // this.load.image(BOOTPET[0].name,`./assets/${BOOTPET[0].image}`)
         
-        //loops through all image options of bootpet.js
-        for (let i = 0; i < BOOTPET.length; i++) {
-            this.load.image(BOOTPET[i].name, `./assets/${BOOTPET[i].image}`);
-            //this.load.image('bg', './assets/loading.png');
-        }
+        // //loops through all image options of bootpet.js
+        // for (let i = 0; i < BOOTPET.length; i++) {
+        //     this.load.image(BOOTPET[i].name, `./assets/${BOOTPET[i].image}`);
+        //     //this.load.image('bg', './assets/loading.png');
+        // }
 
         //This is the loading bar area - i reused some code
         this.loadingBar = this.add.rectangle(225, 300, 450, 40, 0x22dd4b);
@@ -482,6 +482,7 @@ class BootScene extends Phaser.Scene
         this.load.on('progress', (percent) => {
             this.loadingBar.setScale(percent, 1);
             this.percentage = Math.floor(percent * 100);
+            this.loadingTxt.setText(`${this.percentage}%\n${this.fileLoading}`);
             this.updateText();
             this.createLogo();
             
@@ -495,6 +496,7 @@ class BootScene extends Phaser.Scene
         this.load.on('fileprogress', (data) => {
             //this.updateText();
             // this.fileLoading = data.src;
+            
             this.fileLoading = data.key;
             
         });
@@ -518,7 +520,7 @@ class BootScene extends Phaser.Scene
     updateText()
     {
         //this.add.image(200,30,'bishop');        
-        this.setCat(BOOTPET[0]);
+        //this.setCat(BOOTPET[0]);
         this.tweens.add({
             targets: [this.petImage],
             duration: 50,
@@ -546,7 +548,7 @@ class BootScene extends Phaser.Scene
         });  
 
     
-       this.loadingTxt.setText(`${this.percentage}%\n${this.fileLoading}`);
+       
         
     }
     setCat(petConfig)
