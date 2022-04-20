@@ -1,7 +1,9 @@
-class MainScene extends Phaser.Scene {
+class MainScene extends Phaser.Scene 
+{
 
     // This is where we define data members
-    constructor() {
+    constructor() 
+    {
         super("MainScene");
         this.pet = null;
         this.sound2 = 0;
@@ -11,8 +13,6 @@ class MainScene extends Phaser.Scene {
         this.encolor = ""
         this.enemyname = ""
         this.playername = ""
-
-
     }
     init(data) {
         this.type = data.type;

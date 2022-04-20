@@ -71,7 +71,8 @@ class GameOver extends Phaser.Scene
         });
         this.pet.anims.play("dead")
         //add exit button
-        var exit=this.add.image(230,500,'Exit')
+        //this.image.load("Title", "./assets/images/backtoTitle.png");
+        var exit=this.add.image(230,500,'Title')
         exit.setInteractive();
         //when pressed down go to boot scene
         //exit.on('pointerover',() =>;
@@ -114,7 +115,7 @@ class GameOver extends Phaser.Scene
         });
         
         //add exit button
-        var Retry=this.add.image(230,600,'RetryFight')
+        var Retry=this.add.image(230,600,'FightBack')
         Retry.setInteractive();
         Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type, level:this.level,enemy: this.enemy,enemyname:this.enemyname,playername:this.playername }));
         //Retry.on('pointerdown',() =>this.scene.start("FightScene"));

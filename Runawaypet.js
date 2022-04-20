@@ -64,7 +64,7 @@ class Runawaypet extends Phaser.Scene
         });
         this.pet.anims.play("run")
         //add exit button
-        var exit=this.add.image(230,500,'Exit')
+        var exit=this.add.image(230,500,'Title')
         exit.setInteractive();
         //when pressed down go to title  scene
         //cannot go to main because the pet ran away
