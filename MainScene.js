@@ -149,7 +149,7 @@ class MainScene extends Phaser.Scene
 
 
         //adding the sprite and then setting the scale on the screen
-        this.pet = this.add.sprite(200, 500, "pet");
+        this.pet = this.add.sprite(200, 450, "pet");
         //setting the initial size of pet according to its level
         //this is the size shown upon loading the page
         if(this.level<10){
