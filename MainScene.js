@@ -1031,71 +1031,51 @@ class MainScene extends Phaser.Scene
             loop: true
         });
 
-        this.timeLeft2 = 10800000;// 3 hours
-        this.gameTimer2 = this.time.addEvent({
-            delay: 0,
-            callback: function () 
-            {
-        //         var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
-        // //set the text indicator for the level icon text value
+        // this.timeLeft2 = 10800000;// 3 hours
+        // this.gameTimer2 = this.time.addEvent({
+        //     delay: 0,
+        //     callback: function () 
+        //     {
+        // //         var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
+        // // //set the text indicator for the level icon text value
     
-        // //set the text to display the level
-        //         Timer.setText([""]);
-                //this.timeLeft2--;//decrement the time left
-                //this.timeLeft2--;
-                console.log(this.timeLeft2)
-                // let sec = Math.floor(this.timeLeft2 / 1000);
-                // let hrs = Math.floor(sec / 3600);
-                // sec -= hrs * 3600;
-                // let min = Math.floor(sec / 60);
-                // sec -= min * 60;
+        // // //set the text to display the level
+        // //         Timer.setText([""]);
+        //         //this.timeLeft2--;//decrement the time left
+        //         //this.timeLeft2--;
+        //         console.log(this.timeLeft2%180000)
+        //         let sec = Math.floor(this.timeLeft2 / 1000);
+        //         let hrs = Math.floor(sec / 3600);
+        //         sec -= hrs * 3600;
+        //         let min = Math.floor(sec / 60);
+        //         sec -= min * 60;
               
-                // sec = '' + sec;
-                // sec = ('00' + sec).substring(sec.length);
+        //         sec = '' + sec;
+        //         sec = ('00' + sec).substring(sec.length);
               
-                // if (hrs > 0) 
-                // {
-                //     min = '' + min;
-                //     min = ('00' + min).substring(min.length);
-                //     Timer.setText([
+               
+        //         // Timer.setText([
     
     
                     
-                //         'Time Left: ' + hrs + ":" + min + ":" + sec
-                //         //'Time Left: ' + ((this.timeLeft2/60000)).toFixed(2)+ ' ms'
-                //     ]);
-                // }
-                // else 
-                // {
-                //     Timer.setText([
-
-
-                
-                //         'Time Left: ' + min + ":" + sec
-                //         //'Time Left: ' + ((this.timeLeft2/60000)).toFixed(2)+ ' ms'
-                //     ]);
-                // }
-                Timer.setText([
-    
-    
-                    
-                    'Time Left: ' + (this.timeLeft2/1000/60) +' minutes'
-                    //'Time Left: ' + ((this.timeLeft2/60000)).toFixed(2)+ ' ms'
-                ]);
+        //         //     'Time Left: ' + (this.timeLeft2/1000/60).toFixed(2) +' minutes'
+        //         //     //'Time Left: ' + ((this.timeLeft2/60000)).toFixed(2)+ ' ms'
+        //         // ]);
                 
                 
-                this.timeLeft2--;
+        //         this.timeLeft2--;
                     
                   
-            },
-            callbackScope: this,
-            loop: true
-        });
+        //     },
+        //     callbackScope: this,
+        //     loop: true
+        // });
     }
     
 
     // Runs every frame update any items inside of the scene
     update() {
+        
 
     }
 }
