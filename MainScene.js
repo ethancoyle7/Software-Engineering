@@ -2,7 +2,8 @@
 class MainScene extends Phaser.Scene {
 
     // This is where we define data members
-    constructor() {
+    constructor() 
+    {
         super("MainScene");
         this.pet = null;
         this.sound2 = 0;
@@ -12,8 +13,6 @@ class MainScene extends Phaser.Scene {
         this.encolor = ""
         this.enemyname = ""
         this.playername = ""
-
-
     }
     //this initializes the data
     init(data) {
@@ -141,7 +140,7 @@ class MainScene extends Phaser.Scene {
 
 
         //adding the sprite and then setting the scale on the screen
-        this.pet = this.add.sprite(200, 500, "pet");
+        this.pet = this.add.sprite(200, 450, "pet");
         //setting the initial size of pet according to its level
         //this is the size shown upon loading the page
         if(this.level<10){
@@ -448,7 +447,20 @@ class MainScene extends Phaser.Scene {
             ease: 'Sine.easeInOut'
 
         });
+        //console.log(" feeding x is " + feeding.x);
+        //console.log(" feeding y is " + feeding.y);
+        var box = this.add.rectangle(130, 595, 240, 30, 0x000000);
+        box.setStrokeStyle(4, 0x00ff00);
+        box.setAlpha(0.5)
+        var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
+        //create transparent box to cover up the overlapping
+        
+        //set the text indicator for the level icon text value
 
+        //set the text to display the level
+        //convert milliseco
+        Timer.setText([""]);
+        
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
@@ -460,12 +472,23 @@ class MainScene extends Phaser.Scene {
         /////////////////////////////////////////////////////////////////////////////////////////////                                                                       
         //create a timer for the game loop which will cause the pets' health value to slowly decline and 
         // the attributes of the pet will increase and decrease depending on the actions
-        this.timeLeft = 1800000;// 3 hours
+        this.timeLeft = 10800000;// 3 hours
         this.gameTimer = this.time.addEvent({
             delay: 500,
             callback: function () {
-                this.timeLeft--;//decrement the time left
+        //         var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
+        // //set the text indicator for the level icon text value
 
+        // //set the text to display the level
+        //         Timer.setText([""]);
+                this.timeLeft--;//decrement the time left
+                //iftimeleft--
+
+                
+                
+                //add text on the screen to view the timeleft
+                //var timeLeftText = this.add.text(10, 580, 'Time Left: ' + this.timeLeft, { font: '24px Arial', fill: '#00ff00' });
+                //console.log("time left is " + this.timeLeft);
                 //experience.width-=350
                 //resetting the values of the notifications
                 PetClothed.setText([''])
@@ -985,10 +1008,51 @@ class MainScene extends Phaser.Scene {
             loop: true
         });
 
+        // this.timeLeft2 = 10800000;// 3 hours
+        // this.gameTimer2 = this.time.addEvent({
+        //     delay: 0,
+        //     callback: function () 
+        //     {
+        // //         var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
+        // // //set the text indicator for the level icon text value
+    
+        // // //set the text to display the level
+        // //         Timer.setText([""]);
+        //         //this.timeLeft2--;//decrement the time left
+        //         //this.timeLeft2--;
+        //         console.log(this.timeLeft2%180000)
+        //         let sec = Math.floor(this.timeLeft2 / 1000);
+        //         let hrs = Math.floor(sec / 3600);
+        //         sec -= hrs * 3600;
+        //         let min = Math.floor(sec / 60);
+        //         sec -= min * 60;
+              
+        //         sec = '' + sec;
+        //         sec = ('00' + sec).substring(sec.length);
+              
+               
+        //         // Timer.setText([
+    
+    
+                    
+        //         //     'Time Left: ' + (this.timeLeft2/1000/60).toFixed(2) +' minutes'
+        //         //     //'Time Left: ' + ((this.timeLeft2/60000)).toFixed(2)+ ' ms'
+        //         // ]);
+                
+                
+        //         this.timeLeft2--;
+                    
+                  
+        //     },
+        //     callbackScope: this,
+        //     loop: true
+        // });
     }
+    
 
     // Runs every frame update any items inside of the scene
     update() {
+        
 
     }
 }

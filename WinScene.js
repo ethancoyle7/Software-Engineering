@@ -128,7 +128,7 @@ class WinScene extends Phaser.Scene {
         this.gameTimer = this.time.addEvent({
             delay: 750,
             callback: function () {
-                var exit = this.add.image(230, 500, 'Exit')
+                var exit = this.add.image(230, 500, 'Title')
                 exit.setInteractive();
                 //when pressed down go to boot scene
                 //exit.on('pointerover',() =>;
@@ -144,7 +144,7 @@ class WinScene extends Phaser.Scene {
 
                 });
                 //add exit button
-                var BackToMain = this.add.image(230, 600, 'MainSceneReturn')
+                var BackToMain = this.add.image(230, 600, 'MainBack')
                 BackToMain.setInteractive();
                 //once clicked start the main scene
                 //if win the the fight then going back to the main have bonus of adding 2 to the level
@@ -160,7 +160,7 @@ class WinScene extends Phaser.Scene {
 
                 });
                 //add exit button
-                var Retry = this.add.image(230, 700, 'RetryFight')
+                var Retry = this.add.image(230, 700, 'FightBack')
                 Retry.setInteractive();
                 Retry.on('pointerdown', () => this.scene.start("FightScene", { type: this.type,level:this.level,enemy: this.enemy,enemyname:this.enemyname,playername:this.playername }));
                 Retry.on('pointerover', () => this.sound.play('Rematch'));

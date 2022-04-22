@@ -430,6 +430,9 @@ class BootScene extends Phaser.Scene
         this.load.image('RetryFight', './assets/fightretry.png'); 
         this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
         this.load.image('wipey', './assets/bathe/wet_wipe.png')
+        this.load.image("Title", "./assets/backtoTitle.png");//go back to the titlescene to choose naother pet
+        this.load.image("MainBack", "./assets/MainBack.png"); //go back to the main
+        this.load.image("FightBack", "./assets/FightBack.png");//go back to fight
 
         //////////////////////////////////////////////////////////////////////////////////
         // █████╗ ██╗   ██╗██████╗ ██╗ ██████╗     ███████╗██╗██╗     ███████╗███████╗  //

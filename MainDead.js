@@ -72,7 +72,7 @@ class MainDead extends Phaser.Scene
         // });
         this.pet.anims.play("dead")
         //add exit button
-        var exit=this.add.image(230,500,'Exit')
+        var exit=this.add.image(230,500,'Title')
         exit.setInteractive();
         //when pressed down go to boot scene
         //exit.on('pointerover',() =>;
@@ -88,7 +88,7 @@ class MainDead extends Phaser.Scene
 
         });
         //add exit button
-        var BackToMain=this.add.image(230,600,'MainSceneReturn')
+        var BackToMain=this.add.image(230,600,'MainBack')
         BackToMain.setInteractive();
         //once clicked start the main scene
         BackToMain.on('pointerdown',() =>this.scene.start("MainScene"));
