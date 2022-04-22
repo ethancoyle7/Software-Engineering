@@ -1,3 +1,4 @@
+//This scene is the pet area where interaction with the pet takes place
 class MainScene extends Phaser.Scene {
 
     // This is where we define data members
@@ -14,6 +15,7 @@ class MainScene extends Phaser.Scene {
 
 
     }
+    //this initializes the data
     init(data) {
         this.type = data.type;
         if (this.type == "") {
@@ -40,26 +42,16 @@ class MainScene extends Phaser.Scene {
 
         //call the getnickname function
         getNickname().then(data => {
-            //console.log(data);
             this.playername = data;//assign the api return data of the player nickname to the nickname to be used throughout
-            //console.log("your nickname is ",this.playername);//login the data to see if working and it is
         });
 
         //to display all the users log all the accounts
         console.log(allusers)
-        // var EnemyName=""
-        // var EnemyCol=""
         getUsers().then(users => {
-            //console.log(users);
-
             console.log("the enemy we will fight is name is : " + enemey);//name of the enemy
             //assign the enemy name to the value of the enemy
             this.enemyname = enemey;
-            //console.log("the nombre of our enemy is : "+this.enemyname);//name of the enemy
-            //EnemyName=enemey;
-            //this.enemy=enemey;// assign to value
             getEnemyColor().then(enemyColor => {
-                //EnemyName=enemey;
                 console.log(enemyColor);
                 console.log("the usernames color of that one  is : " + enemyColor);// color of the enemy
                 //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
@@ -381,7 +373,6 @@ class MainScene extends Phaser.Scene {
         //for the playing load up random image
         const toys = ["bishop", "castle", "horse", "king", "pawn", "queen", "console1", "console2", "console3", "duckie", "octopus", "toy2"];
         const random3 = Math.floor(Math.random() * toys.length);//randomly chosen string name
-        //var box3 = this.add.rectangle(280, 735, 100, 100, 0xe7a23c);//create box
         var playing = this.add.image(280, 735, toys[random3])//add key to the new image
         playing.setScale(2.5);//set the size
         playing.setInteractive({ draggable: true });//draggable yes
@@ -457,8 +448,7 @@ class MainScene extends Phaser.Scene {
             ease: 'Sine.easeInOut'
 
         });
-        //console.log(" feeding x is " + feeding.x);
-        //console.log(" feeding y is " + feeding.y);
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         // ████████╗██╗███╗   ███╗███████╗    ███████╗██╗   ██╗███████╗███╗   ██╗████████╗███████╗ //
@@ -546,14 +536,12 @@ class MainScene extends Phaser.Scene {
 
                 }
                 else {
-                    //console.log("default decrement is here  " + decrement);
                     decrement = 3
                 }
                 //for the health of the pet
 
                 var val1 = Math.floor(Math.random() * decrement) // using random number between 0 and 10
                 health.width -= val1; //decrement the health randomly w/ val
-                //console.log("val1 is " + val1);
 
                 var val2 = Math.floor(Math.random() * decrement) // using random number between 0 and 2
                 hunger.width -= val2; //decrement the health randomly w/ val
@@ -562,7 +550,7 @@ class MainScene extends Phaser.Scene {
                 //timing for the happiness to go down incrementally
                 var val3 = Math.floor(Math.random() * decrement) // using random number between 0 and 10
                 happiness.width -= val3; //decrement the health randomly w/ val
-                //console.log(happiness.width)//lets see what the width is 
+
 
                 /////////////////////////////////////////////////////////////////////
                 // ██████╗██╗      ██████╗ ████████╗██╗  ██╗██╗███╗   ██╗ ██████╗  //
@@ -798,14 +786,7 @@ class MainScene extends Phaser.Scene {
 
 
                 feeding.on('pointerup', () => {
-                    //var feeding = this.add.image(390, 735, food[random4])//input the key string name
-                    //if the clothing is moved above where originally is, destroy it and do some things
-
-                    //console.log(feeding.x)
-                    //console.log("feeding y : "+feeding.y)
-                    //or if the clothing is moved above
-
-
+  
                     this.pet.anims.stop('feed')// stop the feed animation
                     this.pet.anims.play('run')// play the run animation
                     //if (feeding.y< 690)
@@ -814,14 +795,10 @@ class MainScene extends Phaser.Scene {
 
 
                     {
-                        // console.log("feeding x is"+feeding.x)
-                        // console.log("feeding y : "+feeding.y)
+
                         feeding.destroy(); // destroy the clothing
                         console.log(' is it destroyed??')
-                        //feeding.destroy()
                         feeding = null
-
-                        //if the food is destroyed, load another image
 
 
                         PetClothed.setText([' PET FED']);   // set the text to be displayed

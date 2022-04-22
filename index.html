@@ -17,12 +17,12 @@
     #      the fight intensity is based upon the players level so the higher the level, the more intense the fight will be  #
     #      in the main scene of the fight, if the pet is not taken care of, then the pet will run away after 3 hours of not #
     #      being taken care of. If the pets health drains and the timer runs out, then the pet will die so make sure to take#
-    #      care of you pet. The player is able to interact with the pet on the main scene by clicking any of the icons      #
+    #      care of your pet. The player is able to interact with the pet on the main scene by clicking any of the icons      #
     #      locate on the bottom portion of the main scene by either clicking or dragging to the screen. The result of these #
-    #      actions will effect the status bars of the players health. On the title scene before choosing the egg to choose  #
+    #      actions will affect the status bars of the players health. On the title scene before choosing the egg to choose  #
     #      their pet, they can click the info button at the top left to view in game information to help them as well.      #
     #      the game is pretty straight forward even in the fight scene, the player will be faced with an opponent and in the#
-    #      bottom right, there will be an atack bar of all the available attacks, these buttons are interactive so when     #
+    #      bottom right, there will be an attack bar of all the available attacks, these buttons are interactive so when     #
     #      user clicks on any of the buttons, they will directly affect the enemy you are facing. In the game over scenes,  #
     #      the user is able to view a few options: retry fight, back to main or exit(which will lead to the title scene     #
     #      in which the player can choose another pet) doing this however reset all the stats of the player including the   #
@@ -32,6 +32,7 @@
 <html>
 
 <head>
+    <!--Firebase must required webpages-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -43,7 +44,9 @@
     <!-- <script>
         userIsLoggedIn();
     </script> -->
+    
     <title>
+        <!--Tite of Game-->
         Smart Pet Login
     </title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">

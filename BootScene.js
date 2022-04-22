@@ -495,22 +495,20 @@ class BootScene extends Phaser.Scene
         
         this.load.on('fileprogress', (data) => {
             //this.updateText();
-            // this.fileLoading = data.src;
+            this.fileLoading = data.src;
             
             this.fileLoading = data.key;
             
         });
-       
-        
 
-        //changing the scene
+        //changing the scene upon load completion
         this.load.on('complete', () => {
             this.scene.start('TitleScene');
         }); 
         
         
-    //this.setCat(BOOTPET[1]);
     }
+    //function to create team logo image object
     createLogo(){
         let logo=this.add.image(225,100,'teamlogo1');
         logo.setOrigin(0.5);
@@ -519,27 +517,24 @@ class BootScene extends Phaser.Scene
     
     updateText()
     {
-        //this.add.image(200,30,'bishop');        
-        //this.setCat(BOOTPET[0]);
+        //this tween targets this.petImage object
+        //the duration of the action on each image is 50 ms/Frames
+        //the purpose is to decreases the size to 0.1
         this.tweens.add({
             targets: [this.petImage],
             duration: 50,
             alpha: 0,
             scale:0.1,
             ease: 'Bounce',
-            //repeat: -1
+            //on completion of tween action a new image is generated
             onComplete:
             ()=>{
                 if(this.imageNum < BOOTPET.length){
-                //let index = Math.floor(Math.random() * BOOTPET.length);
                 let index = this.imageNum;
-                //console.log(index);
                 this.setCat(BOOTPET[index]);
-                //this.setCat(BOOTPET[]);
-                    this.imageNum++;
-                
+                this.imageNum++;
                 }
-                //return image to zero after reaching the last value
+                //return image to initial after reaching the last value
                 else if (this.imageNum == BOOTPET.length){
                     this.imageNum=Math.floor(this.imageNum - BOOTPET.length);
                 }
@@ -551,10 +546,11 @@ class BootScene extends Phaser.Scene
        
         
     }
+    //function to create pet image object
     setCat(petConfig)
     {
         
-        // Create a image of pet at position x:225,y:400
+        // Create an image of pet at position x:225,y:400
         this.petImage = this.add.image(225, 400, petConfig.name);
              // Set the size of the pet
              this.petImage.setScale(5);

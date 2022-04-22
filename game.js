@@ -13,12 +13,11 @@ const config = {
         min: 5
     },
     scene: [
-        // NewScene,
-        // GateScene,
+    //list of scenes in order they're going to appear in
         BackgroundScene,
         BootScene,
         TitleScene,
-        UserManualScene, //list of scenes in order they're going to appear in
+        UserManualScene, 
         MainScene,
         FightScene,
         GameOver,
@@ -28,12 +27,13 @@ const config = {
         RetirementScene,
         Credits
     ],
+    //this allows the inculusion of sprites and object actions
     physics: {
         default: 'arcade',
         arcade: {
-           debug: true
+           debug: false
         }
     },
     pixelArt: true, //makes pixel art look better
 }
-new Phaser.Game(config);
+new Phaser.Game(config);//the above method is passed through this configuration object
