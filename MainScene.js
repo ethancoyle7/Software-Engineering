@@ -862,7 +862,7 @@ class MainScene extends Phaser.Scene {
                     }))// lead to fight scene
                 }
                 
-                if(value<=30)//once the player reaches level fifty, the icon will display to allow the 
+                if(value>=30)//once the player reaches level fifty, the icon will display to allow the 
                              // user a chance to retire their pet from the game and then either start a new game or 
                              //close out of their account
                 {
@@ -1012,12 +1012,12 @@ class MainScene extends Phaser.Scene {
 
     // Runs every frame update any items inside of the scene
     update() {
-        if(this.level >= 50){
-            this.scene.start('RetirementScene', {
-                type: this.type,
-                level: this.level,
-            })
-        }
+        // if(this.level >= 50){
+        //     this.scene.start('RetirementScene', {
+        //         type: this.type,
+        //         level: this.level,
+        //     })
+        // }
 
     }
 }
