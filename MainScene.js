@@ -1012,7 +1012,12 @@ class MainScene extends Phaser.Scene {
 
     // Runs every frame update any items inside of the scene
     update() {
-        
+        if(this.level >= 50){
+            this.scene.start('RetirementScene', {
+                type: this.type,
+                level: this.level,
+            })
+        }
 
     }
 }
