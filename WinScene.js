@@ -13,7 +13,7 @@ class WinScene extends Phaser.Scene {
         this.type=data.type;
         if (this.type == "") 
         {
-            // No username was provided
+            // No username was provided default to choice 0
             this.type = "0";
         }
         this.level=data.level;
@@ -38,12 +38,12 @@ class WinScene extends Phaser.Scene {
             //console.log(users);
 
             console.log("the enemy we will fight is name is : "+enemey);//name of the enemy
-            //EnemyName=enemey;
+            
             this.enemyname=enemey; //pass in the enemy
-            //this.enemy=enemey;// assign to value
+            
             getEnemyColor().then(enemyColor => 
                 {
-                    //EnemyName=enemey;
+                    
                     console.log(enemyColor);
                     console.log("the usernames color of that one  is : "+enemyColor);// color of the enemy
                     //after reading in the enemy color and name we can now compare the color of enemy and assign it a value 
@@ -60,7 +60,7 @@ class WinScene extends Phaser.Scene {
             });
         });
         console.log(this.level)
-        //this.sound.stop('Fight');
+        
         this.sound.stopAll();
         this.sound.play('YOUWIN');
         this.sound.play('WINNER',{ volume: 0.1});
@@ -85,8 +85,8 @@ class WinScene extends Phaser.Scene {
             ease: 'Sine.easeInOut'
 
         });
-
-        this.pet = this.add.sprite(230, 350, "pet")
+        //pet animation of this scene
+        this.pet = this.add.sprite(230, 350, "pet")//pet object created
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
         let choose3=['winningpet','pet2winningpet','pet3winningpet'];
         this.pet.anims.create({
@@ -131,7 +131,6 @@ class WinScene extends Phaser.Scene {
                 var exit = this.add.image(230, 500, 'Title')
                 exit.setInteractive();
                 //when pressed down go to boot scene
-                //exit.on('pointerover',() =>;
                 exit.on('pointerdown', () => this.scene.start("TitleScene"));
                 exit.on('pointerover', () => this.sound.play('Exit')); // hoverover
                 this.tweens.add({
@@ -147,7 +146,8 @@ class WinScene extends Phaser.Scene {
                 var BackToMain = this.add.image(230, 600, 'MainBack')
                 BackToMain.setInteractive();
                 //once clicked start the main scene
-                //if win the the fight then going back to the main have bonus of adding 2 to the level
+                //if fight is won then go back to the main
+                //2 levels are added upon arrival
                 BackToMain.on('pointerdown', () => this.scene.start("MainScene", { type: this.type, level:this.level+=2}));
                 BackToMain.on('pointerover', () => this.sound.play('MainReturn'));
                 this.tweens.add({
