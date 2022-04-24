@@ -31,6 +31,7 @@ class MainScene extends Phaser.Scene {
     // Runs before entering the scene, LOAD IMAGES AND SOUND HERE
     preload() {
         this.load.image('quitbtn','./assets/quitbtn.png')
+        this.load.image("retirement", "./assets/RetireButton.png");
     }
     // Runs when we first enter this scene
     create() {
@@ -860,13 +861,18 @@ class MainScene extends Phaser.Scene {
                         playername: this.playername//pass in the player name
                     }))// lead to fight scene
                 }
-                if(value==5){
-                    const button2 = this.add.image(70, 320, 'button');
+                
+                if(value<=30)//once the player reaches level fifty, the icon will display to allow the 
+                             // user a chance to retire their pet from the game and then either start a new game or 
+                             //close out of their account
+                {
+                    const button2 = this.add.image(380, 570, 'retirement');
                     button2.setInteractive() // set it interactive
                     button2.on('pointerdown', () => button2.setScale(1.1))// set the scale of the button
                     button2.on('pointerup', () => button2.setScale(1));// on pointer up
                     button2.on('pointerdown', () => this.sound.stopAll());// remove the bg music
-                    button2.on('pointerdown', () => this.scene.start('RetirementScene', {
+                    button2.on('pointerdown', () => this.scene.start('RetirementScene', 
+                    {
                         type: this.type,
                         level: this.level,
                     }))

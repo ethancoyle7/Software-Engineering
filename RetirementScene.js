@@ -26,10 +26,12 @@ class RetirementScene extends Phaser.Scene {
         this.load.image('p6', './assets/red.png');
         this.load.image('p7', './assets/orange.png');
         this.load.audio('WINNER', './assets/WinMusic.mp3');
+        this.load.image("CloseGame", "./assets/RetireExit.png");
     }
 
     create() {
 
+       userChooseEgg = true//set equal to true to choose another pet
         // console.log(this.level)
         //this.sound.stop('Fight');
         this.sound.stopAll();
@@ -69,13 +71,11 @@ class RetirementScene extends Phaser.Scene {
         this.gameTimer = this.time.addEvent({
             delay: 750,
             callback: function () {
-                var newgame = this.add.image(230, 500, "NewGame")
-                newgame.setScale(3);
+                var newgame = this.add.image(230, 500, "Title")// click to go to titlescene
+                //newgame.setScale(3);
                 newgame.setInteractive();
-                newgame.on('pointerdown', () => this.exitGame());
-                newgame.on('pointerover', () => this.sound.play('MainReturn'));
-                //when pressed down go to boot scene
-                //exit.on('pointerover',() =>;
+                newgame.on('pointerdown', () => this.scene.start("TitleScene"));
+                //go back to title scene to choose another pet to start off with
                 this.tweens.add({
 
                     targets: newgame,//who it targetting
@@ -85,14 +85,14 @@ class RetirementScene extends Phaser.Scene {
                     ease: 'Sine.easeInOut'
 
                 });
-                //THIS SHOULD LOG THE USER OUT AS WELL
-                var exit = this.add.image(230, 600, 'Quit')
+                //after clicking on the button, the user will be logged out and will go back to ther
+                // sign in page to sign in to account.
+                var exit = this.add.image(230, 600, 'CloseGame')
                 exit.setInteractive();
-                exit.setScale(3);
-                //when pressed down go to boot scene
-                //exit.on('pointerover',() =>;
-                exit.on('pointerdown', () => this.exitGame());
-                exit.on('pointerover', () => this.sound.play('Exit')); // hoverover
+                
+                userChooseEgg = true
+                exit.on('pointerdown', () => signOut());//signout of the game
+                
                 this.tweens.add({
 
                     targets: exit,//who it targetting
@@ -102,25 +102,6 @@ class RetirementScene extends Phaser.Scene {
                     ease: 'Sine.easeInOut'
 
                 });
-
-                //add exit button
-                var credits = this.add.image(230, 700, 'Credits')
-                credits.setInteractive();
-                credits.setScale(3);
-                //once clicked start the main scene
-                //if win the the fight then going back to the main have bonus of adding 2 to the level
-                credits.on('pointerdown', () => this.scene.start("Credits"));
-                // credits.on('pointerover', () => this.sound.play('MainReturn'));
-                this.tweens.add({
-
-                    targets: credits,//who it targetting
-                    alpha: 0.5,
-                    yoyo: true,
-                    repeat: -1,
-                    ease: 'Sine.easeInOut'
-
-                });
-                //add exit button
             },
             callbackScope: this,
 
@@ -128,13 +109,9 @@ class RetirementScene extends Phaser.Scene {
 
     }
 
-    exitGame() {
-        this.sound.play('Exit')
-        this.sound.stopAll();
-        this.scene.start("TitleScene")
-    }
 
-    update() {
+    update() 
+    {
         //adding animations for the background 
         for (let i = 0; i < this.sprites.length; i++) {
             const sprite = this.sprites[i].s;
