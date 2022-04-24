@@ -860,17 +860,6 @@ class MainScene extends Phaser.Scene {
                         playername: this.playername//pass in the player name
                     }))// lead to fight scene
                 }
-                if(value==5){
-                    const button2 = this.add.image(70, 320, 'button');
-                    button2.setInteractive() // set it interactive
-                    button2.on('pointerdown', () => button2.setScale(1.1))// set the scale of the button
-                    button2.on('pointerup', () => button2.setScale(1));// on pointer up
-                    button2.on('pointerdown', () => this.sound.stopAll());// remove the bg music
-                    button2.on('pointerdown', () => this.scene.start('RetirementScene', {
-                        type: this.type,
-                        level: this.level,
-                    }))
-                }
 
 
                 //lets boost intensity of the next leveling up take longer to level up after certain level
@@ -1006,7 +995,12 @@ class MainScene extends Phaser.Scene {
 
     // Runs every frame update any items inside of the scene
     update() {
-        
+        if(this.level >= 50){
+            this.scene.start('RetirementScene', {
+                type: this.type,
+                level: this.level,
+            })
+        }
 
     }
 }
