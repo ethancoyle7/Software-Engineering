@@ -447,19 +447,6 @@ class MainScene extends Phaser.Scene {
             ease: 'Sine.easeInOut'
 
         });
-        //console.log(" feeding x is " + feeding.x);
-        //console.log(" feeding y is " + feeding.y);
-        var box = this.add.rectangle(130, 595, 240, 30, 0x000000);
-        box.setStrokeStyle(4, 0x00ff00);
-        box.setAlpha(0.5)
-        var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
-        //create transparent box to cover up the overlapping
-        
-        //set the text indicator for the level icon text value
-
-        //set the text to display the level
-        //convert milliseco
-        Timer.setText([""]);
         
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -475,21 +462,13 @@ class MainScene extends Phaser.Scene {
         this.timeLeft = 10800000;// 3 hours
         this.gameTimer = this.time.addEvent({
             delay: 500,
-            callback: function () {
-        //         var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
+            callback: function () 
+            {
         // //set the text indicator for the level icon text value
 
         // //set the text to display the level
         //         Timer.setText([""]);
                 this.timeLeft--;//decrement the time left
-                //iftimeleft--
-
-                
-                
-                //add text on the screen to view the timeleft
-                //var timeLeftText = this.add.text(10, 580, 'Time Left: ' + this.timeLeft, { font: '24px Arial', fill: '#00ff00' });
-                //console.log("time left is " + this.timeLeft);
-                //experience.width-=350
                 //resetting the values of the notifications
                 PetClothed.setText([''])
                 PetBathed.setText(['']);
@@ -1008,45 +987,7 @@ class MainScene extends Phaser.Scene {
             loop: true
         });
 
-        // this.timeLeft2 = 10800000;// 3 hours
-        // this.gameTimer2 = this.time.addEvent({
-        //     delay: 0,
-        //     callback: function () 
-        //     {
-        // //         var Timer = this.add.text(10, 580, '', { font: '24px Arial', fill: '#00ff00' });
-        // // //set the text indicator for the level icon text value
-    
-        // // //set the text to display the level
-        // //         Timer.setText([""]);
-        //         //this.timeLeft2--;//decrement the time left
-        //         //this.timeLeft2--;
-        //         console.log(this.timeLeft2%180000)
-        //         let sec = Math.floor(this.timeLeft2 / 1000);
-        //         let hrs = Math.floor(sec / 3600);
-        //         sec -= hrs * 3600;
-        //         let min = Math.floor(sec / 60);
-        //         sec -= min * 60;
-              
-        //         sec = '' + sec;
-        //         sec = ('00' + sec).substring(sec.length);
-              
-               
-        //         // Timer.setText([
-    
-    
-                    
-        //         //     'Time Left: ' + (this.timeLeft2/1000/60).toFixed(2) +' minutes'
-        //         //     //'Time Left: ' + ((this.timeLeft2/60000)).toFixed(2)+ ' ms'
-        //         // ]);
-                
-                
-        //         this.timeLeft2--;
-                    
-                  
-        //     },
-        //     callbackScope: this,
-        //     loop: true
-        // });
+ 
     }
     
 
