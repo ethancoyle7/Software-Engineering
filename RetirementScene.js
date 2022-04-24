@@ -50,6 +50,7 @@ class RetirementScene extends Phaser.Scene {
         let rect = this.add.rectangle(230, 200, 450, 300, 0x000000);
         rect.setAlpha(.5);
         let retire = this.add.image(230, 200, "Retired");
+        retire.setScale(1);
 
         this.pet = this.add.sprite(230, 350, "pet");
         this.pet.setScale(5);//set the scale of the pet for fight to fit the scene width and height
