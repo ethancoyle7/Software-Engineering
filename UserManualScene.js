@@ -12,11 +12,38 @@ preload(){
     
 }
 create(){
-    var informationtext=this.add.image(230,380,"info"); 
-        informationtext.setScale(1.2);
-        //informationtext.setOrigin(0.5);
-    let homebutton=this.add.image(400,755,'BackToTitle');
-    homebutton.setScale(.2);
+    // var informationtext=this.add.image(230,380,"info"); 
+    //     informationtext.setScale(1.2);
+    //create a text box that will display the instructions
+    var instructions=this.add.text(90,20,"USER MANUAL",{fontSize: "40px", fill: "white"});
+    // information for the main scene helpful tips
+    var instructionsMS=this.add.text(20,70,"Main Scene",{fontSize: "30px", fill: "red"});
+    var instructions3=this.add.text(30,100,"-Click/Drag items from the bottom\n to interact",{fontSize: "20px", fill: "white"});
+    var instructions4=this.add.text(30,140,"-Pet Bars Affected by interacting",{fontSize: "20px", fill: "white"});
+    var instructions5=this.add.text(30,165,"-Starting at level 10,user can\n fight their pet",{fontSize: "20px", fill: "white"});
+
+    //info for the fight scene helpful tips
+    var instructionsFS=this.add.text(20,205,"Fight Scene",{fontSize: "30px", fill: "red"});
+    var instructions6=this.add.text(30,240,"-Random Enemy Selected from user\n list",{fontSize: "20px", fill: "white"});
+    var instructions7=this.add.text(30,280,"-Click Attack option to attack \n the enemy",{fontSize: "20px", fill: "white"});
+    var instructions8=this.add.text(30,320,"-Additional attacks based on\n The pet's level",{fontSize: "20px", fill: "white"});
+
+    //info for win scene and gameover scene helpful tips
+    var instructionsWSGO=this.add.text(20,355,"Win and GameOver",{fontSize: "30px", fill: "red"});
+    var instructions9=this.add.text(30,395,"-Win: User win's a fight",{fontSize: "20px", fill: "white"});
+    var instructions10=this.add.text(50,425,"-Options Include(Try Again,\n Main Return or Choose Pet)",{fontSize: "20px", fill: "white"});
+    var instructions11=this.add.text(30,475,"-GameOver: User's Pet Dies",{fontSize: "20px", fill: "white"});
+    var instructions12=this.add.text(50,505,"-Options Include(Try Again,\n or Choose Pet)",{fontSize: "20px", fill: "white"});
+
+    //helpful tip for overall game description
+    var Objective=this.add.text(20,550,"Game Objective",{fontSize: "30px", fill: "red"});
+    var instructions13=this.add.text(30,590,"-Interact with the pet",{fontSize: "20px", fill: "white"});
+    var instructions14=this.add.text(30,625,"-Don't stay idle for over 3 hours ",{fontSize: "20px", fill: "white"});
+    var instructions15=this.add.text(30,660,"-or your Pet will runaway or die",{fontSize: "20px", fill: "white"});
+    var instructions16=this.add.text(30,695,"-HAVE FUN!!",{fontSize: "20px", fill: "white"});
+   //create a button to go back to the choose an egg scene
+    let homebutton=this.add.image(380,735,'BackToTitle');
+    homebutton.setScale(.35);
     homebutton.setInteractive();
     homebutton.on('pointerup',()=>{
         //this.sound.stopAll();// stop the music and load the next scene
