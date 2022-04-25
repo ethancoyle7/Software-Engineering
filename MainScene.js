@@ -138,6 +138,16 @@ class MainScene extends Phaser.Scene {
                 this.sound.play(backgroundmusic[musicloop], { volume: 3 })
             }
         })
+        //add info button inside of the main scene that gives helpful information to the user
+        // incase they have questions regarding the game itself
+        let homebutton1 = this.add.image(405, 300, 'home');
+        homebutton1.setScale(0.5);
+        homebutton1.setInteractive();
+        homebutton1.on('pointerdown', () => {
+            this.sound.stopAll();// stop the music and load the next scene
+            //this.scene.start('UserManualScene');
+            this.scene.start("UserManualScene", { type: this.type, level: this.level });
+        })// after done the user will return to the main scene passing back in the type and level
 
 
         //adding the sprite and then setting the scale on the screen
@@ -862,7 +872,7 @@ class MainScene extends Phaser.Scene {
                     }))// lead to fight scene
                 }
                 
-                if(value>=30)//once the player reaches level fifty, the icon will display to allow the 
+                if(value>=50)//once the player reaches level fifty, the icon will display to allow the 
                              // user a chance to retire their pet from the game and then either start a new game or 
                              //close out of their account
                 {
