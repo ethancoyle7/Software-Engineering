@@ -105,14 +105,7 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
         // ADDING THE TITLE AND EGG CHOICE AND PRODUCER TAGS
         var title = this.add.image(225, 80, "title")
         var eggs = this.add.image(225, 550, "eggchoice")
-        //help button
-        let homebutton1 = this.add.image(40, 50, 'home');
-        homebutton1.setScale(0.3);
-        homebutton1.setInteractive();
-        homebutton1.on('pointerdown', () => {
-            this.sound.stopAll();// stop the music and load the next scene
-            this.scene.start('UserManualScene');
-        })
+        
         let mutebutton = this.add.image(400, 50, 'mute');
         mutebutton.setScale(0.3);
         mutebutton.setInteractive();

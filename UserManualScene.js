@@ -4,6 +4,19 @@ class UserManualScene extends Phaser.Scene{ //the scene is a class, so we will b
 constructor()
 {
     super("UserManualScene");
+    this.level=0
+    this.type="";
+
+}
+init(data) {
+    this.type = data.type;
+    if (this.type == "") {
+        // No username was provided
+        this.type = "0";
+    }
+    this.level = data.level; // Level of the player
+    
+    this.playername = data.playername; // Player name
 
 }
 preload(){
@@ -44,10 +57,7 @@ create(){
     let homebutton=this.add.image(380,735,'BackToTitle');
     homebutton.setScale(.35);
     homebutton.setInteractive();
-    homebutton.on('pointerup',()=>{
-        //this.sound.stopAll();// stop the music and load the next scene
-        this.scene.start('TitleScene');
-    })
+    homebutton.on('pointerup',()=>this.scene.start("MainScene", { type: this.type, level:this.level}));
     
 }
 update(){
