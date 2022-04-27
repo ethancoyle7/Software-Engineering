@@ -1,5 +1,6 @@
+//This scene functions as an informative page for the user
 class UserManualScene extends Phaser.Scene{ //the scene is a class, so we will be using this a lot to reference
-    //methods and variables owned by it. This is where i make a lot of mistakes lol
+    //methods and variables owned by it. 
 constructor()
 {
     super("UserManualScene");
@@ -12,8 +13,6 @@ preload(){
     
 }
 create(){
-    // var informationtext=this.add.image(230,380,"info"); 
-    //     informationtext.setScale(1.2);
     //create a text box that will display the instructions
     var instructions=this.add.text(90,20,"USER MANUAL",{fontSize: "40px", fill: "white"});
     // information for the main scene helpful tips

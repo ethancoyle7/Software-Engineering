@@ -35,10 +35,10 @@ class MainScene extends Phaser.Scene {
     }
     // Runs when we first enter this scene
     create() {
+        this.sound2=0;
+        console.log(this.sound2+" is the sound number");
         this.sound.stopAll()// to prevent looping stop all previous sounds
         var value = 0 // value for the level
-
-
 
         //call the getnickname function
         getNickname().then(data => {
@@ -90,13 +90,7 @@ class MainScene extends Phaser.Scene {
             console.log(" not undefined");
             value = this.level;
         }
-        //set the text to the level
-        //this.add.text(10, 10, 'Level: ' + value, { fontSize: '32px', fill: '#000' });
 
-
-
-        //increment this.level by one
-        //this.level = this.level + 1;
         console.log(" our level is this: " + value);
 
         ////////////////////////////////////////////////////////////////////////////////////////
@@ -300,8 +294,6 @@ class MainScene extends Phaser.Scene {
         signoutButton.setInteractive() // set it interactive
         signoutButton.setScale(2)
         signoutButton.on('pointerdown', () => signOut())
-        // signoutButton.on('pointerup', () => signOut.setScale(2.5));
-
 
 
         // to help identify the interactions and the array of items, create label to differentiate
@@ -466,9 +458,7 @@ class MainScene extends Phaser.Scene {
             callback: function () 
             {
         // //set the text indicator for the level icon text value
-
         // //set the text to display the level
-        //         Timer.setText([""]);
                 this.timeLeft--;//decrement the time left
                 //resetting the values of the notifications
                 PetClothed.setText([''])
@@ -483,10 +473,8 @@ class MainScene extends Phaser.Scene {
                 var levelupvalue = 2
                 var decrement = 1
                 var increment = 2
+
                 //if statement to boost up the intensity of the fight
-
-
-
                 if (this.level >= 20 && this.level < 30) //if the level is less than 10
                 {
                     levelupvalue = 4 //level up value is 4
@@ -826,7 +814,7 @@ class MainScene extends Phaser.Scene {
                         //update the hunger bar
                         var foodupdatehunger = hunger.width += increment; //add happiness
                         hunger.width += increment //increment the happiness
-                        //hunger.width-=50
+                       
                         if (foodupdatehunger >= 350) //if the happiness is out of bounds
                         {
                             hunger.width = 350// reset the width setting outer right bounds
@@ -862,7 +850,7 @@ class MainScene extends Phaser.Scene {
                     }))// lead to fight scene
                 }
                 
-                if(value>=30)//once the player reaches level fifty, the icon will display to allow the 
+                if(value>=50)//once the player reaches level fifty, the icon will display to allow the 
                              // user a chance to retire their pet from the game and then either start a new game or 
                              //close out of their account
                 {
@@ -880,7 +868,6 @@ class MainScene extends Phaser.Scene {
 
 
                 //lets boost intensity of the next leveling up take longer to level up after certain level
-
                 //after checking the level adjust the increment to the new level up value
                 if (experience >= levelupvalue)// once certain amount of experience, level up and play sound
                 {
@@ -1009,15 +996,4 @@ class MainScene extends Phaser.Scene {
  
     }
     
-
-    // Runs every frame update any items inside of the scene
-    update() {
-        // if(this.level >= 50){
-        //     this.scene.start('RetirementScene', {
-        //         type: this.type,
-        //         level: this.level,
-        //     })
-        // }
-
-    }
 }

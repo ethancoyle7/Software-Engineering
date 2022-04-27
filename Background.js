@@ -18,7 +18,6 @@ class BackgroundScene extends Phaser.Scene
         //loops through all image options of bootpet.js
         for (let i = 0; i < BOOTPET.length; i++) {
             this.load.image(BOOTPET[i].name, `./assets/${BOOTPET[i].image}`);
-            //this.load.image('bg', './assets/loading.png');
         }
         //loads all files in preload and sends it through scenes as data
         this.load.on('fileprogress', (data) => {
@@ -26,9 +25,7 @@ class BackgroundScene extends Phaser.Scene
             
         });
        
-        
-
-        //changing the scene
+        //changing the scene after all files above have finished loading
         this.load.on('complete', () => {
             this.scene.start('BootScene');
         }); 

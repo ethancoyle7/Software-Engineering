@@ -1,3 +1,5 @@
+//This Scene serves the function of loading game assets in advance
+//this allows for smooth transitions between scenes
 class BootScene extends Phaser.Scene 
 {
     constructor()
@@ -12,15 +14,13 @@ class BootScene extends Phaser.Scene
         this.petImage=null;
         this.imageNum=0;
         this.name='';
-        // firebase.analytics();
-        // // this.auth = firebase.auth();
-        // this.database = firebase.database();
 
     }
 
 
     preload() 
     {
+        //calling function to check if user is logged in
         checkIfUserIsLoggedIn();
 
         ///////////////////////////////////////////////////////////////////
@@ -32,21 +32,10 @@ class BootScene extends Phaser.Scene
         // ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ //
         ///////////////////////////////////////////////////////////////////
                                                                      
-        //This is where images are loaded
-        //this.load.image('use a short name', './assets/name_of_image');
-        //this.load.image("teamlogo1", "./assets/image (1).png");
-        
-        //var loo = this.add.image(225, 600, 'logor')
+        //This is where image is loaded
         this.load.image("Moogles", "./assets/MisterMoogles.png");
-        // this.load.image(BOOTPET[0].name,`./assets/${BOOTPET[0].image}`)
-        
-        // //loops through all image options of bootpet.js
-        // for (let i = 0; i < BOOTPET.length; i++) {
-        //     this.load.image(BOOTPET[i].name, `./assets/${BOOTPET[i].image}`);
-        //     //this.load.image('bg', './assets/loading.png');
-        // }
 
-        //This is the loading bar area - i reused some code
+        //This creates the loading bar 
         this.loadingBar = this.add.rectangle(225, 300, 450, 40, 0x22dd4b);
         this.loadingTxt = this.add.text(235,250, "0%", {
             fontSize: '24px',
@@ -55,14 +44,8 @@ class BootScene extends Phaser.Scene
         });
         this.loadingTxt.setOrigin(0.5);
         this.loadingBar.setOrigin(0.5);
-        // Load a bunch of assets "squares"
-        this.load.image('loading assets', './assets/square1.png');
-        // for (let i = 0; i < 200; i++) {
-        //      this.load.image(`loading assets-${i}`, './assets/square1.png');
-        // }
 
         // "MainScene" preload to the screen the background and the music
-        //this.load.image('bg', './assets/background.png');
         this.load.image('bg', './assets/background.png');
         //background for the fightscene load up
         this.load.image('circus', './assets/MarleyFight.png');
@@ -430,7 +413,7 @@ class BootScene extends Phaser.Scene
         this.load.image('RetryFight', './assets/fightretry.png'); 
         this.load.image('bubble', 'assets/bubble256.png');//add cleaning bubbles
         this.load.image('wipey', './assets/bathe/wet_wipe.png')
-        this.load.image("Title", "./assets/backtoTitle.png");//go back to the titlescene to choose naother pet
+        this.load.image("Title", "./assets/backtoTitle.png");//go back to the titlescene to choose another pet
         this.load.image("MainBack", "./assets/MainBack.png"); //go back to the main
         this.load.image("FightBack", "./assets/FightBack.png");//go back to fight
 
@@ -464,15 +447,7 @@ class BootScene extends Phaser.Scene
         this.load.audio('4','./assets/mainsounds/RainbowLollipop.mp3') 
         this.load.audio('5','./assets/mainsounds/Stroll.mp3')
         this.load.audio('6', './assets/mainsounds/Sunshine.mp3');
-          //4,8,3
-        // Loading events listeners
-        
 
-    //this.load.image(BOOTPET[1]);
-   //let index = Math.floor(Math.random() * BOOTPET.length); 
-   //this.setCat(BOOTPET[1]);
-        // this.load.image("teamlogo1", "./assets/image (1).png");
-        // this.add.image(225, 600, "teamlog1");
 //////////////////////////////////////////////////////////////////
 // ██╗      ██████╗  █████╗ ██████╗     ██████╗  █████╗ ██████╗ //
 // ██║     ██╔═══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔══██╗██╔══██╗//
@@ -491,15 +466,9 @@ class BootScene extends Phaser.Scene
             
 
         });
-        //
-        //LogoTeam.setScale(.7); 
-        
-       
-        
+
         this.load.on('fileprogress', (data) => {
-            //this.updateText();
-            this.fileLoading = data.src;
-            
+            //this.fileLoading = data.src;
             this.fileLoading = data.key;
             
         });
@@ -553,9 +522,9 @@ class BootScene extends Phaser.Scene
     setCat(petConfig)
     {
         
-        // Create an image of pet at position x:225,y:400
+        // Creates an image of pet at position x:225,y:400
         this.petImage = this.add.image(225, 400, petConfig.name);
-             // Set the size of the pet
+             // Sets the size of the pet
              this.petImage.setScale(5);
     
     }

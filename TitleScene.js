@@ -1,8 +1,10 @@
-/* This scene is a titlescene that plays first before the user starts the game
-*   This is where the user will log into their account
-* 
-*
+/* This scene contains the tiltle of the Game
+*  It appears after the BootScene
+*  In this scene users are allowed to choose an egg 
+*  The color of the egg coresponds with the color of
+*  their new pet. 
 */
+
 var allusers = []
 userData = {}
 var dict = {}
@@ -14,14 +16,12 @@ var enemey
 let userChooseEgg = false;
 
 class TitleScene extends Phaser.Scene { //the scene is a class, so we will be using this a lot to reference
-    //methods and variables owned by it. This is where i make a lot of mistakes lol
+    //methods and variables owned by it.
     constructor() {
         super("TitleScene");
         this.bgmusic;
         this.type;
         this.sound1 = 0;
-        //this.playername=""
-        //this.eggNum='';
     }
 
     preload() {  // this is the preload function, it loads all the assets for the scene
@@ -30,8 +30,8 @@ class TitleScene extends Phaser.Scene { //the scene is a class, so we will be us
     create() {
         // Check if the user chose an egg or not
         // if the user chose an egg, user needs to be redirected to the MainScene
-        // Otherwise user needs to choose an egg.
-
+        // Otherwise the user needs to choose an egg.
+        this.sound1=0;
         this.sound.stopAll();// stop all previous sounds
         //this is the create function
         //create variable called bg, and make it equal to an image of "bgname" at location (225,400)
@@ -354,7 +354,6 @@ async function getColor() {
             if (doc.id == uid) {
                 userData['color'] = doc.data().color;
                 result = doc.data().color; // if the user is found override result to the nickname
-                //return doc.data();  
                 console.log("her her her here")
             }
         });
@@ -410,12 +409,6 @@ async function getUsers() {
             console.log("color defaulted to red")
             enemycolor = "red"
         }
-        // else
-        // {
-        //     console.log('the enemy is undefined')
-        // }
-
-        //return enemey//passing the color of the enemy
 
     });
 

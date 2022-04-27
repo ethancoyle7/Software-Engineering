@@ -1,5 +1,5 @@
 # OUR PROJECT
-
+# Note: View this file in full screen mode (for optimal readability)
 
 
 ##  Authors   : Ethan Coyle, Jereen LeBlanc, Paige Champagne, Fowzy Alsaud                                                #
@@ -23,7 +23,7 @@
 ###      actions will effect the status bars of the players health. On the title scene before choosing the egg to choose  #
 ###      their pet, they can click the info button at the top left to view in game information to help them as well.      #
 ###      the game is pretty straight forward even in the fight scene, the player will be faced with an opponent and in the#
-###      bottom right, there will be an atack bar of all the available attacks, these buttons are interactive so when     #
+###      bottom right, there will be an attack bar of all the available attacks, these buttons are interactive so when     #
 ###      user clicks on any of the buttons, they will directly affect the enemy you are facing. In the game over scenes,  #
 ###      the user is able to view a few options: retry fight, back to main or exit(which will lead to the title scene     #
 ###      in which the player can choose another pet) doing this however reset all the stats of the player including the   #
@@ -49,9 +49,9 @@
 
 
 # BootScene
-### Inside of the boot scene, all of the assests and sprite sheets and sounds are loaded into the game
+### Inside of the boot scene, all of the assets and sprite sheets and sounds are loaded into the game
 ### This is the second scene of the game after the user successfully logins into the game or creates and account and logins in
-### Once all the assests are loaded up into the game, the game will then transition to the Title Scene
+### Once all the assets are loaded up into the game, the game will then transition to the Title Scene
 
 # Title Scene
 

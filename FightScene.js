@@ -1,3 +1,7 @@
+//This Scene is where the users pet fights with the pet another pet
+//The pet is distinguished by the nickname and color
+//selected by an existing user (the choice is made in the main scene
+//and carries it to this scene)
 class FightScene extends Phaser.Scene {
 
     // This is where we define data members
@@ -16,10 +20,11 @@ class FightScene extends Phaser.Scene {
         this.playername = ""
 
     }
+    //gets data from previous scenes
     init(data) {
         this.type = data.type;
         if (this.type == "") {
-            // No username was provided
+            // No username was provided default is 0
             this.type = "0";
         }
         this.level = data.level;
@@ -32,7 +37,6 @@ class FightScene extends Phaser.Scene {
     preload() {
     }
 
-
     // Runs when we first enter this scene
     create() {
         ////////////////////////////////////////////////
@@ -44,6 +48,7 @@ class FightScene extends Phaser.Scene {
         // ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝      //
         ////////////////////////////////////////////////
         console.log('the boolean starts as is: ', userChooseEgg)
+        this.sound3=0;
         this.sound.stopAll();// stop all previous sounds
         //start the boss fight music
         this.sound.play('FightSound2', { volume: 1 });
@@ -232,10 +237,6 @@ class FightScene extends Phaser.Scene {
         //add grey transparent background for the opponentname
         ;
 
-        //align the text to the left
-        //OpponenetName.setAlign('left');
-
-
         //WE WANT A RECTANGLE TO HOLD THE ATTACK BUTTONS INSIDE SO MAKE IT BEFORE
         //ATTACK BUTTONS SO AS TO NOT COVER UP BARS
         //var AttackContainer = this.add.rectangle(340, 680, 175, 170, 0xa9a9a9);
@@ -308,14 +309,14 @@ class FightScene extends Phaser.Scene {
                 {
                     var EnemyAttack = Math.floor(Math.random() * 6)
                     enemyattack = 8
-
+                    console.log("Enemy attackthing for level 20+")
 
                 }
                 if (this.level >= 30) //between 30 and 40
                 {
                     var EnemyAttack = Math.floor(Math.random() * 8)
                     enemyattack = 10
-
+                    console.log("Enemy attackthing for level 30+")
                 }
                 //if statement to boost up the intensity of the fight
                 //console.log("enemy attack with " + enemyattack)
@@ -329,15 +330,13 @@ class FightScene extends Phaser.Scene {
 
                 //set it where the pet when is attack changes to a different color
                 if (val > 0) {
-                    // enemyq.anims.stop('run');//stop the animations
-                    // enemyq.anims.play('punch');//play the punch animation
+
                     this.pet.setTint(0xff0000);
-                    //this.sound.play('EnemyHit')
+
                 }
                 //set the tint clear so user knows that the pet hasnt been hurt
                 if (val == 0) {
-                    // enemyq.anims.stop('punch');//stop the animations
-                    // enemyq.anims.play('run');//play the run animation
+
                     this.pet.clearTint();
                 }
 

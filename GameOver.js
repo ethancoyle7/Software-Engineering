@@ -130,11 +130,7 @@ class GameOver extends Phaser.Scene
 
         });
         
-
-        //Retry.on('pointerover',() => this.sound.play('KO')); 
-        
     
-        
     }
     update() { 
         //adding animations for the background 
