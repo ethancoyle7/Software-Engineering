@@ -1,3 +1,4 @@
+//This scene is loaded when the pet dies in battle
 class GameOver extends Phaser.Scene 
 {
     constructor() 

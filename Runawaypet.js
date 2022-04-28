@@ -1,3 +1,5 @@
+//This scene dipicts the pet running away and 
+//gives the user the option to choose a new pet
 class Runawaypet extends Phaser.Scene 
 {
     constructor() 
@@ -79,13 +81,7 @@ class Runawaypet extends Phaser.Scene
             ease: 'Sine.easeInOut'
 
         });
-        //add exit button
-       
-        
 
-        //Retry.on('pointerover',() => this.sound.play('KO')); 
-        
-    
         
     }
     update() 

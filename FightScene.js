@@ -1,4 +1,4 @@
-//This Scene is where the users pet fights with the pet another pet
+//This Scene is where the users pets fight each other
 //The pet is distinguished by the nickname and color
 //selected by an existing user (the choice is made in the main scene
 //and carries it to this scene)

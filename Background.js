@@ -1,4 +1,4 @@
-//Purpose of this Scene is to load images for loading scene
+//Purpose of this Scene is to load images for the Bootscene
 //(this measure is to prevent a green box/ imgages from not loading the first time)
 class BackgroundScene extends Phaser.Scene 
 {
